@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83C14B5F-0F7F-415B-AEF5-5F04D7B8F7C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oragon.Architecture</RootNamespace>
+    <AssemblyName>Oragon.Architecture</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dev|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsDisjunctiveRequires>False</CodeContractsDisjunctiveRequires>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Prd|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Tst|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Tst\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hmg|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Hmg\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\[References]\AutoMapper\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\[References]\AutoMapper\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o">
+      <HintPath>..\..\[References]\Db4O\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.CS, Version=8.0.236.16058, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <HintPath>..\..\[References]\Db4O\Db4objects.Db4o.CS.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\[References]\Nhibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\[References]\MongoDB\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\[References]\MongoDB\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\[References]\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\[References]\Nhibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\[References]\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SharedCache.WinServiceCommon">
+      <HintPath>..\..\[References]\SharedCache\SharedCache.WinServiceCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="AOP\AopExtensions.cs" />
+    <Compile Include="AOP\Cache\CacheableAttribute.cs" />
+    <Compile Include="AOP\Cache\CacheAroundAdvice.cs" />
+    <Compile Include="AOP\Cache\CacheSerializationType.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContext.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContextAttribute.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractDataProcess.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContext.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContextAttribute.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContext.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlingAttribute.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlingStrategy.cs" />
+    <Compile Include="Business\Entity.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBConnectionString.cs" />
+    <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
+    <Compile Include="Data\Process\QueryDataProcess.cs" />
+    <Compile Include="Extensions\IQueryableAutoMapperExtensions.cs" />
+    <Compile Include="FFMpeg\AscpectRation.cs" />
+    <Compile Include="FFMpeg\FFMpegServiceMode.cs" />
+    <Compile Include="FFMpeg\Files\AudioFile.cs" />
+    <Compile Include="FFMpeg\Formats\AudioFormat.cs" />
+    <Compile Include="FFMpeg\FFMpegOptions.cs" />
+    <Compile Include="FFMpeg\Files\ImageFile.cs" />
+    <Compile Include="FFMpeg\FFMpegService.cs" />
+    <Compile Include="FFMpeg\Files\MediaFile.cs" />
+    <Compile Include="FFMpeg\Files\VideoFile.cs" />
+    <Compile Include="FFMpeg\Formats\MediaFormat.cs" />
+    <Compile Include="FFMpeg\Formats\VideoFormat.cs" />
+    <Compile Include="Globalization\ContextualMessageSource.cs" />
+    <Compile Include="Globalization\GlobalizationAroundAdvice.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextAttribute.cs" />
+    <Compile Include="Business\BusinessException.cs" />
+    <Compile Include="Business\UndefinedException.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="Data\ConnectionStrings\ConfigurableConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\DefaultConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\IConStrConfigDiscovery.cs" />
+    <Compile Include="Globalization\IContextualMessageSource.cs" />
+    <Compile Include="Log\AbstractLogger.cs" />
+    <Compile Include="Log\AMQPLogger.cs" />
+    <Compile Include="Log\DiagnosticsLogger.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlerAroundAdvice.cs" />
+    <Compile Include="Log\ILogger.cs" />
+    <Compile Include="Log\LogLevel.cs" />
+    <Compile Include="Log\Model\LogEntryTransferObject.cs" />
+    <Compile Include="Log\Model\TagTransferObject.cs" />
+    <Compile Include="Log\Model\TagValueTransferObject.cs" />
+    <Compile Include="Log\MSMQLogger.cs" />
+    <Compile Include="Log\NLogLogger.cs" />
+    <Compile Include="Log\SafeLogger.cs" />
+    <Compile Include="Threading\ApartmentStateHelper.cs" />
+    <Compile Include="Threading\Db4oStorage.cs" />
+    <Compile Include="Data\EnumValueAttribute.cs" />
+    <Compile Include="Data\IQueryExtensions.cs" />
+    <Compile Include="Data\ConnectionStrings\NHConfigFileConnStrDiscovery.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHDataProcess.cs" />
+    <Compile Include="Data\SessionFactoryBuilder.cs" />
+    <Compile Include="DateRange.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="JsonHelper.cs" />
+    <Compile Include="Merger.cs" />
+    <Compile Include="Messaging\JsonMessageFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetryManager.cs" />
+    <Compile Include="Schedule\ITaskHandler.cs" />
+    <Compile Include="Schedule\ITaskScheduler.cs" />
+    <Compile Include="Schedule\Task.cs" />
+    <Compile Include="Schedule\TaskManager.cs" />
+    <Compile Include="Security\IUserResolver.cs" />
+    <Compile Include="Messaging\Support\Converters\JsonMessageConverter.cs" />
+    <Compile Include="StateMachine\StateMachine.cs" />
+    <Compile Include="StateMachine\Transition.cs" />
+    <Compile Include="Threading\ExpressionBasedKeyParser.cs" />
+    <Compile Include="Threading\IKeyParser.cs" />
+    <Compile Include="Threading\MultiLevelStorage.cs" />
+    <Compile Include="Threading\SessionStorage.cs" />
+    <Compile Include="Threading\SharedCacheStorage.cs" />
+    <Compile Include="Threading\SameKeyParser.cs" />
+    <Compile Include="TypeConversion\DirectoryInfoConverter.cs" />
+    <Compile Include="TypeConversion\ReaderQuotasConverter.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName)$(TargetExt)"
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName).pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

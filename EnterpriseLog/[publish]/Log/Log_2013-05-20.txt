@@ -1,0 +1,846 @@
+2013-05-20 18:24:35.4703|DEBUG|Oragon.Architecture.Services.ServiceManager|Criando Contexto Spring
+2013-05-20 18:24:36.7937|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.DirectoryNotFoundException: Não foi possível localizar uma parte do caminho 'C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\Log\Log_2013-05-20.txt'.
+   em System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+2013-05-20 18:24:37.0021|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException: Exceção do tipo 'Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException' foi acionada.
+   em Spring.Objects.Factory.Xml.XmlObjectDefinitionReader.HandleValidation(Object sender, ValidationEventArgs args) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Objects\Factory\Xml\XmlObjectDefinitionReader.cs:linha 371
+2013-05-20 18:25:01.8040|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto Spring e inicializado com sucesso!
+2013-05-20 18:25:01.8040|DEBUG|Oragon.Architecture.Services.ServiceManager|Iniciando MainService...
+2013-05-20 18:25:01.8040|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviços...
+2013-05-20 18:25:01.8040|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:25:02.3022|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:25:01.9722374-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 18:25:02.6182|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: Não foi possível carregar arquivo ou assembly 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4' ou uma de suas dependências. O sistema não pode encontrar o arquivo especificado.
+Nome do arquivo: 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4'
+   em System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   em System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+=== Informações sobre estado pré-associação ===
+LOG: usuário = IMUSICA\luiz.faria
+LOG: DisplayName = NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+ (Fully-specified)
+LOG: Appbase = file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/
+LOG: PrivatePath inicial = NULL
+Chamando assembly: System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089.
+===
+LOG: esta associação começa no contexto de carregamento default.
+LOG: usando arquivo de configuração de aplicativo: C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LogEngineServer\LogEngineServer.exe.Config
+LOG: usando arquivo de configuração de host: 
+LOG: usando arquivo de configuração da máquina de C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: referência pós-política: NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.EXE.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.EXE.
+
+2013-05-20 18:25:07.1917|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.2417|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.2917|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.3438|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.4018|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.4941|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.5431|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+ClientConnectionId:fdf12617-ac3e-4f25-9b2a-a56472895c7e
+2013-05-20 18:25:07.5901|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)
+   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)
+   em NHibernate.Cfg.Configuration.BuildSessionFactory()
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+
+
+2013-05-20 18:25:07.6712|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)
+   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)
+   em NHibernate.Cfg.Configuration.BuildSessionFactory()
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactoryInternal() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 154
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactory() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 110
+
+
+2013-05-20 18:25:07.7352|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)
+   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)
+   em NHibernate.Cfg.Configuration.BuildSessionFactory()
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactoryInternal() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 154
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactory() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 110
+   em Oragon.Architecture.AOP.ObjectContextAroundAdvice.InvokeUsingContext(IMethodInvocation invocation, Stack`1 requiredPersistenceContextAttributeStack) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\AOP\ObjectContextAroundAdvice.cs:linha 85
+   em Oragon.Architecture.AOP.ObjectContextAroundAdvice.Invoke(IMethodInvocation invocation) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\AOP\ObjectContextAroundAdvice.cs:linha 64
+
+
+2013-05-20 18:25:07.7522|ERROR|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:25:07.7552116-03:00",
+  "Content": "FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.\r\n\r\n ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.\r\n   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)\r\n   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)\r\n   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)\r\n   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)\r\n   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)\r\n   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)\r\n   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)\r\n   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)\r\n   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)\r\n   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)\r\n   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)\r\n   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)\r\n   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)\r\n   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)\r\n   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)\r\n   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)\r\n   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)\r\n   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)\r\n   em System.Data.SqlClient.SqlConnection.Open()\r\n   em NHibernate.Connection.DriverConnectionProvider.GetConnection()\r\n   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()\r\n   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)\r\n   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)\r\n   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)\r\n   em NHibernate.Cfg.Configuration.BuildSessionFactory()\r\n   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()\r\n   --- Fim do rastreamento de pilha de exceções internas ---\r\n   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()\r\n   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactoryInternal() na c:\\Projetos\\Oragon@Assembla\\trunk\\Architecture\\Oragon.Architecture\\Data\\SessionFactoryBuilder.cs:linha 154\r\n   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactory() na c:\\Projetos\\Oragon@Assembla\\trunk\\Architecture\\Oragon.Architecture\\Data\\SessionFactoryBuilder.cs:linha 110\r\n   em Oragon.Architecture.AOP.ObjectContextAroundAdvice.InvokeUsingContext(IMethodInvocation invocation, Stack`1 requiredPersistenceContextAttributeStack) na c:\\Projetos\\Oragon@Assembla\\trunk\\Architecture\\Oragon.Architecture\\AOP\\ObjectContextAroundAdvice.cs:linha 85\r\n   em Oragon.Architecture.AOP.ObjectContextAroundAdvice.Invoke(IMethodInvocation invocation) na c:\\Projetos\\Oragon@Assembla\\trunk\\Architecture\\Oragon.Architecture\\AOP\\ObjectContextAroundAdvice.cs:linha 64\r\n   em Spring.Aop.Framework.AbstractMethodInvocation.Proceed() na f:\\bamboo-home\\xml-data\\build-dir\\SPRNET-RELEASE-JOB1\\src\\Spring\\Spring.Aop\\Aop\\Framework\\AbstractMethodInvocation.cs:linha 284\r\n   em Oragon.Architecture.Log.ExceptionHandlerAroundAdvice.Invoke(IMethodInvocation invocation) na c:\\Projetos\\Oragon@Assembla\\trunk\\Architecture\\Oragon.Architecture\\Log\\ExceptionHandlerAroundAdvice.cs:linha 33\r\n\r\n",
+  "LogLevel": 4,
+  "Tags": {
+    "User:ApplicationException": "FluentNHibernate.Cfg.FluentConfigurationException",
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 18:25:07.7992|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Oragon.Architecture.Business.UndefinedException: Não foi possível realizar a operação solicitada. Contate o administrador da aplicação.
+   em Oragon.Architecture.Log.ExceptionHandlerAroundAdvice.Invoke(IMethodInvocation invocation) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Log\ExceptionHandlerAroundAdvice.cs:linha 56
+2013-05-20 18:25:07.8192|DEBUG|Oragon.Architecture.Services.ServiceManager|Erro na iniciação do MainService: Oragon.Architecture.Business.UndefinedException: Não foi possível realizar a operação solicitada. Contate o administrador da aplicação.
+   em Oragon.Architecture.Log.ExceptionHandlerAroundAdvice.Invoke(IMethodInvocation invocation) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Log\ExceptionHandlerAroundAdvice.cs:linha 56
+   em Spring.Aop.Framework.AbstractMethodInvocation.Proceed() na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\AbstractMethodInvocation.cs:linha 284
+   em Spring.Aop.Framework.DynamicProxy.AdvisedProxy.Invoke(Object proxy, Object target, Type targetType, MethodInfo targetMethod, MethodInfo proxyMethod, Object[] args, IList interceptors) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\DynamicProxy\AdvisedProxy.cs:linha 210
+   em CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache()
+   em _dynamic_CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache(Object , Object[] )
+   em Spring.Reflection.Dynamic.SafeMethod.Invoke(Object target, Object[] arguments) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Reflection\Dynamic\DynamicMethod.cs:linha 152
+   em Spring.Expressions.MethodNode.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\MethodNode.cs:linha 163
+   em Spring.Expressions.BaseNode.GetValue(BaseNode node, Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 257
+   em Spring.Expressions.Expression.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\Expression.cs:linha 276
+   em Spring.Expressions.BaseNode.GetValue(Object context, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 182
+   em Spring.Expressions.ExpressionEvaluator.GetValue(Object root, String expression, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\ExpressionEvaluator.cs:linha 71
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.CallMethod(String methodName) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 61
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 43
+   em Oragon.Architecture.Services.ServiceContainer.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceContainer.cs:linha 27
+   em Oragon.Architecture.Services.ServiceManager.<StartMainService>b__6() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 109
+   em Oragon.Architecture.RetryManager.Try(Action action, Action`1 exceptionHandler, Action finallyHandler) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\RetryManager.cs:linha 42
+2013-05-20 18:25:07.8632|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Oragon.Architecture.Services.ServiceStartException: Erro na iniciação do MainService. ---> Oragon.Architecture.Business.UndefinedException: Não foi possível realizar a operação solicitada. Contate o administrador da aplicação.
+   em Oragon.Architecture.Log.ExceptionHandlerAroundAdvice.Invoke(IMethodInvocation invocation) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Log\ExceptionHandlerAroundAdvice.cs:linha 56
+   em Spring.Aop.Framework.AbstractMethodInvocation.Proceed() na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\AbstractMethodInvocation.cs:linha 284
+   em Spring.Aop.Framework.DynamicProxy.AdvisedProxy.Invoke(Object proxy, Object target, Type targetType, MethodInfo targetMethod, MethodInfo proxyMethod, Object[] args, IList interceptors) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\DynamicProxy\AdvisedProxy.cs:linha 210
+   em CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache()
+   em _dynamic_CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache(Object , Object[] )
+   em Spring.Reflection.Dynamic.SafeMethod.Invoke(Object target, Object[] arguments) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Reflection\Dynamic\DynamicMethod.cs:linha 152
+   em Spring.Expressions.MethodNode.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\MethodNode.cs:linha 163
+   em Spring.Expressions.BaseNode.GetValue(BaseNode node, Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 257
+   em Spring.Expressions.Expression.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\Expression.cs:linha 276
+   em Spring.Expressions.BaseNode.GetValue(Object context, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 182
+   em Spring.Expressions.ExpressionEvaluator.GetValue(Object root, String expression, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\ExpressionEvaluator.cs:linha 71
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.CallMethod(String methodName) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 61
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 43
+   em Oragon.Architecture.Services.ServiceContainer.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceContainer.cs:linha 27
+   em Oragon.Architecture.Services.ServiceManager.<StartMainService>b__6() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 109
+   em Oragon.Architecture.RetryManager.Try(Action action, Action`1 exceptionHandler, Action finallyHandler) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\RetryManager.cs:linha 42
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em Oragon.Architecture.Services.ServiceManager.<StartMainService>b__7(Exception ex) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 116
+2013-05-20 18:25:07.8632|FATAL|Oragon.Architecture.GenericServiceHost.Program|Oragon.Architecture.Services.ServiceStartException: Erro na iniciação do MainService. ---> Oragon.Architecture.Business.UndefinedException: Não foi possível realizar a operação solicitada. Contate o administrador da aplicação.
+   em Oragon.Architecture.Log.ExceptionHandlerAroundAdvice.Invoke(IMethodInvocation invocation) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Log\ExceptionHandlerAroundAdvice.cs:linha 56
+   em Spring.Aop.Framework.AbstractMethodInvocation.Proceed() na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\AbstractMethodInvocation.cs:linha 284
+   em Spring.Aop.Framework.DynamicProxy.AdvisedProxy.Invoke(Object proxy, Object target, Type targetType, MethodInfo targetMethod, MethodInfo proxyMethod, Object[] args, IList interceptors) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Aop\Aop\Framework\DynamicProxy\AdvisedProxy.cs:linha 210
+   em CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache()
+   em _dynamic_CompositionAopProxy_facd9471493644cebfe5fd5fe2d930e5.BuildCache(Object , Object[] )
+   em Spring.Reflection.Dynamic.SafeMethod.Invoke(Object target, Object[] arguments) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Reflection\Dynamic\DynamicMethod.cs:linha 152
+   em Spring.Expressions.MethodNode.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\MethodNode.cs:linha 163
+   em Spring.Expressions.BaseNode.GetValue(BaseNode node, Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 257
+   em Spring.Expressions.Expression.Get(Object context, EvaluationContext evalContext) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\Expression.cs:linha 276
+   em Spring.Expressions.BaseNode.GetValue(Object context, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\BaseNode.cs:linha 182
+   em Spring.Expressions.ExpressionEvaluator.GetValue(Object root, String expression, IDictionary`2 variables) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Expressions\ExpressionEvaluator.cs:linha 71
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.CallMethod(String methodName) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 61
+   em Oragon.Architecture.Services.SpringServices.GenericStartUpService.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\SpringServices\GenericStartUpService.cs:linha 43
+   em Oragon.Architecture.Services.ServiceContainer.Start() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceContainer.cs:linha 27
+   em Oragon.Architecture.Services.ServiceManager.<StartMainService>b__6() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 109
+   em Oragon.Architecture.RetryManager.Try(Action action, Action`1 exceptionHandler, Action finallyHandler) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\RetryManager.cs:linha 42
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em Oragon.Architecture.Services.ServiceManager.<StartMainService>b__7(Exception ex) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 116
+   em Oragon.Architecture.RetryManager.Try(Action action, Action`1 exceptionHandler, Action finallyHandler) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\RetryManager.cs:linha 48
+   em Oragon.Architecture.Services.ServiceManager.StartMainService() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 104
+   em Oragon.Architecture.Services.ServiceManager.Start(HostControl hostControl) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceManager.cs:linha 36
+   em Oragon.Architecture.Services.ServiceProcessEntryPoint.Run(String[] args) na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture.Services\ServiceProcessEntryPoint.cs:linha 45
+   em Oragon.Architecture.GenericServiceHost.Program.Main(String[] args)
+2013-05-20 18:26:29.3845|DEBUG|Oragon.Architecture.Services.ServiceManager|Criando Contexto Spring
+2013-05-20 18:26:30.3006|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException: Exceção do tipo 'Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException' foi acionada.
+   em Spring.Objects.Factory.Xml.XmlObjectDefinitionReader.HandleValidation(Object sender, ValidationEventArgs args) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Objects\Factory\Xml\XmlObjectDefinitionReader.cs:linha 371
+2013-05-20 18:26:33.6894|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto Spring e inicializado com sucesso!
+2013-05-20 18:26:33.6894|DEBUG|Oragon.Architecture.Services.ServiceManager|Iniciando MainService...
+2013-05-20 18:26:33.6894|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviços...
+2013-05-20 18:26:33.6894|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:26:34.0014|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:26:33.7524454-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 18:26:34.1635|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: Não foi possível carregar arquivo ou assembly 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4' ou uma de suas dependências. O sistema não pode encontrar o arquivo especificado.
+Nome do arquivo: 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4'
+   em System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   em System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+=== Informações sobre estado pré-associação ===
+LOG: usuário = IMUSICA\luiz.faria
+LOG: DisplayName = NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+ (Fully-specified)
+LOG: Appbase = file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/
+LOG: PrivatePath inicial = NULL
+Chamando assembly: System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089.
+===
+LOG: esta associação começa no contexto de carregamento default.
+LOG: usando arquivo de configuração de aplicativo: C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LogEngineServer\LogEngineServer.exe.Config
+LOG: usando arquivo de configuração de host: 
+LOG: usando arquivo de configuração da máquina de C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: referência pós-política: NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.EXE.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.EXE.
+
+2013-05-20 18:26:36.0207|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.0667|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.1127|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.1667|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.2117|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.2577|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.3769|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Data.SqlClient.SqlException (0x80131904): Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+ClientConnectionId:16f7b2f1-005c-471f-83c8-694f9b120d4d
+2013-05-20 18:26:36.4209|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)
+   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)
+   em NHibernate.Cfg.Configuration.BuildSessionFactory()
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+
+
+2013-05-20 18:26:36.5059|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: Login failed for SQL Server login 'LogEngineSqlUsr'. The password for this login has expired.
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   em System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   em System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   em System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   em System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   em System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   em System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   em System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   em System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   em System.Data.SqlClient.SqlConnection.Open()
+   em NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   em NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare()
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper)
+   em NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory)
+   em NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners)
+   em NHibernate.Cfg.Configuration.BuildSessionFactory()
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory()
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactoryInternal() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 154
+   em Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactory() na c:\Projetos\Oragon@Assembla\trunk\Architecture\Oragon.Architecture\Data\SessionFactoryBuilder.cs:linha 110
+
+
+2013-05-20 18:28:02.6960|DEBUG|Oragon.Architecture.Services.ServiceManager|Criando Contexto Spring
+2013-05-20 18:28:03.6275|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException: Exceção do tipo 'Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException' foi acionada.
+   em Spring.Objects.Factory.Xml.XmlObjectDefinitionReader.HandleValidation(Object sender, ValidationEventArgs args) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Objects\Factory\Xml\XmlObjectDefinitionReader.cs:linha 371
+2013-05-20 18:28:07.5251|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto Spring e inicializado com sucesso!
+2013-05-20 18:28:07.5251|DEBUG|Oragon.Architecture.Services.ServiceManager|Iniciando MainService...
+2013-05-20 18:28:07.5251|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviços...
+2013-05-20 18:28:07.5251|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:28:07.8372|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:28:07.5791604-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 18:28:07.9982|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: Não foi possível carregar arquivo ou assembly 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4' ou uma de suas dependências. O sistema não pode encontrar o arquivo especificado.
+Nome do arquivo: 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4'
+   em System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   em System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+=== Informações sobre estado pré-associação ===
+LOG: usuário = IMUSICA\luiz.faria
+LOG: DisplayName = NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+ (Fully-specified)
+LOG: Appbase = file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/
+LOG: PrivatePath inicial = NULL
+Chamando assembly: System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089.
+===
+LOG: esta associação começa no contexto de carregamento default.
+LOG: usando arquivo de configuração de aplicativo: C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LogEngineServer\LogEngineServer.exe.Config
+LOG: usando arquivo de configuração de host: 
+LOG: usando arquivo de configuração da máquina de C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: referência pós-política: NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.EXE.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.EXE.
+
+2013-05-20 18:28:10.5490|TRACE|Oragon.Architecture.LogEngine.Service.CacheService|CacheService.BuildCache() BEGIN
+2013-05-20 18:28:10.8731|TRACE|Oragon.Architecture.LogEngine.Service.CacheService|CacheService.BuildCache() END
+2013-05-20 18:28:10.8851|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:28:10.8851138-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 18:28:10.8851|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 18:28:10.8851|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:28:10.9861|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: Não foi possível localizar o arquivo 'C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LuceneIndex\segments.gen'.
+Nome do arquivo: 'C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LuceneIndex\segments.gen'
+   em System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+2013-05-20 18:28:11.0711|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: no segments* file found in Lucene.Net.Store.SimpleFSDirectory@C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LuceneIndex\ lockFactory=Lucene.Net.Store.NativeFSLockFactory: files:write.lock
+   em Lucene.Net.Index.SegmentInfos.FindSegmentsFile.Run(IndexCommit commit) na d:\Lucene.Net\FullRepo\trunk\src\core\Index\SegmentInfos.cs:linha 709
+2013-05-20 18:28:11.1991|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 18:28:11.1991|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:28:11.3786|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Net.Sockets.SocketException (0x80004005): Uma solicitação de envio ou recebimento de dados não foi permitida porque o soquete não está conectado e (durante o envio em um soquete de datagrama usando-se uma chamada sendto) não foi fornecido um endereço
+   em System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+2013-05-20 18:28:11.6066|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 18:28:11.6066|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:28:11.6216|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 18:28:12.4430|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 18:28:12.4430|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 18:28:12.4430|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 18:28:12.4430|DEBUG|Oragon.Architecture.Services.ServiceContainer|Todos os serviços foram iniciados.
+2013-05-20 18:28:12.4430|DEBUG|Oragon.Architecture.Services.ServiceManager|MainService foi iniciado com sucesso.
+2013-05-20 18:29:07.1928|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:07.1928469-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.JobService.Void Sync()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.JobService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.JobService.Void Sync()"
+  }
+}
+2013-05-20 18:29:07.1928|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:07.1958468-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()"
+  }
+}
+2013-05-20 18:29:07.2561|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.IndexNewLogs() BEGIN
+2013-05-20 18:29:08.3978|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|Nenhum log Indexado
+2013-05-20 18:29:08.3978|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.IndexNewLogs() END
+2013-05-20 18:29:08.4088|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:08.4088488-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()"
+  }
+}
+2013-05-20 18:29:08.4088|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:08.4098503-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()"
+  }
+}
+2013-05-20 18:29:08.4088|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.DeleteLogs() BEGIN
+2013-05-20 18:29:08.4248|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|Nenhum log excluído
+2013-05-20 18:29:08.4248|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.DeleteLogs() END
+2013-05-20 18:29:08.4248|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:08.4278624-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()"
+  }
+}
+2013-05-20 18:29:08.4248|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T18:29:08.4278624-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.JobService.Void Sync()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.JobService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.JobService.Void Sync()"
+  }
+}
+2013-05-20 18:29:31.6246|DEBUG|Oragon.Architecture.Services.ServiceManager|Parando MainService...
+2013-05-20 18:29:31.6246|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviços...
+2013-05-20 18:29:31.6246|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 18:29:31.6446|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 18:29:31.6786|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 18:29:31.6786|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 18:29:31.6936|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 18:29:31.7427|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 18:29:31.7427|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 18:29:31.7557|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 18:29:32.7342|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 18:29:32.7342|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 18:29:32.8042|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 18:29:32.8042|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 18:29:32.8042|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 18:29:32.8042|DEBUG|Oragon.Architecture.Services.ServiceManager|MainService foi parado com sucesso.
+2013-05-20 18:29:32.8042|DEBUG|Oragon.Architecture.Services.ServiceManager|Finalizando contexto spring...
+2013-05-20 18:29:32.8906|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto spring finalizado com sucesso.
+2013-05-20 19:10:35.9542|DEBUG|Oragon.Architecture.Services.ServiceManager|Criando Contexto Spring
+2013-05-20 19:10:37.0423|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException: Exceção do tipo 'Spring.Objects.Factory.Xml.XmlObjectDefinitionReader+RetryParseException' foi acionada.
+   em Spring.Objects.Factory.Xml.XmlObjectDefinitionReader.HandleValidation(Object sender, ValidationEventArgs args) na f:\bamboo-home\xml-data\build-dir\SPRNET-RELEASE-JOB1\src\Spring\Spring.Core\Objects\Factory\Xml\XmlObjectDefinitionReader.cs:linha 371
+2013-05-20 19:10:53.7046|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto Spring e inicializado com sucesso!
+2013-05-20 19:10:53.7076|DEBUG|Oragon.Architecture.Services.ServiceManager|Iniciando MainService...
+2013-05-20 19:10:53.7076|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviços...
+2013-05-20 19:10:53.7076|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 19:11:19.8951|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:10:53.7867065-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 19:11:38.0088|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.IO.FileNotFoundException: Não foi possível carregar arquivo ou assembly 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4' ou uma de suas dependências. O sistema não pode encontrar o arquivo especificado.
+Nome do arquivo: 'NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4'
+   em System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   em System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+=== Informações sobre estado pré-associação ===
+LOG: usuário = IMUSICA\luiz.faria
+LOG: DisplayName = NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+ (Fully-specified)
+LOG: Appbase = file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/
+LOG: PrivatePath inicial = NULL
+Chamando assembly: System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089.
+===
+LOG: esta associação começa no contexto de carregamento default.
+LOG: usando arquivo de configuração de aplicativo: C:\Projetos\Oragon@Assembla\trunk\EnterpriseLog\[publish]\LogEngineServer\LogEngineServer.exe.Config
+LOG: usando arquivo de configuração de host: 
+LOG: usando arquivo de configuração da máquina de C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: referência pós-política: NHibernate.XmlSerializers, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.DLL.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers.EXE.
+LOG: tentando download de nova URL file:///C:/Projetos/Oragon@Assembla/trunk/EnterpriseLog/[publish]/LogEngineServer/NHibernate.XmlSerializers/NHibernate.XmlSerializers.EXE.
+
+2013-05-20 19:11:41.0751|TRACE|Oragon.Architecture.LogEngine.Service.CacheService|CacheService.BuildCache() BEGIN
+2013-05-20 19:11:41.3948|TRACE|Oragon.Architecture.LogEngine.Service.CacheService|CacheService.BuildCache() END
+2013-05-20 19:11:45.5235|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:11:43.8531605-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.CacheService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.CacheService.Void BuildCache()"
+  }
+}
+2013-05-20 19:11:53.5538|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 19:11:53.5538|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 19:11:53.7058|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 19:11:53.7058|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 19:11:53.7728|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Net.Sockets.SocketException (0x80004005): Uma solicitação de envio ou recebimento de dados não foi permitida porque o soquete não está conectado e (durante o envio em um soquete de datagrama usando-se uma chamada sendto) não foi fornecido um endereço
+   em System.Net.Sockets.TcpClient.Connect(String hostname, Int32 port)
+2013-05-20 19:11:53.9779|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 19:11:53.9779|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 19:11:53.9969|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 19:11:54.0979|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 19:11:54.0979|DEBUG|Oragon.Architecture.Services.ServiceContainer|Iniciando serviço GenericStartUpService.
+2013-05-20 19:11:54.1139|DEBUG|Oragon.Architecture.Services.ServiceContainer|Serviço GenericStartUpService iniciado com sucesso
+2013-05-20 19:11:54.1139|DEBUG|Oragon.Architecture.Services.ServiceContainer|Todos os serviços foram iniciados.
+2013-05-20 19:11:54.1139|DEBUG|Oragon.Architecture.Services.ServiceManager|MainService foi iniciado com sucesso.
+2013-05-20 19:11:59.0575|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:11:54.2029326-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.JobService.Void Sync()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.JobService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.JobService.Void Sync()"
+  }
+}
+2013-05-20 19:11:59.7915|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:11:59.0645373-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()"
+  }
+}
+2013-05-20 19:11:59.7915|DEBUG|Oragon.Architecture.Services.ServiceManager|Parando MainService...
+2013-05-20 19:11:59.7915|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviços...
+2013-05-20 19:11:59.7915|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 19:11:59.8215|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.IndexNewLogs() BEGIN
+2013-05-20 19:11:59.8215|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 19:12:00.9287|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|Nenhum log Indexado
+2013-05-20 19:12:00.9287|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.IndexNewLogs() END
+2013-05-20 19:12:01.9341|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:12:00.9467301-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 IndexNewLogs()"
+  }
+}
+2013-05-20 19:12:03.3830|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:12:01.9381524-03:00",
+  "Content": "Begin Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()"
+  }
+}
+2013-05-20 19:12:03.3830|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.DeleteLogs() BEGIN
+2013-05-20 19:12:03.4020|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|Nenhum log excluído
+2013-05-20 19:12:03.4020|TRACE|Oragon.Architecture.LogEngine.Business.Workflow.IndexerBusinessWorkflow|IndexerBusinessWorkflow.DeleteLogs() END
+2013-05-20 19:12:04.4228|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:12:03.4090219-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.IndexerService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.IndexerService.Int32 DeleteLogs()"
+  }
+}
+2013-05-20 19:12:07.0634|INFO|Oragon.Architecture.Log.NLogLogger|{
+  "$id": "1",
+  "LogEntryID": 0,
+  "Date": "2013-05-20T19:12:04.4298841-03:00",
+  "Content": "End Oragon.Architecture.LogEngine.Service.JobService.Void Sync()",
+  "LogLevel": 6,
+  "Tags": {
+    "User:Type": "Oragon.Architecture.LogEngine.Service.JobService",
+    "User:Method": "Oragon.Architecture.LogEngine.Service.JobService.Void Sync()"
+  }
+}
+2013-05-20 19:12:07.0844|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 19:12:07.0844|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 19:12:07.1044|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 19:12:07.1374|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 19:12:07.1374|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 19:12:07.1564|WARN|Oragon.Architecture.GenericServiceHost.Program|FirstChanceException: System.Reflection.AmbiguousMatchException: Equivalência ambígua encontrada.
+   em System.RuntimeType.GetMethodImpl(String name, BindingFlags bindingAttr, Binder binder, CallingConventions callConv, Type[] types, ParameterModifier[] modifiers)
+2013-05-20 19:12:08.0862|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 19:12:08.0862|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 19:12:08.1722|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 19:12:08.1972|DEBUG|Oragon.Architecture.Services.ServiceContainer|Parando serviço GenericStartUpService.
+2013-05-20 19:12:08.1992|DEBUG|Oragon.Architecture.Services.ServiceContainer|O serviço GenericStartUpService foi parado com sucesso.
+2013-05-20 19:12:08.1992|DEBUG|Oragon.Architecture.Services.ServiceManager|MainService foi parado com sucesso.
+2013-05-20 19:12:08.1992|DEBUG|Oragon.Architecture.Services.ServiceManager|Finalizando contexto spring...
+2013-05-20 19:12:08.2722|DEBUG|Oragon.Architecture.Services.ServiceManager|Contexto spring finalizado com sucesso.

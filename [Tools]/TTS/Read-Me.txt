@@ -1,0 +1,6 @@
+Instalar SpeechPlatformRuntime (escolha a versão correspondente à sua plataforma)
+Copie "TTS_MS_pt-BR_Heloisa_10.0" para a pasta C:\Temp
+Execute "TTS_MS_pt-BR_Heloisa_10.0.reg" 
+
+OBS: Caso não queira usar a pasta C:\Temp\, edite o arquivo  "TTS_MS_pt-BR_Heloisa_10.0.reg" corrigindo os paths encontrados nas linhas 6 e 7.
+Lembre-se as contra-barras invertidas são duplicadas ("C:\\Temp\\TTS_MS_pt-BR_Heloisa_10.0\\HeloisaT" , "C:\\Temp\\TTS_MS_pt-BR_Heloisa_10.0\\MSTTSLocptBR.dat")
