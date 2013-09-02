@@ -7,10 +7,11 @@ namespace Oragon.Architecture.GenericServiceHost
 {
 	internal static class Program
 	{
-		volatile static Logger Logger = LogManager.GetCurrentClassLogger();
+		volatile static Logger Logger;
 
 		private static void Main(params string[] args)
 		{
+			Program.Logger = LogManager.GetCurrentClassLogger();
 			AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			ServiceProcessEntryPoint.Run(args);
