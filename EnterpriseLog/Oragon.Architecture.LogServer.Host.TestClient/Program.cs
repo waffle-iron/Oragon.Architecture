@@ -25,7 +25,7 @@ namespace Oragon.Architecture.LogServer.Host.TestClient
 			//System.Timers.Timer timer = new System.Timers.Timer(1000 * 10);
 			//timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
 			//timer.Start();
-			int qtd = 5;
+			int qtd = 500;
 			for (int i = 1; i <= qtd; i++)
 			{
 				if (i % 2 == 0)
