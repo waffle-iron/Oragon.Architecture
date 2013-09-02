@@ -53,9 +53,6 @@
     <Reference Include="Oragon.Architecture">
       <HintPath>..\..\[References]\Oragon.Architecture\Oragon.Architecture.dll</HintPath>
     </Reference>
-    <Reference Include="Oragon.Architecture.Indexing">
-      <HintPath>..\..\[References]\Oragon.Architecture\Oragon.Architecture.Indexing.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Aop">
       <HintPath>..\..\[References]\Spring.Net\Spring.Aop.dll</HintPath>
     </Reference>
@@ -148,9 +145,6 @@ xcopy "$(SolutionDir)..\[References]\Spring.Net\RabbitMQ.Client.dll" "$(Solution
 
 xcopy "$(SolutionDir)..\[References]\Nhibernate\*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
 xcopy "$(SolutionDir)..\[References]\Nhibernate\*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
-
-xcopy "$(SolutionDir)..\[References]\Lucene.Net\*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
-xcopy "$(SolutionDir)..\[References]\Lucene.Net\*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
 
 xcopy "$(SolutionDir)..\[References]\Quartz\*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
 xcopy "$(SolutionDir)..\[References]\Quartz\*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y</PostBuildEvent>
