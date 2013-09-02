@@ -12,13 +12,13 @@ namespace Oragon.Architecture.LogEngine.Data.Process
 		internal Tag GetByName(string tagName)
 		{ 
 			tagName = tagName.ToLower();
-			Tag returnValue = this.InternalGetAll().Where(it => it.Name.ToLower() == tagName).FirstOrDefault();
+			Tag returnValue = this.GetAll().Where(it => it.Name.ToLower() == tagName).FirstOrDefault();
 			return returnValue;
 		}
 
 		internal List<TagTransferObject> GetAllTagTransferObjects()
 		{ 
-			List<TagTransferObject> returnValue = this.ObjectContext
+			List<TagTransferObject> returnValue = this.ObjectContext.Session
                     .CreateSQLQuery("SELECT * FROM [TAG]")
 					.SetResultTransformer(new NHibernate.Transform.AliasToBeanResultTransformer(typeof(TagTransferObject)))
 					.List<TagTransferObject>()

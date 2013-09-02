@@ -10,12 +10,18 @@ using System.Text;
 namespace Oragon.Architecture.LogEngine.Business.Entity
 {
 
+	public class EntityBase : Oragon.Architecture.Business.Entity
+	{
+
+	}
+
+
 	/// <summary>
 	/// Classe Level.
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class Level
+	public partial class Level : EntityBase
 	{
 		#region "Propriedades"
 
@@ -77,7 +83,7 @@ namespace Oragon.Architecture.LogEngine.Business.Entity
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class LogEntry
+	public partial class LogEntry : EntityBase
 	{
 		#region "Propriedades"
 
@@ -159,7 +165,7 @@ namespace Oragon.Architecture.LogEngine.Business.Entity
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class Tag
+	public partial class Tag : EntityBase
 	{
 		#region "Propriedades"
 
@@ -214,7 +220,7 @@ namespace Oragon.Architecture.LogEngine.Business.Entity
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class TagValue
+	public partial class TagValue : EntityBase
 	{
 		#region "Propriedades"
 

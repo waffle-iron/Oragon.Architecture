@@ -84,12 +84,9 @@
     </Compile>
     <Compile Include="Architecture\Extensions.cs" />
     <Compile Include="Architecture\Mapping\[Mapping].CodeGen.cs" />
-    <Compile Include="Business\Process\IndexerBusinessProcess.cs" />
     <Compile Include="Business\Process\LogBusinessProcess.cs" />
     <Compile Include="Business\Process\MessageConverterBusinessProcess.cs" />
-    <Compile Include="Business\Process\QueryIndexBusinessProcess.cs" />
     <Compile Include="Business\Process\TagBusinessProcess.cs" />
-    <Compile Include="Business\Workflow\IndexerBusinessWorkflow.cs" />
     <Compile Include="Business\Workflow\LogBusinessWorkflow.cs" />
     <Compile Include="Data\Process\LevelDataProcess.cs" />
     <Compile Include="Data\Process\LogEntryDataProcess.cs" />
@@ -98,9 +95,6 @@
     <Compile Include="Data\Process\[DataProcess].CodeGen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CacheService.cs" />
-    <Compile Include="Service\IndexerService.cs" />
-    <Compile Include="Service\JobService.cs" />
-    <Compile Include="Service\QueryService.cs" />
     <Compile Include="Service\LogService.cs" />
   </ItemGroup>
   <ItemGroup>

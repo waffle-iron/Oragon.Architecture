@@ -25,7 +25,7 @@ namespace Oragon.Architecture.LogEngine.Service
 		/// Realiza o processamento de um LogEntry
 		/// </summary>
 		/// <param name="message">Representação Json de um LogEntryTransferObject</param>
-		[Oragon.Architecture.AOP.RequiredPersistenceContext("NHContextKey1", true)]
+		[Oragon.Architecture.AOP.Data.NHibernate.NHContext("NHContextKey1", true)]
 		public void Handler(string message)
 		{
 			this.LogBW.SaveLog(message);

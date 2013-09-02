@@ -11,12 +11,12 @@ namespace Oragon.Architecture.LogEngine.Data.Process
 	{
 		public TagValue GetByTagAndValue(Tag tag, string value)
 		{
-			return this.InternalGetFirstBy(it => it.Tag.TagID == tag.TagID && it.Value == value);
+			return this.GetFirstBy(it => it.Tag.TagID == tag.TagID && it.Value == value);
 		}
 
 		internal List<TagValueTransferObject> GetAllTagTransferObjects()
 		{
-			List<TagValueTransferObject> returnValue = this.ObjectContext
+			List<TagValueTransferObject> returnValue = this.ObjectContext.Session
 					.CreateSQLQuery("SELECT * FROM [TagValue]")
 					.SetResultTransformer(new NHibernate.Transform.AliasToBeanResultTransformer(typeof(TagValueTransferObject)))
 					.List<TagValueTransferObject>()

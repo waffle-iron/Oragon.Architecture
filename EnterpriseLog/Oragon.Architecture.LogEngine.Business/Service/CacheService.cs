@@ -20,7 +20,7 @@ namespace Oragon.Architecture.LogEngine.Service
 		/// <summary>
 		/// Cria o cache de aplicação. Este nível de cache elimina boa parte do trabalho de IO no banco para a gravação dos logs.
 		/// </summary>
-		[Oragon.Architecture.AOP.RequiredPersistenceContext("NHContextKey1", false)]
+		[Oragon.Architecture.AOP.Data.NHibernate.NHContext("NHContextKey1", false)]
 		public void BuildCache()
 		{
 			this.Logger.Trace("CacheService.BuildCache() BEGIN");

@@ -10,7 +10,7 @@ namespace Oragon.Architecture.LogEngine.Data.Process
 	{
 		internal List<LogEntry> ObterLogsNaoIndexados(int max)
 		{
-			return this.Query()
+			return this.Query<LogEntry>()
 				.Where(it => it.Indexed == false && it.Trash == false)
 				.OrderBy(it => it.LogEntryID)
 				.Take(max)
@@ -19,7 +19,7 @@ namespace Oragon.Architecture.LogEngine.Data.Process
 
 		internal List<LogEntry> ObterLogsDaLixeira(int max)
 		{
-			return this.Query()
+			return this.Query<LogEntry>()
 				.Where(it => it.Trash == true)
 				.OrderBy(it => it.LogEntryID)
 				.Take(max)

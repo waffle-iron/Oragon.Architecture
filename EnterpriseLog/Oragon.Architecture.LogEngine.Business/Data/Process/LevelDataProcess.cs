@@ -10,7 +10,7 @@ namespace Oragon.Architecture.LogEngine.Data.Process
 	{
 		internal Level GetByID(int id)
 		{
-			Level returnValue = this.InternalGetFirstBy(it => it.LevelID == id);
+			Level returnValue = this.GetFirstBy(it => it.LevelID == id);
 			return returnValue;
 		}
 	}
