@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web;
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web.Ajs
 {
 	public class OperationResult : ActionResult
 	{

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web.Ajs
 {
 	public class OragonRouteInfo
 	{
-		private OragonController controller;
+		private System.Web.Mvc.Controller controller;
 
-		public OragonRouteInfo(OragonController controller)
+		public OragonRouteInfo(System.Web.Mvc.Controller controller)
 		{
 			this.controller = controller;
 		}

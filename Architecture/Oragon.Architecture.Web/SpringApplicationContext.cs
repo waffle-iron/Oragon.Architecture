@@ -5,7 +5,7 @@ using System.Web;
 using Spring.Context;
 using Spring.Context.Support;
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web
 {
 	/// <summary>
 	/// Spring Application Context.

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web
 {
 	public class SpringControllerFactory : DefaultControllerFactory
 	{

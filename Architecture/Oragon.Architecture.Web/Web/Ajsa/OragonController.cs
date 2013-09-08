@@ -6,8 +6,9 @@ using System.Web.Mvc;
 using Oragon.Architecture.Log;
 using Oragon.Architecture.LogEngine.Business.Entity;
 using Spring.Threading;
+using Oragon.Architecture.Web.Ajs;
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web.Ajs
 {
 	public class OragonController : Controller
 	{

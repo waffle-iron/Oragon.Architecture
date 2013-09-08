@@ -6,11 +6,11 @@ using System.Web.Mvc;
 using System.Web;
 
 
-namespace Oragon.Architecture.Web.Mvc
+namespace Oragon.Architecture.Web.Ajs
 {
 	public class SimpleView
 	{
-		public OragonController Controller { get; private set; }
+		public Controller Controller { get; private set; }
 		private System.IO.StringWriter HTML { get; set; }
 		private int IdentSize;
 
@@ -32,7 +32,7 @@ namespace Oragon.Architecture.Web.Mvc
 			return returnValue + text;
 		}
 
-		public SimpleView(OragonController controller)
+		public SimpleView(Controller controller)
 		{
 			this.HTML = new System.IO.StringWriter();
 			this.Controller = controller;

@@ -88,16 +88,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\AOP\UserCacheAroundAdvice.cs" />
     <Compile Include="Web\AOP\UserContextAroundAdvice.cs" />
-    <Compile Include="Web\Mvc\OragonController.cs" />
-    <Compile Include="Web\Mvc\OragonRouteInfo.cs" />
-    <Compile Include="Web\Mvc\ExceptionHandlerActionFilterAttribute.cs" />
-    <Compile Include="Web\Mvc\JavascriptVariableResult.cs" />
-    <Compile Include="Web\Mvc\JsonModelBinder.cs" />
-    <Compile Include="Web\Mvc\OperationResult.cs" />
-    <Compile Include="Web\Mvc\OperationResultModel.cs" />
-    <Compile Include="Web\Mvc\SimpleView.cs" />
-    <Compile Include="Web\Mvc\SpringApplicationContext.cs" />
-    <Compile Include="Web\Mvc\SpringControllerFactory.cs" />
+    <Compile Include="Web\Ajsa\OragonController.cs" />
+    <Compile Include="Web\Ajsa\OragonRouteInfo.cs" />
+    <Compile Include="_OLD\JsonModelBinder.cs" />
+    <Compile Include="Web\Ajsa\OperationResult.cs" />
+    <Compile Include="Web\Ajsa\OperationResultModel.cs" />
+    <Compile Include="Web\Ajsa\SimpleView.cs" />
+    <Compile Include="SpringApplicationContext.cs" />
+    <Compile Include="SpringControllerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
