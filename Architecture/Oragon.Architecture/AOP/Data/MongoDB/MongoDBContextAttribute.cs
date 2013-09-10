@@ -1,4 +1,5 @@
 ﻿using Oragon.Architecture.AOP.Data.Abstractions;
+using Oragon.Architecture.Data.ConnectionStrings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

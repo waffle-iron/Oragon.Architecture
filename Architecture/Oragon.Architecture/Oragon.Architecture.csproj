@@ -173,11 +173,14 @@
     <Compile Include="AOP\Data\MongoDB\MongoDBContext.cs" />
     <Compile Include="AOP\Data\MongoDB\MongoDBContextAroundAdvice.cs" />
     <Compile Include="AOP\Data\MongoDB\MongoDBContextAttribute.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBDataProcess.cs" />
     <Compile Include="AOP\Data\NHibernate\NHContext.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingAttribute.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingStrategy.cs" />
     <Compile Include="Business\Entity.cs" />
-    <Compile Include="AOP\Data\MongoDB\MongoDBConnectionString.cs" />
+    <Compile Include="Business\MongoEntity.cs" />
+    <Compile Include="Data\ConnectionStrings\MongoDBConnectionString.cs" />
+    <Compile Include="Data\PagedList.cs" />
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
     <Compile Include="Data\Process\QueryDataProcess.cs" />
     <Compile Include="Extensions\IQueryableAutoMapperExtensions.cs" />

@@ -103,7 +103,9 @@
       <Name>Oragon.Architecture</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Web\Ajsa\Read-me.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName)$(TargetExt)"
