@@ -88,11 +88,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\AOP\UserCacheAroundAdvice.cs" />
     <Compile Include="Web\AOP\UserContextAroundAdvice.cs" />
-    <Compile Include="Web\Ajsa\OragonController.cs" />
     <Compile Include="Web\Ajsa\OragonRouteInfo.cs" />
     <Compile Include="_OLD\JsonModelBinder.cs" />
-    <Compile Include="Web\Ajsa\OperationResult.cs" />
-    <Compile Include="Web\Ajsa\OperationResultModel.cs" />
     <Compile Include="Web\Ajsa\SimpleView.cs" />
     <Compile Include="SpringApplicationContext.cs" />
     <Compile Include="SpringControllerFactory.cs" />

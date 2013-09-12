@@ -18,9 +18,9 @@ namespace Oragon.Architecture.AOP.Data.MongoDB
 	public class MongoDBDataProcess<T> : Oragon.Architecture.AOP.Data.Abstractions.AbstractDataProcess<MongoDBContext, MongoDBContextAttribute>
 		where T : Entity
 	{
-		public string CollectionName { get; set; }
+		protected string CollectionName { get; set; }
 
-		public MongoDBDriver.MongoCollection<T> Collection
+		protected virtual MongoDBDriver.MongoCollection<T> Collection
 		{
 			get
 			{
