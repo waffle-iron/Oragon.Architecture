@@ -10,9 +10,18 @@ namespace Oragon.Architecture.Web.Ajs
 {
 	public class SimpleView
 	{
-		public Controller Controller { get; private set; }
 		private System.IO.StringWriter HTML { get; set; }
 		private int IdentSize;
+
+		private UrlHelper UrlHelper { get; set; }
+
+		public SimpleView(UrlHelper urlHelper)
+		{
+			this.HTML = new System.IO.StringWriter();
+			this.UrlHelper = urlHelper;
+			this.IdentSize = 0;
+		}
+
 
 		public void IdentUp()
 		{
@@ -30,13 +39,6 @@ namespace Oragon.Architecture.Web.Ajs
 			for (int i = 0; i < this.IdentSize; i++)
 				returnValue += "\t";
 			return returnValue + text;
-		}
-
-		public SimpleView(Controller controller)
-		{
-			this.HTML = new System.IO.StringWriter();
-			this.Controller = controller;
-			this.IdentSize = 0;
 		}
 
 		private SimpleView OpenTag(string tagName)
@@ -96,7 +98,7 @@ namespace Oragon.Architecture.Web.Ajs
 
 		public SimpleView Script(string scriptName)
 		{
-			scriptName = this.Controller.Url.Content(scriptName);
+			scriptName = this.UrlHelper.Content(scriptName);
 			this.WriteLine(@"<script type='text/javascript' charset='utf-8' src='{0}'></script>", scriptName);
 			return this;
 		}
@@ -108,7 +110,7 @@ namespace Oragon.Architecture.Web.Ajs
 
 		public SimpleView Stylesheet(string stylesheet)
 		{
-			stylesheet = this.Controller.Url.Content(stylesheet);
+			stylesheet = this.UrlHelper.Content(stylesheet);
 			this.WriteLine(@"<link rel='stylesheet' type='text/css' href='{0}'/> ", stylesheet);
 			return this;
 		}
