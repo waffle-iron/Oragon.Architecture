@@ -21,5 +21,6 @@ namespace Oragon.CodeGen.MetaData.Domain
 
 		public INameStretegy NameStretegy { get; set; }
 
+
 	}
 }
