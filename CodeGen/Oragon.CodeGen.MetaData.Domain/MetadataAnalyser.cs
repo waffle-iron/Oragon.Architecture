@@ -18,17 +18,29 @@ namespace Oragon.CodeGen.MetaData
 	{
 		public MetadataAnalyser() { }
 
-		public List<string> IgnorePaterns { get; set; }
-		public List<string> FilterPaterns { get; set; }
+		public List<string> TableIgnorePatterns { get; set; }
+		public List<string> ColumnIgnorePatterns { get; set; }
 
 		public bool? CanInsert { get; set; }
 		public bool? CanUpdate { get; set; }
 		public bool? CanDelete { get; set; }
 
+
 		public MetadataAnalyserStrategy Strategy { get; set; }
+
+		public Func<IColumn, bool> ColumnFilterExpression;
+
 
 		public DomainModel AnalyseDataBase(Oragon.CodeGen.MetaData.DataBase.IDatabase dbToAnalyse)
 		{
+			this.ColumnFilterExpression = (currentColumn =>
+					(this.TableIgnorePatterns == null)
+					||
+					(this.TableIgnorePatterns.Count == 0)
+					||
+					(!this.TableIgnorePatterns.Any(currentPattern => Spring.Util.PatternMatchUtils.SimpleMatch(currentPattern, currentColumn.Name)))
+			);
+
 			DomainModel model = new DomainModel()
 			{
 				CanInsert = this.CanInsert == null ? true : this.CanInsert.Value,
@@ -39,11 +51,10 @@ namespace Oragon.CodeGen.MetaData
 
 			foreach (ITable currentTable in dbToAnalyse.Tables)
 			{
-				bool ignoreMatch = this.IgnorePaterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentTable.Name));
-				bool filterMatch = this.FilterPaterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentTable.Name));
+				bool tableIgnoreMatchResult = this.TableIgnorePatterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentTable.Name));
 
 				if (
-					(!ignoreMatch || filterMatch)
+					(!tableIgnoreMatchResult)
 					&&
 					(
 						(this.IsManyToManySimpleTable(currentTable) == false)
@@ -54,7 +65,11 @@ namespace Oragon.CodeGen.MetaData
 					(currentTable.PrimaryKeys.Count > 0))
 				{
 					Entity newEntity = new Entity(model, currentTable);
-					List<IColumn> columns = newEntity.Table.Columns.ToList();
+					List<IColumn> columns = newEntity.Table.Columns
+						.ToList()
+						.Where(this.ColumnFilterExpression)
+						.ToList();
+
 					if (this.Strategy == MetadataAnalyserStrategy.RichModel)
 						this.BuildAssociationProperties(newEntity, columns);
 					this.BuildValueTypeProperties(newEntity, columns);
@@ -69,9 +84,9 @@ namespace Oragon.CodeGen.MetaData
 		private bool IsManyToManySimpleTable(ITable table)
 		{
 			//Todas as colunas estão na PK
-			bool challenge1 = table.Columns.All(it => it.IsInPrimaryKey);
+			bool challenge1 = table.Columns.Where(this.ColumnFilterExpression).All(it => it.IsInPrimaryKey);
 			//Todos os campos estão em FK`s
-			bool challenge2 = table.Columns.All(it => it.IsInForeignKey);
+			bool challenge2 = table.Columns.Where(this.ColumnFilterExpression).All(it => it.IsInForeignKey);
 			//Todas as FK`s são de outras tabelas para esta
 			bool challenge3 = table.ForeignKeys.All(it => it.ForeignTable == table);
 			//Só possui 2 FK`s
@@ -105,7 +120,7 @@ namespace Oragon.CodeGen.MetaData
 			List<IForeignKey> currentForeignKeys = avaibleforeignKeys.Where(it => it.PrimaryTable == entity.Table && this.IsManyToManySimpleTable(it.ForeignTable)).ToList();
 			foreach (IForeignKey currentForeignKey in currentForeignKeys)
 			{
-				bool ignoreMatch = this.IgnorePaterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.ForeignTable.Name));
+				bool ignoreMatch = this.TableIgnorePatterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.ForeignTable.Name));
 				if (ignoreMatch == false)
 				{
 					IForeignKey leftForeignKey = currentForeignKey;
@@ -123,7 +138,7 @@ namespace Oragon.CodeGen.MetaData
 			List<IForeignKey> currentForeignKeys = avaibleforeignKeys.Where(it => it.ForeignTable == entity.Table).ToList();
 			foreach (IForeignKey currentForeignKey in currentForeignKeys)
 			{
-				bool ignoreMatch = this.IgnorePaterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.PrimaryTable.Name));
+				bool ignoreMatch = this.TableIgnorePatterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.PrimaryTable.Name));
 				bool failFK = (
 					currentForeignKey.PrimaryTable.Name == currentForeignKey.ForeignTable.Name
 					&&
@@ -151,7 +166,7 @@ namespace Oragon.CodeGen.MetaData
 			List<IForeignKey> currentForeignKeys = avaibleforeignKeys.Where(it => it.PrimaryTable == entity.Table).ToList();
 			foreach (IForeignKey currentForeignKey in currentForeignKeys)
 			{
-				bool ignoreMatch = this.IgnorePaterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.ForeignTable.Name));
+				bool ignoreMatch = this.TableIgnorePatterns.Any(it => Spring.Util.PatternMatchUtils.SimpleMatch(it, currentForeignKey.ForeignTable.Name));
 				if (ignoreMatch == false)
 				{
 					OneToManyProperty newProperty = new OneToManyProperty(entity, currentForeignKey);
