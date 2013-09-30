@@ -34,11 +34,11 @@ namespace Oragon.CodeGen.MetaData
 		public DomainModel AnalyseDataBase(Oragon.CodeGen.MetaData.DataBase.IDatabase dbToAnalyse)
 		{
 			this.ColumnFilterExpression = (currentColumn =>
-					(this.TableIgnorePatterns == null)
+					(this.ColumnIgnorePatterns == null)
 					||
-					(this.TableIgnorePatterns.Count == 0)
+					(this.ColumnIgnorePatterns.Count == 0)
 					||
-					(!this.TableIgnorePatterns.Any(currentPattern => Spring.Util.PatternMatchUtils.SimpleMatch(currentPattern, currentColumn.Name)))
+					(!this.ColumnIgnorePatterns.Any(currentPattern => Spring.Util.PatternMatchUtils.SimpleMatch(currentPattern, currentColumn.Name)))
 			);
 
 			DomainModel model = new DomainModel()
