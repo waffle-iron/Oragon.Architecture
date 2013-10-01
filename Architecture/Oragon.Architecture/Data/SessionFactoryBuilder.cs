@@ -171,24 +171,33 @@ namespace Oragon.Architecture.Data
 			{
 
 				case "MySql.Data.MySqlClient":
-					returnValue = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard
+					var configMySqlClient  = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard
 						.ConnectionString(connectionStringSettings.ConnectionString)
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
+					if(this.EnabledDiagnostics)
+						configMySqlClient = configMySqlClient.ShowSql().FormatSql();
+					returnValue = configMySqlClient;
 					break;
 
 				case "System.Data.SqlClient":
-					returnValue = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008
+					var configSqlClient = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008
 						.ConnectionString(connectionStringSettings.ConnectionString)
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
+					if(this.EnabledDiagnostics)
+						configSqlClient = configSqlClient.ShowSql().FormatSql();
+					returnValue = configSqlClient;
 					break;
 
 				case "System.Data.DB2Client":
-					returnValue = FluentNHibernate.Cfg.Db.DB2Configuration.Standard
-						.ConnectionString(connectionStringSettings.ConnectionString)
+					var configDB2Client = FluentNHibernate.Cfg.Db.DB2Configuration.Standard
+						.ConnectionString(connectionStringSettings.ConnectionString)						
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
+					if(this.EnabledDiagnostics)
+						configDB2Client = configDB2Client.ShowSql().FormatSql();
+					returnValue = configDB2Client;
 					break;
 
 				default:
