@@ -11,6 +11,11 @@ namespace Oragon.Architecture.Workflow
 		public State<StateType> Origin { get; set; }
 		public State<StateType> Destination { get; set; }
 		public Dictionary<string, object> ExtendedProperties { get; private set; }
+
+		public Transition()
+		{
+			this.ExtendedProperties = new Dictionary<string,object>();
+		}
 	}
 
 }
