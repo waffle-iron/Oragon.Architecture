@@ -241,8 +241,14 @@
     <Compile Include="Schedule\Task.cs" />
     <Compile Include="Schedule\TaskManager.cs" />
     <Compile Include="Security\IUserResolver.cs" />
-    <Compile Include="StateMachine\StateMachine.cs" />
-    <Compile Include="StateMachine\Transition.cs" />
+    <Compile Include="Workflow\Facility.cs" />
+    <Compile Include="Workflow\State.cs" />
+    <Compile Include="Workflow\StateComprarer.cs" />
+    <Compile Include="Workflow\StateMachine.cs" />
+    <Compile Include="Workflow\Transition.cs" />
+    <Compile Include="Workflow\TransitionComprarer.cs" />
+    <Compile Include="Workflow\_OLD_StateMachine\StateMachine.cs" />
+    <Compile Include="Workflow\_OLD_StateMachine\Transition.cs" />
     <Compile Include="Threading\ExpressionBasedKeyParser.cs" />
     <Compile Include="Threading\IKeyParser.cs" />
     <Compile Include="Threading\MultiLevelStorage.cs" />
