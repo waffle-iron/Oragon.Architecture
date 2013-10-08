@@ -14,6 +14,8 @@ namespace Oragon.CodeGen.MetaData.Plugin
 
 		public Dictionary<string, string> FKConvention { get; set; }
 
+		public List<string> TablePrefix { get; set; }
+
 		ILanguageConvention LanguageConvention { get; set; }
 
 		public string GetName(Property property)
@@ -104,7 +106,13 @@ namespace Oragon.CodeGen.MetaData.Plugin
 
 		public string GetName(Entity entity)
 		{
-			return this.ApplyConventionsForEntities(entity.Table.Name);
+			string formatedName = this.ApplyConventionsForEntities(entity.Table.Name);
+			foreach (var prefix in this.TablePrefix)
+			{
+				if (formatedName.ToLower().StartsWith(prefix.ToLower()))
+					formatedName = formatedName.Substring(0, prefix.Length).ToLower() + formatedName.Substring(prefix.Length);
+			}
+			return formatedName;
 		}
 
 		public string GetPluralName(Entity entity)
@@ -141,7 +149,7 @@ namespace Oragon.CodeGen.MetaData.Plugin
 				{
 					returnValue = returnValue.Replace(dicTerm, dicTerm.CamelCase(), System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 				}
-				
+
 			}
 			return returnValue;
 		}
