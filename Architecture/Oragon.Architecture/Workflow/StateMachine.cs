@@ -80,6 +80,7 @@ namespace Oragon.Architecture.Workflow
 										.Distinct(this.TransitionComprarer);
 			return returnValue;
 		}
+
 		#endregion
 	}
 }
