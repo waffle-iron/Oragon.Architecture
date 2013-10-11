@@ -38,6 +38,14 @@ namespace Oragon.Architecture.AOP.ExceptionHandling
 					this.Logger.Debug(targetTypeFullName, string.Concat("End ", targetMethod), "Type", targetTypeFullName, "Method", targetMethod);
 
 			}
+			catch (UndefinedException)
+			{
+				throw;
+			}
+			catch (FaultException)
+			{
+				throw;
+			}
 			catch (Exception ex)
 			{
 				Type exceptionType = ex.GetType();
