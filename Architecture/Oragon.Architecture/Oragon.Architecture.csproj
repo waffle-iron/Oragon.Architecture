@@ -139,6 +139,12 @@
     <Reference Include="Spring.Messaging.Amqp">
       <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.Rabbit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit.Admin">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.Rabbit.Admin.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Services">
       <HintPath>..\..\[References]\Spring.Net\Spring.Services.dll</HintPath>
     </Reference>
@@ -242,6 +248,8 @@
     <Compile Include="Schedule\TaskManager.cs" />
     <Compile Include="Security\IUserResolver.cs" />
     <Compile Include="Workflow\Facility.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedStateMachine.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedTransition.cs" />
     <Compile Include="Workflow\State.cs" />
     <Compile Include="Workflow\StateComprarer.cs" />
     <Compile Include="Workflow\StateMachine.cs" />

@@ -9,13 +9,13 @@ namespace Oragon.Architecture.Workflow
 	where StateType : IComparable
 	{
 		private StateComprarer<StateType> StateComprarer;
-		private TransitionComprarer<StateType> TransitionComprarer;
+		private TransitionComprarer<StateType> TransitionComparer;
 		public List<Transition<StateType>> Transitions { get; set; }
 
 		public StateMachine()
 		{
 			this.StateComprarer = new StateComprarer<StateType>();
-			this.TransitionComprarer = new TransitionComprarer<StateType>();
+			this.TransitionComparer = new TransitionComprarer<StateType>();
 		}
 
 		#region Queries
@@ -60,7 +60,7 @@ namespace Oragon.Architecture.Workflow
 			IEnumerable<Transition<StateType>> returnValue = this.Transitions.Where(it =>
 													this.Transitions.Any(it2 => it2.Origin.Equals(it.Destination)) == false
 										)
-										.Distinct(this.TransitionComprarer);
+										.Distinct(this.TransitionComparer);
 			return returnValue;
 		}
 
@@ -77,7 +77,7 @@ namespace Oragon.Architecture.Workflow
 			IEnumerable<Transition<StateType>> returnValue = this.Transitions.Where(it =>
 													this.Transitions.Any(it2 => it2.Destination.Equals(it.Origin)) == false
 										)
-										.Distinct(this.TransitionComprarer);
+										.Distinct(this.TransitionComparer);
 			return returnValue;
 		}
 

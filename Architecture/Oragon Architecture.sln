@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.ExcelIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.ArchitectureUnitTests", "Oragon.ArchitectureUnitTests\Oragon.ArchitectureUnitTests.csproj", "{74ADB229-7859-4791-B9CE-B50FBB9F13D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Tests", "Oragon.Architecture.Tests\Oragon.Architecture.Tests.csproj", "{B4504825-F815-4CF3-9103-EB028BD359D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,18 @@ Global
 		{74ADB229-7859-4791-B9CE-B50FBB9F13D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74ADB229-7859-4791-B9CE-B50FBB9F13D9}.Tst|Any CPU.ActiveCfg = Release|Any CPU
 		{74ADB229-7859-4791-B9CE-B50FBB9F13D9}.Tst|Any CPU.Build.0 = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Hmg|Any CPU.ActiveCfg = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Hmg|Any CPU.Build.0 = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Prd|Any CPU.ActiveCfg = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Prd|Any CPU.Build.0 = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Tst|Any CPU.ActiveCfg = Release|Any CPU
+		{B4504825-F815-4CF3-9103-EB028BD359D4}.Tst|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
