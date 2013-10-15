@@ -7,21 +7,20 @@ namespace Oragon.Architecture.Workflow
 {
     public abstract class Transition
     {
-        //public abstract State GetOrigin();
-        //public abstract State GetDestination();
+
     }
 
     public abstract class Transition<StateType> : Transition
-        where StateType : State
+        where StateType : IComparable
     {
         public StateType Origin { get; set; }
         public StateType Destination { get; set; }
 
-        public  StateType GetDestination()
+        public StateType GetDestination()
         {
             return this.Destination;
         }
-        public  StateType GetOrigin()
+        public StateType GetOrigin()
         {
             return this.Origin;
         }

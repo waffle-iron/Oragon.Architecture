@@ -6,21 +6,23 @@ using System.Text;
 namespace Oragon.Architecture.Workflow
 {
     public class StateComprarer<StateType> : IEqualityComparer<StateType>
-           where StateType : State
+           where StateType : IComparable
     {
         public bool Equals(StateType x, StateType y)
         {
-            var defValue = default(State);
-            if (x == defValue && y == defValue)
+            int equalValue = 0;
+            var defValue = default(StateType);
+            if (x.CompareTo(defValue) == equalValue && y.CompareTo(defValue) == equalValue)
                 return true;
-            else if (x != defValue && y != defValue)
-                return x.GetValue().CompareTo(y.GetValue()) == 0;
-            return false;
+            else if (x.CompareTo(defValue) != equalValue && y.CompareTo(defValue) != equalValue)
+                return x.CompareTo(y) == equalValue;
+            else
+                return false;
         }
 
         public int GetHashCode(StateType obj)
         {
-            return obj.GetValue().GetHashCode();
+            return obj.GetHashCode();
         }
     }
 }

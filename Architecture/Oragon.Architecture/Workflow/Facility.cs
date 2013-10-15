@@ -5,19 +5,17 @@ using System.Text;
 
 namespace Oragon.Architecture.Workflow.Facility
 {
-    public class StringStateMachine : StateMachine<StringTransition, StringState> { }
+    public class StringStateMachine : StateMachine<StringTransition, string> { }
 
-    public class StringTransition : Transition<StringState> { }
+    public class StringTransition : Transition<string> { }
 
-    public class StringState : State<string> { }
 
 }
 
 namespace Oragon.Architecture.Workflow.Facility
 {
-    public class IntStateMachine : StateMachine<IntTransition, IntState> { }
+    public class IntStateMachine : StateMachine<IntTransition, int> { }
 
-    public class IntTransition : Transition<IntState> { }
+    public class IntTransition : Transition<int> { }
 
-    public class IntState : State<int> { }
 }

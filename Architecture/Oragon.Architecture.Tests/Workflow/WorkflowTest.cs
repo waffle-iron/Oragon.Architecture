@@ -74,7 +74,7 @@ namespace Oragon.Architecture.Tests.Workflow
 			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
 			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
 			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
-			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 20));
+			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 10));
 			this.StateMachine.Stop();
 		}
 

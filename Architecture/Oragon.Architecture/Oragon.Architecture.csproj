@@ -269,8 +269,8 @@
     <Compile Include="Threading\SessionStorage.cs" />
     <Compile Include="Threading\SharedCacheStorage.cs" />
     <Compile Include="Threading\SameKeyParser.cs" />
-    <Compile Include="TypeConversion\DirectoryInfoConverter.cs" />
-    <Compile Include="TypeConversion\ReaderQuotasConverter.cs" />
+    <Compile Include="AOP\ExceptionHandling\TypeConversion\DirectoryInfoConverter.cs" />
+    <Compile Include="AOP\ExceptionHandling\TypeConversion\ReaderQuotasConverter.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

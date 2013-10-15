@@ -6,7 +6,7 @@ using System.Text;
 namespace Oragon.Architecture.Workflow
 {
     public class StateMachine<TransitionType, StateType>
-        where StateType : State
+        where StateType : IComparable
         where TransitionType : Transition<StateType>
     {
         private StateComprarer<StateType> StateComprarer;

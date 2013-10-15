@@ -10,7 +10,7 @@ using Spring.Context;
 
 namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
-	public class QueuedStateMachine : StateMachine<QueuedTransition, StringState>, IInitializingObject, ILifecycle, IObjectNameAware
+	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, ILifecycle, IObjectNameAware
 	{
 		protected Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory UserAmqpConnection { get; set; }
 		//Spring.Messaging.Amqp.Rabbit.Admin.RabbitBrokerAdmin RabbitBrokerAdmin { get; set; }
