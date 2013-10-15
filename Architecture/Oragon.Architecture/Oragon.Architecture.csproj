@@ -255,8 +255,6 @@
     <Compile Include="Workflow\StateMachine.cs" />
     <Compile Include="Workflow\Transition.cs" />
     <Compile Include="Workflow\TransitionComprarer.cs" />
-    <Compile Include="Workflow\_OLD_StateMachine\StateMachine.cs" />
-    <Compile Include="Workflow\_OLD_StateMachine\Transition.cs" />
     <Compile Include="Threading\ExpressionBasedKeyParser.cs" />
     <Compile Include="Threading\IKeyParser.cs" />
     <Compile Include="Threading\MultiLevelStorage.cs" />
