@@ -28,24 +28,20 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		{
 			foreach (QueuedTransition queuedTransition in this.Transitions)
 			{
-				IExchange exchange = new Spring.Messaging.Amqp.Core.DirectExchange(getExchangeName(queuedTransition.ExchangeName), true, false);
-				this.AmqpAdmin.DeclareExchange(exchange);
+				queuedTransition.Exchange = new Spring.Messaging.Amqp.Core.DirectExchange(getExchangeName(queuedTransition.ExchangeName), true, false);
+				this.AmqpAdmin.DeclareExchange(queuedTransition.Exchange);
 
-				Queue errorQueue = new Queue(this.getQueueName(queuedTransition.QueueToReportError), true, false, false);
-				this.AmqpAdmin.DeclareQueue(errorQueue);
+				queuedTransition.ProcessQueue = new Queue(this.getQueueName(queuedTransition.QueueToListen), true, false, false);
+				this.AmqpAdmin.DeclareQueue(queuedTransition.ProcessQueue);
 
-				Dictionary<string, string> queueArgs = new Dictionary<string, string>();
-				queueArgs.Add("x-dead-letter-exchange", exchange.Name);
-				queueArgs.Add("x-dead-letter-routing-key", queuedTransition.BuildFailureRoutingKey());
-				Queue processQueue = new Queue(this.getQueueName(queuedTransition.QueueToListen), true, false, false, queueArgs);
-				this.AmqpAdmin.DeclareQueue(processQueue);
+				queuedTransition.FailureQueue = new Queue(this.getQueueName(queuedTransition.QueueToReportError), true, false, false);
+				this.AmqpAdmin.DeclareQueue(queuedTransition.FailureQueue);
 
+				queuedTransition.ProcessBinding = new Binding(queuedTransition.ProcessQueue.Name, Binding.DestinationType.Queue, queuedTransition.Exchange.Name, queuedTransition.BuildRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(queuedTransition.ProcessBinding);
 
-				Binding processBinding = new Binding(processQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
-				this.AmqpAdmin.DeclareBinding(processBinding);
-
-				Binding failureBinding = new Binding(errorQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildFailureRoutingKey(), null);
-				this.AmqpAdmin.DeclareBinding(failureBinding);
+				queuedTransition.FailureBinding = new Binding(queuedTransition.FailureQueue.Name, Binding.DestinationType.Queue, queuedTransition.Exchange.Name, queuedTransition.BuildFailureRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(queuedTransition.FailureBinding);
 			}
 		}
 
@@ -64,6 +60,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				messageListenerAdapter.MessageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter();
 				messageListenerAdapter.DefaultListenerMethod = queuedTransition.ServiceMethod;
 				messageListenerAdapter.HandlerObject = queuedTransition.Service;
+
+				messageListenerAdapter.ResponseFailureExchange = this.getExchangeName(queuedTransition.ExchangeName);
+				messageListenerAdapter.ResponseFailureRoutingKey = queuedTransition.BuildFailureRoutingKey();
+
 				QueuedTransition nextQueuedTransition = this.GetPossibleTransitions(queuedTransition.Destination).FirstOrDefault();
 				if (nextQueuedTransition != null)
 				{

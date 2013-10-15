@@ -30,8 +30,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		public string DefaultListenerMethod { get; set; }
 
 		public string ResponseRoutingKey { get; set; }
-
 		public string ResponseExchange { get; set; }
+
+		public string ResponseFailureRoutingKey { get; set; }
+		public string ResponseFailureExchange { get; set; }
 
 		public IMessageConverter MessageConverter { get; set; }
 
@@ -76,57 +78,24 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 			catch (System.Exception ex)
 			{
-				this.HandleListenerException(ex);
+				this.HandleListenerException(ex, message);
 			}
 		}
 
 		public void OnMessage(Message message, IModel channel)
 		{
-			if (this.HandlerObject != this)
-			{
-				if (this.HandlerObject is IChannelAwareMessageListener)
-				{
-					if (channel != null)
-					{
-						((IChannelAwareMessageListener)this.HandlerObject).OnMessage(message, channel);
-						return;
-					}
-					if (!(this.HandlerObject is IMessageListener))
-					{
-						throw new AmqpIllegalStateException("MessageListenerAdapter cannot handle a IChannelAwareMessageListener delegate if it hasn't been invoked with a Channel itself");
-					}
-				}
-				if (this.HandlerObject is IMessageListener)
-				{
-					((IMessageListener)this.HandlerObject).OnMessage(message);
-					return;
-				}
-			}
 			object messageObject = this.ExtractMessage(message);
-			if (this.HandlerObject is Func<string, string> && messageObject is string)
-			{
-				string text = ((Func<string, string>)this.HandlerObject)((string)messageObject);
-				if (text != null)
-				{
-					this.HandleResult(text, message, channel);
-					return;
-				}
-			}
-			string listenerMethodName = this.GetListenerMethodName(message, messageObject);
-			if (listenerMethodName == null)
-			{
+			if (this.DefaultListenerMethod == null)
 				throw new AmqpIllegalStateException("No default listener method specified: Either specify a non-null value for the 'DefaultListenerMethod' property or override the 'GetListenerMethodName' method.");
-			}
+
 			object[] arguments = this.BuildListenerArguments(messageObject);
-			object listenerMethodResult = this.InvokeListenerMethod(listenerMethodName, arguments);
-			if (listenerMethodResult != null)
-			{
-				this.HandleResult(listenerMethodResult, message, channel);
-			}
+			bool sucess = this.InvokeListenerMethod(this.DefaultListenerMethod, arguments);
+			if (sucess)
+				this.HandleSucessResult(messageObject, message, channel);
 			else
-			{
-				this.HandleResult(messageObject, message, channel);
-			}
+				this.HandleFailureResult(messageObject, message, channel);
+
+
 		}
 
 		protected virtual void InitDefaultStrategies()
@@ -137,12 +106,14 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			this.Encoding = "UTF-8";
 			this.MessageConverter = new SimpleMessageConverter();
 		}
-		protected virtual void HandleListenerException(System.Exception ex)
+		protected virtual void HandleListenerException(System.Exception ex, Message message)
 		{
-			QueuedWorkflowMessageListenerAdapter.Logger.Error(delegate(FormatMessageHandler m)
+			Logger.Error(delegate(FormatMessageHandler m)
 			{
 				m.Invoke("Listener execution failed", new object[0]);
 			}, ex);
+
+
 		}
 		private object ExtractMessage(Message message)
 		{
@@ -153,10 +124,9 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 			return message;
 		}
-		protected virtual string GetListenerMethodName(Message originalMessage, object extractedMessage)
-		{
-			return this.DefaultListenerMethod;
-		}
+
+
+
 		protected object[] BuildListenerArguments(object extractedMessage)
 		{
 			return new object[]
@@ -164,9 +134,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				extractedMessage
 			};
 		}
-		protected object InvokeListenerMethod(string methodName, object[] arguments)
+
+		protected bool InvokeListenerMethod(string methodName, object[] arguments)
 		{
-			object result;
+			bool isOk = false;
 			try
 			{
 				MethodInvoker methodInvoker = new MethodInvoker();
@@ -175,29 +146,13 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				methodInvoker.Arguments = arguments;
 				methodInvoker.Prepare();
 				object obj = methodInvoker.Invoke();
-				if (obj == MethodInvoker.Void)
-				{
-					result = null;
-				}
-				else
-				{
-					result = obj;
-				}
+				isOk = true;
 			}
-			catch (System.Reflection.TargetInvocationException ex)
+			catch (System.Exception)
 			{
-				System.Exception innerException = ex.InnerException;
-				if (innerException is System.IO.IOException)
-				{
-					throw new AmqpIOException(innerException);
-				}
-				throw new ListenerExecutionFailedException("Listener method '" + methodName + "' threw exception", innerException);
+				isOk = false;
 			}
-			catch (System.Exception innerException2)
-			{
-				throw new ListenerExecutionFailedException(this.BuildInvocationFailureMessage(methodName, arguments), innerException2);
-			}
-			return result;
+			return isOk;
 		}
 		private string BuildInvocationFailureMessage(string methodName, object[] arguments)
 		{
@@ -224,31 +179,27 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 			return list;
 		}
-		protected virtual void HandleResult(object result, Message request, IModel channel)
+		protected virtual void HandleResult(object result, Message request, IModel channel, Address replyToAddress)
 		{
 			if (channel != null)
 			{
-				QueuedWorkflowMessageListenerAdapter.Logger.Debug(delegate(FormatMessageHandler m)
-				{
-					m.Invoke("Listener method returned result [{0}] - generating response message for it", new object[]
-					{
-						result
-					});
-				});
 				Message message = this.BuildMessage(channel, result);
-				//this.PostProcessResponse(request, message);
-				Address replyToAddress = this.GetReplyToAddress(request);
 				this.SendResponse(channel, replyToAddress, message);
 				return;
 			}
-			QueuedWorkflowMessageListenerAdapter.Logger.Warn(delegate(FormatMessageHandler m)
-			{
-				m.Invoke("Listener method returned result [{0}]: not generating response message for it because of no Rabbit Channel given", new object[]
-				{
-					result
-				});
-			});
 		}
+
+		protected virtual void HandleSucessResult(object result, Message request, IModel channel)
+		{
+			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
+			this.HandleResult(result, request, channel, replyToAddress);
+		}
+		protected virtual void HandleFailureResult(object result, Message request, IModel channel)
+		{
+			Address replyToAddress = new Address(null, this.ResponseFailureExchange, this.ResponseFailureRoutingKey);
+			this.HandleResult(result, request, channel, replyToAddress);
+		}
+
 		protected string GetReceivedExchange(Message request)
 		{
 			return request.MessageProperties.ReceivedExchange;
@@ -275,11 +226,8 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 			response.MessageProperties.CorrelationId = text.ToByteArrayWithEncoding("UTF-8");
 		}
-		protected virtual Address GetReplyToAddress(Message request)
-		{
-			Address address = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
-			return address;
-		}
+
+
 		protected virtual void SendResponse(IModel channel, Address replyTo, Message message)
 		{
 			this.PostProcessChannel(channel, message);

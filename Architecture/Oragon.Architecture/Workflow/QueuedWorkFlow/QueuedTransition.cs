@@ -31,6 +31,16 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			string returnValue = string.Format("{0}->{1}#FailOn#", origin, destination);
 			return returnValue;
 		}
+
+
+		internal Spring.Messaging.Amqp.Core.IExchange Exchange { get; set; }
+
+		internal Spring.Messaging.Amqp.Core.Queue ProcessQueue { get; set; }
+		internal Spring.Messaging.Amqp.Core.Queue FailureQueue { get; set; }
+
+		internal Spring.Messaging.Amqp.Core.Binding ProcessBinding { get; set; }
+		internal Spring.Messaging.Amqp.Core.Binding FailureBinding { get; set; }
+
 	}
 
 }

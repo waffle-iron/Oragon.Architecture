@@ -114,7 +114,7 @@
 					<property name="ConcurrentConsumers" value="1" />
 					<property name="Service" >
 						<object type="Oragon.Architecture.Tests.Workflow.WorkflowTestHandler, Oragon.Architecture.Tests">
-							<property name="Message"	 value="state:MetadadoArmazenado -> state:MetadadoIngerido" />
+							<property name="Message"	 value="state:MetadadoArmazenado -> state:MetadadoIngerido_" />
 						</object>
 					</property>
 					<property name="ServiceMethod" value="Process" />

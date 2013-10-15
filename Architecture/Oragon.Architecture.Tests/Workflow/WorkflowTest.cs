@@ -46,9 +46,35 @@ namespace Oragon.Architecture.Tests.Workflow
 		{
 			var messageToSend = new WorkflowTestMessage() { ID = 77, Messages = new List<string>() };
 			string routingKey = this.StateMachine.GetInitialTransitions().Single().BuildRoutingKey();
-			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
 			this.StateMachine.Start();
-			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 30));
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 20));
 			this.StateMachine.Stop();
 		}
 
@@ -60,6 +86,9 @@ namespace Oragon.Architecture.Tests.Workflow
 
 		public void Process(WorkflowTestMessage workflowTestMessage)
 		{
+			if (Message == "state:MetadadoArmazenado -> state:MetadadoIngerido")
+				throw new Exception("Teste Exception");
+
 			workflowTestMessage.Messages.Add(Message);
 			System.Diagnostics.Debug.WriteLine("");
 			System.Diagnostics.Debug.WriteLine("###################################");
