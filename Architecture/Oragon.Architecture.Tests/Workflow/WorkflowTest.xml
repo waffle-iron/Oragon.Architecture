@@ -7,6 +7,8 @@
 	xmlns:nv="http://www.springframework.net/nvelocity"
 	>
 
+
+
 	<object id="ConnectionFactory_Admin" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
 		<property name="Host" value="localhost" />
 		<property name="Port" value="5672" />
@@ -23,7 +25,15 @@
 		<property name="Password" value="iMusicaEnterpriseApp@123" />
 	</object>
 
-
+	<object name="RabbitTemplate" type="Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate, Spring.Messaging.Amqp.Rabbit">
+		<property name="ConnectionFactory" ref="ConnectionFactory_User" />
+		<property name="ChannelTransacted" value="true" />
+		<property name="Exchange" value="WFIngestion_DefaultExchange"/>
+		<property name="MessageConverter" ref="JsonMessageConverter" />
+	</object>
+	
+	
+	
 	<object name="state:PacoteEntregue" type="Oragon.Architecture.Workflow.Facility.StringState, Oragon.Architecture">
 		<property name="StateValue" value="PacoteEntregue" />
 		<property name="StateName" value="xxxxxxxxxxxxxxxxxxxxxx" />
@@ -51,9 +61,8 @@
 
 	<object name="JsonMessageConverter" type="Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter, Spring.Messaging.Amqp" />
 
-	<object name="StateMachine" type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedStateMachine, Oragon.Architecture" init-method="Initialize">
-		<!--<property name="AdminAmqpConnection" ref="ConnectionFactory_Admin" />
-		<property name="UserAmqpConnection" ref="ConnectionFactory_User" />-->
+	<object name="StateMachine" type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedStateMachine, Oragon.Architecture">
+		<property name="UserAmqpConnection" ref="ConnectionFactory_User" />
 		<property name="AmqpAdmin">
 			<object type="Spring.Messaging.Amqp.Rabbit.Core.RabbitAdmin, Spring.Messaging.Amqp.Rabbit">
 				<constructor-arg name="connectionFactory" ref="ConnectionFactory_Admin" />
@@ -72,9 +81,13 @@
 					<property name="QueueToListen" value="ToDownload.Queue" />
 					<property name="QueueToReportError" value="ToDownload.Queue.Failure" />
 					<property name="ExchangeName" value="DefaultExchange" />
-					<property name="ListenerCount" value="1" />
-					<property name="Service" value="XXXXXX" />
-					<property name="ServiceMethod" value="YYYYYY" />
+					<property name="ConcurrentConsumers" value="1" />
+					<property name="Service" >
+						<object type="Oragon.Architecture.Tests.Workflow.WorkflowTestHandler, Oragon.Architecture.Tests">
+							<property name="Message"	 value="state:PacoteEntregue -> state:PacoteMovido" />
+						</object>
+					</property>
+					<property name="ServiceMethod" value="Process" />
 				</object>
 
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
@@ -83,9 +96,13 @@
 					<property name="QueueToListen" value="ToTrack.Queue" />
 					<property name="QueueToReportError" value="ToTrack.Queue.Failure" />
 					<property name="ExchangeName" value="DefaultExchange" />
-					<property name="ListenerCount" value="1" />
-					<property name="Service" value="XXXXXX" />
-					<property name="ServiceMethod" value="YYYYYY" />
+					<property name="ConcurrentConsumers" value="1" />
+					<property name="Service" >
+						<object type="Oragon.Architecture.Tests.Workflow.WorkflowTestHandler, Oragon.Architecture.Tests">
+							<property name="Message"	 value="state:PacoteMovido -> state:MetadadoArmazenado" />
+						</object>
+					</property>
+					<property name="ServiceMethod" value="Process" />
 				</object>
 
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
@@ -94,9 +111,13 @@
 					<property name="QueueToListen" value="ToIngest.Queue" />
 					<property name="QueueToReportError" value="ToIngest.Queue.Failure" />
 					<property name="ExchangeName" value="DefaultExchange" />
-					<property name="ListenerCount" value="1" />
-					<property name="Service" value="XXXXXX" />
-					<property name="ServiceMethod" value="YYYYYY" />
+					<property name="ConcurrentConsumers" value="1" />
+					<property name="Service" >
+						<object type="Oragon.Architecture.Tests.Workflow.WorkflowTestHandler, Oragon.Architecture.Tests">
+							<property name="Message"	 value="state:MetadadoArmazenado -> state:MetadadoIngerido" />
+						</object>
+					</property>
+					<property name="ServiceMethod" value="Process" />
 				</object>
 
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
@@ -105,9 +126,13 @@
 					<property name="QueueToListen" value="ToNotify.Queue" />
 					<property name="QueueToReportError" value="ToNotify.Queue.Failure" />
 					<property name="ExchangeName" value="DefaultExchange" />
-					<property name="ListenerCount" value="1" />
-					<property name="Service" value="XXXXXX" />
-					<property name="ServiceMethod" value="YYYYYY" />
+					<property name="ConcurrentConsumers" value="1" />
+					<property name="Service" >
+						<object type="Oragon.Architecture.Tests.Workflow.WorkflowTestHandler, Oragon.Architecture.Tests">
+							<property name="Message"	 value="state:MetadadoIngerido -> state:NotificacoesEnviadas" />
+						</object>
+					</property>
+					<property name="ServiceMethod" value="Process" />
 				</object>
 
 			</list>

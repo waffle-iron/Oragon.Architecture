@@ -5,14 +5,15 @@ using System.Linq;
 //using Oragon.Architecture.Workflow.QueuedWorkFlow;
 using Oragon.Architecture.Workflow;
 using Oragon.Architecture.Workflow.QueuedWorkFlow;
+using System.Collections.Generic;
 
 namespace Oragon.Architecture.Tests.Workflow
 {
 	[TestClass]
 	public class WorkflowTest : TestBase
 	{
-
-        public QueuedStateMachine StateMachine { get; set; }
+		public Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate RabbitTemplate { get; set; }
+		public QueuedStateMachine StateMachine { get; set; }
 
 		[TestMethod]
 		public void InitialUniqueTransitionTest()
@@ -35,14 +36,44 @@ namespace Oragon.Architecture.Tests.Workflow
 		{
 			var initialTransition = this.StateMachine.GetInitialTransitions().Single();
 			var possibleSteps = this.StateMachine.GetPossibleTransitions(initialTransition.Destination);
-		 	Assert.AreEqual(possibleSteps.Count(), 1);
+			Assert.AreEqual(possibleSteps.Count(), 1);
 			var nextTransition = (QueuedTransition)possibleSteps.Single();
 			Assert.AreEqual(nextTransition.QueueToListen, "ToTrack.Queue");
 		}
 
+		[TestMethod]
+		public void TestePipe()
+		{
+			var messageToSend = new WorkflowTestMessage() { ID = 77, Messages = new List<string>() };
+			string routingKey = this.StateMachine.GetInitialTransitions().Single().BuildRoutingKey();
+			this.RabbitTemplate.ConvertAndSend(routingKey, messageToSend);
+			this.StateMachine.Start();
+			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 30));
+			this.StateMachine.Stop();
+		}
+
 	}
 
+	public class WorkflowTestHandler
+	{
+		public string Message { get; set; }
 
+		public void Process(WorkflowTestMessage workflowTestMessage)
+		{
+			workflowTestMessage.Messages.Add(Message);
+			System.Diagnostics.Debug.WriteLine("");
+			System.Diagnostics.Debug.WriteLine("###################################");
+			foreach (string texto in workflowTestMessage.Messages)
+			{
+				System.Diagnostics.Debug.WriteLine(texto);
+			}
+			System.Diagnostics.Debug.WriteLine("###################################");
+		}
+	}
 
-
+	public class WorkflowTestMessage
+	{
+		public int ID { get; set; }
+		public List<string> Messages { get; set; }
+	}
 }

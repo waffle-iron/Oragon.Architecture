@@ -10,7 +10,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		public string QueueToListen { get; set; }
 		public string QueueToReportError { get; set; }
 		public string ExchangeName { get; set; }
-		public int ListenerCount { get; set; }
+		public int ConcurrentConsumers { get; set; }
 		public object Service { get; set; }
 		public string ServiceMethod { get; set; }
 

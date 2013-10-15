@@ -100,6 +100,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\..\[References]\AutoMapper\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\[References]\Common.Logging\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Db4objects.Db4o">
       <HintPath>..\..\[References]\Db4O\Db4objects.Db4o.dll</HintPath>
     </Reference>
@@ -123,6 +126,10 @@
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\[References]\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=2.8.7.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Net\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="SharedCache.WinServiceCommon">
       <HintPath>..\..\[References]\SharedCache\SharedCache.WinServiceCommon.dll</HintPath>
@@ -250,6 +257,7 @@
     <Compile Include="Workflow\Facility.cs" />
     <Compile Include="Workflow\QueuedWorkFlow\QueuedStateMachine.cs" />
     <Compile Include="Workflow\QueuedWorkFlow\QueuedTransition.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedWorkflowMessageListenerAdapter.cs" />
     <Compile Include="Workflow\State.cs" />
     <Compile Include="Workflow\StateComprarer.cs" />
     <Compile Include="Workflow\StateMachine.cs" />
