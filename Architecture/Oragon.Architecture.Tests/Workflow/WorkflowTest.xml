@@ -8,9 +8,9 @@
 	>
 
 	<object id="ConnectionFactory_Admin" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
-		<property name="Host" value="www1.imusica.com.br" />
+		<property name="Host" value="localhost" />
 		<property name="Port" value="5672" />
-		<property name="VirtualHost" value="iMusicaImportacao" />
+		<property name="VirtualHost" value="TesteADMIN" />
 		<property name="UserName" value="iMusicaEnterpriseApp" />
 		<property name="Password" value="iMusicaEnterpriseApp@123" />
 	</object>
@@ -18,7 +18,7 @@
 	<object id="ConnectionFactory_User" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
 		<property name="Host" value="localhost" />
 		<property name="Port" value="5672" />
-		<property name="VirtualHost" value="iMusicaImportacao" />
+		<property name="VirtualHost" value="TesteADMIN" />
 		<property name="UserName" value="iMusicaEnterpriseApp" />
 		<property name="Password" value="iMusicaEnterpriseApp@123" />
 	</object>
@@ -49,48 +49,62 @@
 		<property name="StateName" value="xxxxxxxxxxxxxxxxxxxxxx" />
 	</object>
 
-	<object name="StateMachine" type="Oragon.Architecture.Tests.Workflow.QueuedStateMachine, Oragon.Architecture.Tests" init-method="Initialize">
+	<object name="JsonMessageConverter" type="Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter, Spring.Messaging.Amqp" />
+
+	<object name="StateMachine" type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedStateMachine, Oragon.Architecture" init-method="Initialize">
 		<!--<property name="AdminAmqpConnection" ref="ConnectionFactory_Admin" />
 		<property name="UserAmqpConnection" ref="ConnectionFactory_User" />-->
-		<property name="AmqpItemPrefix" value="WFIngestion_" />
-		<property name="Transitions">
-			<list element-type="Oragon.Architecture.Workflow.Facility.StringTransition">
+		<property name="AmqpAdmin">
+			<object type="Spring.Messaging.Amqp.Rabbit.Core.RabbitAdmin, Spring.Messaging.Amqp.Rabbit">
+				<constructor-arg name="connectionFactory" ref="ConnectionFactory_Admin" />
+				<property name="AutoStartup" value="false" />
+			</object>
+		</property>
 
-				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition">
+		<property name="AmqpQueuePrefix" value="WFIngestion_" />
+		<property name="AmqpExchangePrefix" value="WFIngestion_" />
+		<property name="Transitions">
+			<list element-type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
+
+				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" ref="state:PacoteEntregue" />
 					<property name="Destination" ref="state:PacoteMovido" />
 					<property name="QueueToListen" value="ToDownload.Queue" />
 					<property name="QueueToReportError" value="ToDownload.Queue.Failure" />
+					<property name="ExchangeName" value="DefaultExchange" />
 					<property name="ListenerCount" value="1" />
 					<property name="Service" value="XXXXXX" />
 					<property name="ServiceMethod" value="YYYYYY" />
 				</object>
 
-				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition">
+				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" ref="state:PacoteMovido" />
 					<property name="Destination" ref="state:MetadadoArmazenado" />
 					<property name="QueueToListen" value="ToTrack.Queue" />
 					<property name="QueueToReportError" value="ToTrack.Queue.Failure" />
+					<property name="ExchangeName" value="DefaultExchange" />
 					<property name="ListenerCount" value="1" />
 					<property name="Service" value="XXXXXX" />
 					<property name="ServiceMethod" value="YYYYYY" />
 				</object>
 
-				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition">
+				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" ref="state:MetadadoArmazenado" />
 					<property name="Destination" ref="state:MetadadoIngerido" />
 					<property name="QueueToListen" value="ToIngest.Queue" />
 					<property name="QueueToReportError" value="ToIngest.Queue.Failure" />
+					<property name="ExchangeName" value="DefaultExchange" />
 					<property name="ListenerCount" value="1" />
 					<property name="Service" value="XXXXXX" />
 					<property name="ServiceMethod" value="YYYYYY" />
 				</object>
 
-				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition">
+				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" ref="state:MetadadoIngerido" />
 					<property name="Destination" ref="state:NotificacoesEnviadas" />
 					<property name="QueueToListen" value="ToNotify.Queue" />
 					<property name="QueueToReportError" value="ToNotify.Queue.Failure" />
+					<property name="ExchangeName" value="DefaultExchange" />
 					<property name="ListenerCount" value="1" />
 					<property name="Service" value="XXXXXX" />
 					<property name="ServiceMethod" value="YYYYYY" />

@@ -5,34 +5,35 @@ using System.Text;
 
 namespace Oragon.Architecture.Workflow
 {
-	public class TransitionComprarer<StateType> : IEqualityComparer<Transition<StateType>>
-		where StateType : IComparable
-	{
-		private StateComprarer<StateType> StateComprarer;
+    public class TransitionComprarer<TransitionType, StateType> : IEqualityComparer<TransitionType>
+        where StateType : State
+        where TransitionType : Transition<StateType>
+    {
+        private StateComprarer<StateType> StateComprarer;
 
-		public TransitionComprarer()
-		{
-			this.StateComprarer = new StateComprarer<StateType>();
-		}
+        public TransitionComprarer()
+        {
+            this.StateComprarer = new StateComprarer<StateType>();
+        }
 
 
-		public bool Equals(Transition<StateType> x, Transition<StateType> y)
-		{
-			var defValue = default(Transition<StateType>);
-			if (x == defValue && y == defValue)
-				return true;
-			else if (x != defValue && y != defValue)
-				return (
-					this.StateComprarer.Equals(x.Origin, y.Origin)
-					&&
-					this.StateComprarer.Equals(x.Destination, y.Destination)
-				);
-			return false;
-		}
+        public bool Equals(TransitionType x, TransitionType y)
+        {
+            var defValue = default(TransitionType);
+            if (x == defValue && y == defValue)
+                return true;
+            else if (x != defValue && y != defValue)
+                return (
+                    this.StateComprarer.Equals(x.GetOrigin(), y.GetOrigin())
+                    &&
+                    this.StateComprarer.Equals(x.GetDestination(), y.GetDestination())
+                );
+            return false;
+        }
 
-		public int GetHashCode(Transition<StateType> obj)
-		{
-			return string.Concat(obj.Origin, "|", obj.Destination).GetHashCode();
-		}
-	}
+        public int GetHashCode(TransitionType obj)
+        {
+            return string.Concat(obj.GetOrigin(), "|", obj.GetDestination()).GetHashCode();
+        }
+    }
 }

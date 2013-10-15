@@ -38,11 +38,36 @@
     <Reference Include="Common.Logging">
       <HintPath>..\..\[References]\Common.Logging\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=2.8.7.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Net\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Aop">
       <HintPath>..\..\[References]\Spring.Net\Spring.Aop.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core">
       <HintPath>..\..\[References]\Spring.Net\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp, Version=0.9.9.2000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit, Version=0.9.9.2000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.Rabbit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit.Admin">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.Rabbit.Admin.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Ems">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Ems.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Nms">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Nms.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Testing.Microsoft">
       <HintPath>..\..\[References]\Spring.Net\Spring.Testing.Microsoft.dll</HintPath>
