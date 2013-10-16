@@ -38,7 +38,7 @@ namespace Oragon.Architecture.Tests.Workflow
 			var possibleSteps = this.StateMachine.GetPossibleTransitions(initialTransition.Destination);
 			Assert.AreEqual(possibleSteps.Count(), 1);
 			var nextTransition = (QueuedTransition)possibleSteps.Single();
-			Assert.AreEqual(nextTransition.QueueToListen, "ToTrack.Queue");
+			Assert.AreEqual(nextTransition.LogicalQueueName, "ToTrack.Queue");
 		}
 
 		[TestMethod]

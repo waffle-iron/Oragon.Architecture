@@ -95,7 +95,9 @@
     <Compile Include="Workflow\WorkflowTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Workflow\WorkflowTest.xml" />
+    <EmbeddedResource Include="Workflow\WorkflowTest.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
