@@ -93,13 +93,12 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			if (invokeResult.Success)
 			{
 				object messageToSend = invokeResult.HasValue ? invokeResult.ReturnedValue : messageObject;
-
 				this.HandleSuccessResult(messageToSend, message, channel);
 			}
 			else
+			{
 				this.HandleFailureResult(messageObject, message, channel);
-
-
+			}
 		}
 
 		protected virtual void InitDefaultStrategies()
@@ -107,6 +106,9 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			this.DefaultListenerMethod = "HandleMessage";
 			this.ResponseRoutingKey = string.Empty;
 			this.ResponseExchange = string.Empty;
+			this.ResponseFailureRoutingKey = string.Empty;
+			this.ResponseFailureExchange = string.Empty;
+
 			this.Encoding = "UTF-8";
 			this.MessageConverter = new SimpleMessageConverter();
 		}
@@ -209,10 +211,14 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
 			this.HandleResult(messageToSend, request, channel, replyToAddress);
 		}
+
 		protected virtual void HandleFailureResult(object messageToSend, Message request, IModel channel)
 		{
-			Address replyToAddress = new Address(null, this.ResponseFailureExchange, this.ResponseFailureRoutingKey);
-			this.HandleResult(messageToSend, request, channel, replyToAddress);
+			if (string.IsNullOrWhiteSpace(this.ResponseFailureExchange) == false && string.IsNullOrWhiteSpace(this.ResponseFailureRoutingKey) == false)
+			{
+				Address replyToAddress = new Address(null, this.ResponseFailureExchange, this.ResponseFailureRoutingKey);
+				this.HandleResult(messageToSend, request, channel, replyToAddress);
+			}
 		}
 
 		protected string GetReceivedExchange(Message request)

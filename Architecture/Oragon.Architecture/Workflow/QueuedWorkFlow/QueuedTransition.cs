@@ -12,6 +12,9 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		public int ConcurrentConsumers { get; set; }
 		public object Service { get; set; }
 		public string ServiceMethod { get; set; }
+		
+		public ExceptionStategy Strategy { get; set; }
+
 
 		public string BuildRoutingKey()
 		{
@@ -29,8 +32,17 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 			string returnValue = string.Format("{0}->{1}#Failure#", origin, destination);
 			return returnValue;
+
 		}
 
+	}
+
+
+	public enum ExceptionStategy
+	{
+		SendToError,
+		SendToNext,
+		Requeue
 	}
 
 }

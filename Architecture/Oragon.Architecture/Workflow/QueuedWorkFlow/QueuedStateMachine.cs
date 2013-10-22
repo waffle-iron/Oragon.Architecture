@@ -18,15 +18,21 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 		protected string AmqpQueuePrefix { get; set; }
 		protected string AmqpExchangePrefix { get; set; }
+		public bool CreateZombieQueues { get; set; }
+
 
 		Func<string, string> getQueueName;
 		Func<string, string> getExchangeName;
 
 		private List<Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer> MessageContainers;
 
-		private void InitializeBroker()
+		public QueuedStateMachine()
 		{
 			this.MessageContainers = new List<Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer>();
+		}
+
+		private void InitializeBroker()
+		{
 			foreach (QueuedTransition queuedTransition in this.Transitions)
 			{
 				this.ConfigureBroker(queuedTransition);
@@ -35,6 +41,18 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 		private void ConfigureBroker(QueuedTransition queuedTransition)
 		{
+			//Listener
+			Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer container = new Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer(this.UserAmqpConnection);
+			container.ObjectName = this.ObjectName;
+			container.AutoStartup = false;
+			container.ConcurrentConsumers = queuedTransition.ConcurrentConsumers;
+			QueuedWorkflowMessageListenerAdapter messageListenerAdapter = new QueuedWorkflowMessageListenerAdapter();
+			messageListenerAdapter.MessageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter();
+			messageListenerAdapter.DefaultListenerMethod = queuedTransition.ServiceMethod;
+			messageListenerAdapter.HandlerObject = queuedTransition.Service;
+			container.MessageListener = messageListenerAdapter;
+
+
 			var exchange = new Spring.Messaging.Amqp.Core.TopicExchange(getExchangeName(queuedTransition.ExchangeName), true, false);
 			this.AmqpAdmin.DeclareExchange(exchange);
 
@@ -44,45 +62,51 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 			var processBinding = new Binding(processQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
 			this.AmqpAdmin.DeclareBinding(processBinding);
-
-			//Zombie
-			var zombieQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Zombie", true, false, false);
-			this.AmqpAdmin.DeclareQueue(zombieQueue);
-
-			var zombieBinding = new Binding(zombieQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
-			this.AmqpAdmin.DeclareBinding(zombieBinding);
-
-			//Failure
-			var failureQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Failure", true, false, false);
-			this.AmqpAdmin.DeclareQueue(failureQueue);
-
-			var failureBinding = new Binding(failureQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildFailureRoutingKey(), null);
-			this.AmqpAdmin.DeclareBinding(failureBinding);
-
-			//Listener
-			Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer container = new Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer(this.UserAmqpConnection);
-			container.ObjectName = this.ObjectName;
-			container.AutoStartup = false;
 			container.QueueNames = new string[] { processQueue.Name };
-			container.ConcurrentConsumers = queuedTransition.ConcurrentConsumers;
-			QueuedWorkflowMessageListenerAdapter messageListenerAdapter = new QueuedWorkflowMessageListenerAdapter();
-			messageListenerAdapter.MessageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter();
-			
-			messageListenerAdapter.DefaultListenerMethod = queuedTransition.ServiceMethod;
-			messageListenerAdapter.HandlerObject = queuedTransition.Service;
-			messageListenerAdapter.ResponseFailureExchange = exchange.Name;
-			messageListenerAdapter.ResponseFailureRoutingKey = failureBinding.RoutingKey;
+
+
+			if (this.CreateZombieQueues)
+			{
+				//Zombie
+				var zombieQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Zombie", true, false, false);
+				this.AmqpAdmin.DeclareQueue(zombieQueue);
+
+				var zombieBinding = new Binding(zombieQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(zombieBinding);
+			}
+
 			QueuedTransition nextQueuedTransition = this.GetPossibleTransitions(queuedTransition.Destination).FirstOrDefault();
 			if (nextQueuedTransition != null)
 			{
 				messageListenerAdapter.ResponseExchange = this.getExchangeName(nextQueuedTransition.ExchangeName);
 				messageListenerAdapter.ResponseRoutingKey = nextQueuedTransition.BuildRoutingKey();
 			}
-			container.MessageListener = messageListenerAdapter;
+
+
+			if (queuedTransition.Strategy == ExceptionStategy.SendToError)
+			{
+				//Failure
+				var failureQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Failure", true, false, false);
+				this.AmqpAdmin.DeclareQueue(failureQueue);
+
+				var failureBinding = new Binding(failureQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildFailureRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(failureBinding);
+
+				messageListenerAdapter.ResponseFailureExchange = exchange.Name;
+				messageListenerAdapter.ResponseFailureRoutingKey = failureBinding.RoutingKey;
+			}
+			else if (queuedTransition.Strategy == ExceptionStategy.Requeue)
+			{
+				messageListenerAdapter.ResponseFailureExchange = string.Empty;
+				messageListenerAdapter.ResponseFailureRoutingKey = string.Empty;
+			}
+			else if (queuedTransition.Strategy == ExceptionStategy.SendToNext)
+			{
+				messageListenerAdapter.ResponseFailureExchange = messageListenerAdapter.ResponseExchange;
+				messageListenerAdapter.ResponseFailureRoutingKey = messageListenerAdapter.ResponseRoutingKey;
+			}
 			this.MessageContainers.Add(container);
 		}
-
-
 
 		public void AfterPropertiesSet()
 		{
