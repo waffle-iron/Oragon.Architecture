@@ -201,6 +201,25 @@ namespace Oragon.Architecture.Extensions
 		}
 
 
+		public static Dictionary<string, string> ToDictionary(this string[] stringArray)
+		{
+			Dictionary<string, string> returnDic = new Dictionary<string, string>();
+			if (stringArray.Length > 0)
+			{
+				if (stringArray.Length % 2 != 0)
+					throw new InvalidOperationException("Tags não possui uma quantidade de valores par;");
+				else
+				{
+					int keyIndex = 0;
+					int valueIndex = 1;
+					for (; valueIndex < stringArray.Length; keyIndex += 2, valueIndex += 2)
+					{
+						returnDic.Add(stringArray[keyIndex], stringArray[valueIndex]);
+					}
+				}
+			}
+			return returnDic;
+		}
 
 
 	}
