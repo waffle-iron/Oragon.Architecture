@@ -5,54 +5,25 @@ using System.Text;
 
 namespace Oragon.Architecture.Log
 {
-	public class SafeLogger: ILogger
+	public class SafeLogger : AbstractLogger
 	{
 		public ILogger PrimaryLogger { get; set; }
 
 		public ILogger SecondaryLogger { get; set; }
 
-
-		public void Debug(string context, string content, params string[] tags)
+		protected override void SendLog(Model.LogEntryTransferObject logEntry)
 		{
-			this.Log(context, content, LogLevel.Debug, tags);
-		}
-
-		public void Trace(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Trace, tags);
-		}
-
-		public void Warn(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Warn, tags);
-		}
-
-		public void Error(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Error, tags);
-		}
-
-		public void Fatal(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Fatal, tags);
-		}
-
-        public void Audit(string context, string content, params string[] tags)
-        {
-			this.Log(context, content, LogLevel.Audit, tags);
-        }
-
-		public void Log(string context, string content, LogLevel logLevel, params string[] tags)
-		{
+			List<string> values = new List<string>();
 			try
 			{
-				this.PrimaryLogger.Log(context, content, logLevel, tags);
+				this.PrimaryLogger.Log(logEntry.Context, logEntry.Content, logEntry.LogLevel, logEntry.Tags);
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				this.SecondaryLogger.Log("SafeLogger - ", ex.ToString(), LogLevel.Error, tags);
-				this.SecondaryLogger.Log(context, content, logLevel, tags);
+				this.SecondaryLogger.Log("SafeLogger - ", ex.ToString(), LogLevel.Error, logEntry.Tags);
+				this.SecondaryLogger.Log(logEntry.Context, logEntry.Content, logEntry.LogLevel, logEntry.Tags);
 			}
 		}
+
 	}
 }

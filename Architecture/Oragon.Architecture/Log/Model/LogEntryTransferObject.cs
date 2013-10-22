@@ -21,6 +21,12 @@ namespace Oragon.Architecture.Log.Model
 		public virtual long LogEntryID { get; set; }
 
 		/// <summary>
+		/// Define ou obtém um(a) Context da LogEntry.
+		/// </summary>
+		[DataMember]
+		public virtual string Context { get; set; }
+
+		/// <summary>
 		/// Define ou obtém um(a) Date da LogEntry.
 		/// </summary>
 		[DataMember]

@@ -11,6 +11,7 @@ namespace Oragon.Architecture.Log
 		void Warn(string context, string content, params string[] tags);
         void Audit(string context, string content, params string[] tags);
 
-		void Log(string context, string content, LogLevel nivelLog, params string[] tags);
+		//void Log(string context, string content, LogLevel nivelLog, params string[] tags);
+		void Log(string context, string content, LogLevel nivelLog, Dictionary<string, string> tags);
 	}
 }

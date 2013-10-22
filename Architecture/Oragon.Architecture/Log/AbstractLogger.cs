@@ -5,12 +5,13 @@ using System.Text;
 using Spring.Messaging.Core;
 using Newtonsoft.Json;
 using Oragon.Architecture.Log.Model;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Log
 {
 	public abstract class AbstractLogger : Oragon.Architecture.Log.ILogger
 	{
-        protected Dictionary<string, string> AdditionalMetadata { get; set; }
+		protected Dictionary<string, string> AdditionalMetadata { get; set; }
 
 		public void Debug(string context, string content, params string[] tags)
 		{
@@ -37,45 +38,29 @@ namespace Oragon.Architecture.Log
 			this.Log(context, content, LogLevel.Fatal, tags);
 		}
 
-        public void Audit(string context, string content, params string[] tags)
-        {
+		public void Audit(string context, string content, params string[] tags)
+		{
 			this.Log(context, content, LogLevel.Audit, tags);
-        }
+		}
 
 		public void Log(string context, string content, LogLevel logLevel, params string[] tags)
 		{
-			Dictionary<string, string> tagsDic = new Dictionary<string, string>();
-			if (tags.Length > 0)
-			{
-				if (tags.Length % 2 != 0)
-					throw new InvalidOperationException("Tags não possui uma quantidade de valores par;");
-				else
-				{
-					int keyIndex = 0;
-					int valueIndex = 1;
-					for (; valueIndex < tags.Length; keyIndex += 2, valueIndex += 2)
-					{
-						tagsDic.Add("User:" + tags[keyIndex], tags[valueIndex]);
-					}
-				}
-			}
-			this.Log(context, content, logLevel, tagsDic);
+			this.Log(context, content, logLevel, tags.ToDictionary());
 		}
 
-		private void Log(string context, string content, LogLevel logLevel, Dictionary<string, string> tags)
+		public void Log(string context, string content, LogLevel logLevel, Dictionary<string, string> tags)
 		{
-            if (this.AdditionalMetadata != null)
-            {
-                foreach (var additionalMetadataItem in this.AdditionalMetadata)
-                {
-                    tags.Add("Meta:" + additionalMetadataItem.Key, additionalMetadataItem.Value);
-                }
-            }
-			
-          
+			if (this.AdditionalMetadata != null)
+			{
+				foreach (var additionalMetadataItem in this.AdditionalMetadata)
+				{
+					tags.Add("Meta:" + additionalMetadataItem.Key, additionalMetadataItem.Value);
+				}
+			}
 			LogEntryTransferObject logEntry = new LogEntryTransferObject()
 			{
 				LogEntryID = 0,
+				Context = context,
 				Content = content,
 				Date = DateTime.Now,
 				LogLevel = logLevel,
