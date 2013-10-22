@@ -83,7 +83,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 
 
-			if (queuedTransition.Strategy == ExceptionStategy.SendToError)
+			if (queuedTransition.Strategy == ExceptionStrategy.SendToErrorQueue)
 			{
 				//Failure
 				var failureQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Failure", true, false, false);
@@ -95,12 +95,12 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				messageListenerAdapter.ResponseFailureExchange = exchange.Name;
 				messageListenerAdapter.ResponseFailureRoutingKey = failureBinding.RoutingKey;
 			}
-			else if (queuedTransition.Strategy == ExceptionStategy.Requeue)
+			else if (queuedTransition.Strategy == ExceptionStrategy.Requeue)
 			{
 				messageListenerAdapter.ResponseFailureExchange = string.Empty;
 				messageListenerAdapter.ResponseFailureRoutingKey = string.Empty;
 			}
-			else if (queuedTransition.Strategy == ExceptionStategy.SendToNext)
+			else if (queuedTransition.Strategy == ExceptionStrategy.SendToNextStepQueue)
 			{
 				messageListenerAdapter.ResponseFailureExchange = messageListenerAdapter.ResponseExchange;
 				messageListenerAdapter.ResponseFailureRoutingKey = messageListenerAdapter.ResponseRoutingKey;

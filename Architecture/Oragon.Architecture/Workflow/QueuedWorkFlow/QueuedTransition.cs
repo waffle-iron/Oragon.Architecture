@@ -13,7 +13,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		public object Service { get; set; }
 		public string ServiceMethod { get; set; }
 		
-		public ExceptionStategy Strategy { get; set; }
+		public ExceptionStrategy Strategy { get; set; }
 
 
 		public string BuildRoutingKey()
@@ -38,10 +38,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 	}
 
 
-	public enum ExceptionStategy
+	public enum ExceptionStrategy
 	{
-		SendToError,
-		SendToNext,
+		SendToErrorQueue,
+		SendToNextStepQueue,
 		Requeue
 	}
 
