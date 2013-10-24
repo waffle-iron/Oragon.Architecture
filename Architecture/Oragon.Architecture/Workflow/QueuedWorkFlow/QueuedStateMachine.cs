@@ -12,7 +12,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
 	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, ILifecycle, IObjectNameAware
 	{
-		protected Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory UserAmqpConnection { get; set; }
+		protected Spring.Messaging.Amqp.Rabbit.Connection.IConnectionFactory UserAmqpConnection { get; set; }
 		//Spring.Messaging.Amqp.Rabbit.Admin.RabbitBrokerAdmin RabbitBrokerAdmin { get; set; }
 		public IAmqpAdmin AmqpAdmin { get; set; }
 
@@ -53,13 +53,15 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			container.MessageListener = messageListenerAdapter;
 
 
+			//Exchange de recebimento de mensagens
 			var exchange = new Spring.Messaging.Amqp.Core.TopicExchange(getExchangeName(queuedTransition.ExchangeName), true, false);
 			this.AmqpAdmin.DeclareExchange(exchange);
 
-			//Process
+			//Queue de processamento da Mensagem
 			var processQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Process", true, false, false);
 			this.AmqpAdmin.DeclareQueue(processQueue);
 
+			//Binding de processamento das Mensagens
 			var processBinding = new Binding(processQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
 			this.AmqpAdmin.DeclareBinding(processBinding);
 			container.QueueNames = new string[] { processQueue.Name };
@@ -67,6 +69,8 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 			if (this.CreateZombieQueues)
 			{
+				//Ao criar uma fila Zumbi, não é necessário realizar operação alguma, apenas configurar o binding. As mensagens na fila zumbi são acumuladas sem consumo.
+
 				//Zombie
 				var zombieQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Zombie", true, false, false);
 				this.AmqpAdmin.DeclareQueue(zombieQueue);
@@ -75,6 +79,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				this.AmqpAdmin.DeclareBinding(zombieBinding);
 			}
 
+			//Configuração para Passos de Sucesso
 			QueuedTransition nextQueuedTransition = this.GetPossibleTransitions(queuedTransition.Destination).FirstOrDefault();
 			if (nextQueuedTransition != null)
 			{
@@ -97,8 +102,8 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 			else if (queuedTransition.Strategy == ExceptionStrategy.Requeue)
 			{
-				messageListenerAdapter.ResponseFailureExchange = string.Empty;
-				messageListenerAdapter.ResponseFailureRoutingKey = string.Empty;
+				messageListenerAdapter.ResponseFailureExchange = exchange.Name;
+				messageListenerAdapter.ResponseFailureRoutingKey = processBinding.RoutingKey;
 			}
 			else if (queuedTransition.Strategy == ExceptionStrategy.SendToNextStepQueue)
 			{
