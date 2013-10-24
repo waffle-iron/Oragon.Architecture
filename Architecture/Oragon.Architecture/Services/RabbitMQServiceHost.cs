@@ -15,8 +15,8 @@ namespace Oragon.Architecture.Services
 		protected int ConcurrentConsumers { get; set; }
 		protected object Service { get; set; }
 		protected Type ServiceInterface { get; set; }
-		public Spring.Messaging.Amqp.Core.IAmqpAdmin AmqpAdmin { get; set; }
 
+		public Spring.Messaging.Amqp.Core.IAmqpAdmin AmqpAdmin { get; set; }
 		private List<Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer> messageListenerContainers;
 
 		public void AfterPropertiesSet()

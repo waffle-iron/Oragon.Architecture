@@ -56,7 +56,6 @@ namespace Oragon.Architecture.Services
 			return template;
 		}
 
-
 		public object GetObject()
 		{
 			return this.Proxy;
