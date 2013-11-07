@@ -233,6 +233,7 @@
     <Compile Include="Log\SafeLogger.cs" />
     <Compile Include="Services\RabbitMQServiceClientFactory.cs" />
     <Compile Include="Services\RabbitMQServiceHost.cs" />
+    <Compile Include="Services\ServiceProxyFactory.cs" />
     <Compile Include="Services\RabbitMQServiceUtils.cs" />
     <Compile Include="Threading\ApartmentStateHelper.cs" />
     <Compile Include="Threading\Db4oStorage.cs" />
