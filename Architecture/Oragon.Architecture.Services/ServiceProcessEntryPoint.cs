@@ -14,12 +14,13 @@ using Topshelf.Runtime;
 using Topshelf.ServiceConfigurators;
 using ContextRegistry = Spring.Context.Support.ContextRegistry;
 using IApplicationContext = Spring.Context.IApplicationContext;
+using System.Collections.Generic;
 
 namespace Oragon.Architecture.Services
 {
 	public static class ServiceProcessEntryPoint
 	{
-		public static void Run(params string[] args)
+		public static void Run(string executable, params string[] args)
 		{
 			bool isDebug = (args != null && args.Contains("debug"));
 			bool isConsole = (args != null && args.Contains("console"));
@@ -27,7 +28,25 @@ namespace Oragon.Architecture.Services
 			if (isDebug)
 				System.Diagnostics.Debugger.Launch();
 
-			IApplicationContext applicationContext = new Spring.Context.Support.XmlApplicationContext("file://~/IoC.WindowsService.xml");
+			List<string> paths = new List<string>(){
+				"file://~/IoC.WindowsService.xml",
+				executable + ".xml"
+			};
+			IApplicationContext applicationContext = null;
+			foreach (string currentXMLPath in paths)
+			{
+				RetryManager.Try(delegate
+				{
+					applicationContext = new Spring.Context.Support.XmlApplicationContext(currentXMLPath);
+				}, 1, false, 0);
+				if (applicationContext != null)
+					break;
+			}
+			if (applicationContext == null)
+			{
+				throw new System.IO.FileNotFoundException("XML de configuração do serviço windows não foi encontrado");
+			}
+
 			ServiceDescriptor serviceDescriptor = applicationContext.GetObject<ServiceDescriptor>();
 
 			if (isConsole)

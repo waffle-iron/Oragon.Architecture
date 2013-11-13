@@ -14,7 +14,10 @@ namespace Oragon.Architecture.GenericServiceHost
 			Program.Logger = LogManager.GetCurrentClassLogger();
 			AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-			ServiceProcessEntryPoint.Run(args);
+
+			string startPoint = typeof(Program).Assembly.EscapedCodeBase;
+
+			ServiceProcessEntryPoint.Run(startPoint, args);
 		}
 
 		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
