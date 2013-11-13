@@ -71,7 +71,14 @@ namespace Oragon.Architecture.Services
 		{
 			string queueName = RabbitMQServiceUtils.GetQueueName(invocation.Method);
 			object returnValue = null;
-			returnValue = this.rabbitTemplate.ConvertSendAndReceive(queueName, invocation.Arguments.First());
+			if (invocation.Method.ReturnType == typeof(void))
+			{
+				this.rabbitTemplate.ConvertAndSend(queueName, invocation.Arguments.First());
+			}
+			else
+			{
+				returnValue = this.rabbitTemplate.ConvertSendAndReceive(queueName, invocation.Arguments.First());
+			}
 			return returnValue;
 		}
 	}
