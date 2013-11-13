@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Oragon.Architecture.Business
 {
@@ -13,6 +14,7 @@ namespace Oragon.Architecture.Business
 		[BsonId]
 		[BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
 		[DataMember]
+		[XmlIgnore]
 		public string ID { get; set; }
 	}
 }
