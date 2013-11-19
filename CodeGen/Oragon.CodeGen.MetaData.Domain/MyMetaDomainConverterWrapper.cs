@@ -40,7 +40,28 @@ namespace Oragon.CodeGen.MetaData
 				bool isConected = root.Connect(this.DbDriver, this.ConnectionString);
 				root.LanguageMappingFileName = this.LanguageMappingFileName;
 				root.Language = this.Language;
-				Oragon.CodeGen.MetaData.DataBase.IDatabase dbToAnalyse = root.Databases[this.DataBaseName];
+
+				
+				if(string.IsNullOrWhiteSpace(this.DataBaseName))
+					throw new InvalidOperationException(string.Format("Nenhum DataBaseName foi especificado. É preciso configurar um DataBaseName para que a geração de código aconteça."));
+
+				if (root.Databases == null)
+					throw new InvalidOperationException(string.Format("Nenhum Database foi inicializado. Verifique a conexão e as credenciais do usuário."));
+
+				if (root.Databases.Any() == false)
+					throw new InvalidOperationException(string.Format("Nenhum Database foi encontrado. Verifique a conexão e as credenciais do usuário."));
+
+
+				Oragon.CodeGen.MetaData.DataBase.IDatabase dbToAnalyse = root.Databases.Where(it => 
+					string.IsNullOrWhiteSpace(it.Name) == false 
+					&& 
+					it.Name.Trim().ToLower() == this.DataBaseName.Trim().ToLower()
+				).FirstOrDefault();
+				if (dbToAnalyse == null)
+				{
+					throw new InvalidOperationException(string.Format("O DataBase '{0}' não foi encontrado. Verifique a conexão e as credenciais do usuário.", this.DataBaseName));
+				}
+				//Oragon.CodeGen.MetaData.DataBase.IDatabase dbToAnalyse = root.Databases[this.DataBaseName];
 				returnValue = MyMetaDomainConverter.Convert(dbToAnalyse);
 				if (forceBuild == false)
 					this.ModelCache.Add(this.DataBaseName, returnValue);
