@@ -22,87 +22,14 @@ using Oragon.Architecture.Data.Process;
 
 namespace <#=NameSpace#>.Process
 {
+	public sealed class PersistenceDataProcess : PersistenceDataProcessBase<<#=NameSpace#>.Entity.EntityBase> { }
 
 <#	foreach (Entity currentEntity in domain.Entities)
 	{
 #>
-	public partial class <#= currentEntity.Name #>DataProcess : DataProcessBase<<#=NameSpace#>.Entity.<#=currentEntity.Name#>>
+	public partial class <#= currentEntity.Name #>DataProcess : QueryDataProcess<<#=NameSpace#>.Entity.<#=currentEntity.Name#>>
 	{
-
-		/// <summary>
-		/// Obtém uma lista com todas as instâncias de <#=currentEntity.Name#>.
-		/// </summary>
-		/// <returns>Lista com ocorrência de <#=currentEntity.Name#>.</returns>
-		public IList<<#=NameSpace#>.Entity.<#=currentEntity.Name#>> GetAll<#=currentEntity.PluralName#>()
-		{
-			return base.InternalGetAll();
-		}
 		
-	<# if(domain.CanInsert){ #>
-		/// <summary>
-		/// Realiza a inclusão de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para inclusão.</param>
-		public void Save(<#=NameSpace#>.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.InternalSave(entity);
-		}
-
-	<# } 
-	if(domain.CanInsert && domain.CanUpdate){ #>
-		/// <summary>
-		/// Realiza a inclusão ou alteração de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para altaração.</param>
-		public void SaveOrUpdate(<#=NameSpace#>.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.InternalSaveOrUpdate(entity);
-		}
-
-	<# } 
-	if(domain.CanUpdate){ #>
-		/// <summary>
-		/// Realiza a alteração de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para altaração.</param>
-		public void Update(<#=NameSpace#>.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.InternalUpdate(entity);
-		}
-
-	<# } 
-	if(domain.CanDelete){ #>
-		/// <summary>
-		/// Realiza a exclusão de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#>  para exclusão.</param>
-		public void Delete(<#=NameSpace#>.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.InternalDelete(entity);
-		}
-
-	<# } #>	
-		/// <summary>
-		/// Realiza uma consulta simples com base na expressão do usuário, retornando um único <#=currentEntity.Name#> a partir do banco de dados.
-		/// </summary>
-		/// <param name="predicate">Expressão a ser executada</param>
-		/// <returns>Retorna nulo ou uma instância de <#=currentEntity.Name#> de acordo com o filtro executado</returns>
-		public <#=NameSpace#>.Entity.<#=currentEntity.Name#> GetFirstBy(Expression<Func<<#=NameSpace#>.Entity.<#=currentEntity.Name#>, bool>> predicate)
-		{
-			<#=NameSpace#>.Entity.<#=currentEntity.Name#> returnValue = this.InternalGetFirstBy(predicate);
-			return returnValue;
-		}
-		
-		/// <summary>
-		/// Realiza uma consulta simples com base na expressão do usuário, retornando uma lista de <#=currentEntity.Name#> a partir do banco de dados.
-		/// </summary>
-		/// <param name="predicate">Expressão a ser executada</param>
-		/// <returns>Retorna uma lista vazia ou preenchida com instâncias de <#=currentEntity.Name#> de acordo com o filtro executado</returns>
-		public IList<<#=NameSpace#>.Entity.<#=currentEntity.Name#>> GetListBy(Expression<Func<<#=NameSpace#>.Entity.<#=currentEntity.Name#>, bool>> predicate)
-		{
-			IList<<#=NameSpace#>.Entity.<#=currentEntity.Name#>> returnValue = this.InternalGetListBy(predicate);
-			return returnValue;
-		}
 
 	}
 <# 

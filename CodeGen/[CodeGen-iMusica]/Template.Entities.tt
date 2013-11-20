@@ -23,6 +23,13 @@ using System.Text;
 namespace <#=NameSpace#>.Entity
 {
 
+	public class EntityBase: Oragon.Architecture.Business.Entity
+	{
+	
+	}
+
+
+
 <#	foreach (Entity currentEntity in domain.Entities)
 	{
 #>
@@ -31,7 +38,7 @@ namespace <#=NameSpace#>.Entity
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class <#= currentEntity.Name #>
+	public partial class <#= currentEntity.Name #>: EntityBase
 	{
 		#region "Propriedades"
 

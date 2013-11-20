@@ -70,9 +70,9 @@
     <Compile Include="Descriptor\AccountType.cs" />
     <Compile Include="Descriptor\ServiceDescriptor.cs" />
     <Compile Include="Descriptor\StartMode.cs" />
-    <Compile Include="Host\ConfigurableServiceHostFactoryObject.cs" />
     <Compile Include="Host\MexBindingFactory.cs" />
     <Compile Include="Host\ServiceEndpointConfiguration.cs" />
+    <Compile Include="Host\ServiceHostFactoryObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProcessEntryPoint.cs" />
     <Compile Include="ServiceManager.cs" />

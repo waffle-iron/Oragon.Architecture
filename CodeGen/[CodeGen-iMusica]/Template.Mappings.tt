@@ -99,7 +99,7 @@ namespace <#=NameSpace#>.Mapping
 				List<Oragon.CodeGen.MetaData.Domain.Property> pkProperties = new List<Oragon.CodeGen.MetaData.Domain.Property>();
 #>
 			CompositeId()<#
-				foreach(IColumn currentPKColumn in pkColumns)
+				foreach(IColumn currentPKColumn in pkColumns.OrderBy(it => it.Name))
 				{
 					Oragon.CodeGen.MetaData.Domain.Property property = GetPropertyByColumn(propertiesToMap, currentPKColumn, false);
 					if(property != null)
@@ -113,7 +113,7 @@ namespace <#=NameSpace#>.Mapping
 						else
 						{
 							ManyToOneProperty propManyToOneProperty = (ManyToOneProperty)property;
-							string[] columnNames = propManyToOneProperty.ForeignKey.ForeignColumns.Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix,  @"""")).ToArray();
+							string[] columnNames = propManyToOneProperty.ForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix,  @"""")).ToArray();
 							string referenceColumns = string.Join(", ", columnNames);
 #>				
 					.KeyReference(it => it.<#= property.Name #>, <#=referenceColumns#>)<#
@@ -142,7 +142,7 @@ namespace <#=NameSpace#>.Mapping
 			if (currentProperty is OneToManyProperty)
 			{
 				OneToManyProperty propOneToManyProperty = (OneToManyProperty)currentProperty;
-				string[] columnNames = propOneToManyProperty.ForeignKey.ForeignColumns.Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix,  @"""")).ToArray();
+				string[] columnNames = propOneToManyProperty.ForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix,  @"""")).ToArray();
 				string referenceColumns = string.Join(", ", columnNames);
 				
 				
@@ -162,7 +162,7 @@ namespace <#=NameSpace#>.Mapping
 			{
 				ManyToOneProperty propManyToOneProperty = (ManyToOneProperty)currentProperty;
 				
-				string[] columnNames = propManyToOneProperty.ForeignKey.ForeignColumns.Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
+				string[] columnNames = propManyToOneProperty.ForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
 				string referenceColumns = string.Join(", ", columnNames);
 
 #>
@@ -176,10 +176,10 @@ namespace <#=NameSpace#>.Mapping
 			if (currentProperty is ManyToManyProperty)
 			{
 				ManyToManyProperty propManyToManyProperty = (ManyToManyProperty)currentProperty;
-				string[] parentColumnNames = propManyToManyProperty.RightForeignKey.ForeignColumns.Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
+				string[] parentColumnNames = propManyToManyProperty.RightForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
 				string parentKeyColumnsText = string.Join(", ", parentColumnNames);
 
-				string[] childColumnNames = propManyToManyProperty.LeftForeignKey.ForeignColumns.Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
+				string[] childColumnNames = propManyToManyProperty.LeftForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => string.Concat(@"""", dbPrefix, it.Name, dbSufix, @"""")).ToArray();
 				string childKeyColumnsText = string.Join(", ", childColumnNames);
 
 
@@ -204,10 +204,14 @@ namespace <#=NameSpace#>.Mapping
 				else
 					stringInfo += ".Not.Nullable()";
 					
-				if(propValueTypeProperty.Column.DataTypeNameComplete == "TIME")
-					stringInfo += @".CustomType(""TimeAsTimeSpan"")";
-				
-				
+				switch(propValueTypeProperty.Column.DataTypeNameComplete)
+				{
+					case "TIME":
+						stringInfo += @".CustomType(""TimeAsTimeSpan"")";break;
+					case "varbinary(MAX)":
+						stringInfo += @".Length(int.MaxValue).LazyLoad()";break;
+				}
+
 				if(propValueTypeProperty.Column.IsComputed)
 						stringInfo += ".ReadOnly()";
 
@@ -288,7 +292,7 @@ namespace <#=NameSpace#>.Mapping
 			else if (currentProperty is ManyToOneProperty)
 			{
 				ManyToOneProperty propManyToOneProperty = (ManyToOneProperty)currentProperty;
-				if(propManyToOneProperty.ForeignKey.ForeignColumns.Select(it => it.Name).Contains(column.Name))
+				if(propManyToOneProperty.ForeignKey.ForeignColumns.OrderBy(it => it.Name).Select(it => it.Name).Contains(column.Name))
 				{
 					returnValue = currentProperty;
 					break;
