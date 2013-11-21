@@ -57,18 +57,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture.Services\Oragon.Architecture.Services.csproj">
-      <Project>{4C21598B-5960-47C5-9EEB-635106C2ABE7}</Project>
-      <Name>Oragon.Architecture.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Engineering.ico" />
     <Content Include="Icons\Gear.ico" />
     <Content Include="Icons\Server.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
+      <Project>{83c14b5f-0f7f-415b-aef5-5f04d7b8f7c1}</Project>
+      <Name>Oragon.Architecture</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

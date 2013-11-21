@@ -124,7 +124,6 @@
     <Compile Include="Authorization\Profile\AuthorizationProfile.cs" />
     <Compile Include="Cryptography\ICryptography.cs" />
     <Compile Include="Cryptography\RijndaelCryptography.cs" />
-    <Compile Include="Authentication\Credential.cs" />
     <Compile Include="DirectoryServices\ActiveDirectoryManager.cs" />
     <Compile Include="DirectoryServices\ActiveDirectoryUser.cs" />
     <Compile Include="Authentication\FakeAuthenticationProvider.cs" />

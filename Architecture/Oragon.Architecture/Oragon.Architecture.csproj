@@ -163,6 +163,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -170,6 +171,21 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf">
+      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.Log4Net">
+      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.NLog">
+      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.Rehab">
+      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Rehab.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.Supervise">
+      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Supervise.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Version.cs">
@@ -231,10 +247,25 @@
     <Compile Include="Log\MSMQLogger.cs" />
     <Compile Include="Log\NLogLogger.cs" />
     <Compile Include="Log\SafeLogger.cs" />
+    <Compile Include="Security\Authentication\Credential.cs" />
+    <Compile Include="Services\Descriptor\AccountType.cs" />
+    <Compile Include="Services\Descriptor\ServiceDescriptor.cs" />
+    <Compile Include="Services\Descriptor\StartMode.cs" />
+    <Compile Include="Services\Host\MexBindingFactory.cs" />
+    <Compile Include="Services\Host\OragonServiceHost.cs" />
+    <Compile Include="Services\Host\ServiceEndpointConfiguration.cs" />
+    <Compile Include="Services\Host\ServiceHostFactoryObject.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Services\RabbitMQServiceClientFactory.cs" />
     <Compile Include="Services\RabbitMQServiceHost.cs" />
+    <Compile Include="Services\ServiceContainer.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
+    <Compile Include="Services\ServiceProcessEntryPoint.cs" />
     <Compile Include="Services\ServiceProxyFactory.cs" />
     <Compile Include="Services\RabbitMQServiceUtils.cs" />
+    <Compile Include="Services\ServiceStartException.cs" />
+    <Compile Include="Services\ServiceStopException.cs" />
+    <Compile Include="Services\SpringServices\GenericStartUpService.cs" />
     <Compile Include="Threading\ApartmentStateHelper.cs" />
     <Compile Include="Threading\Db4oStorage.cs" />
     <Compile Include="Data\EnumValueAttribute.cs" />
