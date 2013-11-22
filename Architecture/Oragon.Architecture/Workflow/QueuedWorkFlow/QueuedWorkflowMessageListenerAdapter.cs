@@ -13,12 +13,13 @@ using System.IO;
 using System.Reflection;
 using Spring.Messaging.Amqp;
 using Spring.Messaging.Amqp.Rabbit.Listener;
+using NLog;
 
 namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
 	public class QueuedWorkflowMessageListenerAdapter : IMessageListener, IChannelAwareMessageListener
 	{
-		private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
+		private static readonly Logger Logger = NLog.LogManager.GetLogger("QueuedWorkflowMessageListenerAdapter");
 		private volatile bool mandatoryPublish;
 		private volatile bool immediatePublish;
 		private volatile IMessagePropertiesConverter messagePropertiesConverter = new DefaultMessagePropertiesConverter();
@@ -114,12 +115,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		}
 		protected virtual void HandleListenerException(System.Exception ex, Message message)
 		{
-			Logger.Error(delegate(FormatMessageHandler m)
-			{
-				m.Invoke("Listener execution failed", new object[0]);
-			}, ex);
-
-
+			Logger.Error("Listener execution failed", ex);
 		}
 		private object ExtractMessage(Message message)
 		{
@@ -254,14 +250,11 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			this.PostProcessChannel(channel, message);
 			try
 			{
-				QueuedWorkflowMessageListenerAdapter.Logger.Debug(delegate(FormatMessageHandler m)
-				{
-					m.Invoke("Publishing response to exchanage = [{0}], routingKey = [{1}]", new object[]
+				QueuedWorkflowMessageListenerAdapter.Logger.Debug("Publishing response to exchanage = [{0}], routingKey = [{1}]", new object[]
 					{
 						replyTo.ExchangeName,
 						replyTo.RoutingKey
 					});
-				});
 				channel.BasicPublish(replyTo.ExchangeName, replyTo.RoutingKey, this.mandatoryPublish, this.immediatePublish, this.messagePropertiesConverter.FromMessageProperties(channel, message.MessageProperties, this.Encoding), message.Body);
 			}
 			catch (System.Exception ex)

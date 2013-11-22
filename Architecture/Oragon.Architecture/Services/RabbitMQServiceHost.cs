@@ -9,11 +9,12 @@ using Spring.Util;
 
 namespace Oragon.Architecture.Services
 {
-	public class RabbitMQServiceHost : IInitializingObject, ILifecycle, IObjectNameAware
+	public class RabbitMQServiceHost : IInitializingObject, IObjectNameAware, IService
 	{
 		protected Spring.Messaging.Amqp.Rabbit.Connection.IConnectionFactory AmqpConnection { get; set; }
 		protected int ConcurrentConsumers { get; set; }
 		protected object Service { get; set; }
+		protected bool AutoStart { get; set; }
 		protected Type ServiceInterface { get; set; }
 
 		public Spring.Messaging.Amqp.Core.IAmqpAdmin AmqpAdmin { get; set; }
@@ -23,7 +24,8 @@ namespace Oragon.Architecture.Services
 		{
 			this.BuildMessageListenerContainers();
 			this.messageListenerContainers.ForEach(it => it.AfterPropertiesSet());
-			this.Start();
+			if (this.AutoStart)
+				this.Start();
 		}
 
 
@@ -70,5 +72,10 @@ namespace Oragon.Architecture.Services
 		}
 
 		public string ObjectName { get; set; }
+
+		public string Name
+		{
+			get { return "RabbitMQServiceHost"; }
+		}
 	}
 }

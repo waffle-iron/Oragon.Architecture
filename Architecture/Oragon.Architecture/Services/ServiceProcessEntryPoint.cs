@@ -28,24 +28,19 @@ namespace Oragon.Architecture.Services
 			if (isDebug)
 				System.Diagnostics.Debugger.Launch();
 
-			List<string> paths = new List<string>(){
-				executable + ".xml",
-				"file://~/IoC.WindowsService.xml"
-			};
 			IApplicationContext applicationContext = null;
-			foreach (string currentXMLPath in paths)
+			Queue<string> paths = new Queue<string>();
+			paths.Enqueue(executable + ".xml");
+			paths.Enqueue("file://~/IoC.WindowsService.xml");
+			RetryManager.Try(delegate
 			{
-				RetryManager.Try(delegate
-				{
-					applicationContext = new Spring.Context.Support.XmlApplicationContext(currentXMLPath);
-				}, 1, false, 0);
-				if (applicationContext != null)
-					break;
-			}
-			if (applicationContext == null)
-			{
-				throw new System.IO.FileNotFoundException("XML de configuração do serviço windows não foi encontrado");
-			}
+				applicationContext = new Spring.Context.Support.XmlApplicationContext(paths.Dequeue());
+			}, paths.Count, true, 10);
+
+			//if (applicationContext == null)
+			//{
+			//	throw new System.IO.FileNotFoundException("XML de configuracao do servico windows nao foi encontrado nos paths '" + string.Join("','", paths.ToArray()) + "'");
+			//}
 
 			ServiceDescriptor serviceDescriptor = applicationContext.GetObject<ServiceDescriptor>();
 
@@ -57,6 +52,19 @@ namespace Oragon.Architecture.Services
 					Console.WriteLine("#######################################################");
 					Console.ForegroundColor = ConsoleColor.Red;
 					Console.WriteLine("Iniciando em modo console");
+					Console.Write("Serviço: ");
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.Write(serviceDescriptor.Name + " ");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.Write("( ");
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.Write(serviceDescriptor.FriendlyName);
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine(" )");
+					Console.Write("Descrição: ");
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine(serviceDescriptor.Description);
+					Console.WriteLine(string.Format("Timeout de Inicio: {0}  Timeout de Finaliação: {1}", serviceManager.StartTimeOut.Value.ToString(), serviceManager.StopTimeOut.Value.ToString()));
 					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("#######################################################");
 					Console.ResetColor();
@@ -101,7 +109,8 @@ namespace Oragon.Architecture.Services
 					{
 						serviceConfigurator.ConstructUsing(() => applicationContext.GetObject<Oragon.Architecture.Services.ServiceManager>());
 						serviceConfigurator.WhenStarted((serviceManagerInstance, hostControl) => serviceManagerInstance.Start(hostControl));
-						serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) => {
+						serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) =>
+						{
 							var returnValue = serviceManagerInstance.Stop(hostControl);
 							AppDomain.Unload(AppDomain.CurrentDomain);
 							return returnValue;

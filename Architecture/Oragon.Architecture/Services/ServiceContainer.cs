@@ -8,7 +8,7 @@ namespace Oragon.Architecture.Services
 {
 	public class ServiceContainer : IService
 	{
-		private Logger logger = LogManager.GetCurrentClassLogger();
+		private Logger logger = NLog.LogManager.GetLogger("ServiceContainer");
 
 		private IApplicationContext ApplicationContext { get; set; }
 

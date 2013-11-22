@@ -14,13 +14,10 @@ namespace Oragon.Architecture.Services
 		public TimeSpan? StopTimeOut { get; set; }
 
 		private IService MainService { get; set; }
-		private Logger logger;
-
 		public IApplicationContext ApplicationContext { set; get; }
 
 		public ServiceManager()
 		{
-			this.logger = LogManager.GetCurrentClassLogger();
 		}
 
 		public string Name
@@ -56,13 +53,10 @@ namespace Oragon.Architecture.Services
 				RetryManager.Try(
 					delegate
 					{
-						this.logger.Debug("Criando Contexto Spring");
 						this.ApplicationContext = ContextRegistry.GetContext();
-						this.logger.Debug("Contexto Spring e inicializado com sucesso!");
 					},
 					delegate(Exception ex)
 					{
-						this.logger.Debug("Erro na inicialização do contexto spring: " + ex.ToString());
 						throw new ServiceStartException("Erro na inicialização do contexto spring.", ex);
 					}
 				);
@@ -74,20 +68,15 @@ namespace Oragon.Architecture.Services
 			RetryManager.Try(
 				delegate
 				{
-					this.logger.Debug("Finalizando contexto spring...");
 					if (this.ApplicationContext != null)
 					{
 						this.ApplicationContext.Dispose();
 						System.Configuration.ConfigurationManager.RefreshSection("spring/context");
-						this.logger.Debug("Contexto spring finalizado com sucesso.");
 					}
-					else
-						this.logger.Debug("Contexto não foi finalizado pois não existia no ServiceManager.");
 					this.ApplicationContext = null;
 				},
 				delegate(Exception ex)
 				{
-					this.logger.Debug("Erro na finalização do contexto spring: " + ex.ToString());
 					throw new ServiceStopException("Erro na finalização do contexto spring.", ex);
 				}
 			);
@@ -104,14 +93,11 @@ namespace Oragon.Architecture.Services
 			RetryManager.Try(
 				delegate
 				{
-					this.logger.Debug("Iniciando MainService...");
 					this.MainService = this.ApplicationContext.GetObject<IService>("MainService");
 					this.MainService.Start();
-					this.logger.Debug("MainService foi iniciado com sucesso.");
 				},
 				delegate(Exception ex)
 				{
-					this.logger.Debug("Erro na iniciação do MainService: " + ex.ToString());
 					this.MainService = null;
 					throw new ServiceStartException("Erro na iniciação do MainService.", ex);
 				}
@@ -125,14 +111,11 @@ namespace Oragon.Architecture.Services
 				RetryManager.Try(
 					delegate
 					{
-						this.logger.Debug("Parando MainService...");
 						this.MainService.Stop();
 						this.MainService = null;
-						this.logger.Debug("MainService foi parado com sucesso.");
 					},
 					delegate(Exception ex)
 					{
-						this.logger.Debug("Erro na paralização do MainService: " + ex.ToString());
 						this.MainService = null;
 						throw new ServiceStopException("Erro na paralização do MainService.", ex);
 					}

@@ -11,11 +11,12 @@ namespace Oragon.Architecture.GenericServiceHost
 
 		private static void Main(params string[] args)
 		{
-			Program.Logger = LogManager.GetCurrentClassLogger();
+			Program.Logger = NLog.LogManager.GetLogger("Program");
 			//AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			string startPoint = typeof(Program).Assembly.CodeBase;
-			ServiceProcessEntryPoint.Run(startPoint, args);			
+			Uri uri = new Uri(startPoint);
+			ServiceProcessEntryPoint.Run(uri.LocalPath, args);			
 		}
 
 		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

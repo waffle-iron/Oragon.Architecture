@@ -11,7 +11,7 @@ using Oragon.Architecture.Services;
 
 namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
-	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, ILifecycle, IObjectNameAware, IService
+	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, IObjectNameAware, IService
 	{
 		protected Spring.Messaging.Amqp.Rabbit.Connection.IConnectionFactory UserAmqpConnection { get; set; }
 		//Spring.Messaging.Amqp.Rabbit.Admin.RabbitBrokerAdmin RabbitBrokerAdmin { get; set; }

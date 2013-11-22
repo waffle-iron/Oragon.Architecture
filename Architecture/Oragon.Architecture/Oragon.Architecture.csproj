@@ -127,8 +127,12 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\[References]\Nhibernate\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\..\[References]\NLog\NLog.Extended.dll</HintPath>
     </Reference>
     <Reference Include="Quartz">
       <HintPath>..\..\[References]\Quartz\Quartz.dll</HintPath>
@@ -256,7 +260,7 @@
     <Compile Include="Log\MSMQLogger.cs" />
     <Compile Include="Log\NLogLogger.cs" />
     <Compile Include="Log\SafeLogger.cs" />
-    <Compile Include="Schedule\SchedulerFactoryObject.cs" />
+    <Compile Include="Schedule\SchedulerService.cs" />
     <Compile Include="Security\Authentication\Credential.cs" />
     <Compile Include="Services\Descriptor\AccountType.cs" />
     <Compile Include="Services\Descriptor\ServiceDescriptor.cs" />
