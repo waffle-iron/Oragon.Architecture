@@ -7,10 +7,11 @@ using Spring.Messaging.Amqp.Core;
 using Oragon.Architecture.Extensions;
 using Spring.Objects.Factory;
 using Spring.Context;
+using Oragon.Architecture.Services;
 
 namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
-	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, ILifecycle, IObjectNameAware
+	public class QueuedStateMachine : StateMachine<QueuedTransition, string>, IInitializingObject, ILifecycle, IObjectNameAware, IService
 	{
 		protected Spring.Messaging.Amqp.Rabbit.Connection.IConnectionFactory UserAmqpConnection { get; set; }
 		//Spring.Messaging.Amqp.Rabbit.Admin.RabbitBrokerAdmin RabbitBrokerAdmin { get; set; }
@@ -137,5 +138,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		}
 
 		public string ObjectName { get; set; }
+
+		public string Name
+		{
+			get { return "QueuedStateMachine"; }
+		}
 	}
 }

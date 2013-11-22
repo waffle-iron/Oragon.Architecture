@@ -29,8 +29,8 @@ namespace Oragon.Architecture.Services
 				System.Diagnostics.Debugger.Launch();
 
 			List<string> paths = new List<string>(){
-				"file://~/IoC.WindowsService.xml",
-				executable + ".xml"
+				executable + ".xml",
+				"file://~/IoC.WindowsService.xml"
 			};
 			IApplicationContext applicationContext = null;
 			foreach (string currentXMLPath in paths)
@@ -101,7 +101,11 @@ namespace Oragon.Architecture.Services
 					{
 						serviceConfigurator.ConstructUsing(() => applicationContext.GetObject<Oragon.Architecture.Services.ServiceManager>());
 						serviceConfigurator.WhenStarted((serviceManagerInstance, hostControl) => serviceManagerInstance.Start(hostControl));
-						serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) => serviceManagerInstance.Stop(hostControl));
+						serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) => {
+							var returnValue = serviceManagerInstance.Stop(hostControl);
+							AppDomain.Unload(AppDomain.CurrentDomain);
+							return returnValue;
+						});
 					});
 
 					if (serviceDescriptor.Dependences != null)

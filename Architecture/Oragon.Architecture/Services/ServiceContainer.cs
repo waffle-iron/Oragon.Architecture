@@ -11,9 +11,9 @@ namespace Oragon.Architecture.Services
 		private Logger logger = LogManager.GetCurrentClassLogger();
 
 		private IApplicationContext ApplicationContext { get; set; }
-		
+
 		public List<IService> Services { get; private set; }
-	
+
 		public string Name { get { return "Oragon Service Container"; } }
 
 		public void Start()
@@ -40,19 +40,15 @@ namespace Oragon.Architecture.Services
 				List<IService> list = new List<IService>(this.Services);
 				list.Reverse();
 				this.logger.Debug("Parando serviços...");
-				using (List<IService>.Enumerator enumerator = list.GetEnumerator())
+				foreach (IService current in list)
 				{
-					while (enumerator.MoveNext())
-					{
-						IService current = enumerator.Current;
-						this.logger.Debug("Parando serviço {0}.", current.Name);
-						current.Stop();
-						this.logger.Debug("O serviço {0} foi parado com sucesso.", current.Name);
-					}
-					return;
+					this.logger.Debug("Parando serviço {0}.", current.Name);
+					current.Stop();
+					this.logger.Debug("O serviço {0} foi parado com sucesso.", current.Name);
 				}
 			}
-			this.logger.Debug("Não há serviços a serem parados.");
+			else
+				this.logger.Debug("Não há serviços a serem parados.");
 		}
 
 	}

@@ -100,6 +100,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\..\[References]\AutoMapper\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="C5">
+      <HintPath>..\..\[References]\Quartz\C5.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\..\[References]\Common.Logging\Common.Logging.dll</HintPath>
     </Reference>
@@ -127,6 +130,9 @@
     <Reference Include="NLog">
       <HintPath>..\..\[References]\NLog\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\[References]\Quartz\Quartz.dll</HintPath>
+    </Reference>
     <Reference Include="RabbitMQ.Client, Version=2.8.7.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Spring.Net\RabbitMQ.Client.dll</HintPath>
@@ -151,6 +157,9 @@
     </Reference>
     <Reference Include="Spring.Messaging.Amqp.Rabbit.Admin">
       <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.Rabbit.Admin.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz20">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Scheduling.Quartz20.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Services">
       <HintPath>..\..\[References]\Spring.Net\Spring.Services.dll</HintPath>
@@ -247,6 +256,7 @@
     <Compile Include="Log\MSMQLogger.cs" />
     <Compile Include="Log\NLogLogger.cs" />
     <Compile Include="Log\SafeLogger.cs" />
+    <Compile Include="Schedule\SchedulerFactoryObject.cs" />
     <Compile Include="Security\Authentication\Credential.cs" />
     <Compile Include="Services\Descriptor\AccountType.cs" />
     <Compile Include="Services\Descriptor\ServiceDescriptor.cs" />
