@@ -12,7 +12,7 @@ namespace Oragon.Architecture
 	{
 		Nullable<DateTime> startDate, endDate;
 		public DateRange() : this(new Nullable<DateTime>(), new Nullable<DateTime>()) { }
-		public DateRange(int ano) : this(new DateTime(ano, 1, 1), new DateTime(ano, 12, 31).UltimoMinutoDia()) { }
+		public DateRange(int ano) : this(new DateTime(ano, 1, 1), new DateTime(ano, 12, 31).EndOfDay()) { }
 
 		[DebuggerStepThrough]
 		public DateRange(Nullable<DateTime> startDate, Nullable<DateTime> endDate)
