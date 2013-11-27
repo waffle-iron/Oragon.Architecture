@@ -226,6 +226,7 @@
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
     <Compile Include="Data\Process\QueryDataProcess.cs" />
     <Compile Include="Extensions\Extension.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />
     <Compile Include="Extensions\System.Linq\IQueryableAutoMapperExtensions.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfTrue.cs" />

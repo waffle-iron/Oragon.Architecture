@@ -12,7 +12,7 @@ namespace Oragon.Architecture.GenericServiceHost
 		private static void Main(params string[] args)
 		{
 			Program.Logger = NLog.LogManager.GetLogger("Program");
-			//AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+			AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			string startPoint = typeof(Program).Assembly.CodeBase;
 			Uri uri = new Uri(startPoint);
@@ -27,9 +27,9 @@ namespace Oragon.Architecture.GenericServiceHost
 				Program.Logger.Error((e.ExceptionObject as Exception).ToString());
 		}
 
-		//static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
-		//{
-		//	Program.Logger.Warn("FirstChanceException: " + e.Exception.ToString());
-		//}
+		static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+		{
+			Program.Logger.Warn("FirstChanceException: " + e.Exception.ToString());
+		}
 	}
 }
