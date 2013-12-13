@@ -185,19 +185,19 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Topshelf">
-      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf\Topshelf.dll</HintPath>
     </Reference>
     <Reference Include="Topshelf.Log4Net">
-      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Log4Net.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf\Topshelf.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="Topshelf.NLog">
-      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.NLog.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf\Topshelf.NLog.dll</HintPath>
     </Reference>
     <Reference Include="Topshelf.Rehab">
-      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Rehab.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf\Topshelf.Rehab.dll</HintPath>
     </Reference>
     <Reference Include="Topshelf.Supervise">
-      <HintPath>..\..\..\..\iMusica2013_trunk\[References]\Topshelf\Topshelf.Supervise.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf\Topshelf.Supervise.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
