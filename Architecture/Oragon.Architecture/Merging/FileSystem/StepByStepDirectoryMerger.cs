@@ -9,7 +9,7 @@ namespace Oragon.Architecture.Merging.FileSystem
 	/// <summary>
 	/// Realiza as operações de merge entre diretórios
 	/// </summary>
-	public class DirectoryMerger
+	public class StepByStepDirectoryMerger
 	{
 		/// <summary>
 		/// Realiza merge entre uma lista de diretórios, enviando-o ao final para a melhor opção na lista de targets
@@ -49,32 +49,37 @@ namespace Oragon.Architecture.Merging.FileSystem
 				//Adicionandos-os à fila
 				validTargets.ForEach(directory => directoryQueue.Enqueue(directory));
 
+
+				var allTargetsQueue = directoriesToMerge
+					.Where(it => it.Type == DirectoryType.Target)
+					.OrderByDescending(it => it.Priority)
+					.ToQueue();
+
 				//Caso nao target na fila, adicionamos
 				if (validTargets.IsEmpty())
-				{
-					var allTargets = directoriesToMerge
-					.Where(it => it.Type == DirectoryType.Target)
-					.OrderByDescending(it => it.Priority);
-					//Adicionandos-os à fila
-					allTargets.ForEach(directory => directoryQueue.Enqueue(directory));
-				}
-
+					directoryQueue.Enqueue(allTargetsQueue.Dequeue());
 
 				Directory sourceDirectory = directoryQueue.Dequeue();
 				Directory targetDirectory = directoryQueue.Dequeue();
-				do
+				while (true)
 				{
 					sourceDirectory.MoveTo(targetDirectory);
-					sourceDirectory = targetDirectory;
 					if (directoryQueue.Any())
+					{
+						sourceDirectory = targetDirectory;
 						targetDirectory = directoryQueue.Dequeue();
+					}
 					else
+					{
+						if (targetDirectory.Type == DirectoryType.Source && allTargetsQueue.Any())
+						{
+							directoryQueue.Enqueue(allTargetsQueue.Dequeue());
+							continue;
+						}
 						break;
-				} while (validDirectories.Count(it => it.Exists) > 1);
+					}
+				}
 			}
 		}
-
-
-
 	}
 }

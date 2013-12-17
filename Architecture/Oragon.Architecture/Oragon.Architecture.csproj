@@ -406,9 +406,8 @@
     <Compile Include="Log\SafeLogger.cs" />
     <Compile Include="Merging\FileSystem\CopyResult.cs" />
     <Compile Include="Merging\FileSystem\Directory.cs" />
-    <Compile Include="Merging\FileSystem\DirectoryMerger.cs" />
+    <Compile Include="Merging\FileSystem\StepByStepDirectoryMerger.cs" />
     <Compile Include="Merging\FileSystem\DirectoryType.cs" />
-    <Compile Include="Merging\FileSystem\File.cs" />
     <Compile Include="Merging\FileSystem\Item.cs" />
     <Compile Include="Merging\ItemToUpdate.cs" />
     <Compile Include="Merging\MergeResult.cs" />

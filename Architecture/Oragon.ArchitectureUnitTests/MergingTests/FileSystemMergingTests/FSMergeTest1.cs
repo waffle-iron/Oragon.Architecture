@@ -15,14 +15,14 @@ namespace Oragon.ArchitectureUnitTests.MergingTests.FileSystemMergingTests
 			string integrationPath = @"SonyDDEX\prod\audio";
 			string packageDir = "A10301A0000189868K_20130822061208754";
 			string DBFullPath = System.IO.Path.Combine(integrationPath, packageDir);
-
-			List<Oragon.Architecture.Merging.FileSystem.Directory> directoriesToMerge = new List<Architecture.Merging.FileSystem.Directory>();
+			
+			List<Directory> directoriesToMerge = new List<Directory>();
 			directoriesToMerge.Add(new Directory(rootPath: @"C:\filecluster\Importacao1", relativePath: DBFullPath, type: DirectoryType.Source, priority: 100));
 			directoriesToMerge.Add(new Directory(rootPath: @"C:\filecluster\Importacao2", relativePath: DBFullPath, type: DirectoryType.Source, priority: 50));
 			directoriesToMerge.Add(new Directory(rootPath: @"C:\filecluster\Importados1", relativePath: DBFullPath, type: DirectoryType.Target, priority: 100));
 			directoriesToMerge.Add(new Directory(rootPath: @"C:\filecluster\Importados2", relativePath: DBFullPath, type: DirectoryType.Target, priority: 50));
 
-			DirectoryMerger merger = new DirectoryMerger();
+			StepByStepDirectoryMerger merger = new StepByStepDirectoryMerger();
 			merger.Merge(directoriesToMerge);
 		}
 	}

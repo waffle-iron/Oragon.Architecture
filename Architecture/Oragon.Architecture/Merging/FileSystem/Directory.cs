@@ -58,7 +58,7 @@ namespace Oragon.Architecture.Merging.FileSystem
 				System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(this.FullPath);
 				var directories = dirInfo.GetDirectories("*", System.IO.SearchOption.AllDirectories);
 				var files = dirInfo.GetFiles("*", System.IO.SearchOption.AllDirectories);
-				foreach (var directory in directories)
+				foreach (System.IO.DirectoryInfo directory in directories)
 				{
 					string targetRelativePath = directory.FullName.Substring(this.RootPath.Length);
 					string targetFullPath = System.IO.Path.Combine(targetDirectory.RootPath, targetRelativePath.Substring(1));
@@ -78,15 +78,21 @@ namespace Oragon.Architecture.Merging.FileSystem
 					}
 					else
 					{
-						string sourceMD5 = Convert.ToBase64String(new MD5CryptoServiceProvider().ComputeHash(sourceFileInfo.Open(System.IO.FileMode.Open)));
-						string targetMD5 = Convert.ToBase64String(new MD5CryptoServiceProvider().ComputeHash(targetFileInfo.Open(System.IO.FileMode.Open)));
+						string sourceMD5 = null;
+						string targetMD5 = null;
+						using (System.IO.FileStream sourceStream = sourceFileInfo.Open(System.IO.FileMode.Open))
+						{
+							using (System.IO.FileStream targetStream = targetFileInfo.Open(System.IO.FileMode.Open))
+							{
+								sourceMD5 = Convert.ToBase64String(new MD5CryptoServiceProvider().ComputeHash(sourceStream));
+								targetMD5 = Convert.ToBase64String(new MD5CryptoServiceProvider().ComputeHash(targetStream));
+							}
+						}
 						if
 							(
 								(sourceMD5 != targetMD5)
 								&&
 								(sourceFileInfo.Length >= targetFileInfo.Length)
-								&&
-								(sourceFileInfo.CreationTimeUtc >= targetFileInfo.CreationTimeUtc)
 							)
 						{
 							System.IO.File.Copy(sourceFileInfo.FullName, targetFullPath, true);
