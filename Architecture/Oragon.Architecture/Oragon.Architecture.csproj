@@ -226,6 +226,8 @@
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
     <Compile Include="Data\Process\QueryDataProcess.cs" />
     <Compile Include="Extensions\Extension.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />
     <Compile Include="Extensions\System.Linq\IQueryableAutoMapperExtensions.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
@@ -402,6 +404,14 @@
     <Compile Include="Log\MSMQLogger.cs" />
     <Compile Include="Log\NLogLogger.cs" />
     <Compile Include="Log\SafeLogger.cs" />
+    <Compile Include="Merging\FileSystem\CopyResult.cs" />
+    <Compile Include="Merging\FileSystem\Directory.cs" />
+    <Compile Include="Merging\FileSystem\DirectoryMerger.cs" />
+    <Compile Include="Merging\FileSystem\DirectoryType.cs" />
+    <Compile Include="Merging\FileSystem\File.cs" />
+    <Compile Include="Merging\FileSystem\Item.cs" />
+    <Compile Include="Merging\ItemToUpdate.cs" />
+    <Compile Include="Merging\MergeResult.cs" />
     <Compile Include="Schedule\SchedulerService.cs" />
     <Compile Include="Security\Authentication\Credential.cs" />
     <Compile Include="Services\Descriptor\AccountType.cs" />
@@ -435,7 +445,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="JsonHelper.cs" />
-    <Compile Include="Merger.cs" />
+    <Compile Include="Merging\Merger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryManager.cs" />
     <Compile Include="Schedule\ITaskHandler.cs" />

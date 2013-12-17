@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="IntegrationTests\MongoAOPTest.cs" />
     <Compile Include="IntegrationTests\NHibernateAOPTest.cs" />
+    <Compile Include="MergingTests\FileSystemMergingTests\FSMergeTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
@@ -90,6 +91,7 @@
   <ItemGroup>
     <EmbeddedResource Include="IntegrationTests\MongoAOPTest.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

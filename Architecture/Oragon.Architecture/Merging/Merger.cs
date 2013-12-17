@@ -3,22 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Oragon.Architecture
+namespace Oragon.Architecture.Merging
 {
-	public class ItemToUpdate<T>
-	{
-		public T Original { get; set; }
-		public T Modified { get; set; }
-	}
-
-
-	public class MergeResult<T>
-	{
-		public List<T> ItemsToInsert { get; set; }
-		public List<ItemToUpdate<T>> ItemsToUpdate { get; set; }
-		public List<T> ItemsToDelete { get; set; }
-	}
-
+	
 	public class Merger<T>
 	{
 		private Func<T, T, bool> IdentityQuestion;
