@@ -1,0 +1,18 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+iMusica.*/[Bb]in/
+iMusica.*/[Oo]bj/
+/\[Publish\]/Debug/*
+/\[Publish\]/Release/*
+/\[Publish\]/Log/*
+
+/.svn/*
+/.git/*
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Others
+*.dbmdl
+
