@@ -1,6 +1,6 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-iMusica.*/[Bb]in/
-iMusica.*/[Oo]bj/
+Architecture/*/[Bb]in/
+Architecture/*/[Oo]bj/
 /\[Publish\]/Debug/*
 /\[Publish\]/Release/*
 /\[Publish\]/Log/*
@@ -16,3 +16,4 @@ iMusica.*/[Oo]bj/
 # Others
 *.dbmdl
 
+Architecture/Oragon.Architecture.ExcelIntegration/obj/

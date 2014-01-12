@@ -55,8 +55,9 @@ namespace Oragon.Architecture.Merging.FileSystem
 					.OrderByDescending(it => it.Priority)
 					.ToQueue();
 
-				//Caso nao target na fila, adicionamos
-				if (validTargets.IsEmpty())
+				//Para um target ser valido ele precisa ter prioridade maior que zero.
+				//Caso nao haja nenhum target com prioridade maior que zero, entao adicionamos o target de maior prioridade
+				if (validTargets.Where(it => it.Priority > 0).IsEmpty())
 					directoryQueue.Enqueue(allTargetsQueue.Dequeue());
 
 				Directory sourceDirectory = directoryQueue.Dequeue();

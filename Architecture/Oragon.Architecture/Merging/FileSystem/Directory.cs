@@ -61,7 +61,9 @@ namespace Oragon.Architecture.Merging.FileSystem
 				foreach (System.IO.DirectoryInfo directory in directories)
 				{
 					string targetRelativePath = directory.FullName.Substring(this.RootPath.Length);
-					string targetFullPath = System.IO.Path.Combine(targetDirectory.RootPath, targetRelativePath.Substring(1));
+					while (targetRelativePath.StartsWith(@"\"))
+						targetRelativePath = targetRelativePath.Substring(1);
+					string targetFullPath = System.IO.Path.Combine(targetDirectory.RootPath, targetRelativePath);
 					if (System.IO.Directory.Exists(targetFullPath) == false)
 						System.IO.Directory.CreateDirectory(targetFullPath);
 				}
@@ -69,7 +71,9 @@ namespace Oragon.Architecture.Merging.FileSystem
 				foreach (var sourceFileInfo in files)
 				{
 					string targetRelativePath = sourceFileInfo.FullName.Substring(this.RootPath.Length);
-					string targetFullPath = System.IO.Path.Combine(targetDirectory.RootPath, targetRelativePath.Substring(1));
+					while (targetRelativePath.StartsWith(@"\"))
+						targetRelativePath = targetRelativePath.Substring(1);
+					string targetFullPath = System.IO.Path.Combine(targetDirectory.RootPath, targetRelativePath);
 					System.IO.FileInfo targetFileInfo = new System.IO.FileInfo(targetFullPath);
 					if (System.IO.File.Exists(targetFullPath) == false)
 					{
