@@ -7,9 +7,9 @@ namespace Oragon.Architecture.Tests.Services.Models.OneWay
 {
     public interface IServiceOneWay
     {
-        void OnWayMethod(string arg1, string arg2);
+        void OneWayMethod(string arg1, string arg2);
 
-        void OnWayMethod(string arg1, string arg2, string arg3);
+        void OneWayMethod(string arg1, string arg2, string arg3);
 
         void RaiseException();
     }

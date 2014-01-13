@@ -59,8 +59,8 @@ namespace Oragon.Architecture.Tests.Services
             client.AfterPropertiesSet();
             host.Start();
             Models.OneWay.IServiceOneWay clientSvc = (Models.OneWay.IServiceOneWay)client.GetObject();
-            clientSvc.OnWayMethod("a1", "a2");
-            clientSvc.OnWayMethod("b1", "b2", "b3");
+            clientSvc.OneWayMethod("a1", "a2");
+            clientSvc.OneWayMethod("b1", "b2", "b3");
             host.Stop();
         }
 
