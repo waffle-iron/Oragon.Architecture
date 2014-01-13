@@ -8,69 +8,82 @@ using Newtonsoft.Json.Converters;
 namespace Oragon.Architecture
 {
 
-	/// <summary>
-	/// Implementa um serializador Json
-	/// </summary>
-	public static class JsonHelper
-	{
-		public enum ConverterType
-		{
-			Serialization,
-			Deserialization
-		}
+    /// <summary>
+    /// Implementa um serializador Json
+    /// </summary>
+    public static class JsonHelper
+    {
+        public enum ConverterType
+        {
+            Serialization,
+            Deserialization
+        }
 
-		private static JsonConverter[] GetConverters(ConverterType type)
-		{
-			if (type == ConverterType.Serialization)
-				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
+        private static JsonConverter[] GetConverters(ConverterType type)
+        {
+            if (type == ConverterType.Serialization)
+                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
 
-			if (type == ConverterType.Deserialization)
-				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
+            if (type == ConverterType.Deserialization)
+                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
 
-			throw new System.NotSupportedException("Tipo de converter inválido");
-		}
-
-
-		public static string Serialize(object objectToSerialize)
-		{
-			JsonSerializerSettings settings = new JsonSerializerSettings();
-			settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
-			//settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
-			//settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
-
-			string returnValue = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
-			return returnValue;
-		}
-
-		public static T Deserialize<T>(string data)
-		{
-			JsonSerializerSettings settings = new JsonSerializerSettings();
-			settings.Converters = JsonHelper.GetConverters(ConverterType.Deserialization);
-
-			T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
-			return returnValue;
-		}
+            throw new System.NotSupportedException("Tipo de converter inválido");
+        }
 
 
-		public static object Deserialize(string data, Type type)
-		{
-			JsonSerializerSettings settings = new JsonSerializerSettings();
-			settings.Converters = JsonHelper.GetConverters(ConverterType.Deserialization);
+        public static string Serialize(object objectToSerialize)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
+            //settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+            //settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
 
-			object returnValue = JsonConvert.DeserializeObject(data, type, settings);
-			return returnValue;
-		}
+            string returnValue = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
+            return returnValue;
+        }
+
+        public static T Deserialize<T>(string data)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters = JsonHelper.GetConverters(ConverterType.Deserialization);
+
+            T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
+            return returnValue;
+        }
 
 
-		public static T ConvertUsingSerialization<T>(object objectToSerialize)
-		{
-			JsonSerializerSettings settings = new JsonSerializerSettings();
-			settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
-			settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        public static object Deserialize(string data, Type type)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters = JsonHelper.GetConverters(ConverterType.Deserialization);
 
-			string data = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
-			T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
-			return returnValue;
-		}
-	}
+            object returnValue = JsonConvert.DeserializeObject(data, type, settings);
+            return returnValue;
+        }
+
+
+        public static T ConvertUsingSerialization<T>(object objectToSerialize)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
+            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            string data = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
+            T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
+            return returnValue;
+        }
+
+
+        public static Exception ReconstructException(object jsonObject)
+        {
+            Newtonsoft.Json.Linq.JObject jsonException = (Newtonsoft.Json.Linq.JObject)jsonObject;
+            string exceptionClassName = (string)((Newtonsoft.Json.Linq.JObject)jsonObject).Property("ClassName").Value;
+            string exceptionMessage = (string)((Newtonsoft.Json.Linq.JObject)jsonObject).Property("Message").Value;
+            System.Type exceptionType = System.Type.GetType(exceptionClassName);
+            Exception exception = (Exception)Activator.CreateInstance(exceptionType, new object[] { exceptionMessage });
+            return exception;
+        }
+
+
+    }
 }

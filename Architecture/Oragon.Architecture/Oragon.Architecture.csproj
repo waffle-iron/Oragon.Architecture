@@ -421,6 +421,7 @@
     <Compile Include="Services\Host\ServiceEndpointConfiguration.cs" />
     <Compile Include="Services\Host\ServiceHostFactoryObject.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\MessageEnvelope.cs" />
     <Compile Include="Services\RabbitMQServiceClientFactory.cs" />
     <Compile Include="Services\RabbitMQServiceHost.cs" />
     <Compile Include="Services\ServiceContainer.cs" />
