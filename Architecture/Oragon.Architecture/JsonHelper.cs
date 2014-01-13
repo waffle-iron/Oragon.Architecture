@@ -74,16 +74,5 @@ namespace Oragon.Architecture
         }
 
 
-        public static Exception ReconstructException(object jsonObject)
-        {
-            Newtonsoft.Json.Linq.JObject jsonException = (Newtonsoft.Json.Linq.JObject)jsonObject;
-            string exceptionClassName = (string)((Newtonsoft.Json.Linq.JObject)jsonObject).Property("ClassName").Value;
-            string exceptionMessage = (string)((Newtonsoft.Json.Linq.JObject)jsonObject).Property("Message").Value;
-            System.Type exceptionType = System.Type.GetType(exceptionClassName);
-            Exception exception = (Exception)Activator.CreateInstance(exceptionType, new object[] { exceptionMessage });
-            return exception;
-        }
-
-
     }
 }

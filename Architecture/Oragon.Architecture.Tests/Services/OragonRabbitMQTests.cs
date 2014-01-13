@@ -136,5 +136,41 @@ namespace Oragon.Architecture.Tests.Services
             }
             host.Stop();
         }
+
+
+        [TestMethod]
+        public void ComplexTypesTest()
+        {
+            RabbitMQServiceHost host = this.BuildHost(10, new Models.ComplexType.ComplexTypeService(), typeof(Models.ComplexType.IComplexTypeService));
+            host.AfterPropertiesSet();
+            RabbitMQServiceClientFactory client = this.BuildClient(typeof(Models.ComplexType.IComplexTypeService));
+            client.AfterPropertiesSet();
+            host.Start();
+            Models.ComplexType.IComplexTypeService clientSvc = (Models.ComplexType.IComplexTypeService)client.GetObject();
+
+            var messageToSend = new Models.ComplexType.ParentEntity()
+            {
+                ID = 77,
+                Name = "Luiz Carlos",
+                Pets = new List<Models.ComplexType.Pet>()
+                {
+                    new Models.ComplexType.Dog(){
+                            Name = "Ziggy"
+                    },
+                    new Models.ComplexType.Cockatiel(){
+                            Name = "Gandalf"
+                    },
+                    new Models.ComplexType.Cockatiel(){
+                            Name = "Tufão"
+                    }
+                },
+                 ExceptionToSerialize = new InvalidProgramException("Putz")
+            };
+            clientSvc.ComplexTypeTest(messageToSend);
+
+            host.Stop();
+        }
+
+
     }
 }

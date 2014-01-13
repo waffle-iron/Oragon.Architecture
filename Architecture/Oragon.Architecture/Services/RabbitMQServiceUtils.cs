@@ -26,5 +26,37 @@ namespace Oragon.Architecture.Services
 
 			return returnValue;
 		}
+
+        public static Spring.Messaging.Amqp.Support.Converter.IMessageConverter GetMessageConverter()
+        {
+            var messageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter()
+            {
+                CreateMessageIds = true,
+            };
+            messageConverter.JsonSerializer = new Newtonsoft.Json.JsonSerializer()
+            {
+                MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore,
+                TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Full,
+                Formatting = Newtonsoft.Json.Formatting.Indented,
+                MaxDepth = null,
+                PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All,
+                ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Auto,
+                TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
+            };
+
+            return messageConverter;
+        }
+
+        public static Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate BuildRabbitTemplate(Spring.Messaging.Amqp.Rabbit.Connection.IConnectionFactory connectionFactory, long timeout)
+        {
+            Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate template = new Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate(connectionFactory);
+            template.ChannelTransacted = true;
+            template.ReplyTimeout = timeout;
+            template.Immediate = true;
+            template.MessageConverter = RabbitMQServiceUtils.GetMessageConverter();
+            return template;
+        }
+
+
 	}
 }

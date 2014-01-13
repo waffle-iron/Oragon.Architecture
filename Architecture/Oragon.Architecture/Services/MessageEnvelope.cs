@@ -9,6 +9,6 @@ namespace Oragon.Architecture.Services
     {
         public Dictionary<string, object> Arguments { get; set; }
         public object ReturnValue { get; set; }
-        public object Exception { get; set; }
+        public Exception Exception { get; set; }
     }
 }

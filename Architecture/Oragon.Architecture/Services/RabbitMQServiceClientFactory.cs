@@ -24,7 +24,7 @@ namespace Oragon.Architecture.Services
         public void AfterPropertiesSet()
         {
             this.Proxy = this.CreateProxy();
-            this.rabbitTemplate = this.BuildRabbitTemplate();
+            this.rabbitTemplate = RabbitMQServiceUtils.BuildRabbitTemplate(this.ConnectionFactory, this.Timeout);
             this.rabbitTemplate.AfterPropertiesSet();
             this.ValidateConfiguration();
         }
@@ -43,18 +43,7 @@ namespace Oragon.Architecture.Services
                 throw new InvalidCastException("ServiceInterface informado não é uma interface");
         }
 
-        private Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate BuildRabbitTemplate()
-        {
-            Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate template = new Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate(this.ConnectionFactory);
-            template.ChannelTransacted = true;
-            template.ReplyTimeout = this.Timeout;
-            template.Immediate = true;
-            template.MessageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter()
-            {
-                CreateMessageIds = true
-            };
-            return template;
-        }
+
 
         public object GetObject()
         {
@@ -74,8 +63,7 @@ namespace Oragon.Architecture.Services
             MessageEnvelope responseMessage = (MessageEnvelope)this.rabbitTemplate.ConvertSendAndReceive(queueName, requestMessage);
             if (responseMessage.Exception != null)
             {
-                Exception exceptionToRethrow = JsonHelper.ReconstructException(responseMessage.Exception);
-                throw exceptionToRethrow;
+                throw responseMessage.Exception;
             }
             return responseMessage.ReturnValue;
         }

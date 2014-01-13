@@ -91,6 +91,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Models\ComplexType\ComplexTypeService.cs" />
+    <Compile Include="Services\Models\ComplexType\Entities.cs" />
+    <Compile Include="Services\Models\ComplexType\IComplexTypeService.cs" />
     <Compile Include="Services\Models\Mixed\ServiceMixed.cs" />
     <Compile Include="Services\Models\Mixed\IServiceMixed.cs" />
     <Compile Include="Services\Models\Multithreading\MultithreadingService.cs" />

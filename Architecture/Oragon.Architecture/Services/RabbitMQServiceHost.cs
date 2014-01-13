@@ -36,8 +36,8 @@ namespace Oragon.Architecture.Services
             Spring.Messaging.Amqp.Core.IAmqpAdmin rabbitAdmin = new Spring.Messaging.Amqp.Rabbit.Core.RabbitAdmin(this.ConnectionFactory);
             this.messageListenerContainers = new List<Spring.Messaging.Amqp.Rabbit.Listener.SimpleMessageListenerContainer>();
 
-            RabbitTemplate template = this.BuildRabbitTemplate();
-            JsonMessageConverter messageConverter = new JsonMessageConverter();
+            RabbitTemplate template = RabbitMQServiceUtils.BuildRabbitTemplate(this.ConnectionFactory, 5000);
+
 
             foreach (MethodInfo methodInfo in this.ServiceInterface.GetMethods())
             {
@@ -53,7 +53,7 @@ namespace Oragon.Architecture.Services
 
                 Action<Spring.Messaging.Amqp.Core.Message> messageListener = (requestMessage =>
                  {
-                     MessageEnvelope requestEnvelope = (MessageEnvelope)messageConverter.FromMessage(requestMessage);
+                     MessageEnvelope requestEnvelope = (MessageEnvelope)template.MessageConverter.FromMessage(requestMessage);
 
                      Spring.Objects.Support.MethodInvoker methodInvoker = new Spring.Objects.Support.MethodInvoker();
                      foreach (var item in requestEnvelope.Arguments)
@@ -77,25 +77,13 @@ namespace Oragon.Architecture.Services
                          responseEnvelope.Exception = exception;
                      }
                      Spring.Messaging.Amqp.Core.Address replyTo = requestMessage.MessageProperties.ReplyToAddress;
-                     Spring.Messaging.Amqp.Core.Message responseMessage = messageConverter.ToMessage(responseEnvelope, new Spring.Messaging.Amqp.Core.MessageProperties());
-                     template.Send(replyTo.ExchangeName, replyTo.RoutingKey, responseMessage);
+                     template.ConvertAndSend(replyTo.ExchangeName, replyTo.RoutingKey, responseEnvelope);
                  });
                 messageListenerContainer.MessageListener = messageListener;
             }
         }
 
-        private Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate BuildRabbitTemplate()
-        {
-            Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate template = new Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate(this.ConnectionFactory);
-            template.ChannelTransacted = true;
-            template.ReplyTimeout = 4000;
-            template.Immediate = true;
-            template.MessageConverter = new Spring.Messaging.Amqp.Support.Converter.JsonMessageConverter()
-            {
-                CreateMessageIds = false
-            };
-            return template;
-        }
+
 
 
 
