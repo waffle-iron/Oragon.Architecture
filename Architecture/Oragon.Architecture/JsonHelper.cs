@@ -19,26 +19,14 @@ namespace Oragon.Architecture
             Deserialization
         }
 
-        private static JsonConverter[] GetConverters(ConverterType type)
-        {
-            if (type == ConverterType.Serialization)
-                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
-
-            if (type == ConverterType.Deserialization)
-                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
-
-            throw new System.NotSupportedException("Tipo de converter inválido");
-        }
-
-
-        public static string Serialize(object objectToSerialize)
+        public static T ConvertUsingSerialization<T>(object objectToSerialize)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
-            //settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
-            //settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
+            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
-            string returnValue = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
+            string data = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
+            T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
             return returnValue;
         }
 
@@ -51,7 +39,6 @@ namespace Oragon.Architecture
             return returnValue;
         }
 
-
         public static object Deserialize(string data, Type type)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -61,18 +48,26 @@ namespace Oragon.Architecture
             return returnValue;
         }
 
-
-        public static T ConvertUsingSerialization<T>(object objectToSerialize)
+        public static string Serialize(object objectToSerialize)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.Converters = JsonHelper.GetConverters(ConverterType.Serialization);
-            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+            //settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
 
-            string data = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
-            T returnValue = JsonConvert.DeserializeObject<T>(data, settings);
+            string returnValue = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented, settings);
             return returnValue;
         }
 
+        private static JsonConverter[] GetConverters(ConverterType type)
+        {
+            if (type == ConverterType.Serialization)
+                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
 
+            if (type == ConverterType.Deserialization)
+                return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
+
+            throw new System.NotSupportedException("Tipo de converter inválido");
+        }
     }
 }
