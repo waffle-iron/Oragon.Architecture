@@ -226,6 +226,7 @@
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
     <Compile Include="Data\Process\QueryDataProcess.cs" />
     <Compile Include="Extensions\Extension.cs" />
+    <Compile Include="Extensions\Oragon.Architecture.DateRange\DateRange.Reduce.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />

@@ -17,3 +17,25 @@ Architecture/*/[Oo]bj/
 *.dbmdl
 
 Architecture/Oragon.Architecture.ExcelIntegration/obj/
+Replacer/Replacer/bin/
+Replacer/Replacer/obj/
+EnterpriseLog/[publish]/
+EnterpriseLog/[publish]/LogEngineServer/
+JenkinsTasks/Oragon.JenkinsTasks.WindowsServices/bin/
+JenkinsTasks/Oragon.JenkinsTasks.WindowsServices/obj/
+CodeGen/Oragon.CodeGen.ConsoleApp/bin/
+CodeGen/Oragon.CodeGen.ConsoleApp/obj/
+CodeGen/Oragon.CodeGen.MetaData.DataBase/bin/
+CodeGen/Oragon.CodeGen.MetaData.DataBase/obj/
+CodeGen/Oragon.CodeGen.MetaData.Domain.Templating/bin/
+CodeGen/Oragon.CodeGen.MetaData.Domain.Templating/obj/
+CodeGen/Oragon.CodeGen.MetaData.Domain/bin/
+EnterpriseLog/Oragon.Architecture.LogServer.Host.TestClient/bin/
+EnterpriseLog/Oragon.Architecture.LogEngine.Business/bin/
+EnterpriseLog/Oragon.Architecture.LogServer.Host.TestClient/obj/
+EnterpriseLog/Oragon.Architecture.LogEngine.Domain/bin/
+EnterpriseLog/Oragon.Architecture.LogEngine.Domain/obj/
+CodeGen/Oragon.CodeGen.Templating/obj/
+EnterpriseLog/Oragon.Architecture.LogEngine.Business/obj/
+CodeGen/Oragon.CodeGen.Templating/bin/
+CodeGen/Oragon.CodeGen.MetaData.Domain/obj/

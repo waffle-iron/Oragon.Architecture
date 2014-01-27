@@ -74,12 +74,16 @@ namespace Oragon.Architecture.Services
 					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("#######################################################");
 					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("Rodando... pressione qualquer tecla para finalizar...");
+					Console.WriteLine("Rodando... pressione a tecla 'ESC' tecla para finalizar...");
 					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("#######################################################");
 					Console.ResetColor();
 				}
-				Console.ReadKey();
+				ConsoleKeyInfo keyInfo;
+				do
+				{
+					keyInfo = Console.ReadKey();
+				} while (keyInfo.Key != ConsoleKey.Escape);
 				{
 					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("#######################################################");
