@@ -8,17 +8,17 @@ using System.Text;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>A008C7C0-9E85-41EF-9515-02FCDFF3DB8F</id>
-        /// <summary>
-        ///     A string extension method that decode a Base64 String.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>The Base64 String decoded.</returns>
-        public static string DecodeBase64(this string @this)
-        {
-            return Encoding.ASCII.GetString(Convert.FromBase64String(@this));
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>A008C7C0-9E85-41EF-9515-02FCDFF3DB8F</id>
+		/// <summary>
+		///     A string extension method that decode a Base64 String.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>The Base64 String decoded.</returns>
+		public static string DecodeBase64(this string @this)
+		{
+			return Encoding.ASCII.GetString(Convert.FromBase64String(@this));
+		}
+	}
 }

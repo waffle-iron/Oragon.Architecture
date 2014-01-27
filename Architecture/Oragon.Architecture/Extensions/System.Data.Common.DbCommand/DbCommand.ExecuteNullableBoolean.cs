@@ -8,26 +8,26 @@ using System.Data.Common;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>B14E9F9E-29AE-4D8D-BFC5-88DF82444494</id>
-        /// <summary>
-        ///     Executes the query, and returns the first column of the first row in the result set returned by the query as
-        ///     a nullable Boolean. Additional columns or rows are ignored.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>
-        ///     true or false, which reflects the value returned by invoking the IConvertible.ToBoolean method for the first
-        ///     column of the first row in the result set. If the value equal DBNull.Value, return null.
-        /// </returns>
-        public static bool? ExecuteNullableBoolean(this DbCommand @this)
-        {
-            object result = @this.ExecuteScalar();
-            if (result == DBNull.Value)
-            {
-                return null;
-            }
-            return Convert.ToBoolean(result);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>B14E9F9E-29AE-4D8D-BFC5-88DF82444494</id>
+		/// <summary>
+		///     Executes the query, and returns the first column of the first row in the result set returned by the query as
+		///     a nullable Boolean. Additional columns or rows are ignored.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>
+		///     true or false, which reflects the value returned by invoking the IConvertible.ToBoolean method for the first
+		///     column of the first row in the result set. If the value equal DBNull.Value, return null.
+		/// </returns>
+		public static bool? ExecuteNullableBoolean(this DbCommand @this)
+		{
+			object result = @this.ExecuteScalar();
+			if (result == DBNull.Value)
+			{
+				return null;
+			}
+			return Convert.ToBoolean(result);
+		}
+	}
 }

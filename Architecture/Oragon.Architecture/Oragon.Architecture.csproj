@@ -319,6 +319,7 @@
     <Compile Include="Extensions\System.Object\Object.ToNullableInt.cs" />
     <Compile Include="Extensions\System.Random\Random.CoinToss.cs" />
     <Compile Include="Extensions\System.Random\Random.OneOf.cs" />
+    <Compile Include="Extensions\System.String\String.IsNotNullOrWhiteSpace.cs" />
     <Compile Include="Extensions\System.String\String.Contains.cs" />
     <Compile Include="Extensions\System.String\String.ContainsAll.cs" />
     <Compile Include="Extensions\System.String\String.ContainsAny.cs" />

@@ -7,17 +7,17 @@ using System.Web;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>B2F67928-6EEB-42E2-A984-020FF1CB65E8</id>
-        /// <summary>
-        ///     A HttpResponse extension method that sets the response to status code 500 (Internal Server Error).
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        public static void SetInternalServerError(this HttpResponse @this)
-        {
-            @this.StatusCode = 500;
-            @this.StatusDescription = "Internal Server Error";
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>B2F67928-6EEB-42E2-A984-020FF1CB65E8</id>
+		/// <summary>
+		///     A HttpResponse extension method that sets the response to status code 500 (Internal Server Error).
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		public static void SetInternalServerError(this HttpResponse @this)
+		{
+			@this.StatusCode = 500;
+			@this.StatusDescription = "Internal Server Error";
+		}
+	}
 }

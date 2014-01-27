@@ -8,26 +8,26 @@ using System.Xml.Serialization;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>78C0CF79-8510-47A2-803D-232626C985CA</id>
-        /// <summary>
-        ///     An object extension method that serialize a string to XML.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>The string representation of the Xml Serialization.</returns>
-        public static string SerializeXml(this object @this)
-        {
-            var xmlSerializer = new XmlSerializer(@this.GetType());
+	public static partial class Extension
+	{
+		/// <id>78C0CF79-8510-47A2-803D-232626C985CA</id>
+		/// <summary>
+		///     An object extension method that serialize a string to XML.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>The string representation of the Xml Serialization.</returns>
+		public static string SerializeXml(this object @this)
+		{
+			var xmlSerializer = new XmlSerializer(@this.GetType());
 
-            using (var stringWriter = new StringWriter())
-            {
-                xmlSerializer.Serialize(stringWriter, @this);
-                using (var streamReader = new StringReader(stringWriter.GetStringBuilder().ToString()))
-                {
-                    return streamReader.ReadToEnd();
-                }
-            }
-        }
-    }
+			using (var stringWriter = new StringWriter())
+			{
+				xmlSerializer.Serialize(stringWriter, @this);
+				using (var streamReader = new StringReader(stringWriter.GetStringBuilder().ToString()))
+				{
+					return streamReader.ReadToEnd();
+				}
+			}
+		}
+	}
 }

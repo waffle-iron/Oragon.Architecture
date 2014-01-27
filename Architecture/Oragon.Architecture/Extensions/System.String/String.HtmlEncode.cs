@@ -7,17 +7,17 @@ using System.Web;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>7DAD6857-0E4B-4B9B-99FD-1C764755831B</id>
-        /// <summary>
-        ///     A string extension method that Html encode a string and returns the encoded string.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>The encoded string.</returns>
-        public static string HtmlEncode(this string @this)
-        {
-            return HttpUtility.HtmlEncode(@this);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>7DAD6857-0E4B-4B9B-99FD-1C764755831B</id>
+		/// <summary>
+		///     A string extension method that Html encode a string and returns the encoded string.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>The encoded string.</returns>
+		public static string HtmlEncode(this string @this)
+		{
+			return HttpUtility.HtmlEncode(@this);
+		}
+	}
 }

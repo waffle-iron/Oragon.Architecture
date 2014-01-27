@@ -7,25 +7,25 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class Extension
 	{
-		/// <id>B753CACE-44FB-4367-BB41-F7BC2450663F</id>
+		/// <id>2C413A45-B812-46EE-8397-1DCD3DDE719D</id>
 		/// <summary>
-		///     A string extension method that queries if '@this' is null or is empty.
+		///     A string extension method that queries if '@this' is not (null or empty).
 		/// </summary>
 		/// <param name="this">The @this to act on.</param>
-		/// <returns>true if '@this' is null or is empty, false if not.</returns>
+		/// <returns>true if '@this' is not (null or empty), false if not.</returns>
 		/// <example>
 		///     <code>
-		///         var test = "";
+		///         var test = "z";
 		///     
-		///         if(test.IsNullOrEmpty())
+		///         if(test.IsNotNullOrWhiteSpace())
 		///         {
 		///             // ... Code ...
 		///         }
 		///     </code>
 		/// </example>
-		public static bool IsNullOrEmpty(this string @this)
+		public static bool IsNotNullOrWhiteSpace(this string @this)
 		{
-			return string.IsNullOrEmpty(@this);
+			return !string.IsNullOrWhiteSpace(@this);
 		}
 	}
 }

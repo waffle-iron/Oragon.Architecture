@@ -7,21 +7,21 @@ using System.IO;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>635D9852-FF20-4DF8-B511-4F3B08103596</id>
-        /// <summary>
-        ///     A Stream extension method that converts the Stream to a byte array.
-        /// </summary>
-        /// <param name="this">The Stream to act on.</param>
-        /// <returns>The Stream as a byte[].</returns>
-        public static byte[] ToByteArray(this Stream @this)
-        {
-            using (var ms = new MemoryStream())
-            {
-                @this.CopyTo(ms);
-                return ms.ToArray();
-            }
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>635D9852-FF20-4DF8-B511-4F3B08103596</id>
+		/// <summary>
+		///     A Stream extension method that converts the Stream to a byte array.
+		/// </summary>
+		/// <param name="this">The Stream to act on.</param>
+		/// <returns>The Stream as a byte[].</returns>
+		public static byte[] ToByteArray(this Stream @this)
+		{
+			using (var ms = new MemoryStream())
+			{
+				@this.CopyTo(ms);
+				return ms.ToArray();
+			}
+		}
+	}
 }

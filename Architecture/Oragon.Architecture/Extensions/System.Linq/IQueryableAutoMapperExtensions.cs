@@ -12,7 +12,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			IQueryable<TDestination> returnValue = source.Select(it =>
 				AutoMapper.Mapper.Map<TSource, TDestination>(it)
-			);
+				);
 			return returnValue;
 		}
 
@@ -20,7 +20,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			List<TDestination> returnValue = source.Select(it =>
 				AutoMapper.Mapper.Map<TSource, TDestination>(it)
-			).ToList();
+				).ToList();
 			return returnValue;
 		}
 	}

@@ -8,18 +8,18 @@ using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>DF9E904B-35CA-4507-A7B3-CA4DC88A7B86</id>
-        /// <summary>
-        ///     If the IEnumerable is null than return an empty IEnumerable.
-        /// </summary>
-        /// <typeparam name="T">Generic type parameter.</typeparam>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>The IEnumerable when not null, otherwise an empty IEnumerable.</returns>
-        public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> @this)
-        {
-            return @this ?? Enumerable.Empty<T>();
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>DF9E904B-35CA-4507-A7B3-CA4DC88A7B86</id>
+		/// <summary>
+		///     If the IEnumerable is null than return an empty IEnumerable.
+		/// </summary>
+		/// <typeparam name="T">Generic type parameter.</typeparam>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>The IEnumerable when not null, otherwise an empty IEnumerable.</returns>
+		public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> @this)
+		{
+			return @this ?? Enumerable.Empty<T>();
+		}
+	}
 }

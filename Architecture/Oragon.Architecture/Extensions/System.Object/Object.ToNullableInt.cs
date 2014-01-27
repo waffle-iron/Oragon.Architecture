@@ -7,21 +7,21 @@ using System;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>31C8ECF8-F8C2-4B7C-BE31-AFB9EB133673</id>
-        /// <summary>
-        ///     An object extension method that converts the @this to a nullable int.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as an int?</returns>
-        public static int? ToNullableInt(this object @this)
-        {
-            if (@this == null)
-            {
-                return null;
-            }
-            return Convert.ToInt32(@this);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>31C8ECF8-F8C2-4B7C-BE31-AFB9EB133673</id>
+		/// <summary>
+		///     An object extension method that converts the @this to a nullable int.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>@this as an int?</returns>
+		public static int? ToNullableInt(this object @this)
+		{
+			if (@this == null)
+			{
+				return null;
+			}
+			return Convert.ToInt32(@this);
+		}
+	}
 }

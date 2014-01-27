@@ -7,17 +7,17 @@ using System;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>04A869C9-C538-435B-A75C-EF4793E7E8D4</id>
-        /// <summary>
-        ///     A DateTime extension method that query if '@this' is a week day.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>true if '@this' is a week day, false if not.</returns>
-        public static bool IsWeekDay(this DateTime @this)
-        {
-            return !(@this.DayOfWeek == DayOfWeek.Saturday || @this.DayOfWeek == DayOfWeek.Sunday);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>04A869C9-C538-435B-A75C-EF4793E7E8D4</id>
+		/// <summary>
+		///     A DateTime extension method that query if '@this' is a week day.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>true if '@this' is a week day, false if not.</returns>
+		public static bool IsWeekDay(this DateTime @this)
+		{
+			return !(@this.DayOfWeek == DayOfWeek.Saturday || @this.DayOfWeek == DayOfWeek.Sunday);
+		}
+	}
 }

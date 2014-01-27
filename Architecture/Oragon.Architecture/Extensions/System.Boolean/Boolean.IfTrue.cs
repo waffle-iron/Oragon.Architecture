@@ -7,20 +7,20 @@ using System;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>42AB63B0-0D36-46FF-942F-2B10AE4517BD</id>
-        /// <summary>
-        ///     A bool extension method that execute an Action if the value is true.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <param name="action">The action to execute.</param>
-        public static void IfTrue(this bool @this, Action action)
-        {
-            if (@this)
-            {
-                action();
-            }
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>42AB63B0-0D36-46FF-942F-2B10AE4517BD</id>
+		/// <summary>
+		///     A bool extension method that execute an Action if the value is true.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <param name="action">The action to execute.</param>
+		public static void IfTrue(this bool @this, Action action)
+		{
+			if (@this)
+			{
+				action();
+			}
+		}
+	}
 }

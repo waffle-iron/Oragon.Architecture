@@ -7,17 +7,17 @@ using System;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>9F5259DF-C634-4947-AC43-1EAB9CC7B83E</id>
-        /// <summary>
-        ///     An object extension method that converts the @this to an int.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as an int.</returns>
-        public static int ToInt(this object @this)
-        {
-            return Convert.ToInt32(@this);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>9F5259DF-C634-4947-AC43-1EAB9CC7B83E</id>
+		/// <summary>
+		///     An object extension method that converts the @this to an int.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>@this as an int.</returns>
+		public static int ToInt(this object @this)
+		{
+			return Convert.ToInt32(@this);
+		}
+	}
 }

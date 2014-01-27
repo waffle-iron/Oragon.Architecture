@@ -8,15 +8,11 @@ using System.Collections.Generic;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        
+	public static partial class Extension
+	{
 		public static IEnumerable<DateRange> Reduce(this IEnumerable<DateRange> @this, TimeSpan maxDeltaIntersection)
-        {
+		{
 			return @this;
 		}
-
-    }
-
-	
+	}
 }

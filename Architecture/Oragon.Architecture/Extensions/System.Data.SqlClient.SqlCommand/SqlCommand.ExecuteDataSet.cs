@@ -8,23 +8,23 @@ using System.Data.SqlClient;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>169EFAF3-CEDD-4598-9682-DFF96A04CB6F</id>
-        /// <summary>
-        ///     Executes the query, and returns the result set as DataSet.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>A DataSet that is equivalent to the result set.</returns>
-        public static DataSet ExecuteDataSet(this SqlCommand @this)
-        {
-            var ds = new DataSet();
-            using (var sqlDataAdapter = new SqlDataAdapter(@this))
-            {
-                sqlDataAdapter.Fill(ds);
-            }
+	public static partial class Extension
+	{
+		/// <id>169EFAF3-CEDD-4598-9682-DFF96A04CB6F</id>
+		/// <summary>
+		///     Executes the query, and returns the result set as DataSet.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>A DataSet that is equivalent to the result set.</returns>
+		public static DataSet ExecuteDataSet(this SqlCommand @this)
+		{
+			var ds = new DataSet();
+			using (var sqlDataAdapter = new SqlDataAdapter(@this))
+			{
+				sqlDataAdapter.Fill(ds);
+			}
 
-            return ds;
-        }
-    }
+			return ds;
+		}
+	}
 }

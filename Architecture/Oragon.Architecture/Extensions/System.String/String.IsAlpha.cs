@@ -7,17 +7,17 @@ using System.Text.RegularExpressions;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>7D1901DF-B086-4623-81B6-494A618E0E0D</id>
-        /// <summary>
-        ///     A string extension method that query if '@this' is Alpha.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>true if Alpha, false if not.</returns>
-        public static bool IsAlpha(this string @this)
-        {
-            return !Regex.IsMatch(@this, "[^a-zA-Z]");
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>7D1901DF-B086-4623-81B6-494A618E0E0D</id>
+		/// <summary>
+		///     A string extension method that query if '@this' is Alpha.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>true if Alpha, false if not.</returns>
+		public static bool IsAlpha(this string @this)
+		{
+			return !Regex.IsMatch(@this, "[^a-zA-Z]");
+		}
+	}
 }

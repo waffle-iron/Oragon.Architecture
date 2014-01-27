@@ -36,8 +36,8 @@ namespace Oragon.Architecture.Extensions
 		public static string RemoverAcentos(this string origin)
 		{
 			return new string(origin.Normalize(NormalizationForm.FormD)
-							   .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) !=
-										 UnicodeCategory.NonSpacingMark).ToArray());
+				.Where(c => CharUnicodeInfo.GetUnicodeCategory(c) !=
+				            UnicodeCategory.NonSpacingMark).ToArray());
 		}
 
 
@@ -53,10 +53,25 @@ namespace Oragon.Architecture.Extensions
 			return new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$").IsMatch(s);
 		}
 
-		public static string Formatar(this string format, object arg0) { return string.Format(format, arg0); }
-		public static string Formatar(this string format, params object[] args) { return string.Format(format, args); }
-		public static string Formatar(this string format, object arg0, object arg1) { return string.Format(format, arg0, arg1); }
-		public static string Formatar(this string format, IFormatProvider provider, params object[] args) { return string.Format(provider, format, args); }
+		public static string Formatar(this string format, object arg0)
+		{
+			return string.Format(format, arg0);
+		}
+
+		public static string Formatar(this string format, params object[] args)
+		{
+			return string.Format(format, args);
+		}
+
+		public static string Formatar(this string format, object arg0, object arg1)
+		{
+			return string.Format(format, arg0, arg1);
+		}
+
+		public static string Formatar(this string format, IFormatProvider provider, params object[] args)
+		{
+			return string.Format(provider, format, args);
+		}
 
 		/// <summary>
 		/// Checks if url is valid. 
@@ -70,15 +85,15 @@ namespace Oragon.Architecture.Extensions
 		public static bool IsValidUrl(this string url)
 		{
 			string strRegex = "^(https?://)"
-		+ "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //user@
-		+ @"(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP- 199.194.52.184
-		+ "|" // allows either IP or domain
-		+ @"([0-9a-z_!~*'()-]+\.)*" // tertiary domain(s)- www.
-		+ @"([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]" // second level domain
-		+ @"(\.[a-z]{2,6})?)" // first level domain- .com or .museum is optional
-		+ "(:[0-9]{1,5})?" // port number- :80
-		+ "((/?)|" // a slash isn't required if there is no file name
-		+ "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+			                  + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //user@
+			                  + @"(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP- 199.194.52.184
+			                  + "|" // allows either IP or domain
+			                  + @"([0-9a-z_!~*'()-]+\.)*" // tertiary domain(s)- www.
+			                  + @"([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]" // second level domain
+			                  + @"(\.[a-z]{2,6})?)" // first level domain- .com or .museum is optional
+			                  + "(:[0-9]{1,5})?" // port number- :80
+			                  + "((/?)|" // a slash isn't required if there is no file name
+			                  + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
 			return new Regex(strRegex).IsMatch(url);
 		}
 
@@ -177,7 +192,8 @@ namespace Oragon.Architecture.Extensions
 		/// <param name="first"></param>
 		/// <param name="rest"></param>
 		/// <returns></returns>
-		public static System.String ApplyPattern(this System.String text, Func<string, string> first, Func<string, string> rest)
+		public static System.String ApplyPattern(this System.String text, Func<string, string> first,
+			Func<string, string> rest)
 		{
 			System.String firstLetter = first(text.Substring(0, (1) - (0)));
 			System.String restLetters = rest(text.Substring(1));
@@ -191,11 +207,14 @@ namespace Oragon.Architecture.Extensions
 
 		public static string SplitCamelCase(this string text)
 		{
-			string returnValue = System.Text.RegularExpressions.Regex.Replace(text, "([A-Z])", " $1", System.Text.RegularExpressions.RegexOptions.Compiled).Trim();
+			string returnValue =
+				System.Text.RegularExpressions.Regex.Replace(text, "([A-Z])", " $1",
+					System.Text.RegularExpressions.RegexOptions.Compiled).Trim();
 			return returnValue;
 		}
 
-		public static string Replace(this string text, string pattern, string replace, System.Text.RegularExpressions.RegexOptions options)
+		public static string Replace(this string text, string pattern, string replace,
+			System.Text.RegularExpressions.RegexOptions options)
 		{
 			return System.Text.RegularExpressions.Regex.Replace(text, pattern, replace, options);
 		}
@@ -206,7 +225,7 @@ namespace Oragon.Architecture.Extensions
 			Dictionary<string, string> returnDic = new Dictionary<string, string>();
 			if (stringArray.Length > 0)
 			{
-				if (stringArray.Length % 2 != 0)
+				if (stringArray.Length%2 != 0)
 					throw new InvalidOperationException("Tags não possui uma quantidade de valores par;");
 				else
 				{
@@ -220,7 +239,5 @@ namespace Oragon.Architecture.Extensions
 			}
 			return returnDic;
 		}
-
-
 	}
 }

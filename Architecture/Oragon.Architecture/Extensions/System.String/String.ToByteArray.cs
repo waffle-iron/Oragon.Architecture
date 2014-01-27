@@ -8,18 +8,18 @@ using System.Text;
 
 namespace Oragon.Architecture.Extensions
 {
-    public static partial class Extension
-    {
-        /// <id>33F17764-49C7-47FB-B68D-FC0BACABE88C</id>
-        /// <summary>
-        ///     A string extension method that converts the @this to a byte array.
-        /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as a byte[].</returns>
-        public static byte[] ToByteArray(this string @this)
-        {
-            Encoding encoding = Activator.CreateInstance<ASCIIEncoding>();
-            return encoding.GetBytes(@this);
-        }
-    }
+	public static partial class Extension
+	{
+		/// <id>33F17764-49C7-47FB-B68D-FC0BACABE88C</id>
+		/// <summary>
+		///     A string extension method that converts the @this to a byte array.
+		/// </summary>
+		/// <param name="this">The @this to act on.</param>
+		/// <returns>@this as a byte[].</returns>
+		public static byte[] ToByteArray(this string @this)
+		{
+			Encoding encoding = Activator.CreateInstance<ASCIIEncoding>();
+			return encoding.GetBytes(@this);
+		}
+	}
 }
