@@ -219,6 +219,7 @@
     <Compile Include="AOP\Data\NHibernate\NHContext.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingAttribute.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingStrategy.cs" />
+    <Compile Include="AOP\ExceptionHandling\LogContext.cs" />
     <Compile Include="Business\Entity.cs" />
     <Compile Include="Business\MongoEntity.cs" />
     <Compile Include="Data\ConnectionStrings\MongoDBConnectionString.cs" />

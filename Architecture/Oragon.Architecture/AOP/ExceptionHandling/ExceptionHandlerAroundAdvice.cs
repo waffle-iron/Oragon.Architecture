@@ -27,54 +27,62 @@ namespace Oragon.Architecture.AOP.ExceptionHandling
 			string targetMethod = string.Concat(targetTypeFullName, ".", invocation.Method);
 
 			object returnValue = null;
-			try
+			using (LogContext logContext = new LogContext())
 			{
-				if (this.EnableDebug)
-					this.Logger.Debug(targetTypeFullName, string.Concat("Begin ", targetMethod), "Type", targetTypeFullName, "Method", targetMethod);
+				logContext.SetValue("Type", targetTypeFullName);
+				logContext.SetValue("Method", targetMethod);
 
-				returnValue = invocation.Proceed();
-
-				if (this.EnableDebug)
-					this.Logger.Debug(targetTypeFullName, string.Concat("End ", targetMethod), "Type", targetTypeFullName, "Method", targetMethod);
-
-			}
-			catch (UndefinedException)
-			{
-				throw;
-			}
-			catch (FaultException)
-			{
-				throw;
-			}
-			catch (Exception ex)
-			{
-				Type exceptionType = ex.GetType();
-				bool isBusinessException = (this.BusinessExceptionType.IsAssignableFrom(exceptionType));
-
-				string exceptionTypeKey = isBusinessException ? "BusinessException" : "ApplicationException";
-
-				this.Logger.Warn(targetTypeFullName, ex.ToString(), exceptionTypeKey, string.Concat(exceptionType.Namespace, ".", exceptionType.Name), "Type", targetTypeFullName, "Method", targetMethod);
-
-
-				if (currentAttribute.Strategy.HasFlag(ExceptionHandlingStrategy.ContinueRunning))
+				try
 				{
-					//Do Nothing -> Suppress Exception
+					if (this.EnableDebug)
+						this.Logger.Log(targetTypeFullName, string.Concat("Begin ", targetMethod), Log.LogLevel.Debug, logContext.GetDictionary());
+
+					returnValue = invocation.Proceed();
+
+					if (this.EnableDebug)
+						this.Logger.Log(targetTypeFullName, string.Concat("End ", targetMethod), Log.LogLevel.Debug, logContext.GetDictionary());
+
 				}
-				else if (currentAttribute.Strategy.HasFlag(ExceptionHandlingStrategy.BreackOnException))
+				catch (UndefinedException)
 				{
-					if (isBusinessException)
+					throw;
+				}
+				catch (FaultException)
+				{
+					throw;
+				}
+				catch (Exception ex)
+				{
+					Type exceptionType = ex.GetType();
+					
+					bool isBusinessException = (this.BusinessExceptionType.IsAssignableFrom(exceptionType));
+					
+					string exceptionTypeKey = isBusinessException ? "BusinessException" : "ApplicationException";
+					
+					logContext.SetValue(exceptionTypeKey, string.Concat(exceptionType.Namespace, ".", exceptionType.Name));
+					
+					this.Logger.Log(targetTypeFullName, ex.ToString(), Log.LogLevel.Warn, logContext.GetDictionary());
+
+					if (currentAttribute.Strategy.HasFlag(ExceptionHandlingStrategy.ContinueRunning))
 					{
-						if (System.ServiceModel.OperationContext.Current == null)
-							throw;
-						else
-							throw new FaultException(ex.Message);
+						//Do Nothing -> Suppress Exception
 					}
-					else
+					else if (currentAttribute.Strategy.HasFlag(ExceptionHandlingStrategy.BreackOnException))
 					{
-						if (System.ServiceModel.OperationContext.Current == null)
-							throw new UndefinedException(this.GenericErrorMessage);
+						if (isBusinessException)
+						{
+							if (System.ServiceModel.OperationContext.Current == null)
+								throw;
+							else
+								throw new FaultException(ex.Message);
+						}
 						else
-							throw new FaultException(this.GenericErrorMessage);
+						{
+							if (System.ServiceModel.OperationContext.Current == null)
+								throw new UndefinedException(this.GenericErrorMessage);
+							else
+								throw new FaultException(this.GenericErrorMessage);
+						}
 					}
 				}
 			}
