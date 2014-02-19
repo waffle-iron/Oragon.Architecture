@@ -476,6 +476,7 @@
     <Compile Include="Schedule\TaskManager.cs" />
     <Compile Include="Security\IUserResolver.cs" />
     <Compile Include="Workflow\Facility.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\FlowRejectAndRequeueException.cs" />
     <Compile Include="Workflow\QueuedWorkFlow\InvokeResult.cs" />
     <Compile Include="Workflow\QueuedWorkFlow\QueuedStateMachine.cs" />
     <Compile Include="Workflow\QueuedWorkFlow\QueuedTransition.cs" />

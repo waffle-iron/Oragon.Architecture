@@ -96,6 +96,10 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				object messageToSend = invokeResult.HasValue ? invokeResult.ReturnedValue : messageObject;
 				this.HandleSuccessResult(messageToSend, message, channel);
 			}
+			else if (invokeResult.Exception is FlowRejectAndRequeueException)
+			{
+				this.HandleRequeueResult(messageObject, message, channel);
+			}
 			else
 			{
 				this.HandleFailureResult(messageObject, message, channel);
@@ -206,6 +210,21 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		{
 			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
 			this.HandleResult(messageToSend, request, channel, replyToAddress);
+		}
+
+		protected virtual void HandleRequeueResult(object messageToSend, Message request, IModel channel)
+		{
+			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
+			this.HandleResult(messageToSend, request, channel, replyToAddress);
+
+
+			var processBinding = new Binding(processQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
+			this.AmqpAdmin.DeclareBinding(processBinding);
+			container.QueueNames = new string[] { processQueue.Name };
+
+
+
+
 		}
 
 		protected virtual void HandleFailureResult(object messageToSend, Message request, IModel channel)

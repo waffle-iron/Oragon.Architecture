@@ -145,15 +145,22 @@ namespace Oragon.Architecture.Tests.Cache.Redis
 		[TestMethod]
 		public void RedisInsertTestWithTimeout()
 		{
-			TimeSpan timeout = new TimeSpan(0, 0, 0, 10);
+			TimeSpan timeout = new TimeSpan(0, 0, 0, 15);
 			RedisClientForSpring client = this.BuildClientForSpring("iMusica:Tests:RedisInsertTestWithTimeout");
 			client.Insert("RedisInsertTestWithTimeout", "OK", timeout);
 			string expected = "OK";
+	
 			string returnedValue = (string)client.Get("RedisInsertTestWithTimeout");
 			Assert.AreEqual(expected, returnedValue);
-			Thread.Sleep(timeout.Add(new TimeSpan(0, 0, 0, 5)));
+
+			Thread.Sleep(new TimeSpan(0, 0, 0, 5));
+			returnedValue = (string)client.Get("RedisInsertTestWithTimeout");
+			Assert.AreEqual(expected, returnedValue);
+
+			Thread.Sleep(new TimeSpan(0, 0, 0, 15));
 			returnedValue = (string)client.Get("RedisInsertTestWithTimeout");
 			Assert.IsNull(returnedValue);
+
 			client.Clear();
 		}
 
