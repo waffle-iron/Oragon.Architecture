@@ -27,5 +27,10 @@ namespace Oragon.Architecture.Extensions
 		{
 			return !string.IsNullOrWhiteSpace(@this);
 		}
+
+		public static bool IsNullOrWhiteSpace(this string @this)
+		{
+			return string.IsNullOrWhiteSpace(@this);
+		}
 	}
 }

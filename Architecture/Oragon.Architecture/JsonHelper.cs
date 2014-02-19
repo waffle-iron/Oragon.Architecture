@@ -59,7 +59,7 @@ namespace Oragon.Architecture
             return returnValue;
         }
 
-        private static JsonConverter[] GetConverters(ConverterType type)
+        public static JsonConverter[] GetConverters(ConverterType type)
         {
             if (type == ConverterType.Serialization)
                 return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();

@@ -141,6 +141,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Spring.Net\RabbitMQ.Client.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\ServiceStack.Redis\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\ServiceStack.Redis\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\ServiceStack.Redis\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\ServiceStack.Redis\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="SharedCache.WinServiceCommon">
       <HintPath>..\..\[References]\SharedCache\SharedCache.WinServiceCommon.dll</HintPath>
     </Reference>
@@ -222,6 +238,9 @@
     <Compile Include="AOP\ExceptionHandling\LogContext.cs" />
     <Compile Include="Business\Entity.cs" />
     <Compile Include="Business\MongoEntity.cs" />
+    <Compile Include="Cache\Redis\RedisClientForNHibernate.cs" />
+    <Compile Include="Cache\Redis\RedisClientForSpring.cs" />
+    <Compile Include="Cache\Redis\RedisProviderBase.cs" />
     <Compile Include="Data\ConnectionStrings\MongoDBConnectionString.cs" />
     <Compile Include="Data\PagedList.cs" />
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
@@ -475,7 +494,10 @@
     <Compile Include="AOP\ExceptionHandling\TypeConversion\DirectoryInfoConverter.cs" />
     <Compile Include="AOP\ExceptionHandling\TypeConversion\ReaderQuotasConverter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AOP\Data\Redis\" />
+    <Folder Include="Serialization\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName)$(TargetExt)"

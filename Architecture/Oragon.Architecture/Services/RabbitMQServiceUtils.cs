@@ -36,12 +36,12 @@ namespace Oragon.Architecture.Services
 			messageConverter.JsonSerializer = new Newtonsoft.Json.JsonSerializer()
 			{
 				MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore,
-				TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Full,
 				Formatting = Newtonsoft.Json.Formatting.Indented,
 				MaxDepth = null,
 				PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All,
 				ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize,
 				ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Auto,
+				TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple,
 				TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
 			};
 
