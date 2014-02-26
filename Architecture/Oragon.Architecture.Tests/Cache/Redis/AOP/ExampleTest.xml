@@ -6,7 +6,6 @@
 	xmlns:aop="http://www.springframework.net/aop"
 	xmlns:nv="http://www.springframework.net/nvelocity"
 	>
-
 	<object name="ExampleService" type="Oragon.Architecture.Tests.Cache.Redis.AOP.ExampleService, Oragon.Architecture.Tests">
 		<property name="ExampleModelCacheDP">
 			<object type="Oragon.Architecture.Tests.Cache.Redis.AOP.ExampleModelCacheDataProcess">
@@ -14,8 +13,6 @@
 			</object>
 		</property>
 	</object>
-
-
 
 	<object name="RedisContextAroundAdvice" type="Oragon.Architecture.AOP.Data.Redis.RedisContextAroundAdvice, Oragon.Architecture">
 		<property name="ConnectionStrings" >
@@ -29,11 +26,9 @@
 		</property>
 	</object>
 
-
 	<aop:config>
 		<aop:advisor pointcut-ref="ObjectContextUsersPointcuts"			advice-ref="RedisContextAroundAdvice" />
 	</aop:config>
-
 
 	<object id="ObjectContextUsersPointcuts" type="Spring.Aop.Support.SdkRegularExpressionMethodPointcut, Spring.Aop">
 		<property name="Patterns">
