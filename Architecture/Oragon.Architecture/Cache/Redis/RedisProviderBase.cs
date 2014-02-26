@@ -8,16 +8,16 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Cache.Redis
 {
-	public class RedisProviderBase
+	public class RedisProviderBase: IDisposable		
 	{
-		protected IRedisClient RedisClient { get; private set; }
+		protected IRedisClient NativeClient { get; private set; }
 
 		protected string IsolationKey { get; set; }
 
 		
 		public RedisProviderBase(IRedisClient redisClient, string isolationKey)
 		{
-			this.RedisClient = redisClient;
+			this.NativeClient = redisClient;
 			this.IsolationKey = isolationKey;
 		}
 
@@ -100,5 +100,10 @@ namespace Oragon.Architecture.Cache.Redis
 		}
 
 		#endregion
+
+		public void Dispose()
+		{
+			this.NativeClient.Dispose();
+		}
 	}
 }

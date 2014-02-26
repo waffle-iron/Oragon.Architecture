@@ -20,7 +20,7 @@ namespace Oragon.Architecture.Cache.Redis
 		public void Clear()
 		{
 			string formattedKey = base.GetKey();
-			List<string> keys = this.RedisClient.SearchKeys(formattedKey + "*");
+			List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
 			this.RemoveAll(keys);
 		}
 
@@ -29,7 +29,7 @@ namespace Oragon.Architecture.Cache.Redis
 			get
 			{
 				string formattedKey = base.GetKey();
-				return this.RedisClient.SearchKeys(formattedKey + "*").Count;
+				return this.NativeClient.SearchKeys(formattedKey + "*").Count;
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace Oragon.Architecture.Cache.Redis
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			string jsonSerialized = this.RedisClient.Get<string>(formattedKey);
+			string jsonSerialized = this.NativeClient.Get<string>(formattedKey);
 			object deserializeObject = null;
 			if (jsonSerialized.IsNotNullOrWhiteSpace())
 				deserializeObject = JsonConvert.DeserializeObject(jsonSerialized, this.SerializerSettings);
@@ -49,7 +49,7 @@ namespace Oragon.Architecture.Cache.Redis
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
 			string jsonSerialized = JsonConvert.SerializeObject(value, this.SerializerSettings);
-			this.RedisClient.Set(formattedKey, jsonSerialized, timeToLive);
+			this.NativeClient.Set(formattedKey, jsonSerialized, timeToLive);
 		}
 
 		public void Insert(object key, object value)
@@ -57,7 +57,7 @@ namespace Oragon.Architecture.Cache.Redis
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
 			string jsonSerialized = JsonConvert.SerializeObject(value, this.SerializerSettings);
-			this.RedisClient.Set(formattedKey, jsonSerialized);
+			this.NativeClient.Set(formattedKey, jsonSerialized);
 		}
 
 		public System.Collections.ICollection Keys
@@ -65,7 +65,7 @@ namespace Oragon.Architecture.Cache.Redis
 			get
 			{
 				string formattedKey = base.GetKey();
-				List<string> keys = this.RedisClient.SearchKeys(formattedKey + "*");
+				List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
 				return keys;
 			}
 		}
@@ -74,12 +74,12 @@ namespace Oragon.Architecture.Cache.Redis
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			this.RedisClient.Remove(formattedKey);
+			this.NativeClient.Remove(formattedKey);
 		}
 
 		public void RemoveAll(System.Collections.ICollection keys)
 		{
-			this.RedisClient.RemoveAll(keys.Cast<string>());
+			this.NativeClient.RemoveAll(keys.Cast<string>());
 		}
 	}
 }

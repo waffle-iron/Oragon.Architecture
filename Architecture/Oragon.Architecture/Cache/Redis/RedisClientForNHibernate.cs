@@ -29,8 +29,8 @@ namespace Oragon.Architecture.Cache.Redis
 		public void Clear()
 		{
 			string formattedKey = base.GetKey();
-			List<string> keys = this.RedisClient.SearchKeys(formattedKey + "*");
-			this.RedisClient.RemoveAll(keys.Cast<string>());
+			List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
+			this.NativeClient.RemoveAll(keys.Cast<string>());
 		}
 
 		public void Destroy()
@@ -42,7 +42,7 @@ namespace Oragon.Architecture.Cache.Redis
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			IDisposable locker = this.RedisClient.AcquireLock(formattedKey);
+			IDisposable locker = this.NativeClient.AcquireLock(formattedKey);
 			this.LockedItens.AddIf(it => this.LockedItens.Any(it2 => it.Key == it2.Key), new LockItem { Key = formattedKey, Locker = locker });
 		}
 
@@ -79,21 +79,21 @@ namespace Oragon.Architecture.Cache.Redis
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			return this.RedisClient.Get<Object>(formattedKey);
+			return this.NativeClient.Get<Object>(formattedKey);
 		}
 
 		public void Put(object key, object value)
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			this.RedisClient.Set(formattedKey, value, this.CacheLifeTime);
+			this.NativeClient.Set(formattedKey, value, this.CacheLifeTime);
 		}
 		
 		public void Remove(object key)
 		{
 			string stringKey = (string)key;
 			string formattedKey = base.GetKey(stringKey);
-			this.RedisClient.Remove(formattedKey);
+			this.NativeClient.Remove(formattedKey);
 		}
 
 	}

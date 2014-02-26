@@ -107,6 +107,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Cache\Redis\AOP\ExampleModel.cs" />
+    <Compile Include="Cache\Redis\AOP\ExampleModelCacheDataProcess.cs" />
+    <EmbeddedResource Include="Cache\Redis\AOP\ExampleTest.xml" />
+    <Compile Include="Cache\Redis\AOP\IExampleService.cs" />
+    <Compile Include="Cache\Redis\AOP\ExampleService.cs" />
+    <Compile Include="Cache\Redis\AOP\ExampleTest.cs" />
     <Compile Include="Cache\Redis\RedisProviderBaseTests.cs" />
     <Compile Include="Cache\Redis\RedisClientForSpringTests.cs" />
     <Compile Include="Cache\Redis\RedisClientForNHibernateTests.cs" />

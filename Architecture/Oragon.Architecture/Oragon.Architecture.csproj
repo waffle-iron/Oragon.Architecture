@@ -233,6 +233,10 @@
     <Compile Include="AOP\Data\MongoDB\MongoDBContextAttribute.cs" />
     <Compile Include="AOP\Data\MongoDB\MongoDBDataProcess.cs" />
     <Compile Include="AOP\Data\NHibernate\NHContext.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContext.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContextAttribute.cs" />
+    <Compile Include="AOP\Data\Redis\RedisDataProcess.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingAttribute.cs" />
     <Compile Include="AOP\ExceptionHandling\ExceptionHandlingStrategy.cs" />
     <Compile Include="AOP\ExceptionHandling\LogContext.cs" />
@@ -241,6 +245,7 @@
     <Compile Include="Cache\Redis\RedisClientForNHibernate.cs" />
     <Compile Include="Cache\Redis\RedisClientForSpring.cs" />
     <Compile Include="Cache\Redis\RedisProviderBase.cs" />
+    <Compile Include="Data\ConnectionStrings\RedisConnectionString.cs" />
     <Compile Include="Data\ConnectionStrings\MongoDBConnectionString.cs" />
     <Compile Include="Data\PagedList.cs" />
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
@@ -496,7 +501,6 @@
     <Compile Include="AOP\ExceptionHandling\TypeConversion\ReaderQuotasConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AOP\Data\Redis\" />
     <Folder Include="Serialization\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
