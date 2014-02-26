@@ -216,15 +216,6 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		{
 			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
 			this.HandleResult(messageToSend, request, channel, replyToAddress);
-
-
-			var processBinding = new Binding(processQueue.Name, Binding.DestinationType.Queue, exchange.Name, queuedTransition.BuildRoutingKey(), null);
-			this.AmqpAdmin.DeclareBinding(processBinding);
-			container.QueueNames = new string[] { processQueue.Name };
-
-
-
-
 		}
 
 		protected virtual void HandleFailureResult(object messageToSend, Message request, IModel channel)

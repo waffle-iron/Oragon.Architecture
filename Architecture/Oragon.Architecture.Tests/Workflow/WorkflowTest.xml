@@ -9,20 +9,20 @@
 
 
 
-	<object id="ConnectionFactory_Admin" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
-		<property name="Host" value="localhost" />
+	<object name="ConnectionFactory_Admin" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
+		<property name="Host" value="oragonserver02" />
 		<property name="Port" value="5672" />
-		<property name="VirtualHost" value="TesteADMIN" />
-		<property name="UserName" value="iMusicaEnterpriseApp" />
-		<property name="Password" value="iMusicaEnterpriseApp@123" />
+		<property name="VirtualHost" value="Workflow" />
+		<property name="UserName" value="wcfUser" />
+		<property name="Password" value="wcfPassword" />
 	</object>
 
-	<object id="ConnectionFactory_User" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
-		<property name="Host" value="localhost" />
+	<object name="ConnectionFactory_User" type="Spring.Messaging.Amqp.Rabbit.Connection.CachingConnectionFactory, Spring.Messaging.Amqp.Rabbit">
+		<property name="Host" value="oragonserver02" />
 		<property name="Port" value="5672" />
-		<property name="VirtualHost" value="TesteADMIN" />
-		<property name="UserName" value="iMusicaEnterpriseApp" />
-		<property name="Password" value="iMusicaEnterpriseApp@123" />
+		<property name="VirtualHost" value="Workflow" />
+		<property name="UserName" value="wcfUser" />
+		<property name="Password" value="wcfPassword" />
 	</object>
 
 	<object name="RabbitTemplate" type="Spring.Messaging.Amqp.Rabbit.Core.RabbitTemplate, Spring.Messaging.Amqp.Rabbit">
@@ -53,8 +53,7 @@
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" value="PacoteEntregue" />
 					<property name="Destination" value="PacoteMovido" />
-					<property name="QueueToListen" value="ToDownload.Queue" />
-					<property name="QueueToReportError" value="ToDownload.Queue.Failure" />
+					<property name="LogicalQueueName" value="ToDownload.Queue" />
 					<property name="ExchangeName" value="DefaultExchange1" />
 					<property name="ConcurrentConsumers" value="1" />
 					<property name="Service" >
@@ -68,8 +67,7 @@
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" value="PacoteMovido" />
 					<property name="Destination" value="MetadadoArmazenado" />
-					<property name="QueueToListen" value="ToTrack.Queue" />
-					<property name="QueueToReportError" value="ToTrack.Queue.Failure" />
+					<property name="LogicalQueueName" value="ToTrack.Queue" />
 					<property name="ExchangeName" value="DefaultExchange1" />
 					<property name="ConcurrentConsumers" value="1" />
 					<property name="Service" >
@@ -83,8 +81,7 @@
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" value="MetadadoArmazenado" />
 					<property name="Destination" value="MetadadoIngerido" />
-					<property name="QueueToListen" value="ToIngest.Queue" />
-					<property name="QueueToReportError" value="ToIngest.Queue.Failure" />
+					<property name="LogicalQueueName" value="ToIngest.Queue" />
 					<property name="ExchangeName" value="DefaultExchange1" />
 					<property name="ConcurrentConsumers" value="1" />
 					<property name="Service" >
@@ -98,8 +95,7 @@
 				<object type="Oragon.Architecture.Workflow.QueuedWorkFlow.QueuedTransition, Oragon.Architecture">
 					<property name="Origin" value="MetadadoIngerido" />
 					<property name="Destination" value="NotificacoesEnviadas" />
-					<property name="QueueToListen" value="ToNotify.Queue" />
-					<property name="QueueToReportError" value="ToNotify.Queue.Failure" />
+					<property name="LogicalQueueName" value="ToNotify.Queue" />
 					<property name="ExchangeName" value="DefaultExchange2" />
 					<property name="ConcurrentConsumers" value="1" />
 					<property name="Service" >
