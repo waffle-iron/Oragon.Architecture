@@ -73,9 +73,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.0.csproj">
+    <ProjectReference Include="..\Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.5.csproj">
       <Project>{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}</Project>
-      <Name>Oragon.CodeGen.MetaData.DataBase.4.0</Name>
+      <Name>Oragon.CodeGen.MetaData.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
