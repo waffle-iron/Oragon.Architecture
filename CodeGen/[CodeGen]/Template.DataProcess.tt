@@ -9,68 +9,26 @@
 <#@ Assembly Name="Oragon.CodeGen.MetaData.DataBase.dll" #>
 <#@ Assembly Name="Oragon.CodeGen.MetaData.Domain.dll" #>
 <#@ Assembly Name="MyGenUtility.dll" #>
-<#@ import namespace="System" #><#@ import namespace="System.IO" #><#@ import namespace="System.Diagnostics" #><#@ import namespace="System.Linq" #><#@ import namespace="System.Xml.Linq" #><#@ import namespace="System.Collections" #><#@ import namespace="System.Collections.Generic" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.DataBase" #><#@ import namespace="MyGeneration" #> 
+<#@ import namespace="System" #><#@ import namespace="System.IO" #><#@ import namespace="System.Diagnostics" #><#@ import namespace="System.Linq" #><#@ import namespace="System.Xml.Linq" #><#@ import namespace="System.Collections" #><#@ import namespace="System.Collections.Generic" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.DataBase" #><#@ import namespace="MyGeneration" #>
 <#   
 	DomainModel domain = MyMetaDomainConverterWrapper.GetModel();
 	
 	//System.Diagnostics.Debugger.Launch();
-#>
+#>using System;
 using System.Collections.Generic;
-using BRQ.SI.Architecture.Data.Process;
+using System.Linq.Expressions;
+using Oragon.Architecture.Data.Process;
 
-namespace <#=NameSpace#>.Data.Process
+
+namespace <#=NameSpace#>.Process
 {
+	public sealed class PersistenceDataProcess : PersistenceDataProcessBase<<#=NameSpace#>.Entity.EntityBase> { }
 
 <#	foreach (Entity currentEntity in domain.Entities)
-    {
-#>
-	internal partial class <#= currentEntity.Name #>DataProcess : DataProcessBase<<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#>>
 	{
-
-		/// <summary>
-		/// Obtém uma lista com todas as instâncias de <#=currentEntity.Name#>.
-		/// </summary>
-		/// <returns>Lista com ocorrência de <#=currentEntity.Name#>.</returns>
-		internal IList<<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#>> ObterTodos<#=currentEntity.PluralName#>()
-		{
-			return this.GetAll();
-		}
-		
-		/// <summary>
-		/// Realiza a inclusão de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para inclusão.</param>
-		internal void Incluir(<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.Save(entity);
-		}
-
-		/// <summary>
-		/// Realiza a inclusão ou alteração de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para altaração.</param>
-		internal void IncluirOuAlterar(<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.SaveOrUpdate(entity);
-		}
-
-		/// <summary>
-		/// Realiza a alteração de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#> para altaração.</param>
-		internal void Alterar(<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.Update(entity);
-		}
-
-		/// <summary>
-		/// Realiza a exclusão de um <#=currentEntity.Name#> no banco de dados.
-		/// </summary>
-		/// <param name="entity">Instância de <#=currentEntity.Name#>  para exclusão.</param>
-		internal void Excluir(<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#> entity)
-		{
-			base.Delete(entity);
-		}
+#>
+	public partial class <#= currentEntity.Name #>DataProcess : QueryDataProcess<<#=NameSpace#>.Entity.<#=currentEntity.Name#>>
+	{
 		
 
 	}
