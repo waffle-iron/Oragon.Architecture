@@ -31,12 +31,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Oragon.Architecture.GenericServiceHost.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Oragon.Architecture.GenericServiceHost.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icons\Server.ico</ApplicationIcon>
@@ -86,8 +88,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).exe" "$(SolutionDir)..\[References]\$(TargetName)\"
-copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\[References]\$(TargetName)\"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[build]\.net-4.5-$(ConfigurationName)\$(TargetName)$(TargetExt)" /Y
+copy /Y "$(TargetDir)$(TargetName)$(TargetExt).config" "$(SolutionDir)..\[build]\.net-4.5-$(ConfigurationName)\$(TargetName)$(TargetExt).config" /Y
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\[build]\.net-4.5-$(ConfigurationName)\$(TargetName).pdb" /Y
+copy /Y "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\[build]\.net-4.5-$(ConfigurationName)\$(TargetName).xml" /Y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
