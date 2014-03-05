@@ -133,40 +133,12 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.*" "$(SolutionDir)[CodeGen]\generator\" /Y
-xcopy "$(TargetDir)*.*" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
-xcopy "$(TargetDir)*.*" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
-xcopy "$(TargetDir)*.*" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
-xcopy "$(TargetDir)*.*" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y
-
 xcopy "$(SolutionDir)..\[References]\MyGenerationThirdPartyLibs\*.*" "$(SolutionDir)[CodeGen]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\MyGenerationThirdPartyLibs\*.*" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\MyGenerationThirdPartyLibs\*.*" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\MyGenerationThirdPartyLibs\*.*" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\MyGenerationThirdPartyLibs\*.*" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y
-
 xcopy "$(SolutionDir)[CodeGen]\Gen.config" "$(SolutionDir)[CodeGen]\generator\Oragon.CodeGen.ConsoleApp.exe.config" /Y /I
-xcopy "$(SolutionDir)[CodeGen-BRQ]\Gen.config" "$(SolutionDir)[CodeGen-BRQ]\generator\Oragon.CodeGen.ConsoleApp.exe.config" /Y /I
-xcopy "$(SolutionDir)[CodeGen-BSI]\Gen.config" "$(SolutionDir)[CodeGen-BSI]\generator\Oragon.CodeGen.ConsoleApp.exe.config" /Y /I
-xcopy "$(SolutionDir)[CodeGen-Log]\Gen.config" "$(SolutionDir)[CodeGen-Log]\generator\Oragon.CodeGen.ConsoleApp.exe.config" /Y /I
-xcopy "$(SolutionDir)[CodeGen-Log]\Gen.config" "$(SolutionDir)[CodeGen-iMusica]\generator\Oragon.CodeGen.ConsoleApp.exe.config" /Y /I
-
 xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.*" "$(SolutionDir)[CodeGen]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.*" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.*" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.*" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.*" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y
-
 xcopy "$(SolutionDir)..\[References]\T4HostStandalone\*.*" "$(SolutionDir)[CodeGen]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\T4HostStandalone\*.*" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\T4HostStandalone\*.*" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\T4HostStandalone\*.*" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
-xcopy "$(SolutionDir)..\[References]\T4HostStandalone\*.*" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y
-
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen]\generator\" /Y
-xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
-xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
-xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
-xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>copy "$(ProjectDir)app.net451.config" "$(TargetPath).config" /Y</PreBuildEvent>

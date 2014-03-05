@@ -19,53 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.Templating.4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.MetaData.Domain.Templating.4.0", "Oragon.CodeGen.MetaData.Domain.Templating\Oragon.CodeGen.MetaData.Domain.Templating.4.0.csproj", "{E68CA7F7-762E-4724-A9E3-59EB99525345}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen-BRQ]", "[CodeGen-BRQ]", "{7E2B56DF-50E4-46CF-9431-9457B897EDF0}"
-	ProjectSection(SolutionItems) = preProject
-		[CodeGen-BRQ]\Gen.config = [CodeGen-BRQ]\Gen.config
-		[CodeGen-BRQ]\Template.DataProcess.tt = [CodeGen-BRQ]\Template.DataProcess.tt
-		[CodeGen-BRQ]\Template.Entities.tt = [CodeGen-BRQ]\Template.Entities.tt
-		[CodeGen-BRQ]\Template.Mappings.tt = [CodeGen-BRQ]\Template.Mappings.tt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen-BSI]", "[CodeGen-BSI]", "{70EB9706-B96A-440E-97AC-3926BF9F22D5}"
-	ProjectSection(SolutionItems) = preProject
-		[CodeGen-BSI]\Gen.config = [CodeGen-BSI]\Gen.config
-		[CodeGen-BSI]\Template.BusinessProcess.tt = [CodeGen-BSI]\Template.BusinessProcess.tt
-		[CodeGen-BSI]\Template.DataProcess.tt = [CodeGen-BSI]\Template.DataProcess.tt
-		[CodeGen-BSI]\Template.Entities.tt = [CodeGen-BSI]\Template.Entities.tt
-		[CodeGen-BSI]\Template.IOC.tt = [CodeGen-BSI]\Template.IOC.tt
-		[CodeGen-BSI]\Template.MVC.Details.tt = [CodeGen-BSI]\Template.MVC.Details.tt
-		[CodeGen-BSI]\Template.MVC.Edit.tt = [CodeGen-BSI]\Template.MVC.Edit.tt
-		[CodeGen-BSI]\Template.MVC.Grid.tt = [CodeGen-BSI]\Template.MVC.Grid.tt
-		[CodeGen-BSI]\Template.MVCController.tt = [CodeGen-BSI]\Template.MVCController.tt
-		[CodeGen-BSI]\Template.ServiceFacade.tt = [CodeGen-BSI]\Template.ServiceFacade.tt
-		[CodeGen-BSI]\Template.ServiceInterface.tt = [CodeGen-BSI]\Template.ServiceInterface.tt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen-Log]", "[CodeGen-Log]", "{6F850FB3-9E59-450D-96E6-91CC3365EC5F}"
-	ProjectSection(SolutionItems) = preProject
-		[CodeGen-Log]\Gen.config = [CodeGen-Log]\Gen.config
-		[CodeGen-Log]\Template.DataProcess.tt = [CodeGen-Log]\Template.DataProcess.tt
-		[CodeGen-Log]\Template.Entities.tt = [CodeGen-Log]\Template.Entities.tt
-		[CodeGen-Log]\Template.Mappings.tt = [CodeGen-Log]\Template.Mappings.tt
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen]", "[CodeGen]", "{220668BF-0EA7-4EBD-A20E-6D90DEA63637}"
 	ProjectSection(SolutionItems) = preProject
 		[CodeGen]\Gen.config = [CodeGen]\Gen.config
 		[CodeGen]\Template.DataProcess.tt = [CodeGen]\Template.DataProcess.tt
 		[CodeGen]\Template.Entities.tt = [CodeGen]\Template.Entities.tt
 		[CodeGen]\Template.Mappings.tt = [CodeGen]\Template.Mappings.tt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen-iMusica]", "[CodeGen-iMusica]", "{3854707D-51BA-48AF-B603-7091471EC436}"
-	ProjectSection(SolutionItems) = preProject
-		[CodeGen-iMusica]\Gen.iMusicaFechamento.config = [CodeGen-iMusica]\Gen.iMusicaFechamento.config
-		[CodeGen-iMusica]\Gen.iMusicaIMK.config = [CodeGen-iMusica]\Gen.iMusicaIMK.config
-		[CodeGen-iMusica]\Gen.iMusicaMeta.config = [CodeGen-iMusica]\Gen.iMusicaMeta.config
-		[CodeGen-iMusica]\Template.DataProcess.tt = [CodeGen-iMusica]\Template.DataProcess.tt
-		[CodeGen-iMusica]\Template.Entities.tt = [CodeGen-iMusica]\Template.Entities.tt
-		[CodeGen-iMusica]\Template.Mappings.tt = [CodeGen-iMusica]\Template.Mappings.tt
 	EndProjectSection
 EndProject
 Global
@@ -133,10 +92,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7E2B56DF-50E4-46CF-9431-9457B897EDF0} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
-		{70EB9706-B96A-440E-97AC-3926BF9F22D5} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
-		{6F850FB3-9E59-450D-96E6-91CC3365EC5F} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
 		{220668BF-0EA7-4EBD-A20E-6D90DEA63637} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
-		{3854707D-51BA-48AF-B603-7091471EC436} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
 	EndGlobalSection
 EndGlobal
