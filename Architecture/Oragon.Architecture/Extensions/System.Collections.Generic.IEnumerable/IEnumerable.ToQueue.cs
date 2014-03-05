@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		public static Queue<T> ToQueue<T>(this IEnumerable<T> @this)
 		{

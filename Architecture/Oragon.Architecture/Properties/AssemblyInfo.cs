@@ -9,7 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Oragon.Architecture")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Oragon Solutions")]
+
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

@@ -5,9 +5,9 @@
 
 using System.Drawing;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>15F029B4-36FB-49E7-A7DC-EA063AC4C6A3</id>
 		/// <summary>

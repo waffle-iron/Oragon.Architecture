@@ -5,9 +5,9 @@
 
 using System.Net.Mail;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>91D48A5D-6309-40C8-80C0-C838817C013A</id>
 		/// <summary>

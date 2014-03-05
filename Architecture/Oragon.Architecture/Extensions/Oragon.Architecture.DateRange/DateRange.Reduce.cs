@@ -6,9 +6,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		public static IEnumerable<DateRange> Reduce(this IEnumerable<DateRange> @this, TimeSpan maxDeltaIntersection)
 		{

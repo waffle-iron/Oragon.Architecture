@@ -6,7 +6,7 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate.Mapping;
 using Oragon.Architecture.Cache.Redis;
-using Oragon.Architecture.Extensions;
+using Oragon.Architecture.ExtMethods;
 using ServiceStack.Redis;
 
 namespace Oragon.Architecture.Tests.Cache.Redis

@@ -5,9 +5,9 @@
 
 using System.Text.RegularExpressions;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>A4B1426C-E86C-4D2A-9509-68BC55958B03</id>
 		/// <summary>

@@ -7,9 +7,9 @@ using System;
 using System.Data.SqlClient;
 using System.Reflection;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>25F8D0EB-2F45-4520-A921-028048E04DD5</id>
 		/// <summary>

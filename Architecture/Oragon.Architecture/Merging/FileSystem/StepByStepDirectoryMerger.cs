@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Oragon.Architecture.Extensions;
+using Oragon.Architecture.ExtMethods;
 
 namespace Oragon.Architecture.Merging.FileSystem
 {

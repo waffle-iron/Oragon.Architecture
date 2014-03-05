@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using ServiceStack.Redis;
-using Oragon.Architecture.Extensions;
+using Oragon.Architecture.ExtMethods;
 
 namespace Oragon.Architecture.Cache.Redis
 {

@@ -8,9 +8,9 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>02D4806A-ADF8-4927-A7C2-CB537346B781</id>
 		/// <summary>

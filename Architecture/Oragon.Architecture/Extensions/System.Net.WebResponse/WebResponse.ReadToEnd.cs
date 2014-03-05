@@ -6,9 +6,9 @@
 using System.IO;
 using System.Net;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>0E9A8B95-F6BB-439C-AB8F-8127D689D066</id>
 		/// <summary>

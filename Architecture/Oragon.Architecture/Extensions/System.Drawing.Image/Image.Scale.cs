@@ -7,9 +7,9 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>6EFD4348-77DF-49D9-AB9B-A838F9921B18</id>
 		/// <summary>

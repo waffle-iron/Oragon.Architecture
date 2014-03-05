@@ -6,9 +6,9 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static class StringExtensions
+	public static partial class OragonExtMethods
 	{
 		/// <summary>
 		/// Converte um objeto String para um objeto MemberExpression.
@@ -97,19 +97,7 @@ namespace Oragon.Architecture.Extensions
 			return new Regex(strRegex).IsMatch(url);
 		}
 
-		/// <summary>
-		/// Reverse the string
-		/// from http://en.wikipedia.org/wiki/Extension_method
-		/// </summary>
-		/// <param name="input"></param>
-		/// <returns></returns>
-		public static string Reverse(this string input)
-		{
-			char[] chars = input.ToCharArray();
-			Array.Reverse(chars);
-			return new String(chars);
-		}
-
+	
 
 		/// <summary>
 		/// Reduce string to shorter preview which is optionally ended by some string (...).
@@ -158,7 +146,7 @@ namespace Oragon.Architecture.Extensions
 		/// <returns></returns>
 		public static System.String CamelCase(this System.String text)
 		{
-			return StringExtensions.ApplyPattern(text, it => it.ToUpper(), it => it.ToLower());
+			return OragonExtMethods.ApplyPattern(text, it => it.ToUpper(), it => it.ToLower());
 		}
 
 		/// <summary>

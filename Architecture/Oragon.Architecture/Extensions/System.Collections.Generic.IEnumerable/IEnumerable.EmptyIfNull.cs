@@ -6,9 +6,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Oragon.Architecture.Extensions
+namespace Oragon.Architecture.ExtMethods
 {
-	public static partial class Extension
+	public static partial class OragonExtMethods
 	{
 		/// <id>DF9E904B-35CA-4507-A7B3-CA4DC88A7B86</id>
 		/// <summary>
