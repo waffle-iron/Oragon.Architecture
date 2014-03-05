@@ -242,7 +242,6 @@
     <Compile Include="AOP\ExceptionHandling\LogContext.cs" />
     <Compile Include="Business\Entity.cs" />
     <Compile Include="Business\MongoEntity.cs" />
-    <Compile Include="Cache\Redis\RedisClientForNHibernate.cs" />
     <Compile Include="Cache\Redis\RedisClientForSpring.cs" />
     <Compile Include="Cache\Redis\RedisProviderBase.cs" />
     <Compile Include="Data\ConnectionStrings\RedisConnectionString.cs" />
@@ -250,12 +249,10 @@
     <Compile Include="Data\PagedList.cs" />
     <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
     <Compile Include="Data\Process\QueryDataProcess.cs" />
-    <Compile Include="Extensions\Extension.cs" />
     <Compile Include="Extensions\Oragon.Architecture.DateRange\DateRange.Reduce.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />
-    <Compile Include="Extensions\System.Linq\IQueryableAutoMapperExtensions.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfTrue.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.ToBinary.cs" />
@@ -495,7 +492,6 @@
     <Compile Include="Threading\IKeyParser.cs" />
     <Compile Include="Threading\MultiLevelStorage.cs" />
     <Compile Include="Threading\SessionStorage.cs" />
-    <Compile Include="Threading\SharedCacheStorage.cs" />
     <Compile Include="Threading\SameKeyParser.cs" />
     <Compile Include="AOP\ExceptionHandling\TypeConversion\DirectoryInfoConverter.cs" />
     <Compile Include="AOP\ExceptionHandling\TypeConversion\ReaderQuotasConverter.cs" />

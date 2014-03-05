@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -86,7 +86,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.net451.config" />
+    <None Include="app.net40.config" />
     <None Include="Properties\DataSources\Oragon.CodeGen.ConsoleApp.Configuration.T4Template.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -113,19 +114,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.0.csproj">
-      <Project>{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}</Project>
+      <Project>{72beab1c-b55f-4f0e-89af-17f71e74a452}</Project>
       <Name>Oragon.CodeGen.MetaData.DataBase.4.0</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.Domain.Templating\Oragon.CodeGen.MetaData.Domain.Templating.4.0.csproj">
-      <Project>{E68CA7F7-762E-4724-A9E3-59EB99525345}</Project>
+      <Project>{e68ca7f7-762e-4724-a9e3-59eb99525345}</Project>
       <Name>Oragon.CodeGen.MetaData.Domain.Templating.4.0</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.Domain\Oragon.CodeGen.MetaData.Domain.4.0.csproj">
-      <Project>{C2BE5711-6F2D-4942-943A-8C83285044EB}</Project>
+      <Project>{c2be5711-6f2d-4942-943a-8c83285044eb}</Project>
       <Name>Oragon.CodeGen.MetaData.Domain.4.0</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.CodeGen.Templating\Oragon.CodeGen.Templating.4.0.csproj">
-      <Project>{CEC8B649-E2F0-41C5-8AD7-869274F4689C}</Project>
+      <Project>{cec8b649-e2f0-41c5-8ad7-869274f4689c}</Project>
       <Name>Oragon.CodeGen.Templating.4.0</Name>
     </ProjectReference>
   </ItemGroup>
@@ -166,6 +167,9 @@ xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(ProjectDir)app.net40.config" "$(TargetPath).config" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

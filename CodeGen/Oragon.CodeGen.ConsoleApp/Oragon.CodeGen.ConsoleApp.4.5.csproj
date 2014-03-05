@@ -86,7 +86,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.net40.config" />
+    <None Include="app.net451.config" />
     <None Include="Properties\DataSources\Oragon.CodeGen.ConsoleApp.Configuration.T4Template.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,9 @@ xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BRQ]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-BSI]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-Log]\generator\" /Y
 xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen-iMusica]\generator\" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(ProjectDir)app.net451.config" "$(TargetPath).config" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
