@@ -183,7 +183,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.5.csproj">
       <Project>{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}</Project>
-      <Name>Oragon.CodeGen.MetaData.DataBase</Name>
+      <Name>Oragon.CodeGen.MetaData.DataBase.4.5</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -51,15 +51,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.5.csproj">
       <Project>{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}</Project>
-      <Name>Oragon.CodeGen.MetaData.DataBase</Name>
+      <Name>Oragon.CodeGen.MetaData.DataBase.4.5</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.CodeGen.MetaData.Domain\Oragon.CodeGen.MetaData.Domain.4.5.csproj">
       <Project>{C2BE5711-6F2D-4942-943A-8C83285044EB}</Project>
-      <Name>Oragon.CodeGen.MetaData.Domain</Name>
+      <Name>Oragon.CodeGen.MetaData.Domain.4.5</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.CodeGen.Templating\Oragon.CodeGen.Templating.4.5.csproj">
       <Project>{CEC8B649-E2F0-41C5-8AD7-869274F4689C}</Project>
-      <Name>Oragon.CodeGen.Templating</Name>
+      <Name>Oragon.CodeGen.Templating.4.5</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
