@@ -45,8 +45,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ADODB, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\ADODB.dll</HintPath>
+    </Reference>
     <Reference Include="Cecil.FlowAnalysis">
       <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="CollapsibleSplitter">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\CollapsibleSplitter.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
@@ -77,6 +85,25 @@
     <Reference Include="Db4objects.Db4o.NativeQueries">
       <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.NativeQueries.dll</HintPath>
     </Reference>
+    <Reference Include="Dl3bak.Xsd3b">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Dl3bak.Xsd3b.dll</HintPath>
+    </Reference>
+    <Reference Include="Dl3bak.Xsd3b.Uml14Xmi12Import">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Dl3bak.Xsd3b.Uml14Xmi12Import.dll</HintPath>
+    </Reference>
+    <Reference Include="Dl3bak.Xsd3b.Xsd">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Dl3bak.Xsd3b.Xsd.dll</HintPath>
+    </Reference>
+    <Reference Include="Dl3bak.Xsd3b.Xslt">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Dl3bak.Xsd3b.Xslt.dll</HintPath>
+    </Reference>
+    <Reference Include="EffiProz">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\EffiProz.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
@@ -84,6 +111,30 @@
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ADODB">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Interop.ADODB.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.ADOX">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Interop.ADOX.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.MSDASC">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Interop.MSDASC.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.MSScriptControl">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Interop.MSScriptControl.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Scripting">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Interop.Scripting.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.T4HostStandalone.1.0.1\lib\net451\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson, Version=1.9.0.151, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -98,6 +149,17 @@
     </Reference>
     <Reference Include="Mono.Reflection">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MyGenUtility">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\MyGenUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,6 +176,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Npgsql, Version=2.0.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="Oragon.Architecture, Version=4.0.0.27186, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Oragon.Architecture.4.5.1-RC2\lib\net451\Oragon.Architecture.dll</HintPath>
@@ -124,6 +190,9 @@
     <Reference Include="RabbitMQ.Client, Version=3.2.1.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RabbitMQ.Client.3.2.1\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ScintillaNET">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\ScintillaNET.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=4.0.12.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -174,6 +243,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -181,6 +257,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TC.CustomTemplating, Version=1.1.1.0, Culture=neutral, PublicKeyToken=6aa30a69a3b22524, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.T4HostStandalone.1.0.1\lib\net451\TC.CustomTemplating.dll</HintPath>
+    </Reference>
     <Reference Include="Topshelf, Version=3.1.122.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Topshelf.3.1.3\lib\net40-full\Topshelf.dll</HintPath>
@@ -188,6 +268,9 @@
     <Reference Include="Topshelf.NLog, Version=3.1.122.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Topshelf.NLog.3.1.3\lib\net40-full\Topshelf.NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\Oragon.MyGenerationThirdPartyLibs.1.0.1\lib\net451\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -214,7 +297,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="app.net40.config" />
     <None Include="app.net451.config" />
     <None Include="job_scheduling_data_2_0.xsd">
@@ -271,7 +353,7 @@ xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen]\generator\" /Y
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)app.net451.config" "$(TargetPath).config" /Y</PreBuildEvent>
+    <PreBuildEvent>copy "$(ProjectDir)app.net451.config" "$(SolutionDir)[CodeGen]\Gen.config" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
