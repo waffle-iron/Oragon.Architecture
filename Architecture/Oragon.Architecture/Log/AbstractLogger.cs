@@ -5,7 +5,7 @@ using System.Text;
 using Spring.Messaging.Core;
 using Newtonsoft.Json;
 using Oragon.Architecture.Log.Model;
-using Oragon.Architecture.ExtMethods;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Log
 {

@@ -6,9 +6,9 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
-namespace Oragon.Architecture.ExtMethods
+namespace Oragon.Architecture.Extensions
 {
-	public static partial class OragonExtMethods
+	public static partial class OragonExtensions
 	{
 		/// <summary>
 		/// Converte um objeto String para um objeto MemberExpression.
@@ -146,7 +146,7 @@ namespace Oragon.Architecture.ExtMethods
 		/// <returns></returns>
 		public static System.String CamelCase(this System.String text)
 		{
-			return OragonExtMethods.ApplyPattern(text, it => it.ToUpper(), it => it.ToLower());
+			return OragonExtensions.ApplyPattern(text, it => it.ToUpper(), it => it.ToLower());
 		}
 
 		/// <summary>

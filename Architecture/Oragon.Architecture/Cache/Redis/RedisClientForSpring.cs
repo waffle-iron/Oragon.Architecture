@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
-using Oragon.Architecture.ExtMethods;
+using Oragon.Architecture.Extensions;
 using ServiceStack;
 using ServiceStack.Redis;
 

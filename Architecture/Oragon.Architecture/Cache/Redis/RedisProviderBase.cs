@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using ServiceStack.Redis;
-using Oragon.Architecture.ExtMethods;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Cache.Redis
 {
 	public class RedisProviderBase: IDisposable		
 	{
-		protected IRedisClient NativeClient { get; private set; }
+		public IRedisClient NativeClient { get; private set; }
 
 		protected string IsolationKey { get; set; }
 

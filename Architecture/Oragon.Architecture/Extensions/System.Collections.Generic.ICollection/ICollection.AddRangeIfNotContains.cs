@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace Oragon.Architecture.ExtMethods
+namespace Oragon.Architecture.Extensions
 {
 	public static partial class ExtensionMethods
 	{

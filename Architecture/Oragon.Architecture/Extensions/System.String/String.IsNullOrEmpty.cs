@@ -3,9 +3,9 @@
 // Licensed under MIT License (MIT)
 // License can be found here: https://zextensionmethods.codeplex.com/license
 
-namespace Oragon.Architecture.ExtMethods
+namespace Oragon.Architecture.Extensions
 {
-	public static partial class OragonExtMethods
+	public static partial class OragonExtensions
 	{
 		/// <id>B753CACE-44FB-4367-BB41-F7BC2450663F</id>
 		/// <summary>

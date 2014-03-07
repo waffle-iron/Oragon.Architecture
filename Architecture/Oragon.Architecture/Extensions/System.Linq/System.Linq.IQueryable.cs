@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 
-namespace Oragon.Architecture.ExtMethods.DynamicLinq
+namespace Oragon.Architecture.Extensions.DynamicLinq
 {
 	public static class IQueryableExtensions
 	{

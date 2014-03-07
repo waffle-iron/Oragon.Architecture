@@ -6,9 +6,9 @@
 using System;
 using System.Data.Common;
 
-namespace Oragon.Architecture.ExtMethods
+namespace Oragon.Architecture.Extensions
 {
-	public static partial class OragonExtMethods
+	public static partial class OragonExtensions
 	{
 		/// <id>F6200813-2B43-462E-8511-CF763DE05EA7</id>
 		/// <summary>

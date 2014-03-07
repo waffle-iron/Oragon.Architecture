@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 
-namespace Oragon.Architecture.ExtMethods
+namespace Oragon.Architecture.Extensions
 {
 	/// <summary>
 	/// Classe contendo extension methods para objetos Expression.
 	/// </summary>
-	public static partial class OragonExtMethods
+	public static partial class OragonExtensions
 	{
 		/// <summary>
 		/// Concatena duas expressões lambda que retornam bool.
