@@ -141,7 +141,7 @@ xcopy "$(SolutionDir)Languages.xml" "$(SolutionDir)[CodeGen]\generator\" /Y
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)app.net40.config" "$(TargetPath).config" /Y</PreBuildEvent>
+    <PreBuildEvent>copy "$(ProjectDir)app.net40.config" "$(SolutionDir)[CodeGen]\Gen.config" /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
