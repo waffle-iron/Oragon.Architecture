@@ -36,8 +36,9 @@
     <DocumentationFile>bin\Release\Oragon.CodeGen.Templating.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.TextTemplating">
-      <HintPath>..\..\[References]\T4HostStandalone\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.T4HostStandalone.1.0.1\lib\net451\Microsoft.VisualStudio.TextTemplating.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\[References]\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
@@ -49,14 +50,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TC.CustomTemplating">
-      <HintPath>..\..\[References]\T4HostStandalone\TC.CustomTemplating.dll</HintPath>
+    <Reference Include="TC.CustomTemplating, Version=1.1.1.0, Culture=neutral, PublicKeyToken=6aa30a69a3b22524, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.T4HostStandalone.1.0.1\lib\net451\TC.CustomTemplating.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenerationContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4Template.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
