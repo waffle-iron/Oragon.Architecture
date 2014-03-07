@@ -6,13 +6,13 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml.Serialization;
-using Oragon.Architecture.LogEngine.Entity;
+using Oragon.Architecture.LogEngine.Business.Entity;
 using FluentNHibernate.Mapping;
 
-namespace Oragon.Architecture.LogEngine.Mapping
+namespace Oragon.Architecture.LogEngine.Architecture.Mapping
 {
 	
-	public partial class LevelMapper : ClassMap<Oragon.Architecture.LogEngine.Entity.Level>
+	public partial class LevelMapper : ClassMap<Oragon.Architecture.LogEngine.Business.Entity.Level>
 	{
 
 		partial void CompleteMappings();
@@ -38,7 +38,7 @@ namespace Oragon.Architecture.LogEngine.Mapping
 		
 	}
 	
-	public partial class LogEntryMapper : ClassMap<Oragon.Architecture.LogEngine.Entity.LogEntry>
+	public partial class LogEntryMapper : ClassMap<Oragon.Architecture.LogEngine.Business.Entity.LogEntry>
 	{
 
 		partial void CompleteMappings();
@@ -70,7 +70,7 @@ namespace Oragon.Architecture.LogEngine.Mapping
 		
 	}
 	
-	public partial class TagMapper : ClassMap<Oragon.Architecture.LogEngine.Entity.Tag>
+	public partial class TagMapper : ClassMap<Oragon.Architecture.LogEngine.Business.Entity.Tag>
 	{
 
 		partial void CompleteMappings();
@@ -95,7 +95,7 @@ namespace Oragon.Architecture.LogEngine.Mapping
 		
 	}
 	
-	public partial class TagValueMapper : ClassMap<Oragon.Architecture.LogEngine.Entity.TagValue>
+	public partial class TagValueMapper : ClassMap<Oragon.Architecture.LogEngine.Business.Entity.TagValue>
 	{
 
 		partial void CompleteMappings();

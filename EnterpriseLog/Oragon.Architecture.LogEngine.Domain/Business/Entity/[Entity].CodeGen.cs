@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Oragon.Architecture.LogEngine.Entity
+namespace Oragon.Architecture.LogEngine.Business.Entity
 {
 
 	public class EntityBase: Oragon.Architecture.Business.Entity

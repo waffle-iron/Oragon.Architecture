@@ -20,14 +20,14 @@ using System.Linq.Expressions;
 using Oragon.Architecture.Data.Process;
 
 
-namespace <#=NameSpace#>.Process
+namespace <#=NameSpace#>.Data.Process
 {
-	public sealed class PersistenceDataProcess : PersistenceDataProcessBase<<#=NameSpace#>.Entity.EntityBase> { }
+	internal sealed class PersistenceDataProcess : PersistenceDataProcessBase<<#=NameSpace#>.Business.Entity.EntityBase> { }
 
 <#	foreach (Entity currentEntity in domain.Entities)
 	{
 #>
-	public partial class <#= currentEntity.Name #>DataProcess : QueryDataProcess<<#=NameSpace#>.Entity.<#=currentEntity.Name#>>
+	internal partial class <#= currentEntity.Name #>DataProcess : QueryDataProcess<<#=NameSpace#>.Business.Entity.<#=currentEntity.Name#>>
 	{
 		
 

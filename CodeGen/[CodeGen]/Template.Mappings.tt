@@ -33,10 +33,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml.Serialization;
-using <#=NameSpace#>.Entity;
+using <#=NameSpace#>.Business.Entity;
 using FluentNHibernate.Mapping;
 
-namespace <#=NameSpace#>.Mapping
+namespace <#=NameSpace#>.Architecture.Mapping
 {
 <#	foreach (Oragon.CodeGen.MetaData.Domain.Entity currentEntity in domain.Entities)
 	{
@@ -44,7 +44,7 @@ namespace <#=NameSpace#>.Mapping
 
 #>
 	
-	public partial class <#= currentEntity.Name #>Mapper : ClassMap<<#=NameSpace#>.Entity.<#= currentEntity.Name #>>
+	public partial class <#= currentEntity.Name #>Mapper : ClassMap<<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>>
 	{
 
 		partial void CompleteMappings();

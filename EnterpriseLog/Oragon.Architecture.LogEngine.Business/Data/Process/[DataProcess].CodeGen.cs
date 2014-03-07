@@ -4,26 +4,26 @@ using System.Linq.Expressions;
 using Oragon.Architecture.Data.Process;
 
 
-namespace Oragon.Architecture.LogEngine.Process
+namespace Oragon.Architecture.LogEngine.Data.Process
 {
-	public sealed class PersistenceDataProcess : PersistenceDataProcessBase<Oragon.Architecture.LogEngine.Entity.EntityBase> { }
+	internal sealed class PersistenceDataProcess : PersistenceDataProcessBase<Oragon.Architecture.LogEngine.Business.Entity.EntityBase> { }
 
-	public partial class LevelDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Entity.Level>
+	internal partial class LevelDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Business.Entity.Level>
 	{
 		
 
 	}
-	public partial class LogEntryDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Entity.LogEntry>
+	internal partial class LogEntryDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Business.Entity.LogEntry>
 	{
 		
 
 	}
-	public partial class TagDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Entity.Tag>
+	internal partial class TagDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Business.Entity.Tag>
 	{
 		
 
 	}
-	public partial class TagValueDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Entity.TagValue>
+	internal partial class TagValueDataProcess : QueryDataProcess<Oragon.Architecture.LogEngine.Business.Entity.TagValue>
 	{
 		
 
