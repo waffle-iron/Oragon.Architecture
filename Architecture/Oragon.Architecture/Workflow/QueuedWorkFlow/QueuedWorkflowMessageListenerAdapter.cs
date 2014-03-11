@@ -24,17 +24,26 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		private volatile bool immediatePublish;
 		private volatile IMessagePropertiesConverter messagePropertiesConverter = new DefaultMessagePropertiesConverter();
 
+		public IAmqpAdmin AmqpAdmin { get; set; }
+		public string AmqpQueuePrefix { get; set; }
+		public string AmqpExchangePrefix { get; set; }
+
 		public object HandlerObject { get; set; }
 
 		public string Encoding { get; set; }
 
 		public string DefaultListenerMethod { get; set; }
 
-		public string ResponseRoutingKey { get; set; }
-		public string ResponseExchange { get; set; }
 
-		public string ResponseFailureRoutingKey { get; set; }
-		public string ResponseFailureExchange { get; set; }
+		public Spring.Messaging.Amqp.Core.TopicExchange Exchange { get; private set; }
+
+		public Spring.Messaging.Amqp.Core.Queue ReceiveQueue { get; private set; }
+
+		public Spring.Messaging.Amqp.Core.Binding ReceiveBinding { get; private set; }
+
+		public Spring.Messaging.Amqp.Core.Binding ResponseBinding { get; private set; }
+
+		public Spring.Messaging.Amqp.Core.Binding ResponseFailureBinding { get; private set; }
 
 		public IMessageConverter MessageConverter { get; set; }
 
@@ -83,6 +92,78 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 		}
 
+		private string getQueueName(string queueName)
+		{
+			string returnValue = string.Format("{0}{1}", this.AmqpQueuePrefix, queueName);
+			return returnValue;
+		}
+
+		private string getExchangeName(string exchangeName)
+		{
+			string returnValue = string.Format("{0}{1}", this.AmqpExchangePrefix, exchangeName);
+			return returnValue;
+		}
+
+		public void Configure(QueuedTransition queuedTransition, QueuedTransition nextQueuedTransition, bool createZombieQueues)
+		{
+			//Criando Exchange Default
+			this.Exchange = new Spring.Messaging.Amqp.Core.TopicExchange(this.getExchangeName(queuedTransition.ExchangeName), true, false);
+			this.AmqpAdmin.DeclareExchange(this.Exchange);
+
+			//Queue de recebimento (Fila Principal)
+			this.ReceiveQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Process", true, false, false);
+			this.AmqpAdmin.DeclareQueue(this.ReceiveQueue);
+
+			//Binding Entre a Exchange e a Fila
+			this.ReceiveBinding = new Binding(this.ReceiveQueue.Name, Binding.DestinationType.Queue, this.Exchange.Name, queuedTransition.BuildRoutingKey(), null);
+			this.AmqpAdmin.DeclareBinding(this.ReceiveBinding);
+
+			if (createZombieQueues)
+			{
+				//Ao criar uma fila Zumbi, não é necessário realizar operação alguma, apenas configurar o binding. As mensagens na fila zumbi são acumuladas sem consumo.
+				//Zombie
+				var zombieQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Zombie", true, false, false);
+				this.AmqpAdmin.DeclareQueue(zombieQueue);
+
+				var zombieBinding = new Binding(zombieQueue.Name, Binding.DestinationType.Queue, this.Exchange.Name, queuedTransition.BuildRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(zombieBinding);
+			}
+
+			if (nextQueuedTransition != null)
+			{
+				var responseQueueName = this.getQueueName(queuedTransition.LogicalQueueName) + ".Process";
+				var responseExchangeName = this.getExchangeName(nextQueuedTransition.ExchangeName);
+				var responseRoutingKey = nextQueuedTransition.BuildRoutingKey();
+
+				//Esse Binding não é criado no Rabbit, é usado pela infraestrutura. Estamos usando o modelo de binding pois é o mais correto para armazenar esta informação
+				this.ResponseBinding = new Binding(
+					string.Empty,
+					Binding.DestinationType.Queue,
+					responseExchangeName,
+					responseRoutingKey,
+					null);
+			}
+
+			if (queuedTransition.Strategy == ExceptionStrategy.SendToErrorQueue)
+			{
+				//Failure
+				var failureQueue = new Queue(this.getQueueName(queuedTransition.LogicalQueueName) + ".Failure", true, false, false);
+				this.AmqpAdmin.DeclareQueue(failureQueue);
+
+				this.ResponseFailureBinding = new Binding(failureQueue.Name, Binding.DestinationType.Queue, this.Exchange.Name, queuedTransition.BuildFailureRoutingKey(), null);
+				this.AmqpAdmin.DeclareBinding(this.ResponseFailureBinding);
+			}
+			else if (queuedTransition.Strategy == ExceptionStrategy.Requeue)
+			{
+				this.ResponseFailureBinding = this.ReceiveBinding;
+			}
+			else if (queuedTransition.Strategy == ExceptionStrategy.SendToNextStepQueue)
+			{
+				this.ResponseFailureBinding = this.ResponseBinding;
+			}
+
+		}
+
 		public void OnMessage(Message message, IModel channel)
 		{
 			object messageObject = this.ExtractMessage(message);
@@ -96,7 +177,15 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				object messageToSend = invokeResult.HasValue ? invokeResult.ReturnedValue : messageObject;
 				this.HandleSuccessResult(messageToSend, message, channel);
 			}
-			else if (invokeResult.Exception is FlowRejectAndRequeueException)
+			else if (
+					(invokeResult.Exception != null)
+					&&
+					(
+						(invokeResult.Exception is FlowRejectAndRequeueException)
+						||
+						(invokeResult.Exception.InnerException != null && invokeResult.Exception.InnerException is FlowRejectAndRequeueException)
+					)
+				)
 			{
 				this.HandleRequeueResult(messageObject, message, channel);
 			}
@@ -109,11 +198,11 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		protected virtual void InitDefaultStrategies()
 		{
 			this.DefaultListenerMethod = "HandleMessage";
-			this.ResponseRoutingKey = string.Empty;
-			this.ResponseExchange = string.Empty;
-			this.ResponseFailureRoutingKey = string.Empty;
-			this.ResponseFailureExchange = string.Empty;
-
+			this.Exchange = null;
+			this.ReceiveQueue = null;
+			this.ReceiveBinding = null;
+			this.ResponseBinding = null;
+			this.ResponseFailureBinding = null;
 			this.Encoding = "UTF-8";
 			this.MessageConverter = new SimpleMessageConverter();
 		}
@@ -208,21 +297,27 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 
 		protected virtual void HandleSuccessResult(object messageToSend, Message request, IModel channel)
 		{
-			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
-			this.HandleResult(messageToSend, request, channel, replyToAddress);
+			if (this.ResponseBinding != null)
+			{
+				Address replyToAddress = new Address(null, this.ResponseBinding.Exchange, this.ResponseBinding.RoutingKey);
+				this.HandleResult(messageToSend, request, channel, replyToAddress);
+			}
 		}
 
 		protected virtual void HandleRequeueResult(object messageToSend, Message request, IModel channel)
 		{
-			Address replyToAddress = new Address(null, this.ResponseExchange, this.ResponseRoutingKey);
-			this.HandleResult(messageToSend, request, channel, replyToAddress);
+			if (this.ReceiveBinding != null)
+			{
+				Address replyToAddress = new Address(null, this.ReceiveQueue.Name, string.Empty);
+				this.HandleResult(messageToSend, request, channel, replyToAddress);
+			}
 		}
 
 		protected virtual void HandleFailureResult(object messageToSend, Message request, IModel channel)
 		{
-			if (string.IsNullOrWhiteSpace(this.ResponseFailureExchange) == false && string.IsNullOrWhiteSpace(this.ResponseFailureRoutingKey) == false)
+			if (this.ResponseFailureBinding != null)
 			{
-				Address replyToAddress = new Address(null, this.ResponseFailureExchange, this.ResponseFailureRoutingKey);
+				Address replyToAddress = new Address(null, this.ResponseFailureBinding.Exchange, this.ResponseFailureBinding.RoutingKey);
 				this.HandleResult(messageToSend, request, channel, replyToAddress);
 			}
 		}
@@ -275,6 +370,8 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		protected virtual void PostProcessChannel(IModel channel, Message response)
 		{
 		}
-	}
 
+
+
+	}
 }

@@ -7,7 +7,7 @@ using System.Text;
 namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 {
 	[Serializable]
-	public class FlowRejectAndRequeueException : Exception
+	public class FlowRejectAndRequeueException : Oragon.Architecture.Business.BusinessException
 	{
 		//
 		// For guidelines regarding the creation of new exception types, see
