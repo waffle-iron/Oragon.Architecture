@@ -90,18 +90,18 @@
             </summary>
             <returns>Lista com ocorrência de T.</returns>
         </member>
-        <member name="T:Oragon.Architecture.ExtMethods.OragonExtMethods">
+        <member name="T:Oragon.Architecture.Extensions.OragonExtensions">
             <summary>
             Classe contendo extension methods para objetos Expression.
             </summary>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             Concatena duas expressões lambda que retornam bool.
             </summary>
             <returns>Retorna uma expressão lambda com o retorno sendo o AND lógico das duas expressões.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToExpression(System.String,System.Linq.Expressions.ParameterExpression)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToExpression(System.String,System.Linq.Expressions.ParameterExpression)">
             <summary>
             Converte um objeto String para um objeto MemberExpression.
             </summary>
@@ -109,7 +109,7 @@
             <param name="p">Parâmetro de entrada do objeto Expression.</param>
             <returns>Uma expressão referente ao membro </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsValidEmailAddress(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsValidEmailAddress(System.String)">
             <summary>
             true, if is valid email address
             from http://www.davidhayden.com/blog/dave/
@@ -118,7 +118,7 @@
             <param name="s">email address to test</param>
             <returns>true, if is valid email address</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsValidUrl(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsValidUrl(System.String)">
             <summary>
             Checks if url is valid. 
             from http://www.osix.net/modules/article/?id=586 and changed to match http://localhost
@@ -129,7 +129,7 @@
             <param name="text"></param>
             <returns></returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Reduce(System.String,System.Int32,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Reduce(System.String,System.Int32,System.String)">
             <summary>
             Reduce string to shorter preview which is optionally ended by some string (...).
             </summary>
@@ -143,7 +143,7 @@
             </example>
             <returns></returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.RemoveSpaces(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.RemoveSpaces(System.String)">
             <summary>
             remove white space, not line end
             Useful when parsing user input such phone,
@@ -152,21 +152,21 @@
             <param name="s"></param>
             <param name="value">string without spaces</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CamelCase(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CamelCase(System.String)">
             <summary>
             Aplica Camel Case em uma determinada string
             </summary>
             <param name="text"></param>
             <returns></returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CamelCaseSpecial(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CamelCaseSpecial(System.String)">
             <summary>
             Aplica Camel Case em uma determinada string
             </summary>
             <param name="text"></param>
             <returns></returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ApplyPattern(System.String,System.Func{System.String,System.String},System.Func{System.String,System.String})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ApplyPattern(System.String,System.Func{System.String,System.String},System.Func{System.String,System.String})">
             <summary>
             Aplica padrões diferenciados para primeira letra e resto em uma determinada senteñça string
             </summary>
@@ -175,7 +175,7 @@
             <param name="rest"></param>
             <returns></returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IfFalse(System.Boolean,System.Action)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IfFalse(System.Boolean,System.Action)">
             <id>F396C490-9448-475D-B3A9-FBAE682FDBB7</id>
             <summary>
                 A bool extension method that execute an Action if the value is false.
@@ -183,7 +183,7 @@
             <param name="this">The @this to act on.</param>
             <param name="action">The action to execute.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IfTrue(System.Boolean,System.Action)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IfTrue(System.Boolean,System.Action)">
             <id>42AB63B0-0D36-46FF-942F-2B10AE4517BD</id>
             <summary>
                 A bool extension method that execute an Action if the value is true.
@@ -191,7 +191,7 @@
             <param name="this">The @this to act on.</param>
             <param name="action">The action to execute.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToBinary(System.Boolean)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBinary(System.Boolean)">
             <id>51D65862-B68C-4DFB-9832-B0B1A01A4D94</id>
             <summary>
                 A bool extension method that convert this object into a binary representation. If the value is true then 1
@@ -200,7 +200,7 @@
             <param name="this">The @this to act on.</param>
             <returns>1 if true, otherwise 0.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToBase64String(System.Byte[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBase64String(System.Byte[])">
             <id>0A7CF05C-57BC-40DA-A118-CCB7B725A876</id>
             <summary>
                 A byte[] extension method that converts an array of 8-bit unsigned integers to its equivalent string
@@ -211,7 +211,7 @@
                 The string representation of the array of 8-bit unsigned integers that is encoded with base-64 digits.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Repeat(System.Char,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Repeat(System.Char,System.Int32)">
             <id>FBC766DD-6FBB-4A55-B140-091A97E0DCD7</id>
             <summary>
                 A char extension method that repeats a character a number of times.
@@ -220,7 +220,7 @@
             <param name="repeatCount">Number of repeats.</param>
             <returns>The repeated char.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0)">
             <id>1E68FC76-A3C5-4E0D-976F-01C0987A2853</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds only if the value satisfies the predicate.
@@ -230,7 +230,7 @@
             <param name="predicate">The predicate.</param>
             <param name="value">The value.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
             <id>2A5B3D49-6F76-40B9-B3DC-85E6180E470B</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that add value if the ICollection doesn't contains it already.
@@ -239,7 +239,7 @@
             <param name="this">The @this to act on.</param>
             <param name="value">The value.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
             <id>CABCC442-7134-4FCA-AA4E-1640FAD01D42</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a range to 'values'.
@@ -248,7 +248,7 @@
             <param name="this">The @this to act on.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <id>12B9A95F-E047-44E6-B616-8B0AFC14E63E</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a range to 'values'.
@@ -257,7 +257,7 @@
             <param name="this">The @this to act on.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
             <id>DC6B42E9-C0F7-47FE-819D-CF47862B7E72</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
@@ -268,7 +268,7 @@
             <param name="predicate">The predicate.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
             <id>6208839E-FA33-451C-A517-FB5BE3295DC1</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
@@ -279,7 +279,7 @@
             <param name="predicate">The predicate.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
             <id>10C069F2-BAC4-4E79-A06D-5917D52E1A11</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that query if the collection is empty
@@ -288,7 +288,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if empty&lt; t&gt;, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
             <id>B94EF527-52D6-4281-93DA-EC2A35C98C5B</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that query if the collection is not empty.
@@ -297,7 +297,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if not empty&lt; t&gt;, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
             <id>F669FCDB-0DE9-4E32-9F21-F81ECEE546B3</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that queries if the collection is not (null or is empty).
@@ -306,7 +306,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if the collection is not (null or empty), false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
             <id>2709E4AA-6C22-4A4A-A24B-B056E21AF3FD</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that queries if the collection is null or is empty.
@@ -315,7 +315,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if null or empty&lt; t&gt;, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryRemove``1(System.Collections.Generic.ICollection{``0},``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``1(System.Collections.Generic.ICollection{``0},``0)">
             <id>10D077CC-724F-4B46-949B-D5A3430567BD</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that try remove the value.
@@ -325,7 +325,7 @@
             <param name="value">The value.</param>
             <returns>true if it succeeds, false if it fails.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <id>1F9109F9-1D9F-4D67-B03F-F179FB6ECF44</id>
             <summary>
                 Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
@@ -339,7 +339,7 @@
             <param name="value">The value to be added or updated.</param>
             <returns>The new value for the key.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
             <id>6466eba0-1951-4758-b848-fdcfb1a8b157</id>
             <summary>
                 Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
@@ -360,7 +360,7 @@
                 updateValueFactory (if the key was present).
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
             <id>1eeb3843-be83-46e2-9505-0f9ad35c3839</id>
             <summary>
                 Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
@@ -378,7 +378,7 @@
                 the result of updateValueFactory (if the key was present).
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <id>EFC83FA9-66A6-491E-81D2-4584F8B9B0DB</id>
             <summary>
                 Adds a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does not already exist.
@@ -393,7 +393,7 @@
                 dictionary, or the new value if the key was not in the dictionary.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
             <id>D184638F-80A2-4C6D-B7C4-C3EBAC8EF701</id>
             <summary>
                 Adds a key/value pair to the IDictionary&lt;TKey, TValue&gt; by using the specified function, if the key does
@@ -409,7 +409,7 @@
                 dictionary, or the new value for the key as returned by valueFactory if the key was not in the dictionary.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <id>C987643D-016C-40FB-9C51-FFCCE3D0E003</id>
             <summary>
                 Attempts to add the specified key and value to the IDictionary&lt;TKey, TValue&gt;.
@@ -424,7 +424,7 @@
                 already exists.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryGetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryGetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
             <id>90D31FDC-E67B-4207-B406-F323F4ECA101</id>
             <summary>
                 Attempts to get the value associated with the specified key from the IDictionary&lt;TKey, TValue&gt;.
@@ -439,7 +439,7 @@
             </param>
             <returns>true if the key was found in the IDictionary&lt;TKey, TValue&gt;, otherwise, false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
             <id>61BC3034-0065-41CA-93F0-90675EBCDBCE</id>
             <summary>
                 Attempts to remove and return the value that has the specified key from the IDictionary&lt;TKey, TValue&gt;.
@@ -454,7 +454,7 @@
             </param>
             <returns>true if the object was removed successfully; otherwise, false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
             <id>598EBF44-99CF-4680-BB0D-C63BB2A6CA6E</id>
             <summary>
                 Attempts to remove and that has the specified key from the IDictionary&lt;TKey, TValue&gt;.
@@ -465,7 +465,7 @@
             <param name="key">The key of the element to remove.</param>
             <returns>true if the object was removed successfully; otherwise, false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <id>B5F64F21-3ADC-4955-B5C8-DE53D06F81F8</id>
             <summary>
                 Attempts to update the specified key and value to the IDictionary&lt;TKey, TValue&gt;.
@@ -477,7 +477,7 @@
             <param name="value">The value that replaces the value of the element that has the specified key.</param>
             <returns>true if the value has been replaced in the IDictionary&lt;TKey, TValue&gt; otherwise, false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,``1)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,``1)">
             <id>4B36C1E9-27A6-4A7F-9A1D-F1339A69B680</id>
             <summary>
                 Compares the existing value for the specified key with a specified value, and if they are equal, updates the key with a third value.
@@ -490,7 +490,7 @@
             <param name="comparisonValue">The value that is compared to the value of the element that has the specified key.</param>
             <returns>true if the value with key was equal to comparisonValue and was replaced with newValue; otherwise, false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EmptyIfNull``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EmptyIfNull``1(System.Collections.Generic.IEnumerable{``0})">
             <id>DF9E904B-35CA-4507-A7B3-CA4DC88A7B86</id>
             <summary>
                 If the IEnumerable is null than return an empty IEnumerable.
@@ -499,7 +499,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The IEnumerable when not null, otherwise an empty IEnumerable.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
             Perform ForEach in enumerable Itens
             </summary>
@@ -508,7 +508,7 @@
             <param name="predicate">Expression to execute</param>
             <returns>Same Enumerable</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ForEach(System.Collections.IEnumerable,System.Action{System.Object})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ForEach(System.Collections.IEnumerable,System.Action{System.Object})">
             <summary>
             Perform ForEach in enumerable Itens
             </summary>
@@ -516,7 +516,7 @@
             <param name="predicate">Expression to execute</param>
             <returns>Same Enumerable</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <id>10C069F2-BAC4-4E79-A06D-5917D52E1A11</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that query if the collection is empty
@@ -525,7 +525,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if empty&lt; t&gt;, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
             <id>4C6147B5-7CCB-4E45-9611-11B86ADA8CB8</id>
             <summary>
                 Concatenates all the elements of a IEnumerable, using the specified separator between each element.
@@ -541,7 +541,7 @@
                 the method returns String.Empty.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToHashtable(System.Collections.IDictionary)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToHashtable(System.Collections.IDictionary)">
             <id>EFACAC99-249F-4906-8CFB-2E86FF6619A1</id>
             <summary>
                 An IDictionary extension method that converts the @this to a hashtable.
@@ -549,7 +549,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a Hashtable.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteBoolean(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteBoolean(System.Data.Common.DbCommand)">
             <id>EB25EAB5-E9C9-411B-8F25-03680A4F3B3C</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -561,7 +561,7 @@
                 column of the first row in the result set. If the value equal DBNull.Value, throw an exception.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteDateTime(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDateTime(System.Data.Common.DbCommand)">
             <id>BCD73DDC-D23E-4704-89BF-DD2796DA341C</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -573,7 +573,7 @@
                 value equal DBNull.Value, throw an exception.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteDouble(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDouble(System.Data.Common.DbCommand)">
             <id>FE31ABF6-0798-4D22-9379-C8D35A0A9B46</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -585,7 +585,7 @@
                 result set. If the value equal DBNull.Value, throw an exception.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteInt(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteInt(System.Data.Common.DbCommand)">
             <id>1A5D8B3E-C8CA-4AE7-9CDC-B51413319251</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -597,7 +597,7 @@
                 value equal DBNull.Value, throw an exception.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteNullableBoolean(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableBoolean(System.Data.Common.DbCommand)">
             <id>B14E9F9E-29AE-4D8D-BFC5-88DF82444494</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -609,7 +609,7 @@
                 column of the first row in the result set. If the value equal DBNull.Value, return null.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteNullableDateTime(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableDateTime(System.Data.Common.DbCommand)">
             <id>112FF174-72ED-40F4-8709-F77D06D24261</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -621,7 +621,7 @@
                 value equal DBNull.Value, return null.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteNullableDouble(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableDouble(System.Data.Common.DbCommand)">
             <id>4BCDD931-24A6-4728-A56A-B3D664A722E3</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -633,7 +633,7 @@
                 result set. If the value equal DBNull.Value, return null.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteNullableInt(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableInt(System.Data.Common.DbCommand)">
             <id>C4E80BF0-146D-41A6-81FE-B502A96BCEC8</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -645,7 +645,7 @@
                 value equal DBNull.Value, return null.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteString(System.Data.Common.DbCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteString(System.Data.Common.DbCommand)">
             <id>F6200813-2B43-462E-8511-CF763DE05EA7</id>
             <summary>
                 Executes the query, and returns the first column of the first row in the result set returned by the query as
@@ -657,7 +657,7 @@
                 empty.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AddRange(System.Data.DataColumnCollection,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange(System.Data.DataColumnCollection,System.String[])">
             <id>42ACF5FE-402B-4B66-9F97-CFFF04CBF09C</id>
             <summary>
                 A DataColumnCollection extension method that adds a range of columns with the specified values.
@@ -665,7 +665,7 @@
             <param name="this">The @this to act on.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AsEnumerable(System.Data.DataColumnCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataColumnCollection)">
             <id>E3F7A75F-F5A9-47C2-BC2C-BF2562BBAC9D</id>
             <summary>
                 A DataColumnCollection extension method that enumerables the given object.
@@ -673,7 +673,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The IEnumerable object.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToList(System.Data.DataColumnCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataColumnCollection)">
             <id>46D812BA-C9CE-476A-B1E6-C3E6E59B5630</id>
             <summary>
                 A DataColumnCollection extension method that converts an obj to a list.
@@ -681,7 +681,7 @@
             <param name="this">The @this to act on.</param>
             <returns>obj as a List&lt;DataColumn&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AsEnumerable(System.Data.DataRowCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataRowCollection)">
             <id>BC14CECD-26C7-4F9D-866B-1B990A55DE4E</id>
             <summary>
                 A DataRowCollection extension method that converts the @this to an IEnumerable.
@@ -689,7 +689,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an IEnumerable.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToList(System.Data.DataRowCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataRowCollection)">
             <id>941128A8-415E-4EDF-ABDA-3734D41D3CC7</id>
             <summary>
                 A DataRowCollection extension method that converts the @this to a list.
@@ -697,7 +697,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a List&lt;DataRow&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.AsEnumerable(System.Data.DataTableCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataTableCollection)">
             <id>0F8B7690-B992-4278-A104-DC05AF97191D</id>
             <summary>
                 A DataTableCollection extension method that converts the @this to an IEnumerable.
@@ -705,7 +705,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an IEnumerable.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToList(System.Data.DataTableCollection)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataTableCollection)">
             <id>AA7134EC-AD33-4669-AC55-5EA7EF765373</id>
             <summary>
                 A DataTableCollection extension method that converts the @this to a list.
@@ -713,7 +713,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a List&lt;DataTable&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetSqlConnection(System.Data.SqlClient.SqlBulkCopy)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetSqlConnection(System.Data.SqlClient.SqlBulkCopy)">
             <id>25F8D0EB-2F45-4520-A921-028048E04DD5</id>
             <summary>
                 A SqlBulkCopy extension method that return the SqlConnection from the SqlBulkCopy.
@@ -721,7 +721,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The SqlConnection from the SqlBulkCopy.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetTransaction(System.Data.SqlClient.SqlBulkCopy)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetTransaction(System.Data.SqlClient.SqlBulkCopy)">
             <id>42B25882-5BC7-4550-8451-551AEFE517DC</id>
             <summary>
                 A SqlBulkCopy extension method that return the SqlTransaction from the SqlBulkCopy.
@@ -729,7 +729,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The SqlTransaction from the SqlBulkCopy.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteDataSet(System.Data.SqlClient.SqlCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDataSet(System.Data.SqlClient.SqlCommand)">
             <id>169EFAF3-CEDD-4598-9682-DFF96A04CB6F</id>
             <summary>
                 Executes the query, and returns the result set as DataSet.
@@ -737,7 +737,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DataSet that is equivalent to the result set.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ExecuteDataTable(System.Data.SqlClient.SqlCommand)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDataTable(System.Data.SqlClient.SqlCommand)">
             <id>D7EBF08E-DD54-4E87-BB26-9E04F7614257</id>
             <summary>
                 Executes the query, and returns the first result set as DataTable.
@@ -745,7 +745,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DataTable that is equivalent to the first result set.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EndOfDay(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfDay(System.DateTime)">
             <id>A9DB7F39-68F3-4D7F-91ED-BA3A09AE46E7</id>
             <summary>
                 A DateTime extension method that return a DateTime with the time set to "23:59:59:999". The last moment of the
@@ -754,7 +754,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the day with the time set to "23:59:59".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EndOfMonth(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfMonth(System.DateTime)">
             <id>A761EBA2-B2B5-4423-8BA4-45DD170DCD5D</id>
             <summary>
                 A DateTime extension method that return a DateTime of the last day of the month with the time set to
@@ -763,7 +763,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the last day of the month with the time set to "23:59:59:999".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EndOfYear(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfYear(System.DateTime)">
             <id>3F524D27-83EB-45C1-B34C-FE7AAFABCCA2</id>
             <summary>
                 A DateTime extension method that return a DateTime of the last day of the year with the time set to
@@ -772,7 +772,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the last day of the year with the time set to "23:59:59:999".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsFuture(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsFuture(System.DateTime)">
             <id>86A7D93D-B244-4876-848E-3C2EF5E966B5</id>
             <summary>
                 A DateTime extension method that query if '@this' is in the future.
@@ -780,7 +780,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if the value is in the future, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsPast(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsPast(System.DateTime)">
             <id>A7FFEED4-7D2A-4923-BE26-CEDDC5692A5E</id>
             <summary>
                 A DateTime extension method that query if '@this' is in the past.
@@ -788,7 +788,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if the value is in the past, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsWeekDay(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsWeekDay(System.DateTime)">
             <id>04A869C9-C538-435B-A75C-EF4793E7E8D4</id>
             <summary>
                 A DateTime extension method that query if '@this' is a week day.
@@ -796,7 +796,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if '@this' is a week day, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsWeekendDay(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsWeekendDay(System.DateTime)">
             <id>83197779-D3C5-482B-82ED-B9992801C430</id>
             <summary>
                 A DateTime extension method that query if '@this' is a weekend day.
@@ -804,7 +804,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if '@this' is a weekend day, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.StartOfDay(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfDay(System.DateTime)">
             <id>527916DE-B3C5-451B-A50B-E1EC6734A568</id>
             <summary>
                 A DateTime extension method that return a DateTime with the time set to "00:00:0". The first moment of the
@@ -813,7 +813,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the day with the time set to "00:00:00".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.StartOfMonth(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfMonth(System.DateTime)">
             <id>08493F86-5D63-4BA3-826A-25A9CF4545D5</id>
             <summary>
                 A DateTime extension method that return a DateTime of the first day of the month with the time set to
@@ -822,7 +822,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the first day of the month with the time set to "00:00:00".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.StartOfYear(System.DateTime)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfYear(System.DateTime)">
             <id>38C24938-FB6F-4E82-ABE6-E717AAD74CA8</id>
             <summary>
                 A DateTime extension method that return a DateTime of the first day of the year with the time set to
@@ -831,7 +831,7 @@
             <param name="this">The @this to act on.</param>
             <returns>A DateTime of the first day of the year with the time set to "00:00:00".</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Cut(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Cut(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
             <id>15F029B4-36FB-49E7-A7DC-EA063AC4C6A3</id>
             <summary>
                 An Image extension method that cuts an image.
@@ -843,7 +843,7 @@
             <param name="y">The y coordinate.</param>
             <returns>The cutted image.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Scale(System.Drawing.Image,System.Double)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Scale(System.Drawing.Image,System.Double)">
             <id>6EFD4348-77DF-49D9-AB9B-A838F9921B18</id>
             <summary>
                 An Image extension method that scales an image to the specific ratio.
@@ -852,7 +852,7 @@
             <param name="ratio">The ratio.</param>
             <returns>The scaled image to the specific ratio.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Scale(System.Drawing.Image,System.Int32,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Scale(System.Drawing.Image,System.Int32,System.Int32)">
             <id>D1432151-54D8-4F0F-AADF-FC2B0F78DA5E</id>
             <summary>
                 An Image extension method that scales an image to a specific with and height.
@@ -862,7 +862,7 @@
             <param name="height">The height.</param>
             <returns>The scaled image to the specific width and height.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetFolderPath(System.Environment.SpecialFolder)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetFolderPath(System.Environment.SpecialFolder)">
             <id>EEA5D334-A3AD-4904-B44D-240A7E7B25E3</id>
             <summary>
                 An Environment.SpecialFolder extension method that gets folder path.
@@ -870,14 +870,14 @@
             <param name="this">this.</param>
             <returns>The folder path.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CreateDirectory(System.IO.DirectoryInfo)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateDirectory(System.IO.DirectoryInfo)">
             <id>915624AF-6812-40A3-9C8C-72A6A49474A9</id>
             <summary>
                 A DirectoryInfo extension method that creates a directory and all subdirectories.
             </summary>
             <param name="this">The @this to act on.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetFileNameWithoutExtension(System.IO.FileInfo)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetFileNameWithoutExtension(System.IO.FileInfo)">
             <id>03F50E06-048A-4D8E-B503-3DD5C420EB2C</id>
             <summary>
                 A FileInfo extension method that gets file name without extension.
@@ -885,7 +885,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The file name without extension.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReadToEnd(System.IO.FileInfo,System.Int64)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.FileInfo,System.Int64)">
             <id>998BC005-0960-410F-A0E3-D069141BAA3C</id>
             <summary>
                 A FileInfo extension method that reads the file to the end.
@@ -897,7 +897,7 @@
                 end of the stream, returns an empty string ("").
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReadToEnd(System.IO.Stream)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.Stream)">
             <id>C7AD1296-FA71-4F70-B22D-75E99B7B1C80</id>
             <summary>
                 A Stream extension method that reads a stream to the end.
@@ -908,7 +908,7 @@
                 end of the stream, returns an empty string ("").
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReadToEnd(System.IO.Stream,System.Int64)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.Stream,System.Int64)">
             <id>58212BE6-23B0-4701-B7AD-C9D9D3A92070</id>
             <summary>
                 A Stream extension method that reads a stream to the end.
@@ -920,7 +920,7 @@
                 end of the stream, returns an empty string ("").
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToByteArray(System.IO.Stream)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToByteArray(System.IO.Stream)">
             <id>635D9852-FF20-4DF8-B511-4F3B08103596</id>
             <summary>
                 A Stream extension method that converts the Stream to a byte array.
@@ -928,14 +928,14 @@
             <param name="this">The Stream to act on.</param>
             <returns>The Stream as a byte[].</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Send(System.Net.Mail.MailMessage)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Send(System.Net.Mail.MailMessage)">
             <id>AF13329F-7CB1-4448-8D6B-9FD6E0E22971</id>
             <summary>
                 A MailMessage extension method that send this message.
             </summary>
             <param name="this">The @this to act on.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SendAsync(System.Net.Mail.MailMessage,System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SendAsync(System.Net.Mail.MailMessage,System.Object)">
             <id>91D48A5D-6309-40C8-80C0-C838817C013A</id>
             <summary>
                 A MailMessage extension method that sends this message asynchronous.
@@ -943,7 +943,7 @@
             <param name="this">The @this to act on.</param>
             <param name="userToken">The user token.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetResponseSafe(System.Net.WebRequest)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetResponseSafe(System.Net.WebRequest)">
             <id>DDF8DE4A-A808-43FA-80FC-7BD1373F1A23</id>
             <summary>
                 A WebRequest extension method that gets the WebRequest response or the WebException response.
@@ -951,7 +951,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The WebRequest response or WebException response.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReadToEnd(System.Net.WebResponse)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.Net.WebResponse)">
             <id>0E9A8B95-F6BB-439C-AB8F-8127D689D066</id>
             <summary>
                 A WebResponse extension method that reads the response stream to the end.
@@ -959,7 +959,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The response stream as a string, from the current position to the end.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReadToEndAndDispose(System.Net.WebResponse)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEndAndDispose(System.Net.WebResponse)">
             <id>735E9495-5052-415E-8665-17CABEB8A1EB</id>
             <summary>
                 A WebRequest extension method that gets the WebRequest response and read the response stream.
@@ -967,7 +967,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The response stream as a string, from the current position to the end.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Between``1(``0,``0,``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Between``1(``0,``0,``0)">
             <id>6F239711-2522-49D9-8C6D-32B4EFF40093</id>
             <summary>
                 A T extension method that check if the value is between the minValue and maxValue.
@@ -978,7 +978,7 @@
             <param name="maxValue">The maximum value.</param>
             <returns>true if the value is between the minValue and maxValue, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Clone``1(``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Clone``1(``0)">
             <id>5C2EF3D3-2457-4861-88CB-A825A0F722F6</id>
             <summary>
                 A T extension method that makes a deep copy of this object.
@@ -987,7 +987,7 @@
             <param name="this">The @this to act on.</param>
             <returns>the copied object.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Coalesce``1(``0,``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Coalesce``1(``0,``0[])">
             <id>069C0CCC-26F8-41C4-B3B5-78D8F0C0DC93</id>
             <summary>
                 A T extension method that return the first not null occurence.
@@ -997,7 +997,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>The first not null occurence or null</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.In``1(``0,``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.In``1(``0,``0[])">
             <id>8B405D63-F5B5-4193-992D-5B2E703E2D15</id>
             <summary>
                 A T extension method to determines whether the object is equal to any of the provided values.
@@ -1017,7 +1017,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.In``1(``0,System.Collections.Generic.List{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.In``1(``0,System.Collections.Generic.List{``0})">
             <id>5E5B02F7-F65F-454F-8530-6917620F221A</id>
             <summary>
                 A T extension method to determines whether the object is equal to any of the provided values.
@@ -1038,7 +1038,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.InRange``1(``0,``0,``0)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.InRange``1(``0,``0,``0)">
             <id>5AD22F51-335B-4544-8528-D7A87A5CBFF0</id>
             <summary>
                 A T extension method that check if the value is between inclusively the minValue and maxValue.
@@ -1049,7 +1049,7 @@
             <param name="maxValue">The maximum value.</param>
             <returns>true if the value is between inclusively the minValue and maxValue, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNotNull(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNull(System.Object)">
             <id>624E8C82-F0EB-4699-8198-32FDE2746478</id>
             <summary>
                 An object extension method that query if '@this' is not null.
@@ -1067,7 +1067,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNull(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNull(System.Object)">
             <id>6103DD9E-8C79-4FC1-B976-2621D584C5AB</id>
             <summary>
                 An object extension method that query if '@this' is null.
@@ -1085,7 +1085,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.NotIn``1(``0,``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NotIn``1(``0,``0[])">
             <id>487370D2-5F68-4462-8EA9-4B194CB442C9</id>
             <summary>
                 A T extension method to determines whether the object is not equal to any of the provided values.
@@ -1105,7 +1105,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.NotIn``1(``0,System.Collections.Generic.List{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NotIn``1(``0,System.Collections.Generic.List{``0})">
             <id>1E2FC67A-1254-4293-83DC-DA838971492C</id>
             <summary>
                 A T extension method to determines whether the object is not equal to any of the provided values.
@@ -1126,7 +1126,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SerializeBinary(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SerializeBinary(System.Object)">
             <id>7D2C5D9B-D35A-45F3-84EF-4CF9854773F2</id>
             <summary>
                 An object extension method that serialize an object to binary.
@@ -1134,7 +1134,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The string representation of the binary serialization.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SerializeXml(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SerializeXml(System.Object)">
             <id>78C0CF79-8510-47A2-803D-232626C985CA</id>
             <summary>
                 An object extension method that serialize a string to XML.
@@ -1142,7 +1142,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The string representation of the Xml Serialization.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToBoolean(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBoolean(System.Object)">
             <id>9BCDD187-0372-4B95-819A-8B911FFEF8BC</id>
             <summary>
                 An object extension method that converts the @this to a boolean.
@@ -1150,7 +1150,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a bool.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToDateTime(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDateTime(System.Object)">
             <id>0FC3B318-F73B-449E-81DB-21DEB5DF948A</id>
             <summary>
                 An object extension method that converts the @this to a DateTime.
@@ -1158,7 +1158,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a DateTime.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToDouble(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDouble(System.Object)">
             <id>104274B2-6208-4C4A-B591-F57778FED433</id>
             <summary>
                 An object extension method that converts the @this to a Double.
@@ -1166,7 +1166,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a Double.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToInt(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToInt(System.Object)">
             <id>9F5259DF-C634-4947-AC43-1EAB9CC7B83E</id>
             <summary>
                 An object extension method that converts the @this to an int.
@@ -1174,7 +1174,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an int.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToNullableBoolean(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableBoolean(System.Object)">
             <id>09EE7AD6-9904-4E9A-8F76-9F909673E62B</id>
             <summary>
                 An object extension method that converts the @this to a nullable boolean.
@@ -1182,7 +1182,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a bool?</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToNullableDateTime(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableDateTime(System.Object)">
             <id>61788FDF-4214-401B-80BD-6126E8B06B13</id>
             <summary>
                 An object extension method that converts the @this to a nullable DateTime.
@@ -1190,7 +1190,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a DateTime?</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToNullableDouble(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableDouble(System.Object)">
             <id>D3FC5E54-2880-4A4D-AED7-485FF8270CFD</id>
             <summary>
                 An object extension method that converts the @this to a nullable Double.
@@ -1198,7 +1198,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a Double?</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToNullableInt(System.Object)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableInt(System.Object)">
             <id>31C8ECF8-F8C2-4B7C-BE31-AFB9EB133673</id>
             <summary>
                 An object extension method that converts the @this to a nullable int.
@@ -1206,7 +1206,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an int?</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CoinToss(System.Random)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CoinToss(System.Random)">
             <id>E26D9726-A2A6-402C-9ED1-234EF36615FC</id>
             <summary>
                 A Random extension method that flip a coin toss.
@@ -1214,7 +1214,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true 50% of time, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.OneOf``1(System.Random,``0[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.OneOf``1(System.Random,``0[])">
             <id>95E58958-F3FE-4F2E-ABE4-786788FF5DB8</id>
             <summary>
                 A Random extension method that return at random one of the value.
@@ -1224,7 +1224,7 @@
             <param name="values">A variable-length parameters list containing arguments.</param>
             <returns>One of the specified value.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.OneOf``1(System.Random,System.Collections.Generic.List{``0})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.OneOf``1(System.Random,System.Collections.Generic.List{``0})">
             <id>904DF1AC-D0E8-4850-B96F-146E435E5FF7</id>
             <summary>
                 A Random extension method that return at random one of the value.
@@ -1234,7 +1234,7 @@
             <param name="values">A variable-length parameters list containing arguments.</param>
             <returns>One of the specified value.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Contains(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Contains(System.String,System.String)">
             <id>EBD9B7B5-0B56-4868-9A62-04A9DF560D5E</id>
             <summary>
                 A string extension method that query if this object contains the given value.
@@ -1243,7 +1243,7 @@
             <param name="value">The value.</param>
             <returns>true if the value is in the string, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Contains(System.String,System.String,System.StringComparison)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Contains(System.String,System.String,System.StringComparison)">
             <id>9BE70BB5-D755-40EB-9733-94DA54E461F3</id>
             <summary>
                 A string extension method that query if this object contains the given value.
@@ -1253,7 +1253,7 @@
             <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
             <returns>true if the value is in the string, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ContainsAll(System.String,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAll(System.String,System.String[])">
             <id>D42CB5CB-3C08-431B-A376-AA3C7A70271C</id>
             <summary>
                 A string extension method that query if '@this' contains all values.
@@ -1262,7 +1262,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>true if it contains all values, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ContainsAll(System.String,System.StringComparison,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAll(System.String,System.StringComparison,System.String[])">
             <id>92ED25BB-09EA-47AE-8A3F-3A8F3A569479</id>
             <summary>
                 A string extension method that query if this object contains the given @this.
@@ -1272,7 +1272,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>true if the object is in this collection, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ContainsAny(System.String,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAny(System.String,System.String[])">
             <id>1B45ADFA-3C9D-4A5C-ACF3-4124147F3657</id>
             <summary>
                 A string extension method that query if '@this' contains any values.
@@ -1281,7 +1281,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>true if it contains any values, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ContainsAny(System.String,System.StringComparison,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAny(System.String,System.StringComparison,System.String[])">
             <id>A261555F-8A76-4BA6-A6C1-78619056A17D</id>
             <summary>
                 A string extension method that query if '@this' contains any values.
@@ -1291,7 +1291,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>true if it contains any values, otherwise false.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.DecodeBase64(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DecodeBase64(System.String)">
             <id>A008C7C0-9E85-41EF-9515-02FCDFF3DB8F</id>
             <summary>
                 A string extension method that decode a Base64 String.
@@ -1299,7 +1299,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The Base64 String decoded.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.DecryptRSA(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DecryptRSA(System.String,System.String)">
             <id>02D4806A-ADF8-4927-A7C2-CB537346B781</id>
             <summary>
                 A string extension method that decrypt a string.
@@ -1308,7 +1308,7 @@
             <param name="key">The key.</param>
             <returns>The decrypted string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.DeserializeBinary``1(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DeserializeBinary``1(System.String)">
             <id>5B08F5E4-76DA-496A-85F2-3933AAF0AF97</id>
             <summary>
                 A string extension method that deserialize a string binary as &lt;T&gt;.
@@ -1317,7 +1317,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The desrialize binary as &lt;T&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.DeserializeXml``1(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DeserializeXml``1(System.String)">
             <id>CA5382C8-6A5E-4F78-AFE3-FC77C4C06E2A</id>
             <summary>
                 A string extension method that deserialize an Xml as &lt;T&gt;.
@@ -1326,7 +1326,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The desieralize Xml as &lt;T&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EncodeBase64(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EncodeBase64(System.String)">
             <id>1F429948-DF8C-420D-94C1-508A53F3E51E</id>
             <summary>
                 A string extension method that encode the string to Base64.
@@ -1334,7 +1334,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The encoded string to Base64.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.EncryptRSA(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EncryptRSA(System.String,System.String)">
             <id>DC4B1713-41B5-48BB-BE4D-308FECE3DC02</id>
             <summary>
                 A string extension method that encrypts the string.
@@ -1343,7 +1343,7 @@
             <param name="key">The key.</param>
             <returns>The encrypted string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.FormatWith(System.String,System.Object[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FormatWith(System.String,System.Object[])">
             <id>883F4227-4DFE-4029-8831-99858EFDEB8F</id>
             <summary>
                 Replaces the format item in a specified String with the text equivalent of the value of a corresponding
@@ -1356,7 +1356,7 @@
                 instances of Object in args.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetAfter(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetAfter(System.String,System.String)">
             <id>EB254584-EAAA-4D73-A819-D38A2D41A35E</id>
             <summary>
                 A string extension method that get the string after the specified string.
@@ -1365,7 +1365,7 @@
             <param name="value">The value to search.</param>
             <returns>The string after the specified value.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetBefore(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetBefore(System.String,System.String)">
             <id>74A42366-148D-46AA-97A2-CC888CFF4C8B</id>
             <summary>
                 A string extension method that get the string before the specified string.
@@ -1374,7 +1374,7 @@
             <param name="value">The value to search.</param>
             <returns>The string before the specified value.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetBetween(System.String,System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetBetween(System.String,System.String,System.String)">
             <id>685006BD-7D08-4F4D-B5C7-EF766CCD6294</id>
             <summary>
                 A string extension method that get the string between the two specified string.
@@ -1384,7 +1384,7 @@
             <param name="after">The string after to search.</param>
             <returns>The string between the two specified string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.HtmlDecode(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.HtmlDecode(System.String)">
             <id>499D9E16-3964-4077-A8F9-288E7F3362A9</id>
             <summary>
                 A string extension method that Html decode a string and returns the decoded string..
@@ -1392,7 +1392,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The decoded string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.HtmlEncode(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.HtmlEncode(System.String)">
             <id>7DAD6857-0E4B-4B9B-99FD-1C764755831B</id>
             <summary>
                 A string extension method that Html encode a string and returns the encoded string.
@@ -1400,7 +1400,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The encoded string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsAlpha(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsAlpha(System.String)">
             <id>7D1901DF-B086-4623-81B6-494A618E0E0D</id>
             <summary>
                 A string extension method that query if '@this' is Alpha.
@@ -1408,7 +1408,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if Alpha, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsAlphaNumeric(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsAlphaNumeric(System.String)">
             <id>D8790C50-101F-44BA-8F7D-4723DFA0B0FF</id>
             <summary>
                 A string extension method that query if '@this' is Alphanumeric.
@@ -1416,7 +1416,7 @@
             <param name="this">The @this to act on.</param>
             <returns>true if Alphanumeric, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsLike(System.String,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsLike(System.String,System.String)">
             <id>A4B1426C-E86C-4D2A-9509-68BC55958B03</id>
             <summary>
                 A string extension method that query if '@this' satisfy the specified pattern.
@@ -1425,7 +1425,7 @@
             <param name="pattern">Specifies the pattern. Use '*' as wildcard string.</param>
             <returns>true if '@this' satisfy the specified pattern, false if not.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNotNullOrEmpty(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrEmpty(System.String)">
             <id>2C413A45-B812-46EE-8397-1DCD3DDE719C</id>
             <summary>
                 A string extension method that queries if '@this' is not (null or empty).
@@ -1443,7 +1443,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNotNullOrWhiteSpace(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrWhiteSpace(System.String)">
             <id>2C413A45-B812-46EE-8397-1DCD3DDE719D</id>
             <summary>
                 A string extension method that queries if '@this' is not (null or empty).
@@ -1461,7 +1461,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.IsNullOrEmpty(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNullOrEmpty(System.String)">
             <id>B753CACE-44FB-4367-BB41-F7BC2450663F</id>
             <summary>
                 A string extension method that queries if '@this' is null or is empty.
@@ -1479,7 +1479,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Left(System.String,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Left(System.String,System.Int32)">
             <id>37D8994E-550E-4E9C-B9D0-43B21FB464CF</id>
             <summary>
                 A string extension method that return the left part of the string.
@@ -1488,7 +1488,7 @@
             <param name="length">The length.</param>
             <returns>The left part</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.NullIfEmpty(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NullIfEmpty(System.String)">
             <id>52664028-724E-42FF-8972-6E5D5E1F7280</id>
             <summary>
                 A string extension method that return null if the value is empty else the value.
@@ -1496,7 +1496,7 @@
             <param name="this">The @this to act on.</param>
             <returns>null if the value is empty, otherwise the value.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.RemoveDiacritics(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.RemoveDiacritics(System.String)">
             <id>19D78243-923C-43EE-AF24-BE7B6490DEDB</id>
             <summary>
                 A string extension method that removes the diacritics character from the strings.
@@ -1504,7 +1504,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The string without diacritics character</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Repeat(System.String,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Repeat(System.String,System.Int32)">
             <id>8064BDCB-B453-48D0-B483-29C69766C842</id>
             <summary>
                 A string extension method that repeats.
@@ -1518,7 +1518,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReplaceEmpty(System.String,System.String[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReplaceEmpty(System.String,System.String[])">
             <id>C89C7A5D-7419-433A-8998-910D011A6D86</id>
             <summary>
                 A string extension method that replace all values specified by an empty string.
@@ -1527,7 +1527,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>A string with all specified values replaced by an empty string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ReplaceEmpty(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReplaceEmpty(System.String,System.Collections.Generic.List{System.String})">
             <id>19EBA9E1-3E0B-4ED1-AFE8-80C33C756FC9</id>
             <summary>
                 A string extension method that replace all values specified by an empty string.
@@ -1536,7 +1536,7 @@
             <param name="values">A variable-length parameters list containing values.</param>
             <returns>A string with all specified values replaced by an empty string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Reverse(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Reverse(System.String)">
             <id>7EF2717D-A5AA-45F5-AD50-47AB8AD046A7</id>
             <summary>
                 A string extension method that reverses the given string.
@@ -1544,7 +1544,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The string reversed</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Right(System.String,System.Int32)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Right(System.String,System.Int32)">
             <id>E1CE7FF3-A6CC-406A-B07A-0F537AF7C3B0</id>
             <summary>
                 A string extension method that return the right part of the string.
@@ -1553,7 +1553,7 @@
             <param name="length">The length.</param>
             <returns>The right part</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SaveAs(System.String,System.String,System.Boolean)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SaveAs(System.String,System.String,System.Boolean)">
             <id>00195CBF-C786-4433-AA59-6DA43DC97BFA</id>
             <summary>
                 A string extension method that save the string into a file.
@@ -1562,7 +1562,7 @@
             <param name="fileName">Filename of the file.</param>
             <param name="append">(Optional) if we should append to the file.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SaveAs(System.String,System.IO.FileInfo,System.Boolean)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SaveAs(System.String,System.IO.FileInfo,System.Boolean)">
             <id>705EA2EC-C899-4D6D-9456-C4B30DCFC311</id>
             <summary>
                 A string extension method that save the string into a file.
@@ -1571,7 +1571,7 @@
             <param name="file">The FileInfo.</param>
             <param name="append">(Optional) if we should append to the file.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Split(System.String,System.String,System.StringSplitOptions)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Split(System.String,System.String,System.StringSplitOptions)">
             <id>9B1E1652-78CD-484A-8F31-85ED53FEB84C</id>
             <summary>
                 Returns a String array containing the substrings in this string that are delimited by elements of a specified
@@ -1587,7 +1587,7 @@
                 An array whose elements contain the substrings in this string that are delimited by the separator.
             </returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToByteArray(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToByteArray(System.String)">
             <id>33F17764-49C7-47FB-B68D-FC0BACABE88C</id>
             <summary>
                 A string extension method that converts the @this to a byte array.
@@ -1595,7 +1595,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a byte[].</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToDirectoryInfo(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDirectoryInfo(System.String)">
             <id>39E6258C-FDDD-4F5B-8C5E-CB62BBBBD017</id>
             <summary>
                 A string extension method that converts the @this to a directory information.
@@ -1610,7 +1610,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToEnum``1(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToEnum``1(System.String)">
             <id>0BDBC3FE-C9D1-45BA-9887-D4089456FE2D</id>
             <summary>
                 A string extension method that converts the @this to an enum.
@@ -1619,7 +1619,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a T.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToFileInfo(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToFileInfo(System.String)">
             <id>6E1DAB07-346B-45C8-9FC5-93D4C6F841E7</id>
             <summary>
                 A string extension method that converts the @this to a file information.
@@ -1634,7 +1634,7 @@
                 </code>
             </example>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToMemoryStream(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToMemoryStream(System.String)">
             <id>98EFF073-5103-4E91-B52F-7273EDA7B560</id>
             <summary>
                 A string extension method that converts the @this to a MemoryStream.
@@ -1642,7 +1642,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a MemoryStream.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToWebRequest(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToWebRequest(System.String)">
             <id>1D6BCCD1-193E-492E-98BF-C5B8BB9E40E2</id>
             <summary>
                 A string extension method that converts the @this to a WebRequest.
@@ -1650,7 +1650,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as a WebRequest.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToXDocument(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToXDocument(System.String)">
             <id>54317AC2-378B-4108-B96B-55364F1AE69C</id>
             <summary>
                 A string extension method that converts the @this to a XDocument.
@@ -1658,7 +1658,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an XDocument.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.ToXmlDocument(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToXmlDocument(System.String)">
             <id>F1A1AC08-F3D2-4936-AB15-05C6E4EF86C0</id>
             <summary>
                 A string extension method that converts the @this to an XmlDocument.
@@ -1666,7 +1666,7 @@
             <param name="this">The @this to act on.</param>
             <returns>@this as an XmlDocument.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.UrlDecode(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UrlDecode(System.String)">
             <id>EB712E90-40C6-4DE0-96D8-67FE863C559B</id>
             <summary>
                 A string extension method that URL decode a string and returns the decoded string..
@@ -1674,7 +1674,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The decoded string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.UrlEncode(System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UrlEncode(System.String)">
             <id>E5F43DD5-F2AC-40CF-8CCC-B876DEFAC29A</id>
             <summary>
                 A string extension method that URL encode a string and returns the encoded string.
@@ -1682,7 +1682,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The encoded string.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.Ago(System.TimeSpan)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Ago(System.TimeSpan)">
             <id>D0E14815-9D53-4371-9B74-E32D8DC49EB9</id>
             <summary>
                 A TimeSpan extension method that substract the specified TimeStamp to the current DateTime.
@@ -1690,7 +1690,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The current DateTime with the specified TimeStamp substracted to it.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.FromNow(System.TimeSpan)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FromNow(System.TimeSpan)">
             <id>B6415F20-14E4-413F-A3F4-4C4E3E741B1A</id>
             <summary>
                 A TimeSpan extension method that add the specified TimeStamp to the current DateTime.
@@ -1698,7 +1698,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The current DateTime with the specified TimeStamp added to it.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.UtcAgo(System.TimeSpan)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UtcAgo(System.TimeSpan)">
             <id>0797CB82-8D8B-49E5-B3D3-83BB87C8A625</id>
             <summary>
                 A TimeSpan extension method that substract the specified TimeStamps to the current UTC (Coordinated Universal
@@ -1707,7 +1707,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The current UTC (Coordinated Universal Time) with the specified TimeStamp substracted to it.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.UtcFromNow(System.TimeSpan)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UtcFromNow(System.TimeSpan)">
             <id>5F2B17FA-546A-42CC-B11E-5FE27C17657B</id>
             <summary>
                 A TimeSpan extension method that add the specified TimeStamps to the current UTC (Coordinated Universal Time)
@@ -1715,7 +1715,7 @@
             <param name="this">The @this to act on.</param>
             <returns>The current UTC (Coordinated Universal Time) with the specified TimeStamp added to it.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CreateInstance(System.Type,System.Object[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateInstance(System.Type,System.Object[])">
             <id>3776A6DD-729E-4332-AC59-6D50A4B97CB4</id>
             <summary>
                 A Type extension method that creates an instance of the type.
@@ -1724,7 +1724,7 @@
             <param name="values">A variable-length parameters list containing arguments.</param>
             <returns>The new instance of the type.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.CreateInstance``1(System.Type,System.Object[])">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateInstance``1(System.Type,System.Object[])">
             <id>7B1FD313-DA3C-4033-9139-1ED2A6D99342</id>
             <summary>
                 A Type extension method that creates an instance of the type.
@@ -1734,7 +1734,7 @@
             <param name="values">A variable-length parameters list containing arguments.</param>
             <returns>The new instance&lt; t&gt;</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetPrivateField(System.Type,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPrivateField(System.Type,System.String)">
             <id>08AD98FB-4106-40E3-8693-5CD2CC2F1996</id>
             <summary>
                 A Type extension method that gets a private field.
@@ -1743,7 +1743,7 @@
             <param name="name">The name.</param>
             <returns>The private field.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetPrivateProperty(System.Type,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPrivateProperty(System.Type,System.String)">
             <id>6DE629CA-CAB7-48EE-889A-5A9F6508A98F</id>
             <summary>
                 A Type extension method that gets private property.
@@ -1752,7 +1752,7 @@
             <param name="name">The name.</param>
             <returns>The private property.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetPublicField(System.Type,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPublicField(System.Type,System.String)">
             <id>17BDAEA8-FB65-405C-A13D-B5B777E82397</id>
             <summary>
                 A Type extension method that gets a public field.
@@ -1761,7 +1761,7 @@
             <param name="name">The name.</param>
             <returns>The public field.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.GetPublicProperty(System.Type,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPublicProperty(System.Type,System.String)">
             <id>A3A8B579-AF8A-4EF9-9C7E-DF16B2F98FEF</id>
             <summary>
                 A Type extension method that gets public property.
@@ -1770,21 +1770,21 @@
             <param name="name">The name.</param>
             <returns>The public property.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SetFileNotFound(System.Web.HttpResponse)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SetFileNotFound(System.Web.HttpResponse)">
             <id>1671D1DB-35BD-410B-9CAC-AC02F06810F7</id>
             <summary>
                 A HttpResponse extension method that sets the response to status code 404 (Not Found).
             </summary>
             <param name="this">The @this to act on.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.SetInternalServerError(System.Web.HttpResponse)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SetInternalServerError(System.Web.HttpResponse)">
             <id>B2F67928-6EEB-42E2-A984-020FF1CB65E8</id>
             <summary>
                 A HttpResponse extension method that sets the response to status code 500 (Internal Server Error).
             </summary>
             <param name="this">The @this to act on.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.FindControl``1(System.Web.UI.Control,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControl``1(System.Web.UI.Control,System.String)">
             <id>F04DDC17-7827-4684-82F2-06CA6ED182C6</id>
             <summary>
                 Searches the current naming container for a server control with the specified id parameter.
@@ -1794,7 +1794,7 @@
             <param name="id">The identifier for the control to be found.</param>
             <returns>The specified control, or a null reference if the specified control does not exist.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.FindControlRecursive``1(System.Web.UI.Control,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControlRecursive``1(System.Web.UI.Control,System.String)">
             <id>2D165574-6416-44FB-990E-CEABB6D0059A</id>
             <summary>
                 Searches recursively in the container and child container for a server control with the specified id parameter.
@@ -1804,7 +1804,7 @@
             <param name="id">The identifier for the control to be found.</param>
             <returns>The specified control, or a null reference if the specified control does not exist.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.OragonExtMethods.FindControlRecursive(System.Web.UI.Control,System.String)">
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControlRecursive(System.Web.UI.Control,System.String)">
             <id>FAC21F43-0B83-4437-8187-65888AE16187</id>
             <summary>
                 Searches recursively in the container and child container for a server control with the specified id
@@ -1814,7 +1814,7 @@
             <param name="id">The identifier for the control to be found.</param>
             <returns>The specified control, or a null reference if the specified control does not exist.</returns>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},``0[])">
+        <member name="M:Oragon.Architecture.Extensions.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},``0[])">
             <id>ED3ED365-C03A-49A5-9C3F-FF55C3716CC0</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a range of values that's not already in the ICollection
@@ -1823,7 +1823,7 @@
             <param name="this">The @this to act on.</param>
             <param name="values">A variable-length parameters list containing values.</param>
         </member>
-        <member name="M:Oragon.Architecture.ExtMethods.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Oragon.Architecture.Extensions.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <id>3AA11884-4721-43E7-81F8-5FFB8334AA18</id>
             <summary>
                 An ICollection&lt;T&gt; extension method that adds a range of values that's not already in the ICollection.
