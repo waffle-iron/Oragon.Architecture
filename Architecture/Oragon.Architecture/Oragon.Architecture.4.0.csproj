@@ -434,6 +434,7 @@
     <Compile Include="Merging\FileSystem\DirectoryType.cs" />
     <Compile Include="Merging\FileSystem\Item.cs" />
     <Compile Include="Merging\ItemToUpdate.cs" />
+    <Compile Include="Merging\MergeException.cs" />
     <Compile Include="Merging\MergeResult.cs" />
     <Compile Include="Schedule\SchedulerService.cs" />
     <Compile Include="Security\Authentication\Credential.cs" />
