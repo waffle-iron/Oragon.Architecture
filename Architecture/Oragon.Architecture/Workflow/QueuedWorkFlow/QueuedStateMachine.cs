@@ -34,6 +34,21 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 			}
 		}
 
+		private void InitializeServices()
+		{
+			foreach (QueuedTransition queuedTransition in this.Transitions)
+			{
+				Spring.Objects.Support.MethodInvoker methodInvoker = new Spring.Objects.Support.MethodInvoker();
+				methodInvoker.TargetObject = queuedTransition.Service;
+				methodInvoker.TargetMethod = "Initialize";
+				methodInvoker.Prepare();
+				if (methodInvoker.GetPreparedMethod() != null)
+				{
+					methodInvoker.Invoke();
+				}
+			}
+		}
+
 		private void ConfigureBroker(QueuedTransition queuedTransition)
 		{
 			QueuedTransition nextQueuedTransition = this.GetPossibleTransitions(queuedTransition.Destination).FirstOrDefault();
@@ -53,8 +68,8 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 				HandlerObject = queuedTransition.Service
 			};
 			messageListenerAdapter.Configure(
-				queuedTransition, 
-				nextQueuedTransition, 
+				queuedTransition,
+				nextQueuedTransition,
 				this.CreateZombieQueues
 			);
 			container.MessageListener = messageListenerAdapter;
@@ -66,6 +81,7 @@ namespace Oragon.Architecture.Workflow.QueuedWorkFlow
 		{
 			this.InitializeBroker();
 			this.MessageContainers.ForEach(it => it.AfterPropertiesSet());
+			this.InitializeServices();
 		}
 
 		public bool IsRunning
