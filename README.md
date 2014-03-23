@@ -5,12 +5,12 @@ Oragon Architecture is a toolset of frameworks and architectural design to provi
 
 Inside Oragon Architecture you will find:
 
- - Robust data code generator, responsible to generate FluentNhibernate Mappings(1), NHibernate (minimal) configuration, Entities and Data Process.
- - Infrastructure to manage Data Access (MongoDB, NHibernate With MySQL, SQL Server or/and DB2, Redis)
- - Infrastructure to help you to implement abstractions for AOP, using Spring.Net
+ - Robust database first code generator, responsible to generate FluentNhibernate Mappings(1), NHibernate (minimal) configuration, Entities and Data Process.
+ - Infrastructure to manage Data Access using AOP (MongoDB, NHibernate With MySQL, SQL Server or/and DB2, Redis)
+ - Infrastructure to help you to implement abstract AOP compositions using Spring.Net
  - Infrastructure to use Exception Management and Handling using AOP.
- - Infrastructure to Log Exceptions contextually with tags and values (improve business tracking)
- - And much more...
+ - Infrastructure to Log Exceptions contextually with tags and values (improve business tracking) using Sentry.
+ - Extensions, a lot of extensions to help you and your develoment team.
 
   [1]: http://luizcarlosfaria.net/wp-content/uploads/2014/03/OragonArchitecture.export.png
 
