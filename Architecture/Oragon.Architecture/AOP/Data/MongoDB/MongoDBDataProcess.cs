@@ -19,12 +19,25 @@ namespace Oragon.Architecture.AOP.Data.MongoDB
 		where T : Entity
 	{
 		protected string CollectionName { get; set; }
+		
+		protected string DataBaseName { get; set; }
+
+		protected virtual MongoDBDriver.MongoDatabase GetDataBase()
+		{
+			return this
+					.ObjectContext
+					.Server
+					.GetDatabase(this.DataBaseName);
+		}
 
 		protected virtual MongoDBDriver.MongoCollection<T> Collection
 		{
 			get
 			{
-				return this.ObjectContext.Database.GetCollection<T>(this.CollectionName);
+				
+				return this
+					.GetDataBase()
+					.GetCollection<T>(this.CollectionName);
 			}
 		}
 	}

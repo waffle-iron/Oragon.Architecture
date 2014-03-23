@@ -16,6 +16,11 @@ namespace Oragon.Architecture.LogEngine.Business.Process
 		#region Injeção de Dependência
 
 		/// <summary>
+		/// Usado para operações de escrita no banco
+		/// </summary>
+		public PersistenceDataProcess PersistenceDataProcess { get; set; }
+
+		/// <summary>
 		/// Usado para operações de consulta e persistência no repositório de LogEntry
 		/// </summary>
 		private LogEntryDataProcess EntryDataProcess { get; set; }
@@ -48,18 +53,18 @@ namespace Oragon.Architecture.LogEngine.Business.Process
 				TagValue tagValue = this.TagBusinessProcess.GetTagValue(tag, value);
 				entry.TagValues.Add(tagValue);
 			}
-			this.EntryDataProcess.SaveLogEntry(entry);
+			this.PersistenceDataProcess.Save(entry);
 			return entry;
 		}
 
 		internal void UpdateLog(LogEntry logEntry)
 		{
-			this.EntryDataProcess.UpdateLogEntry(logEntry);
+			this.PersistenceDataProcess.Update(logEntry);
 		}
 
 		internal void DeleteLog(LogEntry logEntry)
 		{
-			this.EntryDataProcess.DeleteLogEntry(logEntry);
+			this.PersistenceDataProcess.Delete(logEntry);
 		}
 
 		internal List<LogEntry> ObterLogsNaoIndexados(int max)

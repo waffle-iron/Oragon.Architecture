@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>7D2C5D9B-D35A-45F3-84EF-4CF9854773F2</id>
 		/// <summary>

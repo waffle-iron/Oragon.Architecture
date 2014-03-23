@@ -36,6 +36,9 @@ namespace Oragon.Architecture
 
 		public static Exception Try(Action action, Action<Exception> exceptionHandler = null, Action finallyHandler = null)
 		{
+			System.Runtime.CompilerServices.ExtensionAttribute x = null;
+			Console.WriteLine(x);
+
 			Exception result = null;
 			try
 			{

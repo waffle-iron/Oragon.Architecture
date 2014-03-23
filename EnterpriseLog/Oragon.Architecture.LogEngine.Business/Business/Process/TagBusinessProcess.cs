@@ -17,6 +17,10 @@ namespace Oragon.Architecture.LogEngine.Business.Process
 			this.TagValueSemaphore = new Semaphore(1);
 		}
 
+		/// <summary>
+		/// Usado para operações de escrita no banco
+		/// </summary>
+		public PersistenceDataProcess PersistenceDataProcess { get; set; }
 
 		/// <summary>
 		/// Usado para operações de consulta e persistência no repositório de Tag
@@ -58,7 +62,7 @@ namespace Oragon.Architecture.LogEngine.Business.Process
 			if (tagTO == null)
 			{
 				tag = new Tag() { TagID = 0, Name = key, TagValues = new List<TagValue>() };
-				this.TagDataProcess.SaveTag(tag);
+				this.PersistenceDataProcess.Save(tag);
 				tagTO = new TagTransferObject() { TagID = tag.TagID, Name = tag.Name };
 				this.TagListSemaphore.Acquire();
 				this.TagListCache.Add(tagTO);
@@ -93,7 +97,7 @@ namespace Oragon.Architecture.LogEngine.Business.Process
 					LogEntries = new List<LogEntry>(),
 					Value = value
 				};
-				this.TagValueDataProcess.SaveTagValue(tagValue);
+				this.PersistenceDataProcess.Save(tagValue);
 				tagValueTO = new TagValueTransferObject()
 				{
 					TagID = tagValue.Tag.TagID,

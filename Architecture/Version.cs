@@ -15,5 +15,5 @@ using System;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("4.0.0.*") ]
 [assembly: AssemblyCompany("Oragon Solutions")]
-[assembly: AssemblyCopyright("Copyright © Oragon Solutions 2012")]
+[assembly: AssemblyCopyright("Copyright © Oragon Solutions 2014")]
 

@@ -9,37 +9,41 @@
 <#@ Assembly Name="Oragon.CodeGen.MetaData.DataBase.dll" #>
 <#@ Assembly Name="Oragon.CodeGen.MetaData.Domain.dll" #>
 <#@ Assembly Name="MyGenUtility.dll" #>
-<#@ import namespace="System" #><#@ import namespace="System.IO" #><#@ import namespace="System.Diagnostics" #><#@ import namespace="System.Linq" #><#@ import namespace="System.Xml.Linq" #><#@ import namespace="System.Collections" #><#@ import namespace="System.Collections.Generic" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.DataBase" #><#@ import namespace="MyGeneration" #> 
-
+<#@ import namespace="System" #><#@ import namespace="System.IO" #><#@ import namespace="System.Diagnostics" #><#@ import namespace="System.Linq" #><#@ import namespace="System.Xml.Linq" #><#@ import namespace="System.Collections" #><#@ import namespace="System.Collections.Generic" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.Domain" #><#@ import namespace="Oragon.CodeGen.MetaData.DataBase" #><#@ import namespace="MyGeneration" #>
 <#  
 	//System.Diagnostics.Debugger.Launch();
 	DomainModel domain = MyMetaDomainConverterWrapper.GetModel();	
 	
-#>
-using System;
+#>using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-
 namespace <#=NameSpace#>.Business.Entity
 {
 
+	public class EntityBase: Oragon.Architecture.Business.Entity
+	{
+	
+	}
+
+
+
 <#	foreach (Entity currentEntity in domain.Entities)
-    {
+	{
 #>
 	/// <summary>
 	/// Classe <#=currentEntity.Name #>.
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference=true)]
-	public partial class <#= currentEntity.Name #>
+	public partial class <#= currentEntity.Name #>: EntityBase
 	{
 		#region "Propriedades"
 
 <#		foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => (it is ManyToOneProperty) == false))
-        {
+		{
 #>		
 		/// <summary>
 		/// Define ou obtém um(a) <#=currentProperty.Name #> da <#=currentEntity.Name #>.
@@ -47,7 +51,7 @@ namespace <#=NameSpace#>.Business.Entity
 <#
 		if (currentProperty is ValueTypeProperty)
 		{
-#>		/// <remarks>Referencia Coluna <#=currentEntity.Table.Name #>.<#=((ValueTypeProperty)currentProperty).Column.Name #> <#=((ValueTypeProperty)currentProperty).Column.DataTypeNameComplete #> </remarks>
+#>		/// <remarks>Referencia Coluna <#=currentEntity.Table.Name #>.<#=((ValueTypeProperty)currentProperty).Column.Name #> <#=((ValueTypeProperty)currentProperty).Column.DataTypeNameComplete #></remarks>
 <#
 		}
 #>		[DataMember]
@@ -55,7 +59,7 @@ namespace <#=NameSpace#>.Business.Entity
 <#
 		}
 		foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => it is ManyToOneProperty))
-        {
+		{
 			string propName = currentProperty.Name;
 			ManyToOneProperty typedProp = (ManyToOneProperty)currentProperty;
 			OneToManyProperty fakeRef = new OneToManyProperty(GetEntityByTable(domain, typedProp.ForeignKey.PrimaryTable), typedProp.ForeignKey);
@@ -88,7 +92,7 @@ namespace <#=NameSpace#>.Business.Entity
 			if (Object.ReferenceEquals(this, obj))
 				return true;
 			<#= currentEntity.Name #> objTyped = (<#= currentEntity.Name #>)obj;
-<#			expressions = propertiesToMap.Select(currentPKProperty => string.Format("(this.{0}.Equals(objTyped.{0}))", currentPKProperty.Name) ).ToList();
+<#			expressions = propertiesToMap.Where(it => it != null).Select(currentPKProperty => string.Format("(this.{0}.Equals(objTyped.{0}))", currentPKProperty.Name) ).ToList();
 			string identityCompareSentense = string.Join(" && ", expressions.ToArray());
 #>			bool returnValue = (<#= identityCompareSentense #>);
 			return returnValue;
@@ -96,23 +100,23 @@ namespace <#=NameSpace#>.Business.Entity
 
 		public override int GetHashCode()
 		{
-<# 			expressions = propertiesToMap.Select(currentPKProperty => string.Format("this.{0}.GetHashCode()", currentPKProperty.Name) ).ToList();
+<# 			expressions = propertiesToMap.Where(it => it != null).Select(currentPKProperty => string.Format("this.{0}.GetHashCode()", currentPKProperty.Name) ).ToList();				
 			string getHashCode = string.Join(" * ", expressions.ToArray());	
 #>			return (<#= getHashCode #>);
 		}
 
 		#endregion		
 <# /* #>
-		public virtual <#=NameSpace#>.Business.Entity.<#= currentEntity.Name #> AsSimpleObject()
+		public virtual <#=NameSpace#>.Entity.<#= currentEntity.Name #> AsSimpleObject()
 		{
-			<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #> returnObject = new <#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>();
+			<#=NameSpace#>.Entity.<#= currentEntity.Name #> returnObject = new <#=NameSpace#>.Entity.<#= currentEntity.Name #>();
 <#
-	    foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => it is ValueTypeProperty))
+		foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => it is ValueTypeProperty))
 		{ 
 #>			returnObject.<#=currentProperty.Name#> = this.<#=currentProperty.Name#>;
 <#
 		}
-	    foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => it is ManyToOneProperty))
+		foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in currentEntity.Properties.Where(it => it is ManyToOneProperty))
 		{ 
 #>			returnObject.<#=currentProperty.Name#> = this.<#=currentProperty.Name#>.AsSimpleObject();
 <#
@@ -121,12 +125,12 @@ namespace <#=NameSpace#>.Business.Entity
 			return returnObject;
 		}
 
-		public static List<<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>> ConvertListToSimpleList(IList<<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>> listToConvert)
+		public static List<<#=NameSpace#>.Entity.<#= currentEntity.Name #>> ConvertListToSimpleList(IList<<#=NameSpace#>.Entity.<#= currentEntity.Name #>> listToConvert)
 		{
-			List<<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>> returnValue = new List<<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #>>(listToConvert.Count);
-			foreach(<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #> complexInstance in listToConvert)
+			List<<#=NameSpace#>.Entity.<#= currentEntity.Name #>> returnValue = new List<<#=NameSpace#>.Entity.<#= currentEntity.Name #>>(listToConvert.Count);
+			foreach(<#=NameSpace#>.Entity.<#= currentEntity.Name #> complexInstance in listToConvert)
 			{
-				<#=NameSpace#>.Business.Entity.<#= currentEntity.Name #> simpleInstance = complexInstance.AsSimpleObject();
+				<#=NameSpace#>.Entity.<#= currentEntity.Name #> simpleInstance = complexInstance.AsSimpleObject();
 				returnValue.Add(simpleInstance);
 			}
 			return returnValue;
@@ -154,7 +158,7 @@ namespace <#=NameSpace#>.Business.Entity
 
 	public Oragon.CodeGen.MetaData.Domain.Property GetPropertyByColumn(List<Oragon.CodeGen.MetaData.Domain.Property> properties, IColumn column, bool remove)
 	{
-	    Oragon.CodeGen.MetaData.Domain.Property returnValue = GetPropertyByColumn(properties, column);
+		Oragon.CodeGen.MetaData.Domain.Property returnValue = GetPropertyByColumn(properties, column);
 		if(remove)
 		{
 			properties.Remove(returnValue);
@@ -162,42 +166,42 @@ namespace <#=NameSpace#>.Business.Entity
 		return returnValue;
 	}
 
-    public Oragon.CodeGen.MetaData.Domain.Property GetPropertyByColumn(List<Oragon.CodeGen.MetaData.Domain.Property> properties, IColumn column)
+	public Oragon.CodeGen.MetaData.Domain.Property GetPropertyByColumn(List<Oragon.CodeGen.MetaData.Domain.Property> properties, IColumn column)
 	{
 		Oragon.CodeGen.MetaData.Domain.Property returnValue = null;
 		
 		foreach (Oragon.CodeGen.MetaData.Domain.Property currentProperty in properties)
 		{
-	        if (currentProperty is OneToManyProperty)
-            {
-	            OneToManyProperty propOneToManyProperty = (OneToManyProperty)currentProperty;
-                if (propOneToManyProperty.ForeignKey.PrimaryColumns.Contains(column))
-                {
+			if (currentProperty is OneToManyProperty)
+			{
+				OneToManyProperty propOneToManyProperty = (OneToManyProperty)currentProperty;
+				if (propOneToManyProperty.ForeignKey.PrimaryColumns.Contains(column))
+				{
 					returnValue = currentProperty;
 					break;
 				}
 			}
-            else if (currentProperty is ManyToOneProperty)
-            {
-	            ManyToOneProperty propManyToOneProperty = (ManyToOneProperty)currentProperty;
+			else if (currentProperty is ManyToOneProperty)
+			{
+				ManyToOneProperty propManyToOneProperty = (ManyToOneProperty)currentProperty;
 				if(propManyToOneProperty.ForeignKey.ForeignColumns.Select(it => it.Name).Contains(column.Name))
 				{
 					returnValue = currentProperty;
 					break;
 				}
 			}
-            else if (currentProperty is ManyToManyProperty)
-            {
-	            ManyToManyProperty propManyToManyProperty = (ManyToManyProperty)currentProperty;
+			else if (currentProperty is ManyToManyProperty)
+			{
+				ManyToManyProperty propManyToManyProperty = (ManyToManyProperty)currentProperty;
 				if(propManyToManyProperty.LeftForeignKey.PrimaryColumns.Contains(column))
 				{
 					returnValue = currentProperty;
 					break;
 				}
 			}
-            else if (currentProperty is ValueTypeProperty)
-            {
-	            ValueTypeProperty propValueTypeProperty = (ValueTypeProperty)currentProperty;
+			else if (currentProperty is ValueTypeProperty)
+			{
+				ValueTypeProperty propValueTypeProperty = (ValueTypeProperty)currentProperty;
 				if(propValueTypeProperty.Column == column)
 				{
 					returnValue = currentProperty;

@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>15F029B4-36FB-49E7-A7DC-EA063AC4C6A3</id>
 		/// <summary>

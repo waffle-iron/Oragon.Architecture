@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>D8790C50-101F-44BA-8F7D-4723DFA0B0FF</id>
 		/// <summary>

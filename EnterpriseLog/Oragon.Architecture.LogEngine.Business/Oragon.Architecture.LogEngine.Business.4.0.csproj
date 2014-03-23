@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4AC2444D-F1A1-45B3-9A9D-A2106B75282B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oragon.Architecture.LogEngine</RootNamespace>
+    <AssemblyName>Oragon.Architecture.LogEngine.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <HintPath>..\..\[References]\Nhibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\[References]\Lucene.Net\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\[References]\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\[References]\Nhibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\NLog\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture">
+      <HintPath>..\..\[References]\Oragon.Architecture\Oragon.Architecture.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp">
+      <HintPath>..\..\[References]\Spring.Net\Spring.Messaging.Amqp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="Architecture\Mapping\[Mapping].CodeGen.cs" />
+    <Compile Include="Business\Process\LogBusinessProcess.cs" />
+    <Compile Include="Business\Process\MessageConverterBusinessProcess.cs" />
+    <Compile Include="Business\Process\TagBusinessProcess.cs" />
+    <Compile Include="Business\Workflow\LogBusinessWorkflow.cs" />
+    <Compile Include="Data\Process\LevelDataProcess.cs" />
+    <Compile Include="Data\Process\LogEntryDataProcess.cs" />
+    <Compile Include="Data\Process\TagDataProcess.cs" />
+    <Compile Include="Data\Process\TagValueDataProcess.cs" />
+    <Compile Include="Data\Process\[DataProcess].CodeGen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CacheService.cs" />
+    <Compile Include="Service\LogService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LogEngineServer.exe.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IoC.WindowsService.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.LogEngine.Domain\Oragon.Architecture.LogEngine.Domain.4.0.csproj">
+      <Project>{3f6b2179-b764-4da3-b0aa-482bca3bd22c}</Project>
+      <Name>Oragon.Architecture.LogEngine.Domain.4.0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(TargetDir)*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(ProjectDir)LogEngineServer.exe.config" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(ProjectDir)IoC.WindowsService.xml" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+xcopy "$(SolutionDir)..\[References]\Oragon.Architecture\*.*" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+copy "$(SolutionDir)..\[References]\Oragon.Architecture.GenericServiceHost\Oragon.Architecture.GenericServiceHost.exe" "$(SolutionDir)[publish]\LogEngineServer\LogEngineServer.exe" /Y
+copy "$(SolutionDir)..\[References]\Oragon.Architecture.GenericServiceHost\Oragon.Architecture.GenericServiceHost.pdb" "$(SolutionDir)[publish]\LogEngineServer\LogEngineServer.pdb" /Y
+
+xcopy "$(SolutionDir)..\[References]\Topshelf\Topshelf.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Topshelf\Topshelf.NLog.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Core.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Data.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Data.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Aop.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Aop.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+copy "$(SolutionDir)..\[References]\Common.Logging\*.*" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+copy "$(SolutionDir)..\[References]\NLog\*.*" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Messaging.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Messaging.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Scheduling.Quartz20.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Scheduling.Quartz20.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Services.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Services.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\*Erlang*" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\Spring.Messaging.*" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Spring.Net\RabbitMQ.Client.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+xcopy "$(SolutionDir)..\[References]\Nhibernate\*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Nhibernate\*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+
+xcopy "$(SolutionDir)..\[References]\Quartz\*.dll" "$(SolutionDir)[publish]\LogEngineServer\" /Y
+xcopy "$(SolutionDir)..\[References]\Quartz\*.pdb" "$(SolutionDir)[publish]\LogEngineServer\" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

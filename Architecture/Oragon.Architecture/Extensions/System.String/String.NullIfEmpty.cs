@@ -5,7 +5,7 @@
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>52664028-724E-42FF-8972-6E5D5E1F7280</id>
 		/// <summary>

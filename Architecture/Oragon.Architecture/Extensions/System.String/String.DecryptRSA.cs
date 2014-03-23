@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>02D4806A-ADF8-4927-A7C2-CB537346B781</id>
 		/// <summary>

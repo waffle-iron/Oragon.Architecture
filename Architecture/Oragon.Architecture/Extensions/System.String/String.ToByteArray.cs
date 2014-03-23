@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>33F17764-49C7-47FB-B68D-FC0BACABE88C</id>
 		/// <summary>

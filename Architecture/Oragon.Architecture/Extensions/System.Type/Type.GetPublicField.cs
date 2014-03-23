@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>17BDAEA8-FB65-405C-A13D-B5B777E82397</id>
 		/// <summary>

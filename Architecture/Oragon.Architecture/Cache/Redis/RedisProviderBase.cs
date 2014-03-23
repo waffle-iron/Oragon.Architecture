@@ -10,7 +10,7 @@ namespace Oragon.Architecture.Cache.Redis
 {
 	public class RedisProviderBase: IDisposable		
 	{
-		protected IRedisClient NativeClient { get; private set; }
+		public IRedisClient NativeClient { get; private set; }
 
 		protected string IsolationKey { get; set; }
 

@@ -7,7 +7,7 @@ using System;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>D42CB5CB-3C08-431B-A376-AA3C7A70271C</id>
 		/// <summary>

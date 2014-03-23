@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		public static Queue<T> ToQueue<T>(this IEnumerable<T> @this)
 		{

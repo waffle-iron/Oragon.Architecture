@@ -9,7 +9,7 @@ namespace Oragon.Architecture.Extensions
 	/// <summary>
 	/// Classe contendo extension methods para objetos Expression.
 	/// </summary>
-	public static class ExpressionExtensions
+	public static partial class OragonExtensions
 	{
 		/// <summary>
 		/// Concatena duas expressões lambda que retornam bool.

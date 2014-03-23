@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <id>1E68FC76-A3C5-4E0D-976F-01C0987A2853</id>
 		/// <summary>

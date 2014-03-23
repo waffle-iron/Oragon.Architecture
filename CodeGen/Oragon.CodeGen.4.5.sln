@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.MetaData.Domain.4.5", "Oragon.CodeGen.MetaData.Domain\Oragon.CodeGen.MetaData.Domain.4.5.csproj", "{C2BE5711-6F2D-4942-943A-8C83285044EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.MetaData.DataBase.4.5", "Oragon.CodeGen.MetaData.DataBase\Oragon.CodeGen.MetaData.DataBase.4.5.csproj", "{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.ConsoleApp.4.5", "Oragon.CodeGen.ConsoleApp\Oragon.CodeGen.ConsoleApp.4.5.csproj", "{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C2BE5711-6F2D-4942-943A-8C83285044EB} = {C2BE5711-6F2D-4942-943A-8C83285044EB}
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452} = {72BEAB1C-B55F-4F0E-89AF-17F71E74A452}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.Templating.4.5", "Oragon.CodeGen.Templating\Oragon.CodeGen.Templating.4.5.csproj", "{CEC8B649-E2F0-41C5-8AD7-869274F4689C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.CodeGen.MetaData.Domain.Templating.4.5", "Oragon.CodeGen.MetaData.Domain.Templating\Oragon.CodeGen.MetaData.Domain.Templating.4.5.csproj", "{E68CA7F7-762E-4724-A9E3-59EB99525345}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CodeGen]", "[CodeGen]", "{220668BF-0EA7-4EBD-A20E-6D90DEA63637}"
+	ProjectSection(SolutionItems) = preProject
+		[CodeGen]\Gen.config = [CodeGen]\Gen.config
+		[CodeGen]\Template.DataProcess.tt = [CodeGen]\Template.DataProcess.tt
+		[CodeGen]\Template.Entities.tt = [CodeGen]\Template.Entities.tt
+		[CodeGen]\Template.Mappings.tt = [CodeGen]\Template.Mappings.tt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4C146A18-968C-444F-8E9C-696F8EA462FF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C2BE5711-6F2D-4942-943A-8C83285044EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{72BEAB1C-B55F-4F0E-89AF-17F71E74A452}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Debug|x86.ActiveCfg = Debug|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Debug|x86.Build.0 = Debug|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Release|Any CPU.ActiveCfg = Release|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Release|x86.ActiveCfg = Release|x86
+		{AF1E0E2B-D016-44A8-8E61-AE17D8C09CB8}.Release|x86.Build.0 = Release|x86
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CEC8B649-E2F0-41C5-8AD7-869274F4689C}.Release|x86.ActiveCfg = Release|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E68CA7F7-762E-4724-A9E3-59EB99525345}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{220668BF-0EA7-4EBD-A20E-6D90DEA63637} = {6C7A4AF9-0BE9-4430-96BB-6F29591DADDC}
+	EndGlobalSection
+EndGlobal

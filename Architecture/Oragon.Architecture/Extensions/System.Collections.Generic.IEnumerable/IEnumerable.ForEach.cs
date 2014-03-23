@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class Extension
+	public static partial class OragonExtensions
 	{
 		/// <summary>
 		/// Perform ForEach in enumerable Itens
