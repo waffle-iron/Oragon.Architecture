@@ -55,10 +55,10 @@ namespace Oragon.Architecture.Merging.FileSystem
 				if (targetExists == false)
 					targetDirectory.Create();
 
-				System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(this.FullPath);
-				var directories = dirInfo.GetDirectories("*", System.IO.SearchOption.AllDirectories);
-				var files = dirInfo.GetFiles("*", System.IO.SearchOption.AllDirectories);
-				foreach (System.IO.DirectoryInfo directory in directories)
+				System.IO.DirectoryInfo sourceDirInfo = new System.IO.DirectoryInfo(this.FullPath);
+				System.IO.DirectoryInfo[] sourceDirectories = sourceDirInfo.GetDirectories("*", System.IO.SearchOption.AllDirectories);
+				System.IO.FileInfo[] sourceFiles = sourceDirInfo.GetFiles("*", System.IO.SearchOption.AllDirectories);
+				foreach (System.IO.DirectoryInfo directory in sourceDirectories)
 				{
 					string targetRelativePath = directory.FullName.Substring(this.RootPath.Length);
 					while (targetRelativePath.StartsWith(@"\"))
@@ -68,7 +68,7 @@ namespace Oragon.Architecture.Merging.FileSystem
 						System.IO.Directory.CreateDirectory(targetFullPath);
 				}
 				List<System.IO.FileInfo> filesToDelete = new List<System.IO.FileInfo>();
-				foreach (var sourceFileInfo in files)
+				foreach (var sourceFileInfo in sourceFiles)
 				{
 					string targetRelativePath = sourceFileInfo.FullName.Substring(this.RootPath.Length);
 					while (targetRelativePath.StartsWith(@"\"))
@@ -108,8 +108,9 @@ namespace Oragon.Architecture.Merging.FileSystem
 				{
 					file.Delete();
 				}
-				if (dirInfo.GetFiles("*", System.IO.SearchOption.AllDirectories).Any())
-					throw new InvalidOperationException(String.Format("Houve uma falha no merge, um ou mais arquivos foram deixados na origem ({0}).", dirInfo.FullName));
+				sourceDirInfo.Refresh();
+				if (sourceDirInfo.GetFiles("*", System.IO.SearchOption.AllDirectories).Any())
+					throw new InvalidOperationException(String.Format("Houve uma falha no merge, um ou mais arquivos foram deixados na origem ({0}).", sourceDirInfo.FullName));
 
 				copyResult = CopyResult.Ok;
 			}
