@@ -200,20 +200,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Topshelf">
+    <Reference Include="Topshelf, Version=3.0.105.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Topshelf\Topshelf.dll</HintPath>
     </Reference>
-    <Reference Include="Topshelf.Log4Net">
-      <HintPath>..\..\[References]\Topshelf\Topshelf.Log4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="Topshelf.NLog">
+    <Reference Include="Topshelf.NLog, Version=3.0.105.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Topshelf\Topshelf.NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="Topshelf.Rehab">
-      <HintPath>..\..\[References]\Topshelf\Topshelf.Rehab.dll</HintPath>
-    </Reference>
-    <Reference Include="Topshelf.Supervise">
-      <HintPath>..\..\[References]\Topshelf\Topshelf.Supervise.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
