@@ -53,25 +53,25 @@ namespace Oragon.Architecture.Extensions
 			return new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$").IsMatch(s);
 		}
 
-		public static string Formatar(this string format, object arg0)
-		{
-			return string.Format(format, arg0);
-		}
+		//public static string Formatar(this string format, object arg0)
+		//{
+		//	return string.Format(format, arg0);
+		//}
 
-		public static string Formatar(this string format, params object[] args)
-		{
-			return string.Format(format, args);
-		}
+		//public static string Formatar(this string format, params object[] args)
+		//{
+		//	return string.Format(format, args);
+		//}
 
-		public static string Formatar(this string format, object arg0, object arg1)
-		{
-			return string.Format(format, arg0, arg1);
-		}
+		//public static string Formatar(this string format, object arg0, object arg1)
+		//{
+		//	return string.Format(format, arg0, arg1);
+		//}
 
-		public static string Formatar(this string format, IFormatProvider provider, params object[] args)
-		{
-			return string.Format(provider, format, args);
-		}
+		//public static string Formatar(this string format, IFormatProvider provider, params object[] args)
+		//{
+		//	return string.Format(provider, format, args);
+		//}
 
 		/// <summary>
 		/// Checks if url is valid. 

@@ -29,7 +29,7 @@ namespace Oragon.Architecture.Security.Authorization.Profile
 
 		public override string ToString()
 		{
-			return "{0}/{1}".Formatar(this.Type, this.ID);
+			return "{0}/{1}".FormatWith(this.Type, this.ID);
 		}
 
         public class ComparadorPorIdentificador : IEqualityComparer<ActionContext>

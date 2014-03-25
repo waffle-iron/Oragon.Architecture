@@ -441,6 +441,7 @@
     <Compile Include="Services\Descriptor\AccountType.cs" />
     <Compile Include="Services\Descriptor\ServiceDescriptor.cs" />
     <Compile Include="Services\Descriptor\StartMode.cs" />
+    <Compile Include="Services\EnvelopeNullException.cs" />
     <Compile Include="Services\Host\MexBindingFactory.cs" />
     <Compile Include="Services\Host\OragonServiceHost.cs" />
     <Compile Include="Services\Host\ServiceEndpointConfiguration.cs" />
