@@ -16,8 +16,8 @@
 //			-v loglevel         set libav* logging level
 //						-report             generate a report
 //						-max_alloc bytes    set maximum size of a single allocated block
-//						-y                  overwrite output files
-//						-n                  do not overwrite output files
+//						-y                  overwrite output sourceFiles
+//						-n                  do not overwrite output sourceFiles
 //						-stats              print progress report during encoding
 //						-bits_per_raw_sample number  set the number of bits per raw sample
 //						-vol volume         change audio volume (256=normal)
