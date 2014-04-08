@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Oragon.CodeGen.MetaData.Domain;
 using Oragon.Architecture;
-using Oragon.Architecture.ExtMethods;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.CodeGen.MetaData.Plugin
 {
