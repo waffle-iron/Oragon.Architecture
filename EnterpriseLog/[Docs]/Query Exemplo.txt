@@ -1,1 +1,0 @@
-Year:2013 AND Hour:12 AND Minute:37 AND Second:30 AND TAG\\:User\\:Login:"usuario04" AND LevelName:"Error"

@@ -97,8 +97,18 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Oragon.Architecture">
-      <HintPath>..\packages\Oragon.Architecture.4.5.1-RC2\lib\net451\Oragon.Architecture.dll</HintPath>
+    <Reference Include="Oragon.Architecture, Version=4.0.0.42127, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Oragon.Architecture.4.5.1-RC3\lib\net451\Oragon.Architecture.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture.ExcelIntegration">
+      <HintPath>..\packages\Oragon.Architecture.4.5.1-RC3\lib\net451\Oragon.Architecture.ExcelIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture.Security">
+      <HintPath>..\packages\Oragon.Architecture.4.5.1-RC3\lib\net451\Oragon.Architecture.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture.Web">
+      <HintPath>..\packages\Oragon.Architecture.4.5.1-RC3\lib\net451\Oragon.Architecture.Web.dll</HintPath>
     </Reference>
     <Reference Include="Quartz">
       <HintPath>..\packages\Quartz.2.2.2\lib\net40\Quartz.dll</HintPath>
