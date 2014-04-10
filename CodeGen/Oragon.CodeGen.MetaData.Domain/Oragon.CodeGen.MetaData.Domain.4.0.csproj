@@ -38,8 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Oragon.Architecture">
-      <HintPath>..\..\[References]\Oragon.Architecture\Oragon.Architecture.dll</HintPath>
+    <Reference Include="Oragon.Architecture, Version=4.0.0.42891, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[Build]\.net-4.0-release\Oragon.Architecture.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core">
       <HintPath>..\..\[References]\Spring.Net\Spring.Core.dll</HintPath>
