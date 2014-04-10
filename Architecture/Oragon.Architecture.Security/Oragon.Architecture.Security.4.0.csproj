@@ -61,6 +61,7 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Oragon.Architecture.Security.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,6 +71,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Oragon.Architecture.Security.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Spring.Aop">
@@ -130,8 +132,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName)$(TargetExt)"
-copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\[References]\Oragon.Architecture\$(TargetName).pdb"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName)$(TargetExt)" "$(SolutionDir)..\[build]\.net-4.0-$(ConfigurationName)\$(TargetName)$(TargetExt)" /Y
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\[build]\.net-4.0-$(ConfigurationName)\$(TargetName).pdb" /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
