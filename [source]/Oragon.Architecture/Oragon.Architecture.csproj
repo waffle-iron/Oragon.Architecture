@@ -52,8 +52,8 @@
     <Compile Include="Data\ConnectionStrings\ConfigurableConnectionStringDiscoverer.cs" />
     <Compile Include="Data\ConnectionStrings\IConnectionStringDiscoverer.cs" />
     <Compile Include="ExtendedTypes\DateRange.cs" />
-    <Compile Include="Extensions\ExpressionExtensions.cs" />
-    <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.DateRange\DateRange.IsIn.cs" />
+    <Compile Include="ExtendedTypes\Range.cs" />
+    <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.Range\Range.IsIn.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.DateRange\DateRange.Reduce.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
@@ -122,6 +122,7 @@
     <Compile Include="Extensions\System.IO.FileInfo\FileInfo.ReadToEnd.cs" />
     <Compile Include="Extensions\System.IO.Stream\Stream.ReadToEnd.cs" />
     <Compile Include="Extensions\System.IO.Stream\Stream.ToByteArray.cs" />
+    <Compile Include="Extensions\System.Linq.Expressions\Expression.And.cs" />
     <Compile Include="Extensions\System.Linq\System.Linq.IQueryable.cs" />
     <Compile Include="Extensions\System.Net.Mail.MailMessage\MailMessage.Send.cs" />
     <Compile Include="Extensions\System.Net.Mail.MailMessage\MailMessage.SendAsync.cs" />
@@ -193,6 +194,12 @@
     <Compile Include="Extensions\System.Type\Type.GetPrivateProperty.cs" />
     <Compile Include="Extensions\System.Type\Type.GetPublicField.cs" />
     <Compile Include="Extensions\System.Type\Type.GetPublicProperty.cs" />
+    <Compile Include="Logging\AbstractLogger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Loggers\DiagnosticsLogger.cs" />
+    <Compile Include="Logging\Loggers\SafeLogger.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\[Model].cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

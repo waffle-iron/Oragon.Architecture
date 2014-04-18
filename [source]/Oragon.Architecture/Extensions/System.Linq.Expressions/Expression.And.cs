@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
+// All rights reserved.
+// Licensed under MIT License (MIT)
+// License can be found here: https://zextensionmethods.codeplex.com/license
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +11,6 @@ using System.Linq.Expressions;
 
 namespace Oragon.Architecture.Extensions
 {
-	/// <summary>
-	/// Classe contendo extension methods para objetos Expression.
-	/// </summary>
 	public static partial class OragonExtensions
 	{
 		/// <summary>

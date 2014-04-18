@@ -68,6 +68,7 @@
     <Compile Include="Aop\Data\NHibernate\NHQueryDataProcess.cs" />
     <Compile Include="Data\ConnectionStrings\NHConfigFileConnectionStringDiscoverer.cs" />
     <Compile Include="Aop\Data\NHibernate\NHPersistenceDataProcess.cs" />
+    <Compile Include="Extensions\NHibernate.IQuery\IQuery.Sets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

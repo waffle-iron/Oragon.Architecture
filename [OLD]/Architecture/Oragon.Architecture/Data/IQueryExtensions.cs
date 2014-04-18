@@ -40,6 +40,7 @@ namespace Oragon.Architecture.Data
 			}
 			else
 			{
+				System.Double
 				return query.SetParameter(name, null, NHibernateUtil.Decimal);
 			}
 		}

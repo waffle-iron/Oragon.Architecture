@@ -11,15 +11,16 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
-		public static bool IsIn(this DateTime date, DateRange interval)
+		public static bool IsIn<T>(this T value, Range<T> interval)
+			 where T : struct, IComparable<T>, IEquatable<T>
 		{
 			bool returnValue = true;
 
-			if (interval.StartDate.HasValue)
-				returnValue &= (date >= interval.StartDate);
+			if (interval.Start.HasValue)
+				returnValue &= (value.CompareTo(interval.Start.Value) >= 0);
 
-			if (interval.EndDate.HasValue)
-				returnValue &= (date <= interval.EndDate);
+			if (interval.End.HasValue)
+				returnValue &= (value.CompareTo(interval.End.Value) <= 0);
 
 			return returnValue;
 		}
