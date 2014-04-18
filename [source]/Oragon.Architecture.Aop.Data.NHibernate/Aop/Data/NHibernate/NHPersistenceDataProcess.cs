@@ -7,7 +7,7 @@ using Spring.Objects.Factory.Attributes;
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
-	public abstract class NHPersistenceDataProcessBase<T> : NHDataProcess
+	public class NHPersistenceDataProcess<T> : NHDataProcess
 		where T : Oragon.Architecture.Business.Entity
 	{
 		

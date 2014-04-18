@@ -5,7 +5,7 @@ using NH = NHibernate;
 using FluentNH = FluentNHibernate;
 using Oragon.Architecture.Data.ConnectionStrings;
 
-namespace Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate
+namespace Oragon.Architecture.Aop.Data.NHibernate
 {
 	/// <summary>
 	/// Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação

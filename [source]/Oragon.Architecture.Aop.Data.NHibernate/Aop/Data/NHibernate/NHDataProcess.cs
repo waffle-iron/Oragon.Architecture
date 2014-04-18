@@ -8,7 +8,7 @@ using Spring.Objects.Factory.Attributes;
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
 
-	public class NHDataProcess : Oragon.Architecture.Aop.Data.Abstractions.AbstractDataProcess<Oragon.Architecture.Aop.Data.NHibernate.NHContext, Oragon.Architecture.Aop.Data.NHibernate.NHContextAttribute>
+	public abstract class NHDataProcess : Oragon.Architecture.Aop.Data.Abstractions.AbstractDataProcess<Oragon.Architecture.Aop.Data.NHibernate.NHContext, Oragon.Architecture.Aop.Data.NHibernate.NHContextAttribute>
 	{
 
 		/// <summary>
