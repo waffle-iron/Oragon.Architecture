@@ -1,0 +1,16 @@
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Oragon.Architecture.ExcelIntegration.dll.config
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Oragon.Architecture.ExcelIntegration.XML
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Oragon.Architecture.ExcelIntegration.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Oragon.Architecture.ExcelIntegration.pdb
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Common.Logging.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\EPPlus.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Aop.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Core.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\EPPlus.xml
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Aop.pdb
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Aop.xml
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Core.pdb
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Debug\Spring.Core.xml
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Debug\Oragon.Architecture.ExcelIntegration.dll
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Debug\Oragon.Architecture.ExcelIntegration.pdb
+D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Debug\Oragon.Architecture.ExcelIntegration.4.5.csprojResolveAssemblyReference.cache

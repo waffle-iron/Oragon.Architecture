@@ -1,0 +1,10 @@
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Oragon.CodeGen.Templating.XML
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Oragon.CodeGen.Templating.dll
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Oragon.CodeGen.Templating.pdb
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Microsoft.VisualStudio.TextTemplating.dll
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Newtonsoft.Json.dll
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\TC.CustomTemplating.dll
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\bin\Debug\Newtonsoft.Json.xml
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\obj\Debug\Oragon.CodeGen.Templating.4.5.1.csprojResolveAssemblyReference.cache
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\obj\Debug\Oragon.CodeGen.Templating.dll
+D:\Projetos\Oragon.Architecture\CodeGen\Oragon.CodeGen.Templating\obj\Debug\Oragon.CodeGen.Templating.pdb

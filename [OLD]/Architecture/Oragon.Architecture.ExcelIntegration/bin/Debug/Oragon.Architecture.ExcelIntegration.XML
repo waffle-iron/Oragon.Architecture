@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Oragon.Architecture.ExcelIntegration</name>
+    </assembly>
+    <members>
+        <member name="T:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher">
+            <summary>
+            Define um Fetcher
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher.PathExpression">
+            <summary>
+            Expressão Lambda que define como obter o valor do método
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher.ColumnName">
+            <summary>
+            Define o nome da coluna para extração
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher.Format">
+            <summary>
+            Define um formato pra exibição do tipo de conteúdo
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher.CustomFormat">
+            <summary>
+            Aplica um formato à célula em questão
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.ExcelIntegration2.Model.ExcelFetcher.ExpressionDelegate">
+            <summary>
+            Retorna um delegate com a expressão compilada.
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.ExcelIntegration2.Model.ExcelFormat">
+            <summary>
+            Determina o Tipo de formatação para as colunas no Excel
+            </summary>
+        </member>
+    </members>
+</doc>

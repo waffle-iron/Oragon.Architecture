@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0048)http://www.superstarcoders.com/linq-to-html.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="cufon-active cufon-ready"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	LINQ to HTML
+</title>
+	
+		
+	<script src="./LINQ to HTML_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./LINQ to HTML_files/ga.js"></script><script type="text/javascript" async="" src="./LINQ to HTML_files/plusone.js" gapi_processed="true"></script><script id="twitter-wjs" src="./LINQ to HTML_files/widgets.js"></script><script type="text/javascript" src="./LINQ to HTML_files/prettify.js"></script><link href="./LINQ to HTML_files/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="./LINQ to HTML_files/jquery-1.7.1.min.js"></script><script type="text/javascript" src="./LINQ to HTML_files/cufon-yui.js"></script><style type="text/css">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style><script type="text/javascript" src="./LINQ to HTML_files/GlooGun_400.font.js"></script><script type="text/javascript" src="./LINQ to HTML_files/curvycorners.js"></script><link rel="icon" href="http://www.superstarcoders.com/favicon.ico">
+	<!--[if IE]>
+		<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+	<![endif]-->
+	<script type="text/javascript">
+		Cufon.replace('#logoText');
+    </script>
+<link href="./LINQ to HTML_files/Blogs_v5.css" type="text/css" rel="stylesheet"><link href="./LINQ to HTML_files/Global_v5.css" type="text/css" rel="stylesheet"><style type="text/css">@media print { #feedlyMiniIcon { display: none; } }</style><script>window["_GOOG_TRANS_EXT_VER"] = "1";</script><script>window["_GOOG_TRANS_EXT_VER"] = "1";</script></head>
+<body data-twttr-rendered="true">
+    <form method="post" action="./LINQ to HTML_files/LINQ to HTML.htm" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTI4MDEyOTAzNGRkKZzNQhbIxfb7HCEuE4g4Ag+k70Q=">
+</div>
+
+
+<script src="./LINQ to HTML_files/WebResource.axd" type="text/javascript"></script>
+    <div class="container">
+		<div class="top">
+			
+		</div>
+		<div class="header">
+			
+				<div style="float: left; width: 530px;">
+					<div class="logo">
+						
+							<div id="logoText"><cufon class="cufon cufon-canvas" alt="Superstar " style="width: 118px; height: 35px;"><canvas width="130" height="37" style="width: 130px; height: 37px; top: 0px; left: -2px;"></canvas><cufontext>Superstar </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Coders" style="width: 73px; height: 35px;"><canvas width="81" height="37" style="width: 81px; height: 37px; top: 0px; left: -2px;"></canvas><cufontext>Coders</cufontext></cufon></div>
+							<div id="logoStrap">a .NET software development blog for people who like coding</div>
+					</div>
+					
+				</div>
+				
+				
+				
+				<div class="clear"></div>
+			
+		</div>
+		<div class="middle">
+			<div>
+				<div>
+					<div class="menu">
+						<ul>
+							<li><a href="http://www.superstarcoders.com/news.aspx">Home</a></li>
+							
+							<li class="separated"><a href="http://www.superstarcoders.com/blogs/archive.aspx">Blog</a></li>
+							
+							
+							<li class="separated"><a href="http://www.superstarcoders.com/blogs/about.aspx">About</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				
+	<div class="content">
+		<div style="float:left; width: 934px;">
+			
+
+	<h1>LINQ to HTML</h1>
+	
+	<div id="blogPostTextContent">
+	<p>
+	LINQ to HTML is a full featured .NET HTML parser
+	modelled on Microsoft's LINQ to XML.
+	The key benefit of LINQ to HTML is that it is just as simple as LINQ to XML and handles malformed HTML.
+	If you like
+	working with the XDocument class you will love this library.
+	</p>
+	
+	<p>
+		<a id="ctl00_ctl00_Body_Body_DownloadHyperLink" class="downloadHyperLinkSubtle" href="http://www.superstarcoders.com/linq-to-html-download.axd">Download LINQ to HTML</a>
+	
+		
+	
+		(Version 3.5.11 - 20 August 2012)
+	</p>
+
+	<h2>Example - Parsing Malformed HTML</h2>
+
+<p>
+LINQ to HTML handles malformed HTML (so called "tag soup") so your HTML documents do not have
+to conform to any minimum standards.
+</p>
+
+<p>
+Parsing HTML:
+</p>
+
+<pre class="prettyprint"><span class="typ">HDocument</span><span class="pln"> document </span><span class="pun">=</span><span class="pln"> </span><span class="typ">HDocument</span><span class="pun">.</span><span class="typ">Parse</span><span class="pun">(</span><span class="str">"&lt;HTML&gt;&lt;img src=something.gif&gt;&lt;/html&gt;"</span><span class="pun">);</span><span class="pln">
+	
+</span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="typ">ToString</span><span class="pun">());</span></pre>
+<p>
+	The output reflects a clean version of input. For example,
+	closing tags are added to elements and quotes are added to attributes.
+</p>
+<p>
+	Output:
+</p>
+<pre class="prettyprint"><span class="tag">&lt;html&gt;&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"something.gif"</span><span class="pln"> </span><span class="tag">/&gt;&lt;/html&gt;</span></pre>
+
+	<h2>Example - Getting all Image URLs from a HTML Page</h2>
+
+<p>
+	LINQ to HTML can download HTML documents from external URLs and iterate over
+	the contents
+	using the LINQ to XML style API.
+</p>
+
+<pre class="prettyprint"><span class="typ">HDocument</span><span class="pln"> document </span><span class="pun">=</span><span class="pln"> </span><span class="typ">HDocument</span><span class="pun">.</span><span class="typ">Load</span><span class="pun">(</span><span class="str">"http://www.microsoft.com"</span><span class="pun">);</span><span class="pln">
+	
+</span><span class="kwd">foreach</span><span class="pln"> </span><span class="pun">(</span><span class="typ">HElement</span><span class="pln"> element </span><span class="kwd">in</span><span class="pln"> document</span><span class="pun">.</span><span class="typ">Descendants</span><span class="pun">(</span><span class="str">"img"</span><span class="pun">))</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+   </span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="str">"src = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> element</span><span class="pun">.</span><span class="typ">Attribute</span><span class="pun">(</span><span class="str">"src"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<div style="margin-bottom: 1em;">
+	
+<div>
+	<div style="float: left;">
+		<iframe allowtransparency="true" frameborder="0" scrolling="no" src="./LINQ to HTML_files/tweet_button.1363148939.htm" class="twitter-share-button twitter-count-horizontal" style="width: 110px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe><script type="text/javascript">
+	//<![CDATA[
+	
+				(function(d, s, id) {
+					var fjs = d.getElementsByTagName(s)[0];
+					if (!d.getElementById(id)){
+						var js = d.createElement(s);
+						js.id = id;
+						js.src = '//platform.twitter.com/widgets.js';
+						fjs.parentNode.insertBefore(js, fjs);
+					}
+				})(document, 'script', 'twitter-wjs');
+			
+	//]]>
+
+</script>
+	</div>
+	<div style="float: left;">
+		<div style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial;" id="___plusone_0"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1363811546822" name="I0_1363811546822" src="./LINQ to HTML_files/fastbutton.htm" allowtransparency="true" data-gapiattached="true" title="+1"></iframe></div><script type="text/javascript">
+	//<![CDATA[
+	window.___gcfg = {lang: 'en-US'};
+	(function() {
+				var e = document.getElementById('ctl00_ctl00_Body_Body_ctl01_ctl01');
+				e.setAttribute('data-annotation', 'bubble');
+				e.setAttribute('data-size', 'medium');
+				var po = document.createElement('script');
+				po.type = 'text/javascript';
+				po.async = true;
+				po.src = 'https://apis.google.com/js/plusone.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(po, s); 
+			})();
+	//]]>
+
+</script>
+	</div>
+	<div>
+		<div id="ctl00_ctl00_Body_Body_ctl01_ctl02">
+
+<iframe src="./LINQ to HTML_files/like.htm" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 450px; height: 21px;"></iframe></div><script type="text/javascript">
+	//<![CDATA[
+	(function() {
+				var f = document.createElement('iframe');
+				f.src = '//www.facebook.com/plugins/like.php?href&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21';
+				f.scrolling = 'no';
+				f.frameBorder = '0';
+				f.style.border = 'none';
+				f.style.overflow = 'hidden';
+				f.style.width = '450px';
+				f.style.height = '21px';
+				f.allowTransparency = true;
+				var e = document.getElementById('ctl00_ctl00_Body_Body_ctl01_ctl02');
+				e.appendChild(f);
+			})();
+	//]]>
+
+</script>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+</div>
+
+		</div>
+		
+		<div style="float:right; width: 1px; height: 358px;"></div>
+		
+		<div class="clear"></div>
+	</div>
+	
+	<script type="text/javascript">
+	//<![CDATA[
+		var content = document.getElementById("blogPostTextContent");
+
+		if (content != null) {
+			var pres = content.getElementsByTagName("pre");
+			
+			for (var i = 0; i < pres.length; i++) {
+				pres[i].className = "prettyprint";
+			}
+
+			prettyPrint();
+		}
+		//]]>
+	</script>
+
+			</div>
+			
+	
+
+		</div>
+		<div class="footercap"></div>
+		<div class="footer"></div>
+		<div class="copyright">
+			<div style="float: left;">
+				<span>© 2013 Superstar Coders. All rights reserved.</span>
+			</div>
+		
+			<div class="copyrightMenu" style="float: right;">
+				
+						<a href="http://www.superstarcoders.com/login.aspx">Sign In</a>
+					
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+		<div class="w3c">
+			<a href="http://validator.w3.org/check?uri=referer"><img src="./LINQ to HTML_files/valid-xhtml10-blue" alt="Valid XHTML 1.0 Strict" style="height:31px;width:88px;border-width:0px;"></a>
+		</div>
+    </div>
+   
+    
+   
+    
+
+<script type="text/javascript">
+//<![CDATA[
+GoogleEventTigger("ctl00_ctl00_Body_Body_DownloadHyperLink", ["_trackEvent", "Download", "Download LINQ to HTML", "Download LINQ to HTML"], "/linq-to-html-download.axd");
+					if (typeof _gaq == 'undefined') {
+						_gaq = [];
+					}
+					
+					_gaq.push(["_setAccount", "UA-27373525-1"]);
+					_gaq.push(["_trackPageview"]);
+				
+					(function() { 
+						var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; 
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); 
+					})(); 
+				//]]>
+</script>
+</form>
+
+
+<img id="feedlyMiniIcon" title="feedly mini" style="position: fixed; bottom: 14px; right: 14px; z-index: 99; cursor: pointer; border: 0px; -webkit-transition: opacity 0.3s ease; visibility: visible; width: 24px; height: 24px; max-height: 24px; max-width: 24px; overflow: hidden; display: block; padding: 0px; opacity: 0.35;" width="24" height="24" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAYlJREFUeNrMVD1rwlAUPfkwBBxFKQQlDhmjqzj4F9w7FfwThZaW9n8UnDrrn1BEXNTBRQQhEE1ERRR0Sd990A7VaKJJ6YHzEu4N99z3zrsRGo2GAuCF8YFRQzSwGOuM7zJb3hgfES2o0SdGSWRLDfGhRgLpGAXS4q0VCoUCBEHwzd8skM/nUSqVoCjKybz8O1CtVn2LeZ4H27YxnU6xXC6x3+95PJPJoFKpoN1uY7vdnhfww3w+x3A4xGaz4d3quo5sNvuTTyaTXKTb7cJ13csCzWbzKKaqKj/zXC4HSZKO8iRcLpcxGAwwmUzC7UDTNBSLRSQSiVAeyUGNpM4v4XA4oNfr8eMMLJBKpWCaJn9fLBawLAur1Qq73Y6b/H0pyNyrTDYMA7PZDKPRCOv1+uQ3ZCqZe9UcOI6DTqfjW5zMbLVa3Bu6RaE9GI/HZ/P9fp8/qfipYROj+ukEnuQgEx0GImKGHGSC//UO/kTAibG+QwIfMQrUyeRXusaM94x3ERW2GT8Zn78EGACRmoKUJhB1TQAAAABJRU5ErkJggg=="><script style="display: none;" id="hiddenlpsubmitdiv"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

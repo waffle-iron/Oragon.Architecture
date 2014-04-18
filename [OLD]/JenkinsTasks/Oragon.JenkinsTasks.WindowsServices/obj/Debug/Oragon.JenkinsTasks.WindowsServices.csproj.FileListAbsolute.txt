@@ -1,0 +1,6 @@
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\bin\Debug\Oragon.JenkinsTasks.WindowsServices.exe
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\bin\Debug\Oragon.JenkinsTasks.WindowsServices.pdb
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\bin\Debug\CommandLine.dll
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\obj\Debug\Oragon.JenkinsTasks.WindowsServices.csprojResolveAssemblyReference.cache
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\obj\Debug\Oragon.JenkinsTasks.WindowsServices.exe
+D:\Projetos\Oragon.Architecture\JenkinsTasks\Oragon.JenkinsTasks.WindowsServices\obj\Debug\Oragon.JenkinsTasks.WindowsServices.pdb

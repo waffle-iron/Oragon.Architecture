@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity"
+	>
+	<object name="ExampleService" type="Oragon.Architecture.Tests.Cache.Redis.AOP.ExampleService, Oragon.Architecture.Tests">
+		<property name="ExampleModelCacheDP">
+			<object type="Oragon.Architecture.Tests.Cache.Redis.AOP.ExampleModelCacheDataProcess">
+				<property name="ObjectContextKey"  value="Redis1" />
+			</object>
+		</property>
+	</object>
+
+	<object name="RedisContextAroundAdvice" type="Oragon.Architecture.AOP.Data.Redis.RedisContextAroundAdvice, Oragon.Architecture">
+		<property name="ConnectionStrings" >
+			<list element-type="Oragon.Architecture.Data.ConnectionStrings.RedisConnectionString, Oragon.Architecture" >
+				<object type="Oragon.Architecture.Data.ConnectionStrings.RedisConnectionString, Oragon.Architecture">
+					<property name="Key" value="Redis1" />
+					<property name="ConnectionString" value="OragonServer03:6379" />
+					<property name="IsolationKey" value="Oragon.It:Testes" />
+				</object>
+			</list>
+		</property>
+	</object>
+
+	<aop:config>
+		<aop:advisor pointcut-ref="ObjectContextUsersPointcuts"			advice-ref="RedisContextAroundAdvice" />
+	</aop:config>
+
+	<object id="ObjectContextUsersPointcuts" type="Spring.Aop.Support.SdkRegularExpressionMethodPointcut, Spring.Aop">
+		<property name="Patterns">
+			<list>
+				<value>Oragon.Architecture.Tests.Cache.Redis.AOP.*Service</value>
+			</list>
+		</property>
+	</object>
+
+</objects>

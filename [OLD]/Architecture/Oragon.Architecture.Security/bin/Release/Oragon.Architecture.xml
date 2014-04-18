@@ -1,0 +1,2112 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Oragon.Architecture</name>
+    </assembly>
+    <members>
+        <member name="M:Oragon.Architecture.AOP.Data.Abstractions.AbstractContextAroundAdvice`2.GetContextAttributes(AopAlliance.Intercept.IMethodInvocation)">
+            <summary>
+            Obtém informações de persistência definidas nos métodos
+            </summary>
+            <param name="invocation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.AOP.Data.NHibernate.NHContext.BuildSession(NHibernate.IInterceptor)">
+            <summary>
+            Constrói uma sessão NHibernate injetando interceptadores na sessão de acordo com o estado definido na própria configuração do ObjectcontextAroundAdvice
+            </summary>
+            <param name="sessionFactory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.AOP.Data.NHibernate.NHDataProcess.Query``1">
+            <summary>
+            Obtém um IQueryOver pronto para realizar consultas usando lambda expressions 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.AOP.Data.NHibernate.NHDataProcess.QueryOver``1">
+            <summary>
+            Obtém um IQueryOver (ICriteria API) para que possa ser utilizado em consultas com lambda expressions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.AOP.Data.NHibernate.NHDataProcess.Attach(Oragon.Architecture.Business.Entity)">
+            <summary>
+            Reanexa um objeto 
+            </summary>
+            <param name="itemToAttach"></param>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.PersistenceDataProcessBase`1.Save(`0)">
+            <summary>
+            Realiza a operação de insert dos dados de uma entidade no banco de dados
+            </summary>
+            <param name="entity">Entidade a ser persistida</param>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.PersistenceDataProcessBase`1.SaveOrUpdate(`0)">
+            <summary>
+            Tenta realizar um insert ou update para garantir o armazenamento do dado no banco
+            </summary>
+            <param name="entity">Entidade a ser persistida</param>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.PersistenceDataProcessBase`1.Update(`0)">
+            <summary>
+            Realiza uma operãção de update no banco
+            </summary>
+            <param name="entity">Entidade a ser persistida</param>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.PersistenceDataProcessBase`1.Delete(`0)">
+            <summary>
+            Realiza a exclusão da entidade do banco
+            </summary>
+            <param name="entity">Entidade a ser persistida</param>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.QueryDataProcess`1.GetFirstBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Obtém uma única instância de T com base no filtro informado. 
+            </summary>
+            <param name="predicate">Filtro a ser aplicado.</param>
+            <returns>Primeira ocorrência de T que atenda ao filtro.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.QueryDataProcess`1.GetFirstBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+            Obtém uma única instância de T com base no filtro informado. 
+            </summary>
+            <param name="predicate">Filtro a ser aplicado.</param>
+            <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
+            <returns>Primeira ocorrência de T que atenda ao filtro.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.QueryDataProcess`1.GetListBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Boolean})">
+            <summary>
+            Obtém uma lista de instâncias de T com base no filtro informado.
+            </summary>
+            <param name="predicate">Filtro a ser aplicado.</param>
+            <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
+            <param name="orderByExpression">Identifica o orderby a ser executado na consulta</param>
+            <returns>Lista com ocorrência de T que atendem ao filtro.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Data.Process.QueryDataProcess`1.GetAll">
+            <summary>
+            Obtém uma lista com todas as instâncias de T.
+            </summary>
+            <returns>Lista com ocorrência de T.</returns>
+        </member>
+        <member name="T:Oragon.Architecture.Extensions.OragonExtensions">
+            <summary>
+            Classe contendo extension methods para objetos Expression.
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <id>10C069F2-BAC4-4E79-A06D-5917D52E1A11</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that query if the collection is empty
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>true if empty&lt; t&gt;, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IfFalse(System.Boolean,System.Action)">
+            <id>F396C490-9448-475D-B3A9-FBAE682FDBB7</id>
+            <summary>
+                A bool extension method that execute an Action if the value is false.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IfTrue(System.Boolean,System.Action)">
+            <id>42AB63B0-0D36-46FF-942F-2B10AE4517BD</id>
+            <summary>
+                A bool extension method that execute an Action if the value is true.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBinary(System.Boolean)">
+            <id>51D65862-B68C-4DFB-9832-B0B1A01A4D94</id>
+            <summary>
+                A bool extension method that convert this object into a binary representation. If the value is true then 1
+                otherwise 0.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>1 if true, otherwise 0.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBase64String(System.Byte[])">
+            <id>0A7CF05C-57BC-40DA-A118-CCB7B725A876</id>
+            <summary>
+                A byte[] extension method that converts an array of 8-bit unsigned integers to its equivalent string
+                representation that is encoded with base-64 digits.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                The string representation of the array of 8-bit unsigned integers that is encoded with base-64 digits.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Repeat(System.Char,System.Int32)">
+            <id>FBC766DD-6FBB-4A55-B140-091A97E0DCD7</id>
+            <summary>
+                A char extension method that repeats a character a number of times.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="repeatCount">Number of repeats.</param>
+            <returns>The repeated char.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0)">
+            <id>1E68FC76-A3C5-4E0D-976F-01C0987A2853</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds only if the value satisfies the predicate.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="predicate">The predicate.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
+            <id>2A5B3D49-6F76-40B9-B3DC-85E6180E470B</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that add value if the ICollection doesn't contains it already.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <id>CABCC442-7134-4FCA-AA4E-1640FAD01D42</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a range to 'values'.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <id>12B9A95F-E047-44E6-B616-8B0AFC14E63E</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a range to 'values'.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},``0[])">
+            <id>DC6B42E9-C0F7-47FE-819D-CF47862B7E72</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
+                for value who satisfies the predicate.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="predicate">The predicate.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRangeIf``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
+            <id>6208839E-FA33-451C-A517-FB5BE3295DC1</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
+                for value who satisfies the predicate.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="predicate">The predicate.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <id>10C069F2-BAC4-4E79-A06D-5917D52E1A11</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that query if the collection is empty
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>true if empty&lt; t&gt;, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <id>B94EF527-52D6-4281-93DA-EC2A35C98C5B</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that query if the collection is not empty.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>true if not empty&lt; t&gt;, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <id>F669FCDB-0DE9-4E32-9F21-F81ECEE546B3</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that queries if the collection is not (null or is empty).
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>true if the collection is not (null or empty), false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <id>2709E4AA-6C22-4A4A-A24B-B056E21AF3FD</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that queries if the collection is null or is empty.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>true if null or empty&lt; t&gt;, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``1(System.Collections.Generic.ICollection{``0},``0)">
+            <id>10D077CC-724F-4B46-949B-D5A3430567BD</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that try remove the value.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value.</param>
+            <returns>true if it succeeds, false if it fails.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <id>1F9109F9-1D9F-4D67-B03F-F179FB6ECF44</id>
+            <summary>
+                Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
+                not already exist, or to update a key/value pair in the IDictionary&lt;TKey, TValue&gt;> if the key already
+                exists.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key to be added or whose value should be updated.</param>
+            <param name="value">The value to be added or updated.</param>
+            <returns>The new value for the key.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+            <id>6466eba0-1951-4758-b848-fdcfb1a8b157</id>
+            <summary>
+                Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
+                not already exist, or to update a key/value pair in the IDictionary&lt;TKey, TValue&gt;> if the key already
+                exists.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key to be added or whose value should be updated.</param>
+            <param name="addValue">The value to be added for an absent key.</param>
+            <param name="updateValueFactory">
+                The function used to generate a new value for an existing key based on the key's
+                existing value.
+            </param>
+            <returns>
+                The new value for the key. This will be either be addValue (if the key was absent) or the result of
+                updateValueFactory (if the key was present).
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+            <id>1eeb3843-be83-46e2-9505-0f9ad35c3839</id>
+            <summary>
+                Uses the specified functions to add a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does
+                not already exist, or to update a key/value pair in the IDictionary&lt;TKey, TValue&gt;> if the key already
+                exists.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key to be added or whose value should be updated.</param>
+            <param name="addValueFactory">The function used to generate a value for an absent key.</param>
+            <param name="updateValueFactory">The function used to generate a new value for an existing key based on the key's existing value.</param>
+            <returns>
+                The new value for the key. This will be either be the result of addValueFactory (if the key was absent) or
+                the result of updateValueFactory (if the key was present).
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <id>EFC83FA9-66A6-491E-81D2-4584F8B9B0DB</id>
+            <summary>
+                Adds a key/value pair to the IDictionary&lt;TKey, TValue&gt; if the key does not already exist.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value to be added, if the key does not already exist.</param>
+            <returns>
+                The value for the key. This will be either the existing value for the key if the key is already in the
+                dictionary, or the new value if the key was not in the dictionary.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+            <id>D184638F-80A2-4C6D-B7C4-C3EBAC8EF701</id>
+            <summary>
+                Adds a key/value pair to the IDictionary&lt;TKey, TValue&gt; by using the specified function, if the key does
+                not already exist.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the element to add.</param>
+            <param name="valueFactory">TThe function used to generate a value for the key.</param>
+            <returns>
+                The value for the key. This will be either the existing value for the key if the key is already in the
+                dictionary, or the new value for the key as returned by valueFactory if the key was not in the dictionary.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <id>C987643D-016C-40FB-9C51-FFCCE3D0E003</id>
+            <summary>
+                Attempts to add the specified key and value to the IDictionary&lt;TKey, TValue&gt;.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the element to add.</param>
+            <param name="value">The value of the element to add. The value can be null for reference types.</param>
+            <returns>
+                true if the key/value pair was added to the IDictionary&lt;TKey, TValue&gt; successfully; false if the key
+                already exists.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryGetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+            <id>90D31FDC-E67B-4207-B406-F323F4ECA101</id>
+            <summary>
+                Attempts to get the value associated with the specified key from the IDictionary&lt;TKey, TValue&gt;.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the value to get.</param>
+            <param name="value">
+                [out] When this method returns, contains the object from the IDictionary&lt;TKey, TValue&gt;
+                that has the specified key, or the default value of , if the operation failed.
+            </param>
+            <returns>true if the key was found in the IDictionary&lt;TKey, TValue&gt;, otherwise, false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+            <id>61BC3034-0065-41CA-93F0-90675EBCDBCE</id>
+            <summary>
+                Attempts to remove and return the value that has the specified key from the IDictionary&lt;TKey, TValue&gt;.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the element to remove and return.</param>
+            <param name="value">
+                [out] When this method returns, contains the object removed from the IDictionary&lt;TKey,
+                TValue&gt;, or the default value of the TValue type if key does not exist.
+            </param>
+            <returns>true if the object was removed successfully; otherwise, false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryRemove``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
+            <id>598EBF44-99CF-4680-BB0D-C63BB2A6CA6E</id>
+            <summary>
+                Attempts to remove and that has the specified key from the IDictionary&lt;TKey, TValue&gt;.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key of the element to remove.</param>
+            <returns>true if the object was removed successfully; otherwise, false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <id>B5F64F21-3ADC-4955-B5C8-DE53D06F81F8</id>
+            <summary>
+                Attempts to update the specified key and value to the IDictionary&lt;TKey, TValue&gt;.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key replaced.</param>
+            <param name="value">The value that replaces the value of the element that has the specified key.</param>
+            <returns>true if the value has been replaced in the IDictionary&lt;TKey, TValue&gt; otherwise, false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.TryUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,``1)">
+            <id>4B36C1E9-27A6-4A7F-9A1D-F1339A69B680</id>
+            <summary>
+                Compares the existing value for the specified key with a specified value, and if they are equal, updates the key with a third value.
+            </summary>
+            <typeparam name="TKey">Type of the key.</typeparam>
+            <typeparam name="TValue">Type of the value.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key whose value is compared with comparisonValue and possibly replaced.</param>
+            <param name="value">The value that replaces the value of the element that has the specified key if the comparison results in equality.</param>
+            <param name="comparisonValue">The value that is compared to the value of the element that has the specified key.</param>
+            <returns>true if the value with key was equal to comparisonValue and was replaced with newValue; otherwise, false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Perform ForEach in enumerable Itens
+            </summary>
+            <typeparam name="T">Generic type parameter</typeparam>
+            <param name="this">An IEnumerable that contains the elements to concatenate.</param>
+            <param name="predicate">Expression to execute</param>
+            <returns>Same Enumerable</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ForEach(System.Collections.IEnumerable,System.Action{System.Object})">
+            <summary>
+            Perform ForEach in enumerable Itens
+            </summary>
+            <param name="this">An IEnumerable that contains the elements to concatenate.</param>
+            <param name="predicate">Expression to execute</param>
+            <returns>Same Enumerable</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EmptyIfNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <id>DF9E904B-35CA-4507-A7B3-CA4DC88A7B86</id>
+            <summary>
+                If the IEnumerable is null than return an empty IEnumerable.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>The IEnumerable when not null, otherwise an empty IEnumerable.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <id>4C6147B5-7CCB-4E45-9611-11B86ADA8CB8</id>
+            <summary>
+                Concatenates all the elements of a IEnumerable, using the specified separator between each element.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">An IEnumerable that contains the elements to concatenate.</param>
+            <param name="separator">
+                The string to use as a separator. separator is included in the returned string only if value has more than one
+                element.
+            </param>
+            <returns>
+                A string that consists of the elements in value delimited by the separator string. If value is an empty array,
+                the method returns String.Empty.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToHashtable(System.Collections.IDictionary)">
+            <id>EFACAC99-249F-4906-8CFB-2E86FF6619A1</id>
+            <summary>
+                An IDictionary extension method that converts the @this to a hashtable.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a Hashtable.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteBoolean(System.Data.Common.DbCommand)">
+            <id>EB25EAB5-E9C9-411B-8F25-03680A4F3B3C</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a Boolean. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                true or false, which reflects the value returned by invoking the IConvertible.ToBoolean method for the first
+                column of the first row in the result set. If the value equal DBNull.Value, throw an exception.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDateTime(System.Data.Common.DbCommand)">
+            <id>BCD73DDC-D23E-4704-89BF-DD2796DA341C</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a DateTime. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                The date and time equivalent of the value of the first column of the first row in the result set. If the
+                value equal DBNull.Value, throw an exception.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDouble(System.Data.Common.DbCommand)">
+            <id>FE31ABF6-0798-4D22-9379-C8D35A0A9B46</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a Double. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                A double-precision floating-point number that is equivalent to the first column of the first row in the
+                result set. If the value equal DBNull.Value, throw an exception.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteInt(System.Data.Common.DbCommand)">
+            <id>1A5D8B3E-C8CA-4AE7-9CDC-B51413319251</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                an Int. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                A 32-bit signed integer that is equivalent to the first column of the first row in the result set. If the
+                value equal DBNull.Value, throw an exception.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableBoolean(System.Data.Common.DbCommand)">
+            <id>B14E9F9E-29AE-4D8D-BFC5-88DF82444494</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a nullable Boolean. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                true or false, which reflects the value returned by invoking the IConvertible.ToBoolean method for the first
+                column of the first row in the result set. If the value equal DBNull.Value, return null.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableDateTime(System.Data.Common.DbCommand)">
+            <id>112FF174-72ED-40F4-8709-F77D06D24261</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a nullable DateTime. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                The date and time equivalent of the value of the first column of the first row in the result set. If the
+                value equal DBNull.Value, return null.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableDouble(System.Data.Common.DbCommand)">
+            <id>4BCDD931-24A6-4728-A56A-B3D664A722E3</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a nullable Double. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                A double-precision floating-point number that is equivalent to the first column of the first row in the
+                result set. If the value equal DBNull.Value, return null.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteNullableInt(System.Data.Common.DbCommand)">
+            <id>C4E80BF0-146D-41A6-81FE-B502A96BCEC8</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                an nullable Int. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                A 32-bit signed integer that is equivalent to the first column of the first row in the result set. If the
+                value equal DBNull.Value, return null.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteString(System.Data.Common.DbCommand)">
+            <id>F6200813-2B43-462E-8511-CF763DE05EA7</id>
+            <summary>
+                Executes the query, and returns the first column of the first row in the result set returned by the query as
+                a String. Additional columns or rows are ignored.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                The string representation of the first column of the first row in the result set. If value is DBNull, set to
+                empty.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AddRange(System.Data.DataColumnCollection,System.String[])">
+            <id>42ACF5FE-402B-4B66-9F97-CFFF04CBF09C</id>
+            <summary>
+                A DataColumnCollection extension method that adds a range of columns with the specified values.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataColumnCollection)">
+            <id>E3F7A75F-F5A9-47C2-BC2C-BF2562BBAC9D</id>
+            <summary>
+                A DataColumnCollection extension method that enumerables the given object.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The IEnumerable object.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataColumnCollection)">
+            <id>46D812BA-C9CE-476A-B1E6-C3E6E59B5630</id>
+            <summary>
+                A DataColumnCollection extension method that converts an obj to a list.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>obj as a List&lt;DataColumn&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataRowCollection)">
+            <id>BC14CECD-26C7-4F9D-866B-1B990A55DE4E</id>
+            <summary>
+                A DataRowCollection extension method that converts the @this to an IEnumerable.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an IEnumerable.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataRowCollection)">
+            <id>941128A8-415E-4EDF-ABDA-3734D41D3CC7</id>
+            <summary>
+                A DataRowCollection extension method that converts the @this to a list.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a List&lt;DataRow&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.AsEnumerable(System.Data.DataTableCollection)">
+            <id>0F8B7690-B992-4278-A104-DC05AF97191D</id>
+            <summary>
+                A DataTableCollection extension method that converts the @this to an IEnumerable.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an IEnumerable.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToList(System.Data.DataTableCollection)">
+            <id>AA7134EC-AD33-4669-AC55-5EA7EF765373</id>
+            <summary>
+                A DataTableCollection extension method that converts the @this to a list.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a List&lt;DataTable&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetSqlConnection(System.Data.SqlClient.SqlBulkCopy)">
+            <id>25F8D0EB-2F45-4520-A921-028048E04DD5</id>
+            <summary>
+                A SqlBulkCopy extension method that return the SqlConnection from the SqlBulkCopy.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The SqlConnection from the SqlBulkCopy.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetTransaction(System.Data.SqlClient.SqlBulkCopy)">
+            <id>42B25882-5BC7-4550-8451-551AEFE517DC</id>
+            <summary>
+                A SqlBulkCopy extension method that return the SqlTransaction from the SqlBulkCopy.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The SqlTransaction from the SqlBulkCopy.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDataSet(System.Data.SqlClient.SqlCommand)">
+            <id>169EFAF3-CEDD-4598-9682-DFF96A04CB6F</id>
+            <summary>
+                Executes the query, and returns the result set as DataSet.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DataSet that is equivalent to the result set.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ExecuteDataTable(System.Data.SqlClient.SqlCommand)">
+            <id>D7EBF08E-DD54-4E87-BB26-9E04F7614257</id>
+            <summary>
+                Executes the query, and returns the first result set as DataTable.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DataTable that is equivalent to the first result set.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfDay(System.DateTime)">
+            <id>A9DB7F39-68F3-4D7F-91ED-BA3A09AE46E7</id>
+            <summary>
+                A DateTime extension method that return a DateTime with the time set to "23:59:59:999". The last moment of the
+                day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the day with the time set to "23:59:59".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfMonth(System.DateTime)">
+            <id>A761EBA2-B2B5-4423-8BA4-45DD170DCD5D</id>
+            <summary>
+                A DateTime extension method that return a DateTime of the last day of the month with the time set to
+                "23:59:59". The last moment of the day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the last day of the month with the time set to "23:59:59:999".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EndOfYear(System.DateTime)">
+            <id>3F524D27-83EB-45C1-B34C-FE7AAFABCCA2</id>
+            <summary>
+                A DateTime extension method that return a DateTime of the last day of the year with the time set to
+                "23:59:59". The last moment of the day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the last day of the year with the time set to "23:59:59:999".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsFuture(System.DateTime)">
+            <id>86A7D93D-B244-4876-848E-3C2EF5E966B5</id>
+            <summary>
+                A DateTime extension method that query if '@this' is in the future.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if the value is in the future, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsPast(System.DateTime)">
+            <id>A7FFEED4-7D2A-4923-BE26-CEDDC5692A5E</id>
+            <summary>
+                A DateTime extension method that query if '@this' is in the past.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if the value is in the past, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsWeekDay(System.DateTime)">
+            <id>04A869C9-C538-435B-A75C-EF4793E7E8D4</id>
+            <summary>
+                A DateTime extension method that query if '@this' is a week day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if '@this' is a week day, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsWeekendDay(System.DateTime)">
+            <id>83197779-D3C5-482B-82ED-B9992801C430</id>
+            <summary>
+                A DateTime extension method that query if '@this' is a weekend day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if '@this' is a weekend day, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfDay(System.DateTime)">
+            <id>527916DE-B3C5-451B-A50B-E1EC6734A568</id>
+            <summary>
+                A DateTime extension method that return a DateTime with the time set to "00:00:0". The first moment of the
+                day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the day with the time set to "00:00:00".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfMonth(System.DateTime)">
+            <id>08493F86-5D63-4BA3-826A-25A9CF4545D5</id>
+            <summary>
+                A DateTime extension method that return a DateTime of the first day of the month with the time set to
+                "00:00:00". The first moment of the day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the first day of the month with the time set to "00:00:00".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.StartOfYear(System.DateTime)">
+            <id>38C24938-FB6F-4E82-ABE6-E717AAD74CA8</id>
+            <summary>
+                A DateTime extension method that return a DateTime of the first day of the year with the time set to
+                "00:00:00". The first moment of the day.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>A DateTime of the first day of the year with the time set to "00:00:00".</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Cut(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <id>15F029B4-36FB-49E7-A7DC-EA063AC4C6A3</id>
+            <summary>
+                An Image extension method that cuts an image.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="x">The x coordinate.</param>
+            <param name="y">The y coordinate.</param>
+            <returns>The cutted image.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Scale(System.Drawing.Image,System.Double)">
+            <id>6EFD4348-77DF-49D9-AB9B-A838F9921B18</id>
+            <summary>
+                An Image extension method that scales an image to the specific ratio.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="ratio">The ratio.</param>
+            <returns>The scaled image to the specific ratio.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Scale(System.Drawing.Image,System.Int32,System.Int32)">
+            <id>D1432151-54D8-4F0F-AADF-FC2B0F78DA5E</id>
+            <summary>
+                An Image extension method that scales an image to a specific with and height.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <returns>The scaled image to the specific width and height.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetFolderPath(System.Environment.SpecialFolder)">
+            <id>EEA5D334-A3AD-4904-B44D-240A7E7B25E3</id>
+            <summary>
+                An Environment.SpecialFolder extension method that gets folder path.
+            </summary>
+            <param name="this">this.</param>
+            <returns>The folder path.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateDirectory(System.IO.DirectoryInfo)">
+            <id>915624AF-6812-40A3-9C8C-72A6A49474A9</id>
+            <summary>
+                A DirectoryInfo extension method that creates a directory and all subdirectories.
+            </summary>
+            <param name="this">The @this to act on.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetFileNameWithoutExtension(System.IO.FileInfo)">
+            <id>03F50E06-048A-4D8E-B503-3DD5C420EB2C</id>
+            <summary>
+                A FileInfo extension method that gets file name without extension.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The file name without extension.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.FileInfo,System.Int64)">
+            <id>998BC005-0960-410F-A0E3-D069141BAA3C</id>
+            <summary>
+                A FileInfo extension method that reads the file to the end.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="position">(Optional) the position.</param>
+            <returns>
+                The rest of the stream as a string, from the current position to the end. If the current position is at the
+                end of the stream, returns an empty string ("").
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.Stream)">
+            <id>C7AD1296-FA71-4F70-B22D-75E99B7B1C80</id>
+            <summary>
+                A Stream extension method that reads a stream to the end.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>
+                The rest of the stream as a string, from the current position to the end. If the current position is at the
+                end of the stream, returns an empty string ("").
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.IO.Stream,System.Int64)">
+            <id>58212BE6-23B0-4701-B7AD-C9D9D3A92070</id>
+            <summary>
+                A Stream extension method that reads a stream to the end.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="position">The position to set in the stream.</param>
+            <returns>
+                The rest of the stream as a string, from the current position to the end. If the current position is at the
+                end of the stream, returns an empty string ("").
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToByteArray(System.IO.Stream)">
+            <id>635D9852-FF20-4DF8-B511-4F3B08103596</id>
+            <summary>
+                A Stream extension method that converts the Stream to a byte array.
+            </summary>
+            <param name="this">The Stream to act on.</param>
+            <returns>The Stream as a byte[].</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Send(System.Net.Mail.MailMessage)">
+            <id>AF13329F-7CB1-4448-8D6B-9FD6E0E22971</id>
+            <summary>
+                A MailMessage extension method that send this message.
+            </summary>
+            <param name="this">The @this to act on.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SendAsync(System.Net.Mail.MailMessage,System.Object)">
+            <id>91D48A5D-6309-40C8-80C0-C838817C013A</id>
+            <summary>
+                A MailMessage extension method that sends this message asynchronous.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="userToken">The user token.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetResponseSafe(System.Net.WebRequest)">
+            <id>DDF8DE4A-A808-43FA-80FC-7BD1373F1A23</id>
+            <summary>
+                A WebRequest extension method that gets the WebRequest response or the WebException response.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The WebRequest response or WebException response.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEnd(System.Net.WebResponse)">
+            <id>0E9A8B95-F6BB-439C-AB8F-8127D689D066</id>
+            <summary>
+                A WebResponse extension method that reads the response stream to the end.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The response stream as a string, from the current position to the end.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReadToEndAndDispose(System.Net.WebResponse)">
+            <id>735E9495-5052-415E-8665-17CABEB8A1EB</id>
+            <summary>
+                A WebRequest extension method that gets the WebRequest response and read the response stream.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The response stream as a string, from the current position to the end.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Between``1(``0,``0,``0)">
+            <id>6F239711-2522-49D9-8C6D-32B4EFF40093</id>
+            <summary>
+                A T extension method that check if the value is between the minValue and maxValue.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>true if the value is between the minValue and maxValue, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Clone``1(``0)">
+            <id>5C2EF3D3-2457-4861-88CB-A825A0F722F6</id>
+            <summary>
+                A T extension method that makes a deep copy of this object.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>the copied object.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Coalesce``1(``0,``0[])">
+            <id>069C0CCC-26F8-41C4-B3B5-78D8F0C0DC93</id>
+            <summary>
+                A T extension method that return the first not null occurence.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>The first not null occurence or null</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.In``1(``0,``0[])">
+            <id>8B405D63-F5B5-4193-992D-5B2E703E2D15</id>
+            <summary>
+                A T extension method to determines whether the object is equal to any of the provided values.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The object to be compared.</param>
+            <param name="values">The value list to compare with the object.</param>
+            <returns>true if the values list contains the object, else false.</returns>
+            <example>
+                <code>
+                    var item = 1;
+                
+                    if(item.In(1, 2, 3))
+                    {
+                        // ...Code...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.In``1(``0,System.Collections.Generic.List{``0})">
+            <id>5E5B02F7-F65F-454F-8530-6917620F221A</id>
+            <summary>
+                A T extension method to determines whether the object is equal to any of the provided values.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The object to be compared.</param>
+            <param name="values">The value list to compare with the object.</param>
+            <returns>true if the values list contains the object, else false.</returns>
+            <example>
+                <code>
+                    var list = new List&lt;int&gt;() { 1, 2, 3 };
+                    var item = 1;
+                
+                    if(item.In(list))
+                    {
+                        // ...Code...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.InRange``1(``0,``0,``0)">
+            <id>5AD22F51-335B-4544-8528-D7A87A5CBFF0</id>
+            <summary>
+                A T extension method that check if the value is between inclusively the minValue and maxValue.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
+            <returns>true if the value is between inclusively the minValue and maxValue, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNull(System.Object)">
+            <id>624E8C82-F0EB-4699-8198-32FDE2746478</id>
+            <summary>
+                An object extension method that query if '@this' is not null.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if not null, false if not.</returns>
+            <example>
+                <code>
+                    var list = new int[] {};
+                
+                    if(list.IsNotNull())
+                    {
+                        // Code
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNull(System.Object)">
+            <id>6103DD9E-8C79-4FC1-B976-2621D584C5AB</id>
+            <summary>
+                An object extension method that query if '@this' is null.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if null, false if not.</returns>
+            <example>
+                <code>
+                    int[] list = null;
+                
+                    if(list.IsNull())
+                    {
+                        // Code
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NotIn``1(``0,``0[])">
+            <id>487370D2-5F68-4462-8EA9-4B194CB442C9</id>
+            <summary>
+                A T extension method to determines whether the object is not equal to any of the provided values.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The object to be compared.</param>
+            <param name="values">The value list to compare with the object.</param>
+            <returns>true if the values list doesn't contains the object, else false.</returns>
+            <example>
+                <code>
+                    var item = 1;
+                
+                    if(item.NotIn(1, 2, 3))
+                    {
+                        // ...Code...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NotIn``1(``0,System.Collections.Generic.List{``0})">
+            <id>1E2FC67A-1254-4293-83DC-DA838971492C</id>
+            <summary>
+                A T extension method to determines whether the object is not equal to any of the provided values.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The object to be compared.</param>
+            <param name="values">The value list to compare with the object.</param>
+            <returns>true if the values list doesn't contains the object, else false.</returns>
+            <example>
+                <code>
+                    var list = new List&lt;int&gt;() { 1, 2, 3 };
+                    var item = 1;
+                
+                    if(item.NotIn(list))
+                    {
+                        // ...Code...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SerializeBinary(System.Object)">
+            <id>7D2C5D9B-D35A-45F3-84EF-4CF9854773F2</id>
+            <summary>
+                An object extension method that serialize an object to binary.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The string representation of the binary serialization.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SerializeXml(System.Object)">
+            <id>78C0CF79-8510-47A2-803D-232626C985CA</id>
+            <summary>
+                An object extension method that serialize a string to XML.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The string representation of the Xml Serialization.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToBoolean(System.Object)">
+            <id>9BCDD187-0372-4B95-819A-8B911FFEF8BC</id>
+            <summary>
+                An object extension method that converts the @this to a boolean.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a bool.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDateTime(System.Object)">
+            <id>0FC3B318-F73B-449E-81DB-21DEB5DF948A</id>
+            <summary>
+                An object extension method that converts the @this to a DateTime.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a DateTime.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDouble(System.Object)">
+            <id>104274B2-6208-4C4A-B591-F57778FED433</id>
+            <summary>
+                An object extension method that converts the @this to a Double.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a Double.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToInt(System.Object)">
+            <id>9F5259DF-C634-4947-AC43-1EAB9CC7B83E</id>
+            <summary>
+                An object extension method that converts the @this to an int.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an int.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableBoolean(System.Object)">
+            <id>09EE7AD6-9904-4E9A-8F76-9F909673E62B</id>
+            <summary>
+                An object extension method that converts the @this to a nullable boolean.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a bool?</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableDateTime(System.Object)">
+            <id>61788FDF-4214-401B-80BD-6126E8B06B13</id>
+            <summary>
+                An object extension method that converts the @this to a nullable DateTime.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a DateTime?</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableDouble(System.Object)">
+            <id>D3FC5E54-2880-4A4D-AED7-485FF8270CFD</id>
+            <summary>
+                An object extension method that converts the @this to a nullable Double.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a Double?</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToNullableInt(System.Object)">
+            <id>31C8ECF8-F8C2-4B7C-BE31-AFB9EB133673</id>
+            <summary>
+                An object extension method that converts the @this to a nullable int.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an int?</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CoinToss(System.Random)">
+            <id>E26D9726-A2A6-402C-9ED1-234EF36615FC</id>
+            <summary>
+                A Random extension method that flip a coin toss.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true 50% of time, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.OneOf``1(System.Random,``0[])">
+            <id>95E58958-F3FE-4F2E-ABE4-786788FF5DB8</id>
+            <summary>
+                A Random extension method that return at random one of the value.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing arguments.</param>
+            <returns>One of the specified value.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.OneOf``1(System.Random,System.Collections.Generic.List{``0})">
+            <id>904DF1AC-D0E8-4850-B96F-146E435E5FF7</id>
+            <summary>
+                A Random extension method that return at random one of the value.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing arguments.</param>
+            <returns>One of the specified value.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrWhiteSpace(System.String)">
+            <id>2C413A45-B812-46EE-8397-1DCD3DDE719D</id>
+            <summary>
+                A string extension method that queries if '@this' is not (null or empty).
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if '@this' is not (null or empty), false if not.</returns>
+            <example>
+                <code>
+                    var test = "z";
+                
+                    if(test.IsNotNullOrWhiteSpace())
+                    {
+                        // ... Code ...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Contains(System.String,System.String)">
+            <id>EBD9B7B5-0B56-4868-9A62-04A9DF560D5E</id>
+            <summary>
+                A string extension method that query if this object contains the given value.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value.</param>
+            <returns>true if the value is in the string, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Contains(System.String,System.String,System.StringComparison)">
+            <id>9BE70BB5-D755-40EB-9733-94DA54E461F3</id>
+            <summary>
+                A string extension method that query if this object contains the given value.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+            <returns>true if the value is in the string, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAll(System.String,System.String[])">
+            <id>D42CB5CB-3C08-431B-A376-AA3C7A70271C</id>
+            <summary>
+                A string extension method that query if '@this' contains all values.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>true if it contains all values, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAll(System.String,System.StringComparison,System.String[])">
+            <id>92ED25BB-09EA-47AE-8A3F-3A8F3A569479</id>
+            <summary>
+                A string extension method that query if this object contains the given @this.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="comparisonType">Type of the comparison.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>true if the object is in this collection, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAny(System.String,System.String[])">
+            <id>1B45ADFA-3C9D-4A5C-ACF3-4124147F3657</id>
+            <summary>
+                A string extension method that query if '@this' contains any values.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>true if it contains any values, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ContainsAny(System.String,System.StringComparison,System.String[])">
+            <id>A261555F-8A76-4BA6-A6C1-78619056A17D</id>
+            <summary>
+                A string extension method that query if '@this' contains any values.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="comparisonType">Type of the comparison.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>true if it contains any values, otherwise false.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DecodeBase64(System.String)">
+            <id>A008C7C0-9E85-41EF-9515-02FCDFF3DB8F</id>
+            <summary>
+                A string extension method that decode a Base64 String.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The Base64 String decoded.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DecryptRSA(System.String,System.String)">
+            <id>02D4806A-ADF8-4927-A7C2-CB537346B781</id>
+            <summary>
+                A string extension method that decrypt a string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key.</param>
+            <returns>The decrypted string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DeserializeBinary``1(System.String)">
+            <id>5B08F5E4-76DA-496A-85F2-3933AAF0AF97</id>
+            <summary>
+                A string extension method that deserialize a string binary as &lt;T&gt;.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>The desrialize binary as &lt;T&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.DeserializeXml``1(System.String)">
+            <id>CA5382C8-6A5E-4F78-AFE3-FC77C4C06E2A</id>
+            <summary>
+                A string extension method that deserialize an Xml as &lt;T&gt;.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>The desieralize Xml as &lt;T&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EncodeBase64(System.String)">
+            <id>1F429948-DF8C-420D-94C1-508A53F3E51E</id>
+            <summary>
+                A string extension method that encode the string to Base64.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The encoded string to Base64.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.EncryptRSA(System.String,System.String)">
+            <id>DC4B1713-41B5-48BB-BE4D-308FECE3DC02</id>
+            <summary>
+                A string extension method that encrypts the string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="key">The key.</param>
+            <returns>The encrypted string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FormatWith(System.String,System.Object[])">
+            <id>883F4227-4DFE-4029-8831-99858EFDEB8F</id>
+            <summary>
+                Replaces the format item in a specified String with the text equivalent of the value of a corresponding
+                Object instance in a specified array.
+            </summary>
+            <param name="this">A String containing zero or more format items.</param>
+            <param name="values">An Object array containing zero or more objects to format.</param>
+            <returns>
+                A copy of format in which the format items have been replaced by the String equivalent of the corresponding
+                instances of Object in args.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetAfter(System.String,System.String)">
+            <id>EB254584-EAAA-4D73-A819-D38A2D41A35E</id>
+            <summary>
+                A string extension method that get the string after the specified string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value to search.</param>
+            <returns>The string after the specified value.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetBefore(System.String,System.String)">
+            <id>74A42366-148D-46AA-97A2-CC888CFF4C8B</id>
+            <summary>
+                A string extension method that get the string before the specified string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="value">The value to search.</param>
+            <returns>The string before the specified value.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetBetween(System.String,System.String,System.String)">
+            <id>685006BD-7D08-4F4D-B5C7-EF766CCD6294</id>
+            <summary>
+                A string extension method that get the string between the two specified string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="before">The string before to search.</param>
+            <param name="after">The string after to search.</param>
+            <returns>The string between the two specified string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.HtmlDecode(System.String)">
+            <id>499D9E16-3964-4077-A8F9-288E7F3362A9</id>
+            <summary>
+                A string extension method that Html decode a string and returns the decoded string..
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The decoded string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.HtmlEncode(System.String)">
+            <id>7DAD6857-0E4B-4B9B-99FD-1C764755831B</id>
+            <summary>
+                A string extension method that Html encode a string and returns the encoded string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The encoded string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsAlpha(System.String)">
+            <id>7D1901DF-B086-4623-81B6-494A618E0E0D</id>
+            <summary>
+                A string extension method that query if '@this' is Alpha.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if Alpha, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsAlphaNumeric(System.String)">
+            <id>D8790C50-101F-44BA-8F7D-4723DFA0B0FF</id>
+            <summary>
+                A string extension method that query if '@this' is Alphanumeric.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if Alphanumeric, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsLike(System.String,System.String)">
+            <id>A4B1426C-E86C-4D2A-9509-68BC55958B03</id>
+            <summary>
+                A string extension method that query if '@this' satisfy the specified pattern.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="pattern">Specifies the pattern. Use '*' as wildcard string.</param>
+            <returns>true if '@this' satisfy the specified pattern, false if not.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNotNullOrEmpty(System.String)">
+            <id>2C413A45-B812-46EE-8397-1DCD3DDE719C</id>
+            <summary>
+                A string extension method that queries if '@this' is not (null or empty).
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if '@this' is not (null or empty), false if not.</returns>
+            <example>
+                <code>
+                    var test = "z";
+                
+                    if(test.IsNotNullOrEmpty())
+                    {
+                        // ... Code ...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsNullOrEmpty(System.String)">
+            <id>B753CACE-44FB-4367-BB41-F7BC2450663F</id>
+            <summary>
+                A string extension method that queries if '@this' is null or is empty.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>true if '@this' is null or is empty, false if not.</returns>
+            <example>
+                <code>
+                    var test = "";
+                
+                    if(test.IsNullOrEmpty())
+                    {
+                        // ... Code ...
+                    }
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Left(System.String,System.Int32)">
+            <id>37D8994E-550E-4E9C-B9D0-43B21FB464CF</id>
+            <summary>
+                A string extension method that return the left part of the string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="length">The length.</param>
+            <returns>The left part</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.NullIfEmpty(System.String)">
+            <id>52664028-724E-42FF-8972-6E5D5E1F7280</id>
+            <summary>
+                A string extension method that return null if the value is empty else the value.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>null if the value is empty, otherwise the value.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.RemoveDiacritics(System.String)">
+            <id>19D78243-923C-43EE-AF24-BE7B6490DEDB</id>
+            <summary>
+                A string extension method that removes the diacritics character from the strings.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The string without diacritics character</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Repeat(System.String,System.Int32)">
+            <id>8064BDCB-B453-48D0-B483-29C69766C842</id>
+            <summary>
+                A string extension method that repeats.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="repeatCount">Number of repeats.</param>
+            <returns>The repeated string.</returns>
+            <example>
+                <code>
+                    var s = "test".Repeat(3);
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReplaceEmpty(System.String,System.String[])">
+            <id>C89C7A5D-7419-433A-8998-910D011A6D86</id>
+            <summary>
+                A string extension method that replace all values specified by an empty string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>A string with all specified values replaced by an empty string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ReplaceEmpty(System.String,System.Collections.Generic.List{System.String})">
+            <id>19EBA9E1-3E0B-4ED1-AFE8-80C33C756FC9</id>
+            <summary>
+                A string extension method that replace all values specified by an empty string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+            <returns>A string with all specified values replaced by an empty string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Reverse(System.String)">
+            <id>7EF2717D-A5AA-45F5-AD50-47AB8AD046A7</id>
+            <summary>
+                A string extension method that reverses the given string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The string reversed</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Right(System.String,System.Int32)">
+            <id>E1CE7FF3-A6CC-406A-B07A-0F537AF7C3B0</id>
+            <summary>
+                A string extension method that return the right part of the string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="length">The length.</param>
+            <returns>The right part</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SaveAs(System.String,System.String,System.Boolean)">
+            <id>00195CBF-C786-4433-AA59-6DA43DC97BFA</id>
+            <summary>
+                A string extension method that save the string into a file.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="fileName">Filename of the file.</param>
+            <param name="append">(Optional) if we should append to the file.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SaveAs(System.String,System.IO.FileInfo,System.Boolean)">
+            <id>705EA2EC-C899-4D6D-9456-C4B30DCFC311</id>
+            <summary>
+                A string extension method that save the string into a file.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="file">The FileInfo.</param>
+            <param name="append">(Optional) if we should append to the file.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Split(System.String,System.String,System.StringSplitOptions)">
+            <id>9B1E1652-78CD-484A-8F31-85ED53FEB84C</id>
+            <summary>
+                Returns a String array containing the substrings in this string that are delimited by elements of a specified
+                String array. A parameter specifies whether to return empty array elements.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="separator">A string that delimit the substrings in this string.</param>
+            <param name="option">
+                (Optional) Specify RemoveEmptyEntries to omit empty array elements from the array returned, or None to include
+                empty array elements in the array returned.
+            </param>
+            <returns>
+                An array whose elements contain the substrings in this string that are delimited by the separator.
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToByteArray(System.String)">
+            <id>33F17764-49C7-47FB-B68D-FC0BACABE88C</id>
+            <summary>
+                A string extension method that converts the @this to a byte array.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a byte[].</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToDirectoryInfo(System.String)">
+            <id>39E6258C-FDDD-4F5B-8C5E-CB62BBBBD017</id>
+            <summary>
+                A string extension method that converts the @this to a directory information.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a DirectoryInfo.</returns>
+            <example>
+                <code>
+                       var directoryName = @"c:\";
+                
+                        var directoryInfo = directoryName.ToDirectoryInfo();
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToEnum``1(System.String)">
+            <id>0BDBC3FE-C9D1-45BA-9887-D4089456FE2D</id>
+            <summary>
+                A string extension method that converts the @this to an enum.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a T.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToFileInfo(System.String)">
+            <id>6E1DAB07-346B-45C8-9FC5-93D4C6F841E7</id>
+            <summary>
+                A string extension method that converts the @this to a file information.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a FileInfo.</returns>
+            <example>
+                <code>
+                      var fileName = @"c:\test.txt";
+                
+                       var fileInfo = fileName.ToFileInfo();
+                </code>
+            </example>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToMemoryStream(System.String)">
+            <id>98EFF073-5103-4E91-B52F-7273EDA7B560</id>
+            <summary>
+                A string extension method that converts the @this to a MemoryStream.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a MemoryStream.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToWebRequest(System.String)">
+            <id>1D6BCCD1-193E-492E-98BF-C5B8BB9E40E2</id>
+            <summary>
+                A string extension method that converts the @this to a WebRequest.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as a WebRequest.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToXDocument(System.String)">
+            <id>54317AC2-378B-4108-B96B-55364F1AE69C</id>
+            <summary>
+                A string extension method that converts the @this to a XDocument.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an XDocument.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToXmlDocument(System.String)">
+            <id>F1A1AC08-F3D2-4936-AB15-05C6E4EF86C0</id>
+            <summary>
+                A string extension method that converts the @this to an XmlDocument.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>@this as an XmlDocument.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UrlDecode(System.String)">
+            <id>EB712E90-40C6-4DE0-96D8-67FE863C559B</id>
+            <summary>
+                A string extension method that URL decode a string and returns the decoded string..
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The decoded string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UrlEncode(System.String)">
+            <id>E5F43DD5-F2AC-40CF-8CCC-B876DEFAC29A</id>
+            <summary>
+                A string extension method that URL encode a string and returns the encoded string.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The encoded string.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Ago(System.TimeSpan)">
+            <id>D0E14815-9D53-4371-9B74-E32D8DC49EB9</id>
+            <summary>
+                A TimeSpan extension method that substract the specified TimeStamp to the current DateTime.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The current DateTime with the specified TimeStamp substracted to it.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FromNow(System.TimeSpan)">
+            <id>B6415F20-14E4-413F-A3F4-4C4E3E741B1A</id>
+            <summary>
+                A TimeSpan extension method that add the specified TimeStamp to the current DateTime.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The current DateTime with the specified TimeStamp added to it.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UtcAgo(System.TimeSpan)">
+            <id>0797CB82-8D8B-49E5-B3D3-83BB87C8A625</id>
+            <summary>
+                A TimeSpan extension method that substract the specified TimeStamps to the current UTC (Coordinated Universal
+                Time)
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The current UTC (Coordinated Universal Time) with the specified TimeStamp substracted to it.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.UtcFromNow(System.TimeSpan)">
+            <id>5F2B17FA-546A-42CC-B11E-5FE27C17657B</id>
+            <summary>
+                A TimeSpan extension method that add the specified TimeStamps to the current UTC (Coordinated Universal Time)
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <returns>The current UTC (Coordinated Universal Time) with the specified TimeStamp added to it.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateInstance(System.Type,System.Object[])">
+            <id>3776A6DD-729E-4332-AC59-6D50A4B97CB4</id>
+            <summary>
+                A Type extension method that creates an instance of the type.
+            </summary>
+            <param name="type">The type to act on.</param>
+            <param name="values">A variable-length parameters list containing arguments.</param>
+            <returns>The new instance of the type.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CreateInstance``1(System.Type,System.Object[])">
+            <id>7B1FD313-DA3C-4033-9139-1ED2A6D99342</id>
+            <summary>
+                A Type extension method that creates an instance of the type.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="type">The type to act on.</param>
+            <param name="values">A variable-length parameters list containing arguments.</param>
+            <returns>The new instance&lt; t&gt;</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPrivateField(System.Type,System.String)">
+            <id>08AD98FB-4106-40E3-8693-5CD2CC2F1996</id>
+            <summary>
+                A Type extension method that gets a private field.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="name">The name.</param>
+            <returns>The private field.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPrivateProperty(System.Type,System.String)">
+            <id>6DE629CA-CAB7-48EE-889A-5A9F6508A98F</id>
+            <summary>
+                A Type extension method that gets private property.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="name">The name.</param>
+            <returns>The private property.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPublicField(System.Type,System.String)">
+            <id>17BDAEA8-FB65-405C-A13D-B5B777E82397</id>
+            <summary>
+                A Type extension method that gets a public field.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="name">The name.</param>
+            <returns>The public field.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.GetPublicProperty(System.Type,System.String)">
+            <id>A3A8B579-AF8A-4EF9-9C7E-DF16B2F98FEF</id>
+            <summary>
+                A Type extension method that gets public property.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="name">The name.</param>
+            <returns>The public property.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SetFileNotFound(System.Web.HttpResponse)">
+            <id>1671D1DB-35BD-410B-9CAC-AC02F06810F7</id>
+            <summary>
+                A HttpResponse extension method that sets the response to status code 404 (Not Found).
+            </summary>
+            <param name="this">The @this to act on.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.SetInternalServerError(System.Web.HttpResponse)">
+            <id>B2F67928-6EEB-42E2-A984-020FF1CB65E8</id>
+            <summary>
+                A HttpResponse extension method that sets the response to status code 500 (Internal Server Error).
+            </summary>
+            <param name="this">The @this to act on.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControl``1(System.Web.UI.Control,System.String)">
+            <id>F04DDC17-7827-4684-82F2-06CA6ED182C6</id>
+            <summary>
+                Searches the current naming container for a server control with the specified id parameter.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="id">The identifier for the control to be found.</param>
+            <returns>The specified control, or a null reference if the specified control does not exist.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControlRecursive``1(System.Web.UI.Control,System.String)">
+            <id>2D165574-6416-44FB-990E-CEABB6D0059A</id>
+            <summary>
+                Searches recursively in the container and child container for a server control with the specified id parameter.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="id">The identifier for the control to be found.</param>
+            <returns>The specified control, or a null reference if the specified control does not exist.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.FindControlRecursive(System.Web.UI.Control,System.String)">
+            <id>FAC21F43-0B83-4437-8187-65888AE16187</id>
+            <summary>
+                Searches recursively in the container and child container for a server control with the specified id
+                parameter.
+            </summary>
+            <param name="this">The @this to act on.</param>
+            <param name="id">The identifier for the control to be found.</param>
+            <returns>The specified control, or a null reference if the specified control does not exist.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Concatena duas expressões lambda que retornam bool.
+            </summary>
+            <returns>Retorna uma expressão lambda com o retorno sendo o AND lógico das duas expressões.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ToExpression(System.String,System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            Converte um objeto String para um objeto MemberExpression.
+            </summary>
+            <param name="origin">Objeto string original</param>
+            <param name="p">Parâmetro de entrada do objeto Expression.</param>
+            <returns>Uma expressão referente ao membro </returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsValidEmailAddress(System.String)">
+            <summary>
+            true, if is valid email address
+            from http://www.davidhayden.com/blog/dave/
+            archive/2006/11/30/ExtensionMethodsCSharp.aspx
+            </summary>
+            <param name="s">email address to test</param>
+            <returns>true, if is valid email address</returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.IsValidUrl(System.String)">
+            <summary>
+            Checks if url is valid. 
+            from http://www.osix.net/modules/article/?id=586 and changed to match http://localhost
+            
+            complete (not only http) url regex can be found 
+            at http://internet.ls-la.net/folklore/url-regexpr.html
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.Reduce(System.String,System.Int32,System.String)">
+            <summary>
+            Reduce string to shorter preview which is optionally ended by some string (...).
+            </summary>
+            <param name="s">string to reduce</param>
+            <param name="count">Length of returned string including endings.</param>
+            <param name="endings">optional edings of reduced text</param>
+            <example>
+            string description = "This is very long description of something";
+            string preview = description.Reduce(20,"...");
+            produce -> "This is very long..."
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.RemoveSpaces(System.String)">
+            <summary>
+            remove white space, not line end
+            Useful when parsing user input such phone,
+            price int.Parse("1 000 000".RemoveSpaces(),.....
+            </summary>
+            <param name="s"></param>
+            <param name="value">string without spaces</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CamelCase(System.String)">
+            <summary>
+            Aplica Camel Case em uma determinada string
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.CamelCaseSpecial(System.String)">
+            <summary>
+            Aplica Camel Case em uma determinada string
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.OragonExtensions.ApplyPattern(System.String,System.Func{System.String,System.String},System.Func{System.String,System.String})">
+            <summary>
+            Aplica padrões diferenciados para primeira letra e resto em uma determinada senteñça string
+            </summary>
+            <param name="text"></param>
+            <param name="first"></param>
+            <param name="rest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <id>ED3ED365-C03A-49A5-9C3F-FF55C3716CC0</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a range of values that's not already in the ICollection
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="M:Oragon.Architecture.Extensions.ExtensionMethods.AddRangeIfNotContains``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <id>3AA11884-4721-43E7-81F8-5FFB8334AA18</id>
+            <summary>
+                An ICollection&lt;T&gt; extension method that adds a range of values that's not already in the ICollection.
+            </summary>
+            <typeparam name="T">Generic type parameter.</typeparam>
+            <param name="this">The @this to act on.</param>
+            <param name="values">A variable-length parameters list containing values.</param>
+        </member>
+        <member name="T:Oragon.Architecture.Business.BusinessException">
+            <summary>
+            Classe base para exceções de negócio.
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Business.UndefinedException">
+            <summary>
+            Define uma exception não gerenciada tratada pelo mecanismo de exception replacement
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Converter`1">
+            <summary>
+            Define um objeto de conversão
+            </summary>
+            <typeparam name="T">Tipo do objeto a ser convertido</typeparam>
+        </member>
+        <member name="T:Oragon.Architecture.IConverter">
+            <summary>
+            Define um objeto conversor
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Converter`1.FetchPathList">
+            <summary>
+            Lista de Fetchers usada para determinar quais valores extrair das classes
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Converter`1.Fetcher">
+            <summary>
+            Define um Fetcher
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Converter`1.Fetcher.PathExpression">
+            <summary>
+            Expressão Lambda que define como obter o valor do método
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Converter`1.Fetcher.ConvertExpression">
+            <summary>
+            Func que define como converter
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Log.Model.LogEntryTransferObject">
+            <summary>
+            Classe LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.LogEntryID">
+            <summary>
+            Define ou obtém um(a) LogEntryID da LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.Context">
+            <summary>
+            Define ou obtém um(a) Context da LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.Date">
+            <summary>
+            Define ou obtém um(a) Date da LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.Content">
+            <summary>
+            Define ou obtém um(a) Content da LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.LogLevel">
+            <summary>
+            Define ou obtém um(a) LogLevel da LogEntry.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Log.Model.LogEntryTransferObject.Tags">
+            <summary>
+            Define ou obtém um(a) LogLevel da LogEntry.
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Merging.FileSystem.StepByStepDirectoryMerger">
+            <summary>
+            Realiza as operações de merge entre diretórios
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Merging.FileSystem.StepByStepDirectoryMerger.Merge(System.Collections.Generic.IEnumerable{Oragon.Architecture.Merging.FileSystem.Directory})">
+            <summary>
+            Realiza merge entre uma lista de diretórios, enviando-o ao final para a melhor opção na lista de targets
+            </summary>
+            <param name="directoriesToMerge">Lista de diretórios que precisam ser analisados e possivelmente unificados</param>
+            <param name="possibleTarget">Listas de diretórios de destino</param>
+        </member>
+        <member name="T:Oragon.Architecture.Services.SpringServices.GenericStartUpService">
+            <summary>
+            Serviço de startup automático de serviços
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Services.SpringServices.GenericStartUpService.Start">
+            <summary>
+            Responde pela inicialização do processamento
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Services.SpringServices.GenericStartUpService.Stop">
+            <summary>
+            Identifica o que fazer ao terminar o processamento
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Services.SpringServices.GenericStartUpService.CallMethod(System.String,Oragon.Architecture.Services.SpringServices.GenericStartUpService.Order)">
+            <summary>
+            Executa a chamada ao método especificado
+            </summary>
+            <param name="methodName"></param>
+        </member>
+        <member name="P:Oragon.Architecture.Services.SpringServices.GenericStartUpService.Name">
+            <summary>
+            Nome do Serviço
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Services.SpringServices.GenericStartUpService.HandlerObject">
+            <summary>
+            Objeto responsável pelo startup EntryPoint
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Services.SpringServices.GenericStartUpService.HandlerObjects">
+            <summary>
+            Objeto responsável pelo startup EntryPoint
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Services.SpringServices.GenericStartUpService.StartMethodName">
+            <summary>
+            Método (void) a ser chamado durante a inicialização
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Services.SpringServices.GenericStartUpService.StopMethodName">
+            <summary>
+            Método (void) a ser chamado durante a inicialização
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Data.SessionFactoryBuilder">
+            <summary>
+            Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
+            </summary>
+        </member>
+        <member name="M:Oragon.Architecture.Data.SessionFactoryBuilder.BuildSessionFactoryInternal">
+            <summary>
+            Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.ConStrConfigDiscovery">
+            <summary>
+            Identifica qual a chave da conexão
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.TypeNames">
+            <summary>
+            Identifica tipos contidos em 
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.MaxFetchDepth">
+            <summary>
+            Define a profundidade máxima para o preenchimento automático do mecanismo de persistência.
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.DefaultIsolationLevel">
+            <summary>
+            Define o nivel de isolamento da sessão
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.CommandTimeout">
+            <summary>
+            Define o timeout padrão para a execução de comandos
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.BatchSize">
+            <summary>
+            Define o default Batch Size
+            </summary>
+        </member>
+        <member name="P:Oragon.Architecture.Data.SessionFactoryBuilder.ObjectContextKey">
+            <summary>
+            Define uma chave para acesso ao banco
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.JsonHelper">
+            <summary>
+            Implementa um serializador Json
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.Security.IUserResolver">
+            <summary>
+            Interface se propõe a resolver uma entidade de negócio com base no IIdentity informado
+            </summary>
+        </member>
+        <member name="T:Oragon.Architecture.TypeConversion.DirectoryInfoConverter">
+            <summary>
+            Converter for <see cref="T:System.IO.DirectoryInfo" /> instances.
+            </summary>
+            <author>Luiz Carlos Faria (.NET)</author>
+        </member>
+        <member name="M:Oragon.Architecture.TypeConversion.DirectoryInfoConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert an object of one
+            <see cref="T:System.Type" /> to a <see cref="T:System.IO.DirectoryInfo" />
+            </summary>
+            <remarks>
+            <p>
+            Currently only supports conversion from a
+            <see cref="T:System.String" /> instance.
+            </p>
+            </remarks>
+            <param name="context">
+            A <see cref="T:System.ComponentModel.ITypeDescriptorContext" />
+            that provides a format context.
+            </param>
+            <param name="sourceType">
+            A <see cref="T:System.Type" /> that represents the
+            <see cref="T:System.Type" /> you want to convert from.
+            </param>
+            <returns>True if the conversion is possible.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.TypeConversion.DirectoryInfoConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Convert from a string value to a <see cref="T:System.IO.DirectoryInfo" /> instance.
+            </summary>
+            <param name="context">
+            A <see cref="T:System.ComponentModel.ITypeDescriptorContext" />
+            that provides a format context.
+            </param>
+            <param name="culture">
+            The <see cref="T:System.Globalization.CultureInfo" /> to use
+            as the current culture. 
+            </param>
+            <param name="value">
+            The value that is to be converted.
+            </param>
+            <returns>
+            A <see cref="T:System.IO.DirectoryInfo" /> if successful. 
+            </returns>
+        </member>
+        <member name="M:Oragon.Architecture.TypeConversion.ReaderQuotasConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert an object of one
+            <see cref="T:System.Type" /> to a <see cref="T:System.IO.DirectoryInfo" />
+            </summary>
+            <remarks>
+            <p>
+            Currently only supports conversion from a
+            <see cref="T:System.String" /> instance.
+            </p>
+            </remarks>
+            <param name="context">
+            A <see cref="T:System.ComponentModel.ITypeDescriptorContext" />
+            that provides a format context.
+            </param>
+            <param name="sourceType">
+            A <see cref="T:System.Type" /> that represents the
+            <see cref="T:System.Type" /> you want to convert from.
+            </param>
+            <returns>True if the conversion is possible.</returns>
+        </member>
+        <member name="M:Oragon.Architecture.TypeConversion.ReaderQuotasConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Convert from a string value to a <see cref="T:System.IO.DirectoryInfo" /> instance.
+            </summary>
+            <param name="context">
+            A <see cref="T:System.ComponentModel.ITypeDescriptorContext" />
+            that provides a format context.
+            </param>
+            <param name="culture">
+            The <see cref="T:System.Globalization.CultureInfo" /> to use
+            as the current culture. 
+            </param>
+            <param name="value">
+            The value that is to be converted.
+            </param>
+            <returns>
+            A <see cref="T:System.IO.DirectoryInfo" /> if successful. 
+            </returns>
+        </member>
+    </members>
+</doc>
