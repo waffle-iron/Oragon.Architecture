@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.Data.NHibernate", "Oragon.Architecture.Aop.Data.NHibernate\Oragon.Architecture.Aop.Data.NHibernate.csproj", "{496E3B18-A9E9-4EAB-8E7E-96509BB09551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate", "Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate\Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate.csproj", "{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.Data.MongoDB", "Oragon.Architecture.Aop.Data.MongoDB\Oragon.Architecture.Aop.Data.MongoDB.csproj", "{D9D06542-797D-4A57-95E5-C0A44727A386}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AOP", "AOP", "{50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.Data.FluentNHibernate", "Oragon.Architecture.Aop.Data.FluentNHibernate\Oragon.Architecture.Aop.Data.FluentNHibernate.csproj", "{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +33,14 @@ Global
 		{496E3B18-A9E9-4EAB-8E7E-96509BB09551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{496E3B18-A9E9-4EAB-8E7E-96509BB09551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{496E3B18-A9E9-4EAB-8E7E-96509BB09551}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9D06542-797D-4A57-95E5-C0A44727A386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9D06542-797D-4A57-95E5-C0A44727A386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9D06542-797D-4A57-95E5-C0A44727A386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9D06542-797D-4A57-95E5-C0A44727A386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

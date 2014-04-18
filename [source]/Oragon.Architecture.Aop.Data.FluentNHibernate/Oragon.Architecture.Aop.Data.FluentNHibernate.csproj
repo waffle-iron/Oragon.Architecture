@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oragon.Architecture</RootNamespace>
-    <AssemblyName>Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate</AssemblyName>
+    <AssemblyName>Oragon.Architecture.Aop.Data.FluentNHibernate</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
