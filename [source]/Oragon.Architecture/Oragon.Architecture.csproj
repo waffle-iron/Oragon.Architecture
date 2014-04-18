@@ -47,7 +47,9 @@
     <Compile Include="Business\BusinessException.cs" />
     <Compile Include="Business\Entity.cs" />
     <Compile Include="Business\UndefinedException.cs" />
-    <Compile Include="Data\ConnectionStrings\IConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\AppConfigConnectionStringDiscoverer.cs" />
+    <Compile Include="Data\ConnectionStrings\ConfigurableConnectionStringDiscoverer.cs" />
+    <Compile Include="Data\ConnectionStrings\IConnectionStringDiscoverer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

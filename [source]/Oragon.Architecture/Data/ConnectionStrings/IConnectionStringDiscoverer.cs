@@ -6,8 +6,9 @@ using System.Configuration;
 
 namespace Oragon.Architecture.Data.ConnectionStrings
 {
-	public interface IConStrConfigDiscovery
+	public interface IConnectionStringDiscoverer
 	{
 		ConnectionStringSettings GetConnectionString();
 	}
 }
+

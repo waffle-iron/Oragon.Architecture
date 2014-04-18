@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using NH = NHibernate;
+using FluentNH = FluentNHibernate;
 using Oragon.Architecture.Data.ConnectionStrings;
 
-namespace Oragon.Architecture.Aop.Data.NHibernate
+namespace Oragon.Architecture.Aop.Data.NHibernate.FluentNHibernate
 {
 	/// <summary>
 	/// Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
@@ -22,9 +23,9 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		/// <returns></returns>
 		protected override NH.ISessionFactory BuildSessionFactoryInternal()
 		{
-			FluentNHibernate.Cfg.Db.IPersistenceConfigurer databaseConfiguration = this.GetDataBaseConfiguration();
+			FluentNH.Cfg.Db.IPersistenceConfigurer databaseConfiguration = this.GetDataBaseConfiguration();
 
-			FluentNHibernate.Cfg.FluentConfiguration configuration = FluentNHibernate.Cfg.Fluently
+			FluentNH.Cfg.FluentConfiguration configuration = FluentNH.Cfg.Fluently
 				.Configure()
 				.Database(databaseConfiguration)
 				.Cache(it =>
@@ -57,13 +58,13 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return sessionFactory;
 		}
 
-		private FluentNHibernate.Cfg.Db.IPersistenceConfigurer GetDataBaseConfiguration()
+		private FluentNH.Cfg.Db.IPersistenceConfigurer GetDataBaseConfiguration()
 		{
 			string mySQLProviderName = "MySql.Data.MySqlClient".ToLower();
 			string sqlServerProviderName = "System.Data.SqlClient".ToLower();
 			string db2ProviderName = "System.Data.DB2Client".ToLower();
 
-			FluentNHibernate.Cfg.Db.IPersistenceConfigurer returnValue = null;
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = null;
 
 			ConnectionStringSettings connectionStringSettings = this.GetProviderName();
 
@@ -72,7 +73,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			{
 
 				case "MySql.Data.MySqlClient":
-					var configMySqlClient  = FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard
+					var configMySqlClient = FluentNH.Cfg.Db.MySQLConfiguration.Standard
 						.ConnectionString(connectionStringSettings.ConnectionString)
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
@@ -82,7 +83,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 					break;
 
 				case "System.Data.SqlClient":
-					var configSqlClient = FluentNHibernate.Cfg.Db.MsSqlConfiguration.MsSql2008
+					var configSqlClient = FluentNH.Cfg.Db.MsSqlConfiguration.MsSql2008
 						.ConnectionString(connectionStringSettings.ConnectionString)
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
@@ -92,7 +93,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 					break;
 
 				case "System.Data.DB2Client":
-					var configDB2Client = FluentNHibernate.Cfg.Db.DB2Configuration.Standard
+					var configDB2Client = FluentNH.Cfg.Db.DB2Configuration.Standard
 						.ConnectionString(connectionStringSettings.ConnectionString)						
 						.MaxFetchDepth(this.MaxFetchDepth)
 						.IsolationLevel(this.DefaultIsolationLevel);
