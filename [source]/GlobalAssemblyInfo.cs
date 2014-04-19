@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Oragon Solutions")]
 [assembly: AssemblyProduct("Oragon Architecture")]
-[assembly: AssemblyTrademark("Luiz Carlos Faria")]
+[assembly: AssemblyTrademark("Oragon Solutions, Oragon Architecture & Luiz Carlos Faria")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyCulture("pt-BR")]
 [assembly: AssemblyVersion("7.0.0.0")]

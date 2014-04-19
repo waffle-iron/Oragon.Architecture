@@ -57,7 +57,6 @@
     <Compile Include="ExtendedTypes\Range.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.Range\Range.IsIn.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.DateRange\DateRange.Reduce.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfTrue.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.ToBinary.cs" />
@@ -180,6 +179,7 @@
     <Compile Include="Extensions\System.String\String.SaveAs.cs" />
     <Compile Include="Extensions\System.String\String.Split.cs" />
     <Compile Include="Extensions\System.String\String.ToByteArray.cs" />
+    <Compile Include="Extensions\System.String\String.ToDictionary.cs" />
     <Compile Include="Extensions\System.String\String.ToDirectoryInfo.cs" />
     <Compile Include="Extensions\System.String\String.ToEnum.cs" />
     <Compile Include="Extensions\System.String\String.ToFileInfo.cs" />
