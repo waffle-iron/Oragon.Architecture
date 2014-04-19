@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D69A2068-7E08-438E-A956-4C9C326C5E40}</ProjectGuid>
+    <ProjectGuid>{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oragon.Architecture</RootNamespace>
-    <AssemblyName>Oragon.Architecture.Aop</AssemblyName>
+    <AssemblyName>Oragon.Architecture.Aop.ExceptionHandling</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,11 +52,10 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Extensions\AopAlliance.Intercept.IMethodInvocation\IMethodInvocation.GetAttibutes.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContext.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContextAroundAdvice.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContextAttribute.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractDataProcess.cs" />
+    <Compile Include="Aop\ExceptionHandling\ExceptionHandlerAroundAdvice.cs" />
+    <Compile Include="Aop\ExceptionHandling\ExceptionHandlingAttribute.cs" />
+    <Compile Include="Aop\ExceptionHandling\ExceptionHandlingStrategy.cs" />
+    <Compile Include="Aop\ExceptionHandling\LogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.Aop\Oragon.Architecture.Aop.csproj">
+      <Project>{d69a2068-7e08-438e-a956-4c9c326c5e40}</Project>
+      <Name>Oragon.Architecture.Aop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
+      <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
+      <Name>Oragon.Architecture</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

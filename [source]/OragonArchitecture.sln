@@ -17,6 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Web", "Oragon.Architecture.Web\Oragon.Architecture.Web.csproj", "{9209F672-85EA-43DB-9AB9-61664D82BC33}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A97958E-12AA-4B1A-9509-533F9B85D58E}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyDependencies.dgml = AssemblyDependencies.dgml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Aop.ExceptionHandling", "Oragon.Architecture.Aop.ExceptionHandling\Oragon.Architecture.Aop.ExceptionHandling.csproj", "{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +54,10 @@ Global
 		{9209F672-85EA-43DB-9AB9-61664D82BC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9209F672-85EA-43DB-9AB9-61664D82BC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9209F672-85EA-43DB-9AB9-61664D82BC33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E34BDF2-FE49-4258-B358-9BBC923A6AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +67,6 @@ Global
 		{D9D06542-797D-4A57-95E5-C0A44727A386} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 		{496E3B18-A9E9-4EAB-8E7E-96509BB09551} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 		{85FD6324-7CC6-43B6-A567-537B3B9FFCAC} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
+		{6E34BDF2-FE49-4258-B358-9BBC923A6AD1} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 	EndGlobalSection
 EndGlobal

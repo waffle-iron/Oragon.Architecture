@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using AopAlliance.Intercept;
 
-namespace Oragon.Architecture.Aop
+namespace Oragon.Architecture.Extensions
 {
-	internal static class AopExtensions
+	public static partial class OragonExtensions
 	{
 		public static IEnumerable<T> GetAttibutes<T>(this IMethodInvocation invocation, Func<T, bool> predicate = null)
-		where T : Attribute
+			where T : Attribute
 		{
 			if (predicate == null)
 				predicate = (it => true);
