@@ -51,6 +51,8 @@
     <Compile Include="Data\ConnectionStrings\AppConfigConnectionStringDiscoverer.cs" />
     <Compile Include="Data\ConnectionStrings\ConfigurableConnectionStringDiscoverer.cs" />
     <Compile Include="Data\ConnectionStrings\IConnectionStringDiscoverer.cs" />
+    <Compile Include="ExtendedTypes\Converters\DirectoryInfoConverter.cs" />
+    <Compile Include="ExtendedTypes\Converters\ReaderQuotasConverter.cs" />
     <Compile Include="ExtendedTypes\DateRange.cs" />
     <Compile Include="ExtendedTypes\Range.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.Range\Range.IsIn.cs" />
