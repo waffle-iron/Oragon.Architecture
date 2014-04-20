@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("Oragon Solutions, Oragon Architecture & Luiz Carlos Faria")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("7.0.0.0")]
-[assembly: AssemblyFileVersion("7.0.0.0")]
-[assembly: AssemblyInformationalVersion("7.0.0.0")]
+[assembly: AssemblyVersion("7.0.0")]
+[assembly: AssemblyFileVersion("7.0.0")]
+[assembly: AssemblyInformationalVersion("7.0.0-alpha1")]
 [assembly: CLSCompliant(true)]
 
 
