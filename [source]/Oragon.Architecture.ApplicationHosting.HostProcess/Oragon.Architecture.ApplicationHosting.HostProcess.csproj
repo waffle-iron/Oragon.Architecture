@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D69A2068-7E08-438E-A956-4C9C326C5E40}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{7BC1475E-E5CA-4ED3-A0F5-21F0521B2A53}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oragon.Architecture</RootNamespace>
-    <AssemblyName>Oragon.Architecture.Aop</AssemblyName>
+    <AssemblyName>Oragon.Architecture.ApplicationHosting.HostProcess</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,15 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\..\[references]\Common.Logging.1.2.0\lib\1.0\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Aop">
-      <HintPath>..\..\[references]\Spring.Aop.2.0.0-RC1\lib\net45\Spring.Aop.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Core">
-      <HintPath>..\..\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,18 +45,17 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Extensions\AopAlliance.Intercept.IMethodInvocation\IMethodInvocation.GetAttibutes.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContext.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContextAroundAdvice.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractContextAttribute.cs" />
-    <Compile Include="Aop\Data\Abstractions\AbstractDataProcess.cs" />
+    <Compile Include="ApplicationHosting\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
+      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
       <Name>Oragon.Architecture</Name>
