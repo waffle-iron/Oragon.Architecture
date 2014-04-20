@@ -1,5 +1,4 @@
-﻿using Oragon.Architecture.ApplicationHosting.WindowsServices.Model;
-using Oragon.Architecture.Logging;
+﻿using Oragon.Architecture.Logging;
 using Spring.Context;
 using System;
 using System.Collections.Generic;
@@ -11,11 +10,9 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class ApplicationHost
 	{
-		protected string HostProcessPath { get; private set; }
-
 		protected List<string> Arguments { get; private set; }
 
-		protected List<ServiceDescriptor> ServiceDescriptors { get; private set; }
+		protected List<ServiceHost> ServiceHosts { get; private set; }
 
 		protected ILogger Logger { get; set; }
 
@@ -35,14 +32,68 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 		}
 
+		protected virtual bool HasServiceName
+		{
+			get
+			{
+				return this.Arguments.Contains("-servicename");
+			}
+		}
 
-		public ApplicationHost(string hostProcessPath, string[] arguments)
+		protected virtual string ServiceName
+		{
+			get 
+			{
+				if (this.HasServiceName)
+				{
+					var parameterKeyIndex = this.Arguments.IndexOf("-servicename");
+					var parameterValueIndex = parameterKeyIndex +1;
+					if (this.Arguments.Count > parameterValueIndex)
+						return this.Arguments[parameterValueIndex];
+					else
+						throw new ArgumentException("The argument -servicename must be before a name of service");
+				}
+				else
+					return null;
+			}
+		}
+
+		protected virtual bool HasServiceConfigurationFile
+		{
+			get
+			{
+				return this.Arguments.Contains("-serviceconfigurationfile");
+			}
+		}
+
+		protected virtual string ServiceConfigurationFile
+		{
+			get 
+			{
+				if (this.HasServiceConfigurationFile)
+				{
+					var parameterKeyIndex = this.Arguments.IndexOf("-serviceconfigurationfile");
+					var parameterValueIndex = parameterKeyIndex + 1;
+					if (this.Arguments.Count > parameterValueIndex)
+						return this.Arguments[parameterValueIndex];
+					else
+						throw new ArgumentException("The argument -servicename must be before a name of service");
+				}
+				else
+					return null;
+			}
+		}
+
+			
+
+
+
+		public ApplicationHost(string[] arguments)
 		{
 			AppDomain.CurrentDomain.FirstChanceException += FirstChanceExceptionHandler;
 			AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
-			this.HostProcessPath = hostProcessPath;
 			this.Arguments = new List<string>(arguments);
-			this.ServiceDescriptors = new List<ServiceDescriptor>();
+			this.ServiceHosts = new List<ServiceHost>();
 			this.Logger = new Oragon.Architecture.Logging.Loggers.DiagnosticsLogger();
 		}
 
@@ -64,7 +115,8 @@ namespace Oragon.Architecture.ApplicationHosting
 		protected virtual Queue<string> BuildPathQueue()
 		{
 			Queue<string> pathQueue = new Queue<string>();
-			pathQueue.Enqueue(this.HostProcessPath + ".xml");
+			if(this.HasServiceConfigurationFile)
+				pathQueue.Enqueue(this.ServiceConfigurationFile);
 			return pathQueue;
 		}
 
@@ -81,24 +133,24 @@ namespace Oragon.Architecture.ApplicationHosting
 		}
 
 
-		private void FillServiceDescriptors(IApplicationContext descriptorsApplicationContext)
+		private void FillServiceHosts(IApplicationContext descriptorsApplicationContext)
 		{
-			ServiceDescriptor[] serviceDescriptors = descriptorsApplicationContext.GetObjects<ServiceDescriptor>().Select(it => it.Value).ToArray();
-			if (serviceDescriptors.Any())
-				this.ServiceDescriptors.AddRange(serviceDescriptors);
+			ServiceHost[] serviceHosts = descriptorsApplicationContext.GetObjects<ServiceHost>().Select(it => it.Value).ToArray();
+			if (serviceHosts.Any())
+				this.ServiceHosts.AddRange(serviceHosts);
 			else
 				throw new InvalidOperationException("DescriptorsApplicationContext dos not have any ServiceDescriptor defined");
 		}
 
 
-
-
-
-
 		public virtual void Run()
 		{
 			IApplicationContext descriptorsApplicationContext = this.BuildDescriptorsApplicationContext();
-			this.FillServiceDescriptors(descriptorsApplicationContext);
+			this.FillServiceHosts(descriptorsApplicationContext);
+
+
+
+
 		}
 
 	}

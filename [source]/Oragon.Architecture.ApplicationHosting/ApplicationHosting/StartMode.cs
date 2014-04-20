@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.ApplicationHosting.WindowsServices.Model
+namespace Oragon.Architecture.ApplicationHosting
 {
 	public enum StartMode
 	{

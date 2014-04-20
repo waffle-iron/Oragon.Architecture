@@ -1,20 +1,24 @@
-﻿using System;
+﻿using Spring.Objects.Factory.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.ApplicationHosting.WindowsServices.Model
+namespace Oragon.Architecture.ApplicationHosting
 {
-	public class ServiceDescriptor
+	public class WindowsServicesConfiguration
 	{
-		public string Name { get; set; }
-		public string FriendlyName { get; set; }
-		public string Description { get; set; }
+		[Required]
 		public StartMode StartMode { get; set; }
+		[Required]
 		public AccountType IdentityType { get; set; }
 		public Credential CustomIdentityCredential { get; set; }
+		[Required]
 		public List<string> Dependences { get; set; }
-		public string ConfigurationFile { get; set; }
+		[Required]
+		public TimeSpan StartTimeOut { get; set; }
+		[Required]
+		public TimeSpan StopTimeOut { get; set; }
 	}
 }

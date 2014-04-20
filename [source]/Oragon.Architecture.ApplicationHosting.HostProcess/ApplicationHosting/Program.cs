@@ -8,10 +8,9 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class Program
 	{
-		static void Main(string[] args)
+		public static void Main(string[] args)
 		{
-			string hostProcessPath = (new Uri(typeof(Program).Assembly.CodeBase)).LocalPath;
-			ApplicationHost host = new ApplicationHost(hostProcessPath, args);
+			ApplicationHost host = new ApplicationHost(args);
 			host.Run();
 		}
 	}

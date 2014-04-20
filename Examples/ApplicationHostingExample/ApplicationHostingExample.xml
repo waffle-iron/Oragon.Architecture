@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity"
+	>
+
+	<object name="ServiceDescriptor1" type="Oragon.Architecture.ApplicationHosting.ServiceHost, Oragon.Architecture.ApplicationHosting">
+		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
+		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
+		<property name="Description" value="Example of Simple way to deply business services" />
+
+		<property name="WindowsServicesConfiguration">
+			<object type="Oragon.Architecture.ApplicationHosting.WindowsServicesConfiguration, Oragon.Architecture.ApplicationHosting">
+				<property name="StartMode" value="AutomaticallyDelayed" />
+				<property name="IdentityType" value="NetworkService" />
+				<!--<property name="IdentityType" value="Custom" />
+				<property name="CustomIdentityCredential" >
+			<object type="Oragon.Architecture.ApplicationHosting.WindowsServices.Model.Credential, Oragon.Architecture.ApplicationHosting">
+				<property name="Username" value="domainName\AccountName" />
+				<property name="Password" value="passWord" />
+			</object>
+		</property>-->
+				<property name="Dependences">
+					<list element-type="String">
+						<!--<value>MSMQ</value>-->
+					</list>
+				</property>
+				<property name="StartTimeOut" value="01:00:00"/>
+				<property name="StopTimeOut"  value="01:00:00"/>
+			</object>
+		</property>
+
+		<property name="ApplicationHostingConfiguration">
+			<object type="Oragon.Architecture.ApplicationHosting.ApplicationHostingConfiguration, Oragon.Architecture.ApplicationHosting">
+				<property name="ConfigurationFile" value="AutomaticallyDelayed" />
+				<property name="BaseDirectory" value="NetworkService" />
+			</object>
+		</property>
+	</object>
+
+</objects>
