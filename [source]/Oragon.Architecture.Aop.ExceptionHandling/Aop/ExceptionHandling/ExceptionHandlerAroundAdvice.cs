@@ -100,7 +100,7 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 
 			if (attribute.Strategy.HasFlag(ExceptionHandlingStrategy.ContinueRunning) && (invocation.Method.ReturnType != typeof(void)))
 			{
-				throw new InvalidOperationException("Somente métodos com retorno void podem usar a estratégia de supressão de exceptions.");
+				throw new InvalidOperationException("To use ExceptionHandlingStrategy.ContinueRunning, the method must return void");
 			}
 			return attribute;
 		}

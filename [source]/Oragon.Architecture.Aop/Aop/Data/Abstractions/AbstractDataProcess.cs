@@ -20,7 +20,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			{
 				ContextType returnValue = Spring.Threading.LogicalThreadContext.GetData(this.ObjectContextKey) as ContextType;
 				if (returnValue == null)
-					throw new InvalidOperationException("Não foi possível identificar o contexto para executar o data process");
+					throw new InvalidOperationException(string.Format("AbstractDataProcess cannot find context with key '{0}'", this.ObjectContextKey));
 				return returnValue;
 			}
 		}

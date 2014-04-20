@@ -67,7 +67,7 @@ namespace Oragon.Architecture.Serialization
 			if (type == ConverterType.Deserialization)
 				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
 
-			throw new System.NotSupportedException("Tipo de converter inválido");
+			return null;
 		}
 	}
 }

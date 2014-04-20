@@ -16,7 +16,7 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 			System.Configuration.ConnectionStringSettings returnValue = ConfigurationManager.ConnectionStrings[this.ConnectionStringKey];
 
 			if (returnValue == null)
-				throw new ConfigurationErrorsException(string.Format("Não foi possível identificar a ConnectionString com a chave '{0}'", this.ConnectionStringKey));
+				throw new ConfigurationErrorsException(string.Format("Cannot find ConnectionString with key '{0}'", this.ConnectionStringKey));
 
 			return returnValue;
 		}

@@ -46,7 +46,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			{
 				Type typeInfo = Type.GetType(typeName);
 				if (typeInfo == null)
-					throw new ConfigurationErrorsException(string.Format("Não foi possível carregar o tipo '{0}', informado na propriedade TypeNames do SessionFactoryBuilder.", typeName));
+					throw new ConfigurationErrorsException(string.Format("Cannot load the Type '{0}', defined in TypeNames property of FluentNHibernateSessionFactoryBuilder", typeName));
 				configuration.Mappings(it =>
 				{
 					it.FluentMappings.AddFromAssembly(typeInfo.Assembly);
@@ -103,7 +103,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 					break;
 
 				default:
-					throw new ConfigurationErrorsException("A ConnectionString não possui ProviderName configurado. Os valores possívels são: 'MySql.Data.MySqlClient', 'System.Data.DB2Client' e 'System.Data.SqlClient'.");
+					throw new ConfigurationErrorsException("This ConnectionString dont have ProviderName defined. Use 'MySql.Data.MySqlClient', 'System.Data.DB2Client' or 'System.Data.SqlClient'.");
 			}
 			return returnValue;
 		}
@@ -112,17 +112,17 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		{
 			ConnectionStringSettings connStrSettings = null;
 
-			if (this.ConStrConfigDiscovery == null)
-				throw new ConfigurationErrorsException(string.Format("Não foi possível identificar a ConnectionString"));
+			if (this.ConnectionStringDiscoverer == null)
+				throw new ConfigurationErrorsException(string.Format("ConnectionStringDiscoverer is not set"));
 
-			connStrSettings = this.ConStrConfigDiscovery.GetConnectionString();
+			connStrSettings = this.ConnectionStringDiscoverer.GetConnectionString();
 
 			if (connStrSettings == null)
-				throw new ConfigurationErrorsException("Não foi possível identificar a ConnectionString");
+				throw new ConfigurationErrorsException("Cannot be found any ConnectionString");
 
 			string providerName = connStrSettings.ProviderName;
 			if (string.IsNullOrWhiteSpace(providerName))
-				throw new ConfigurationErrorsException("A ConnectionString não possui ProviderName configurado. Os valores possívels são: 'MySql.Data.MySqlClient', 'System.Data.DB2Client' e 'System.Data.SqlClient'.");
+				throw new ConfigurationErrorsException("This ConnectionString dont have ProviderName defined. Use 'MySql.Data.MySqlClient', 'System.Data.DB2Client' or 'System.Data.SqlClient'.");
 
 			return connStrSettings;
 		}

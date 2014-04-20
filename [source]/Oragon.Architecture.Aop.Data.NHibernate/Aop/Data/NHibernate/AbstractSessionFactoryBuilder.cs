@@ -19,7 +19,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		/// Identifica qual a chave da conexão
 		/// </summary>
 		[Required]
-		public IConnectionStringDiscoverer ConStrConfigDiscovery { get; set; }
+		public IConnectionStringDiscoverer ConnectionStringDiscoverer { get; set; }
 
 		/// <summary>
 		/// Identifica tipos contidos em 

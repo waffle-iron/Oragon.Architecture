@@ -59,7 +59,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 		{
 			var topInstance = this.ContextStack.Pop();
 			if (topInstance != this)
-				throw new InvalidOperationException("Era experado como primeiro item do Stack o próprio elemento");
+				throw new InvalidOperationException("The TOP item of Stack, must be me");
 
 			AbstractContext<AttributeType> firstParentWithSameKey = this.ContextStack.FirstOrDefault(it => it.ContextKey == this.ContextKey);
 

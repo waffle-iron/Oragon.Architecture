@@ -17,7 +17,7 @@ namespace Oragon.Architecture.Extensions
 			if (stringArray.Length > 0)
 			{
 				if (stringArray.Length % 2 != 0)
-					throw new InvalidOperationException("Tags não possui uma quantidade de valores par;");
+					throw new InvalidOperationException("Number of Tags must be divisible by two");
 				else
 				{
 					int keyIndex = 0;
