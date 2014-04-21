@@ -16,16 +16,8 @@
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
 				<property name="StartMode" value="AutomaticallyDelayed" />
 				<property name="IdentityType" value="NetworkService" />
-				<!--<property name="IdentityType" value="Custom" />
-				<property name="CustomIdentityCredential" >
-			<object type="Oragon.Architecture.ApplicationHosting.WindowsServices.Model.Credential, Oragon.Architecture.ApplicationHosting">
-				<property name="Username" value="domainName\AccountName" />
-				<property name="Password" value="passWord" />
-			</object>
-		</property>-->
 				<property name="Dependences">
 					<list element-type="String">
-						<!--<value>MSMQ</value>-->
 					</list>
 				</property>
 				<property name="StartTimeOut" value="01:00:00"/>
@@ -36,7 +28,7 @@
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
 				<object type="Oragon.Architecture.ApplicationHosting.SpringApplicationHost, Oragon.Architecture.ApplicationHosting.SpringFramework">
-					<property name="Name" value="OragonArchitectureApplicationHostingExample" />
+					<property name="Name" value="Application Hosting Example" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />

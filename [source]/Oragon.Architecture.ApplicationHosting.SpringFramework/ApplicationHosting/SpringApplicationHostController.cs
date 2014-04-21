@@ -9,7 +9,7 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class SpringApplicationHostController : ApplicationHostController
 	{
-		private IApplicationContext context;
+		public IApplicationContext context;
 
 		public override void Start()
 		{
