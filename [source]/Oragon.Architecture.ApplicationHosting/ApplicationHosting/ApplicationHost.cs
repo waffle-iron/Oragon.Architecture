@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Topshelf;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
@@ -12,7 +13,7 @@ namespace Oragon.Architecture.ApplicationHosting
 	{
 		protected List<string> Arguments { get; private set; }
 
-		protected List<ServiceHost> ServiceHosts { get; private set; }
+		protected WindowsServiceHost ServiceHost { get; private set; }
 
 		protected ILogger Logger { get; set; }
 
@@ -42,12 +43,12 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		protected virtual string ServiceName
 		{
-			get 
+			get
 			{
 				if (this.HasServiceName)
 				{
 					var parameterKeyIndex = this.Arguments.IndexOf("-servicename");
-					var parameterValueIndex = parameterKeyIndex +1;
+					var parameterValueIndex = parameterKeyIndex + 1;
 					if (this.Arguments.Count > parameterValueIndex)
 						return this.Arguments[parameterValueIndex];
 					else
@@ -68,7 +69,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		protected virtual string ServiceConfigurationFile
 		{
-			get 
+			get
 			{
 				if (this.HasServiceConfigurationFile)
 				{
@@ -84,20 +85,13 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 		}
 
-			
-
-
-
 		public ApplicationHost(string[] arguments)
 		{
 			AppDomain.CurrentDomain.FirstChanceException += FirstChanceExceptionHandler;
 			AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
 			this.Arguments = new List<string>(arguments);
-			this.ServiceHosts = new List<ServiceHost>();
 			this.Logger = new Oragon.Architecture.Logging.Loggers.DiagnosticsLogger();
 		}
-
-
 
 		protected virtual void FirstChanceExceptionHandler(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
 		{
@@ -115,7 +109,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		protected virtual Queue<string> BuildPathQueue()
 		{
 			Queue<string> pathQueue = new Queue<string>();
-			if(this.HasServiceConfigurationFile)
+			if (this.HasServiceConfigurationFile)
 				pathQueue.Enqueue(this.ServiceConfigurationFile);
 			return pathQueue;
 		}
@@ -135,23 +129,38 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private void FillServiceHosts(IApplicationContext descriptorsApplicationContext)
 		{
-			ServiceHost[] serviceHosts = descriptorsApplicationContext.GetObjects<ServiceHost>().Select(it => it.Value).ToArray();
-			if (serviceHosts.Any())
-				this.ServiceHosts.AddRange(serviceHosts);
-			else
-				throw new InvalidOperationException("DescriptorsApplicationContext dos not have any ServiceDescriptor defined");
+			WindowsServiceHost[] serviceHosts = descriptorsApplicationContext.GetObjects<WindowsServiceHost>().Select(it => it.Value).ToArray();
+			if (serviceHosts.Length == 1)
+				this.ServiceHost = serviceHosts.First();
+			else if (serviceHosts.Length > 1)
+				throw new InvalidOperationException("DescriptorsApplicationContext has many ServiceDescriptors defined. Expected: One");
+			else if (serviceHosts.Length < 1)
+				throw new InvalidOperationException("DescriptorsApplicationContext dos not have any ServiceDescriptor defined. Expected: One");
 		}
 
 
-		public virtual void Run()
+		public virtual TopshelfExitCode Run()
 		{
-			IApplicationContext descriptorsApplicationContext = this.BuildDescriptorsApplicationContext();
-			this.FillServiceHosts(descriptorsApplicationContext);
-
-
-
-
+			using (IApplicationContext descriptorsApplicationContext = this.BuildDescriptorsApplicationContext())
+			{
+				this.FillServiceHosts(descriptorsApplicationContext);
+			}
+			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
+			if (this.IsConsole)
+			{
+				this.ServiceHost.RunConsoleMode(this.Arguments);
+			}
+			else
+			{
+				Host host = HostFactory.New(hostConfig =>
+				{
+					this.ServiceHost.Configure(hostConfig);
+				});
+				exitCode = host.Run();
+			}
+			return exitCode;
 		}
+
 
 	}
 }

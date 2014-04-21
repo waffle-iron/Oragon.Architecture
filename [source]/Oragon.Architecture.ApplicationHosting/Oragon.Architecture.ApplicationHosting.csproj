@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf">
+      <HintPath>..\..\[References]\Topshelf.3.1.3\lib\net40-full\Topshelf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
@@ -54,10 +57,10 @@
     <Compile Include="ApplicationHosting\ApplicationHost.cs" />
     <Compile Include="ApplicationHosting\AccountType.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
-    <Compile Include="ApplicationHosting\ServiceHost.cs" />
+    <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
     <Compile Include="ApplicationHosting\StartMode.cs" />
     <Compile Include="ApplicationHosting\ApplicationHostingConfiguration.cs" />
-    <Compile Include="ApplicationHosting\WindowsServicesConfiguration.cs" />
+    <Compile Include="ApplicationHosting\WindowsServiceConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,13 +7,13 @@
 	xmlns:nv="http://www.springframework.net/nvelocity"
 	>
 
-	<object name="ServiceDescriptor1" type="Oragon.Architecture.ApplicationHosting.ServiceHost, Oragon.Architecture.ApplicationHosting">
+	<object name="ServiceDescriptor" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
 		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 		<property name="Description" value="Example of Simple way to deply business services" />
 
-		<property name="WindowsServicesConfiguration">
-			<object type="Oragon.Architecture.ApplicationHosting.WindowsServicesConfiguration, Oragon.Architecture.ApplicationHosting">
+		<property name="WindowsServiceConfiguration">
+			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
 				<property name="StartMode" value="AutomaticallyDelayed" />
 				<property name="IdentityType" value="NetworkService" />
 				<!--<property name="IdentityType" value="Custom" />
@@ -35,8 +35,8 @@
 
 		<property name="ApplicationHostingConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.ApplicationHostingConfiguration, Oragon.Architecture.ApplicationHosting">
-				<property name="ConfigurationFile" value="AutomaticallyDelayed" />
-				<property name="BaseDirectory" value="NetworkService" />
+				<property name="ConfigurationFile" value="" />
+				<property name="BaseDirectory" value="" />
 			</object>
 		</property>
 	</object>

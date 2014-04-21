@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
-	public class WindowsServicesConfiguration
+	public class WindowsServiceConfiguration
 	{
 		[Required]
 		public StartMode StartMode { get; set; }
