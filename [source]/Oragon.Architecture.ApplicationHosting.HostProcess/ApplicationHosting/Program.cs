@@ -11,7 +11,7 @@ namespace Oragon.Architecture.ApplicationHosting
 	{
 		public static void Main(string[] args)
 		{
-			ApplicationHost host = new ApplicationHost(args);
+			HostProcessRunner host = new HostProcessRunner(args);
 			TopshelfExitCode exitCode = host.Run();
 			System.Environment.Exit((int)exitCode);
 		}

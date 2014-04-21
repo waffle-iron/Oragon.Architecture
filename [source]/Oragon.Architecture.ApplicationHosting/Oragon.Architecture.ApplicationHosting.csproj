@@ -54,12 +54,11 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\ApplicationHost.cs" />
     <Compile Include="ApplicationHosting\AccountType.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
     <Compile Include="ApplicationHosting\StartMode.cs" />
-    <Compile Include="ApplicationHosting\ApplicationHostingConfiguration.cs" />
+    <Compile Include="ApplicationHosting\ApplicationHost.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

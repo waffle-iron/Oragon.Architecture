@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
@@ -21,7 +22,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
 
 		[Required]
-		public ApplicationHostingConfiguration ApplicationHostingConfiguration { get; set; }
+		public List<ApplicationHost> Applications { get; set; }
 
 
 		public void Configure(Topshelf.HostConfigurators.HostConfigurator hostConfig)
@@ -81,27 +82,32 @@ namespace Oragon.Architecture.ApplicationHosting
 			return;
 		}
 
-		internal void RunConsoleMode(List<string> arguments)
+		public void RunConsoleMode(List<string> arguments)
 		{
 			this.WriteHeader();
 
 			this.WriteBeforeStart();
 			this.Start(null);
 			this.WriteAfterStart();
-			this.WaitKeys(ConsoleKey.Escape);
+
+			this.WaitKeys(ConsoleKey.Escape, ConsoleKey.End);
+
 			this.WriteBeforeStop();
 			this.Stop(null);
 			this.WriteAfterStop();
 
+			this.WaitKeys();
 		}
 
-		private void WriteHeader()
+		protected virtual void WriteHeader()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");
 			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("Iniciando em modo console");
-			Console.Write("Serviço: ");
+			Console.WriteLine("Oragon Architcture Application Hosting " + this.GetType().Assembly.GetAssemblyInformationalVersion());
+			Console.WriteLine("AssemblyVersion : " + this.GetType().Assembly.GetAssemblyVersion());
+			Console.WriteLine("AssemblyFileVersion : " + this.GetType().Assembly.GetAssemblyFileVersion());
+			Console.Write("Windows Service: ");
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.Write(this.Name + " ");
 			Console.ForegroundColor = ConsoleColor.Red;
@@ -110,19 +116,19 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.Write(this.FriendlyName);
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine(" )");
-			Console.Write("Descrição: ");
+			Console.Write("Description: ");
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine(this.Description);
-			Console.WriteLine(string.Format("Timeout de Inicio: {0}  Timeout de Finaliação: {1}", this.WindowsServiceConfiguration.StartTimeOut.ToString(), this.WindowsServiceConfiguration.StopTimeOut.ToString()));
+			Console.WriteLine(string.Format("Start Timeout: {0}  Stop TimeOut: {1}", this.WindowsServiceConfiguration.StartTimeOut.ToString(), this.WindowsServiceConfiguration.StopTimeOut.ToString()));
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");
 			Console.ResetColor();
 		}
 
-		private void WriteBeforeStart()
+		protected virtual void WriteBeforeStart()
 		{
 		}
-		private void WriteAfterStart()
+		protected virtual void WriteAfterStart()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");
@@ -133,16 +139,16 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.ResetColor();
 		}
 
-		private void WaitKeys(params ConsoleKey[] keys)
+		protected virtual void WaitKeys(params ConsoleKey[] keys)
 		{
 			ConsoleKeyInfo keyInfo;
 			do
 			{
 				keyInfo = Console.ReadKey();
-			} while (keys.Contains(keyInfo.Key) == false);
+			} while (keys.Length != 0 && keys.Contains(keyInfo.Key) == false);
 		}
 
-		private void WriteBeforeStop()
+		protected virtual void WriteBeforeStop()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");
@@ -152,7 +158,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.WriteLine("#######################################################");
 			Console.ResetColor();
 		}
-		private void WriteAfterStop()
+		protected virtual void WriteAfterStop()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BC1475E-E5CA-4ED3-A0F5-21F0521B2A53}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{66C927A0-CD78-4BD2-8900-8CCAD02E0DFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oragon.Architecture</RootNamespace>
-    <AssemblyName>Oragon.Architecture.ApplicationHosting.HostProcess</AssemblyName>
+    <AssemblyName>Oragon.Architecture.ApplicationHosting.SpringFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,13 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging">
-      <HintPath>..\..\[references]\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <HintPath>..\..\[References]\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Core">
-      <HintPath>..\..\[references]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <HintPath>..\..\[References]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Core">
-      <HintPath>..\..\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
+    <Reference Include="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,19 +55,14 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\HostProcessRunner.cs" />
-    <Compile Include="ApplicationHosting\Program.cs" />
+    <Compile Include="ApplicationHosting\SpringApplicationHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
-      <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
-      <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
       <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
       <Name>Oragon.Architecture.ApplicationHosting</Name>

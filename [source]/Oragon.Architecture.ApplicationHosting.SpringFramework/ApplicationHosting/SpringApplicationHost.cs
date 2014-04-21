@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
-	public class ApplicationHostingConfiguration
+	public class SpringApplicationHost : ApplicationHost
 	{
 		[Required]
-		public string ConfigurationFile { get; set; }
+		public string ApplicationConfigurationFile { get; set; }
 		[Required]
 		public string BaseDirectory { get; set; }
-
 	}
 }
