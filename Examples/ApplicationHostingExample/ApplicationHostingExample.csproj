@@ -36,12 +36,6 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\..\[References]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.NLog20">
-      <HintPath>..\..\[References]\Common.Logging.NLog20.2.2.0\lib\net40\Common.Logging.NLog20.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\..\[References]\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
@@ -67,30 +61,6 @@
     <Content Include="ApplicationHostingExample.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop.Data.FluentNHibernate\Oragon.Architecture.Aop.Data.FluentNHibernate.csproj">
-      <Project>{85fd6324-7cc6-43b6-a567-537b3b9ffcac}</Project>
-      <Name>Oragon.Architecture.Aop.Data.FluentNHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop.Data.MongoDB\Oragon.Architecture.Aop.Data.MongoDB.csproj">
-      <Project>{d9d06542-797d-4a57-95e5-c0a44727a386}</Project>
-      <Name>Oragon.Architecture.Aop.Data.MongoDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop.Data.NHibernate\Oragon.Architecture.Aop.Data.NHibernate.csproj">
-      <Project>{496e3b18-a9e9-4eab-8e7e-96509bb09551}</Project>
-      <Name>Oragon.Architecture.Aop.Data.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop.Data.Redis\Oragon.Architecture.Aop.Data.Redis.csproj">
-      <Project>{dbe9c81b-d625-4942-be54-d5a927496df0}</Project>
-      <Name>Oragon.Architecture.Aop.Data.Redis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop.ExceptionHandling\Oragon.Architecture.Aop.ExceptionHandling.csproj">
-      <Project>{6e34bdf2-fe49-4258-b358-9bbc923a6ad1}</Project>
-      <Name>Oragon.Architecture.Aop.ExceptionHandling</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Aop\Oragon.Architecture.Aop.csproj">
-      <Project>{d69a2068-7e08-438e-a956-4c9c326c5e40}</Project>
-      <Name>Oragon.Architecture.Aop</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\[Source]\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
       <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>
@@ -98,14 +68,6 @@
     <ProjectReference Include="..\..\[Source]\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
       <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
       <Name>Oragon.Architecture.ApplicationHosting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
-      <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
-      <Name>Oragon.Architecture.Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.Web\Oragon.Architecture.Web.csproj">
-      <Project>{9209f672-85ea-43db-9ab9-61664d82bc33}</Project>
-      <Name>Oragon.Architecture.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\[Source]\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
