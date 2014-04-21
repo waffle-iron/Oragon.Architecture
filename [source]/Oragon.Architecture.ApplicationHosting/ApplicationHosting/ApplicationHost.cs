@@ -15,7 +15,9 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string FriendlyName { get; set; }
 		[Required]
 		public string Description { get; set; }
-		
 
+		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
+
+		public abstract void Stop();
 	}
 }

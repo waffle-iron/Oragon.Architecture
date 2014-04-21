@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 using Oragon.Architecture.Extensions;
+using NDepend.Helpers;
+using NDepend.Path;
+using System.Diagnostics.Contracts;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
@@ -24,8 +27,9 @@ namespace Oragon.Architecture.ApplicationHosting
 		[Required]
 		public List<ApplicationHost> Applications { get; set; }
 
+		public IAbsoluteFilePath ConfigurationFilePath { get; private set; }
 
-		public void Configure(Topshelf.HostConfigurators.HostConfigurator hostConfig)
+		public void Configure(Topshelf.HostConfigurators.HostConfigurator hostConfig, string configurationFileName)
 		{
 			hostConfig.Service<WindowsServiceHost>(serviceConfigurator =>
 			{
@@ -65,15 +69,32 @@ namespace Oragon.Architecture.ApplicationHosting
 					hostConfig.AddDependency(dependency);
 				}
 			}
+
+			this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
 		}
 
 		public bool Start(HostControl hostControl)
 		{
+			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
+			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
+
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			foreach (var application in tmpApplicationList)
+			{
+				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
+			}
+
 			return true;
 		}
 
 		public bool Stop(HostControl hostControl)
 		{
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			tmpApplicationList.Reverse();
+			foreach (var application in tmpApplicationList)
+			{
+				application.Stop();
+			}
 			return true;
 		}
 
@@ -82,8 +103,10 @@ namespace Oragon.Architecture.ApplicationHosting
 			return;
 		}
 
-		public void RunConsoleMode(List<string> arguments)
+		public void RunConsoleMode(List<string> arguments, string configurationFileName)
 		{
+			this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
+
 			this.WriteHeader();
 
 			this.WriteBeforeStart();
@@ -95,8 +118,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.WriteBeforeStop();
 			this.Stop(null);
 			this.WriteAfterStop();
-
-			this.WaitKeys();
 		}
 
 		protected virtual void WriteHeader()
@@ -167,6 +188,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("#######################################################");
 			Console.ResetColor();
+			for (int i = 1; i <= 60; i++)
+			{
+				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
+				Console.Write("-");
+			}
 		}
 	}
 }

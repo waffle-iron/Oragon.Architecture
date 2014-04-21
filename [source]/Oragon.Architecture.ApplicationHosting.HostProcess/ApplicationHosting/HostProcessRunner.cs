@@ -33,32 +33,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 		}
 
-		protected virtual bool HasServiceName
-		{
-			get
-			{
-				return this.Arguments.Contains("-servicename");
-			}
-		}
-
-		protected virtual string ServiceName
-		{
-			get
-			{
-				if (this.HasServiceName)
-				{
-					var parameterKeyIndex = this.Arguments.IndexOf("-servicename");
-					var parameterValueIndex = parameterKeyIndex + 1;
-					if (this.Arguments.Count > parameterValueIndex)
-						return this.Arguments[parameterValueIndex];
-					else
-						throw new ArgumentException("The argument -servicename must be before a name of service");
-				}
-				else
-					return null;
-			}
-		}
-
 		protected virtual bool HasServiceConfigurationFile
 		{
 			get
@@ -148,13 +122,13 @@ namespace Oragon.Architecture.ApplicationHosting
 			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
 			if (this.IsConsole)
 			{
-				this.ServiceHost.RunConsoleMode(this.Arguments);
+				this.ServiceHost.RunConsoleMode(this.Arguments, this.ServiceConfigurationFile);
 			}
 			else
 			{
 				Host host = HostFactory.New(hostConfig =>
 				{
-					this.ServiceHost.Configure(hostConfig);
+					this.ServiceHost.Configure(hostConfig, this.ServiceConfigurationFile);
 				});
 				exitCode = host.Run();
 			}

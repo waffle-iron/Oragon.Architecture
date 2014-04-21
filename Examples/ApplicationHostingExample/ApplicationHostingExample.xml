@@ -39,8 +39,8 @@
 					<property name="Name" value="OragonArchitectureApplicationHostingExample" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
-					<property name="BaseDirectory" value="" />
-					<property name="ApplicationConfigurationFile" value="" />
+					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
+					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
 				</object>
 			</list>
 		</property>

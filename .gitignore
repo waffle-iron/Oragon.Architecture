@@ -19,3 +19,5 @@ Architecture/*/[Oo]bj/
 
 /\[source\]/*/bin/*
 /\[source\]/*/obj/*
+/Examples/*/bin/*
+/Examples/*/obj/*
