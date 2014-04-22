@@ -1,5 +1,4 @@
-﻿using Spring.Objects.Factory.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,14 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class WindowsServiceHost : ServiceControl
 	{
-		[Required]
 		public string Name { get; set; }
-		[Required]
+
 		public string FriendlyName { get; set; }
-		[Required]
+	
 		public string Description { get; set; }
 
-		[Required]
 		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
 
-		[Required]
 		public List<ApplicationHost> Applications { get; set; }
 
 		public IAbsoluteFilePath ConfigurationFilePath { get; private set; }
@@ -103,7 +99,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			return;
 		}
 
-		public void RunConsoleMode(List<string> arguments, string configurationFileName)
+		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
 		{
 			this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
 
@@ -118,6 +114,8 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.WriteBeforeStop();
 			this.Stop(null);
 			this.WriteAfterStop();
+
+			return TopshelfExitCode.Ok;
 		}
 
 		protected virtual void WriteHeader()

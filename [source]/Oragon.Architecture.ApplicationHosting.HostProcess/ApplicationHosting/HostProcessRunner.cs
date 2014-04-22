@@ -122,7 +122,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
 			if (this.IsConsole)
 			{
-				this.ServiceHost.RunConsoleMode(this.Arguments, this.ServiceConfigurationFile);
+				exitCode = this.ServiceHost.RunConsoleMode(this.Arguments, this.ServiceConfigurationFile);
 			}
 			else
 			{

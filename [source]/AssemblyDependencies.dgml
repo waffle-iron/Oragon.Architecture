@@ -1,174 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DirectedGraph DataVirtualized="True" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+<DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="(@12)" Category="CodeSchema_Assembly" Bounds="395.89670446854,90.0509330508351,169.316666666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="FluentNHibernate, Version=1.4.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll" Group="Collapsed" Label="FluentNHibernate.dll" UseManualLocation="True">
+    <Node Id="(@7)" Category="CodeSchema_Assembly" Bounds="-59.0008078887635,-49.5164021880168,182.64,25" CodeSchemaProperty_StrongName="Oragon.Architecture, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.dll" UseManualLocation="True" />
+    <Node Id="(@8)" Category="CodeSchema_Assembly" Bounds="210.639192111237,1.58143598494124,120.666596666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Topshelf, Version=3.1.122.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[References]\Topshelf.3.1.3\lib\net40-full\Topshelf.dll" Group="Collapsed" Label="Topshelf.dll" UseManualLocation="True">
       <Category Ref="Category2" />
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="(@27)" Category="CodeSchema_Assembly" Bounds="661.543314967006,209.384433132567,163.756666666668,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="MongoDB.Driver, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Driver.dll" Group="Collapsed" Label="MongoDB.Driver.dll" UseManualLocation="True">
+    <Node Id="@10" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:06" Bounds="99.085982985533,-140.516602188017,286.816666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(77959256-0d53-4fd6-a7de-385d032f48b5.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.dll" UseManualLocation="True" />
+    <Node Id="@12" Category="CodeSchema_Assembly" Bounds="547.770152222348,-134.516502188017,152.603541333333,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="NDepend.Path, Version=1.0.0.0, Culture=neutral, PublicKeyToken=663402f81ccece54" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[References]\Oragon.Architecture.External.NDepend.Path.1.0.0\lib\NDepend.Path.dll" Group="Collapsed" Label="NDepend.Path.dll" UseManualLocation="True">
       <Category Ref="Category2" />
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="(@28)" Category="CodeSchema_Assembly" Bounds="-394.496053238611,400.727081658432,194.706666666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\ServiceStack.Interfaces.4.0.18\lib\net40\ServiceStack.Interfaces.dll" Group="Collapsed" Label="ServiceStack.Interfaces.dll" UseManualLocation="True">
+    <Node Id="@14" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:07" Bounds="348.052468965864,-256.516702188017,382.373333333333,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting.SpringFramework, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.SpringFramework.dll" UseManualLocation="True" />
+    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:08" Bounds="-41.1841977008021,-253.516702188017,359.236666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting.HostProcess, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.HostProcess.exe" UseManualLocation="True" />
+    <Node Id="@6" Category="CodeSchema_Assembly" Bounds="361.305788777903,4.49862408257222,137.343260666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll" Group="Collapsed" Label="Spring.Core.dll" UseManualLocation="True">
       <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="(@3)" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 22:45:12" Bounds="471.367293646796,371.717683219103,209.78,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Web, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(9209f672-85ea-43db-9ab9-61664d82bc33.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Web.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="(@31)" Category="CodeSchema_Assembly" Bounds="-392.134001468364,290.726881658432,171.95,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="ServiceStack.Redis, Version=4.0.18.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\ServiceStack.Redis.4.0.18\lib\net40\ServiceStack.Redis.dll" Group="Collapsed" Label="ServiceStack.Redis.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@11" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 22:45:12" Bounds="34.5690267392573,93.6774214336064,330.793333333334,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop.Data.FluentNHibernate, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.Data.FluentNHibernate.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@14" Category="CodeSchema_Assembly" Bounds="426.538382325051,145.051033050835,136.626666666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="NHibernate, Version=4.0.0.1000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\NHibernate.4.0.0-Alpha1\lib\net40\NHibernate.dll" Group="Collapsed" Label="NHibernate.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@16" Category="CodeSchema_Assembly" AssemblyTimestamp="04/19/2014 07:24:39" Bounds="401.789938306974,504.717632969103,309.06,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop.ExceptionHandling, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(6e34bdf2-fe49-4258-b358-9bbc923a6ad1.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.ExceptionHandling.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@18" Category="CodeSchema_Assembly" AssemblyTimestamp="04/19/2014 07:24:38" Bounds="-242.678384341615,455.727181658432,249.216666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Serialization, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(006be62c-99fa-41f9-b390-0e8c82017566.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Serialization.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 22:45:12" Bounds="413.423960313463,275.717583219103,290.943333333333,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop.Data.MongoDB, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(d9d06542-797d-4a57-95e5-c0a44727a386.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.Data.MongoDB.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@20" Category="CodeSchema_Assembly" Bounds="473.683314967006,208.384333132567,157.86,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="MongoDB.Bson, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" FilePath="D:\Projetos\Oragon.Architecture\[references]\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Bson.dll" Group="Collapsed" Label="MongoDB.Bson.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@22" Category="CodeSchema_Assembly" Bounds="18.2106134265207,535.355777592093,163.036666666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll" Group="Collapsed" Label="Newtonsoft.Json.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@24" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 07:09:57" Bounds="137.618082325052,347.717633219103,207.063333333333,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(d69a2068-7e08-438e-a956-4c9c326c5e40.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@26" Category="CodeSchema_Assembly" Bounds="258.181632521057,438.764951154378,134.266666666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Spring.Aop, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\Spring.Aop.2.0.0-RC1\lib\net45\Spring.Aop.dll" Group="Collapsed" Label="Spring.Aop.dll" UseManualLocation="True">
-      <Category Ref="Category7" />
-      <Category Ref="Category8" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@30" Category="CodeSchema_Assembly" AssemblyTimestamp="04/19/2014 07:24:39" Bounds="-235.686728359693,345.726981658432,265.476666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop.Data.Redis, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(dbe9c81b-d625-4942-be54-d5a927496df0.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.Data.Redis.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@32" Category="CodeSchema_Namespace" Bounds="520.041559271286,446.093194117079,260.79,25" CodeSchemaProperty_IsExternal="True" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" Group="Collapsed" Label="MongoDB‎.Bson‎.Serialization‎.Attributes" UseManualLocation="True" />
-    <Node Id="@5" Category="CodeSchema_Assembly" Bounds="75.4482991877231,440.765051154378,137.353333333334,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll" Group="Collapsed" Label="Spring.Core.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@7" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 22:45:11" Bounds="-278.318484341616,166.717633469103,182.64,25" CodeSchemaProperty_StrongName="Oragon.Architecture, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.dll" UseManualLocation="True">
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@9" Category="CodeSchema_Assembly" AssemblyTimestamp="04/18/2014 22:45:12" Bounds="60.8499383069737,169.717632969103,298.103333333333,25" CodeSchemaProperty_StrongName="Oragon.Architecture.Aop.Data.NHibernate, Version=7.0.0.0, Culture=pt-BR, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(496e3b18-a9e9-4eab-8e7e-96509bb09551.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.Aop.Data.NHibernate.dll" UseManualLocation="True">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
   </Nodes>
   <Links>
-    <Link Source="@11" Target="(@12)" Category="References" Bounds="365.362360072591,103.761414271481,21.535095998665,0.27833122326561" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="71">
+    <Link Source="@10" Target="(@7)" Category="References" Bounds="69.4484233526335,-115.516602188017,144.175747047923,62.4242372448857" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="12">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
     </Link>
-    <Link Source="@11" Target="@14" Category="References" Bounds="271.716056328035,118.677421433606,148.013687185111,25.7862262219125" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="6">
+    <Link Source="@10" Target="(@8)" Category="References" Bounds="244.999616414715,-115.516602188017,21.7006152829012,108.27353237472" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="40">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@11" Target="@7" Category="CodeSchema_Calls" Bounds="-111.930136915935,118.677421433606,245.671320739473,46.3709211077374" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@11" Target="@9" Category="InheritsFrom" Bounds="201.599025192994,118.677421433606,5.50316170490274,42.1160733268311" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="17">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@16" Target="@24" Category="CodeSchema_Calls" Bounds="274.298734859635,376.730587011728,256.928035468269,127.987045957375" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@16" Target="@26" Category="References" Bounds="377.751494689509,466.235753146275,134.786112464214,38.4818798228281" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="10">
-      <Category Ref="CodeSchema_Calls" />
       <Category Ref="Implements" />
     </Link>
-    <Link Source="@16" Target="@5" Category="CodeSchema_Calls" Bounds="220.695144047314,465.145013096452,255.058271228826,39.5726198726507" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="4" />
-    <Link Source="@16" Target="@7" Category="References" Bounds="-135.390258789063,194.231719970703,677.772583007813,310.485900878906" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="9">
+    <Link Source="@10" Target="@12" Category="References" Bounds="385.9026496522,-125.761584267632,152.868615027072,2.4037756965576" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="8">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
     </Link>
-    <Link Source="@18" Target="@22" Category="References" Bounds="-83.8802296233889,480.727181658432,140.966573756414,51.5382093436076" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="20">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@2" Target="(@27)" Category="References" Bounds="593.668214494722,237.428998492891,106.511453056166,38.2885847262118" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="14">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@2" Target="@24" Category="References" Bounds="305.091402555581,300.717583219103,198.640047804461,45.0111059330413" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="17">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="InheritsFrom" />
-    </Link>
-    <Link Source="@2" Target="@26" Category="References" Bounds="350.602284585531,300.717583219103,190.385918919779,132.89594618922" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@2" Target="@32" Category="CodeSchema_AttributeUse" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
-    <Link Source="@2" Target="@7" Category="InheritsFrom" Bounds="-92.5547143686385,193.019010936762,565.911986396253,82.6985722823414" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@20" Target="@32" Category="Contains" FetchingParent="@20" />
-    <Link Source="@24" Target="@26" Category="References" Bounds="252.704896739523,372.717633219103,54.9456386509619,59.4384856106703" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="9">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="Implements" />
-    </Link>
-    <Link Source="@24" Target="@5" Category="CodeSchema_AttributeUse" Bounds="163.654993918059,372.717633219103,64.4604354103215,61.8179900018392" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="8">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@30" Target="(@28)" Category="References" Bounds="-244.348332907393,370.726981658432,97.2649442903581,27.5475695069856" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="14">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@30" Target="(@31)" Category="CodeSchema_Calls" Bounds="-251.287429995899,318.078182833029,102.154890203892,27.6487988254029" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
-    <Link Source="@30" Target="@18" Category="CodeSchema_Calls" Bounds="-115.125987280897,370.726981658432,10.4592253808949,76.0840535665499" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@30" Target="@22" Category="References" Bounds="-89.5882576070728,370.726981658432,169.385067681054,158.47990777075" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="16">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@30" Target="@24" Category="References" Bounds="29.7899383069735,358.994889811976,98.8282946189378,0.571734263441272" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="14">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="InheritsFrom" />
-    </Link>
-    <Link Source="@30" Target="@26" Category="References" Bounds="-45.4096069378837,370.726981658432,304.390929969763,66.1273334219577" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@30" Target="@5" Category="Implements" Bounds="-70.451764703486,370.726981658432,173.680102029354,66.806965946829" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@30" Target="@7" Category="CodeSchema_Calls" Bounds="-177.304263734711,199.864323153591,68.4867555750554,145.862658504841" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="5" />
-    <Link Source="@9" Target="@14" Category="References" Bounds="354.220089710356,164.240730183144,63.3518247344456,5.48402704972338" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="161">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_FieldRead" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@9" Target="@24" Category="References" Bounds="212.095997106659,194.717632969103,25.3031946293501,144.135557226836" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="32">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="InheritsFrom" />
-    </Link>
-    <Link Source="@9" Target="@26" Category="References" Bounds="215.263736143504,194.717632969103,101.141036523916,235.776208469961" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@9" Target="@5" Category="References" Bounds="133.40983581543,194.717636108398,69.7900848388672,237.144485473633" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="17">
+    <Link Source="@10" Target="@6" Category="References" Bounds="258.65510092927,-115.516602188017,148.044236872787,114.508856192447" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="18">
       <Category Ref="CodeSchema_AttributeUse" />
       <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@9" Target="@7" Category="References" Bounds="-86.6787414249221,179.975907872894,147.528679731896,1.11510674183754" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="6">
       <Category Ref="CodeSchema_ReturnTypeLink" />
-      <Category Ref="Implements" />
     </Link>
+    <Link Source="@14" Target="@10" Category="InheritsFrom" Bounds="282.853411420597,-231.516702188017,224.408939352086,87.7233828915484" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="7">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@14" Target="@12" Category="References" Bounds="547.931005323778,-231.516702188017,62.3109743678568,89.6110051422652" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="15">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@14" Target="@6" Category="References" Bounds="438.685181586505,-231.516702188017,95.3214204778615,227.713351563134" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="33">
+      <Category Ref="CodeSchema_AttributeUse" />
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@2" Target="@10" Category="CodeSchema_Calls" Bounds="149.945207380071,-228.516702188017,74.9413532035014,81.3796434935751" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
   </Links>
   <Categories>
     <Category Id="Category2" Label="Category 2" Background="#FF339933" IsTag="True" />
-    <Category Id="Category7" Label="Category 7" Background="#FF347A30" IsTag="True" />
-    <Category Id="Category8" Label="Category 8" Background="#FF44CCCC" IsTag="True" />
     <Category Id="CodeSchema_Assembly" Label="Assembly" BasedOn="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Assembly" NavigationActionLabel="Assemblies" />
     <Category Id="CodeSchema_AttributeUse" Label="Uses Attribute" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Used by" OutgoingActionLabel="Uses Attribute" />
     <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
-    <Category Id="CodeSchema_FieldRead" Label="Field Read" BasedOn="CodeSchema_FieldReference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Read By" OutgoingActionLabel="Reads Fields" />
-    <Category Id="CodeSchema_FieldReference" Label="Field Reference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References Fields" />
-    <Category Id="CodeSchema_Namespace" Label="Namespace" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" Icon="CodeSchema_Namespace" NavigationActionLabel="Namespaces" />
     <Category Id="CodeSchema_ReturnTypeLink" Label="Return" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Return types" OutgoingActionLabel="Return types" />
-    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
     <Category Id="File" Label="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" NavigationActionLabel="Files" />
     <Category Id="FileSystem.Category.FileOfType.dll" BasedOn="CodeSchema_Assembly" CanBeDataDriven="True" IsProviderRoot="False" />
     <Category Id="Implements" Label="Implements" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Implemented by" OutgoingActionLabel="Implements" />
@@ -188,20 +76,18 @@
     <Property Id="DelayedChildNodesState" Label="Delayed Child Nodes State" Description="Unspecified if the delayed child nodes state is not specified. NotFetched if the group contains child nodes that are not fetched into the graph yet. Fetched if the group has all its delayed child nodes already fetched." DataType="Microsoft.VisualStudio.GraphModel.DelayedDataState" />
     <Property Id="DelayedCrossGroupLinksState" Label="Delayed Cross-Group Links State" Description="Unspecified if the delayed cross-group links state is not specified. NotFetched if delayed cross-group links on this node are not fetched into the graph yet. Fetched if all delayed cross-group links have already fetched." DataType="Microsoft.VisualStudio.GraphModel.DelayedDataState" />
     <Property Id="Expression" DataType="System.String" />
-    <Property Id="FetchedChildrenCount" DataType="System.Int32" />
-    <Property Id="FetchingParent" DataType="Microsoft.VisualStudio.GraphModel.GraphNodeId" />
     <Property Id="FilePath" Label="File Path" Description="File Path" DataType="System.String" />
     <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
     <Property Id="GroupLabel" DataType="System.String" />
     <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
     <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
-    <Property Id="IsContainment" DataType="System.Boolean" />
     <Property Id="IsEnabled" DataType="System.Boolean" />
     <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
     <Property Id="IsSourceVirtualized" Label="Link Source Virtualized" Description="If true, the link source end contains data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
     <Property Id="IsTag" DataType="System.Boolean" />
     <Property Id="IsTargetVirtualized" Label="Link Target Virtualized" Description="If true, the link target end contains data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
     <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
     <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
     <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
     <Property Id="TargetType" DataType="System.Type" />
@@ -213,43 +99,26 @@
   </Properties>
   <QualifiedNames>
     <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
-    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
   </QualifiedNames>
   <IdentifierAliases>
-    <Alias n="1" Uri="Assembly=$(d9d06542-797d-4a57-95e5-c0a44727a386.OutputPathUri)" />
+    <Alias n="1" Uri="Assembly=$(7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPathUri)" />
     <Alias n="2" Id="(@1)" />
-    <Alias n="3" Uri="Assembly=$(9209f672-85ea-43db-9ab9-61664d82bc33.OutputPathUri)" />
-    <Alias n="4" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/Spring.Core.2.0.0-RC1/lib/net45/Spring.Core.dll" />
-    <Alias n="5" Id="(@4)" />
-    <Alias n="6" Uri="Assembly=$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPathUri)" />
-    <Alias n="7" Id="(@6)" />
-    <Alias n="8" Uri="Assembly=$(496e3b18-a9e9-4eab-8e7e-96509bb09551.OutputPathUri)" />
-    <Alias n="9" Id="(@8)" />
-    <Alias n="10" Uri="Assembly=$(85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPathUri)" />
-    <Alias n="11" Id="(@10)" />
-    <Alias n="12" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/FluentNHibernate.1.4.0.0/lib/net35/FluentNHibernate.dll" />
-    <Alias n="13" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/NHibernate.4.0.0-Alpha1/lib/net40/NHibernate.dll" />
+    <Alias n="5" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/Spring.Core.2.0.0-RC1/lib/net45/Spring.Core.dll" />
+    <Alias n="6" Id="(@5)" />
+    <Alias n="7" Uri="Assembly=$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPathUri)" />
+    <Alias n="8" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[References]/Topshelf.3.1.3/lib/net40-full/Topshelf.dll" />
+    <Alias n="9" Uri="Assembly=$(77959256-0d53-4fd6-a7de-385d032f48b5.OutputPathUri)" />
+    <Alias n="10" Id="(@9)" />
+    <Alias n="11" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[References]/Oragon.Architecture.External.NDepend.Path.1.0.0/lib/NDepend.Path.dll" />
+    <Alias n="12" Id="(@11)" />
+    <Alias n="13" Uri="Assembly=$(66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPathUri)" />
     <Alias n="14" Id="(@13)" />
-    <Alias n="15" Uri="Assembly=$(6e34bdf2-fe49-4258-b358-9bbc923a6ad1.OutputPathUri)" />
-    <Alias n="16" Id="(@15)" />
-    <Alias n="17" Uri="Assembly=$(006be62c-99fa-41f9-b390-0e8c82017566.OutputPathUri)" />
-    <Alias n="18" Id="(@17)" />
-    <Alias n="19" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/mongocsharpdriver.1.9.0/lib/net35/MongoDB.Bson.dll" />
-    <Alias n="20" Id="(@19)" />
-    <Alias n="21" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/Newtonsoft.Json.6.0.2/lib/net45/Newtonsoft.Json.dll" />
-    <Alias n="22" Id="(@21)" />
-    <Alias n="23" Uri="Assembly=$(d69a2068-7e08-438e-a956-4c9c326c5e40.OutputPathUri)" />
-    <Alias n="24" Id="(@23)" />
-    <Alias n="25" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/Spring.Aop.2.0.0-RC1/lib/net45/Spring.Aop.dll" />
-    <Alias n="26" Id="(@25)" />
-    <Alias n="27" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/mongocsharpdriver.1.9.0/lib/net35/MongoDB.Driver.dll" />
-    <Alias n="28" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/ServiceStack.Interfaces.4.0.18/lib/net40/ServiceStack.Interfaces.dll" />
-    <Alias n="29" Uri="Assembly=$(dbe9c81b-d625-4942-be54-d5a927496df0.OutputPathUri)" />
-    <Alias n="30" Id="(@29)" />
-    <Alias n="31" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/ServiceStack.Redis.4.0.18/lib/net40/ServiceStack.Redis.dll" />
-    <Alias n="32" Id="(@19 Namespace=MongoDB.Bson.Serialization.Attributes)" />
   </IdentifierAliases>
   <Styles>
+    <Style TargetType="Node" GroupLabel="Category 1" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category1')" />
+      <Setter Property="Background" Value="#FFE51400" />
+    </Style>
     <Style TargetType="Node" GroupLabel="Category 9" ValueLabel="Has category">
       <Condition Expression="HasCategory('Category9')" />
       <Setter Property="Background" Value="#FF00539C" />
@@ -394,22 +263,20 @@
   </Styles>
   <Paths>
     <Path Id="006be62c-99fa-41f9-b390-0e8c82017566.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Serialization\bin\Debug\Oragon.Architecture.Serialization.dll" />
-    <Path Id="006be62c-99fa-41f9-b390-0e8c82017566.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Serialization/bin/Debug/Oragon.Architecture.Serialization.dll" />
     <Path Id="496e3b18-a9e9-4eab-8e7e-96509bb09551.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.NHibernate\bin\Debug\Oragon.Architecture.Aop.Data.NHibernate.dll" />
-    <Path Id="496e3b18-a9e9-4eab-8e7e-96509bb09551.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Aop.Data.NHibernate/bin/Debug/Oragon.Architecture.Aop.Data.NHibernate.dll" />
+    <Path Id="66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.SpringFramework\bin\Debug\Oragon.Architecture.ApplicationHosting.SpringFramework.dll" />
+    <Path Id="66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting.SpringFramework/bin/Debug/Oragon.Architecture.ApplicationHosting.SpringFramework.dll" />
     <Path Id="6e34bdf2-fe49-4258-b358-9bbc923a6ad1.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.ExceptionHandling\bin\Debug\Oragon.Architecture.Aop.ExceptionHandling.dll" />
-    <Path Id="6e34bdf2-fe49-4258-b358-9bbc923a6ad1.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Aop.ExceptionHandling/bin/Debug/Oragon.Architecture.Aop.ExceptionHandling.dll" />
-    <Path Id="85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPath" Value="D:\Projetos\Oragon.Architecture\[Source]\Oragon.Architecture.Aop.Data.FluentNHibernate\bin\Debug\Oragon.Architecture.Aop.Data.FluentNHibernate.dll" />
-    <Path Id="85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[Source]/Oragon.Architecture.Aop.Data.FluentNHibernate/bin/Debug/Oragon.Architecture.Aop.Data.FluentNHibernate.dll" />
+    <Path Id="77959256-0d53-4fd6-a7de-385d032f48b5.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting\bin\Debug\Oragon.Architecture.ApplicationHosting.dll" />
+    <Path Id="77959256-0d53-4fd6-a7de-385d032f48b5.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting/bin/Debug/Oragon.Architecture.ApplicationHosting.dll" />
+    <Path Id="7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.HostProcess\bin\Debug\Oragon.Architecture.ApplicationHosting.HostProcess.exe" />
+    <Path Id="7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting.HostProcess/bin/Debug/Oragon.Architecture.ApplicationHosting.HostProcess.exe" />
+    <Path Id="85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.FluentNHibernate\bin\Debug\Oragon.Architecture.Aop.Data.FluentNHibernate.dll" />
     <Path Id="9209f672-85ea-43db-9ab9-61664d82bc33.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Web\bin\Debug\Oragon.Architecture.Web.dll" />
-    <Path Id="9209f672-85ea-43db-9ab9-61664d82bc33.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Web/bin/Debug/Oragon.Architecture.Web.dll" />
     <Path Id="b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture\bin\Debug\Oragon.Architecture.dll" />
     <Path Id="b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture/bin/Debug/Oragon.Architecture.dll" />
     <Path Id="d69a2068-7e08-438e-a956-4c9c326c5e40.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop\bin\Debug\Oragon.Architecture.Aop.dll" />
-    <Path Id="d69a2068-7e08-438e-a956-4c9c326c5e40.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Aop/bin/Debug/Oragon.Architecture.Aop.dll" />
     <Path Id="d9d06542-797d-4a57-95e5-c0a44727a386.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.MongoDB\bin\Debug\Oragon.Architecture.Aop.Data.MongoDB.dll" />
-    <Path Id="d9d06542-797d-4a57-95e5-c0a44727a386.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Aop.Data.MongoDB/bin/Debug/Oragon.Architecture.Aop.Data.MongoDB.dll" />
     <Path Id="dbe9c81b-d625-4942-be54-d5a927496df0.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.Redis\bin\Debug\Oragon.Architecture.Aop.Data.Redis.dll" />
-    <Path Id="dbe9c81b-d625-4942-be54-d5a927496df0.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.Aop.Data.Redis/bin/Debug/Oragon.Architecture.Aop.Data.Redis.dll" />
   </Paths>
 </DirectedGraph>
