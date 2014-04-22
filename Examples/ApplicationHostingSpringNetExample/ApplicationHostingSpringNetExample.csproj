@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FA2C4F19-11C8-45CC-BFB6-9687B3314F16}</ProjectGuid>
+    <ProjectGuid>{3E214101-9B4A-4B42-8A12-DBCE8DB68540}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApplicationHostingExample</RootNamespace>
-    <AssemblyName>ApplicationHostingExample</AssemblyName>
+    <RootNamespace>ApplicationHostingSpringNetExample</RootNamespace>
+    <AssemblyName>ApplicationHostingSpringNetExample</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,8 +36,7 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\..\[References]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Spring.Core">
       <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -61,24 +60,12 @@
     <Content Include="ApplicationHostingExample.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
       <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
-      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
-      <Name>Oragon.Architecture.ApplicationHosting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\[Source]\Oragon.Architecture\Oragon.Architecture.csproj">
-      <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
-      <Name>Oragon.Architecture</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

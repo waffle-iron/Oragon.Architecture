@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplicationHostingExample
+namespace ApplicationHostingSpringNetExample
 {
 	public class AutoStartAppExample : IInitializingObject, IDisposable
 	{

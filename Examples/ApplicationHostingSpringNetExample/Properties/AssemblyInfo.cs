@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ApplicationHostingExample")]
+[assembly: AssemblyTitle("ApplicationHostingSpringNetExample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ApplicationHostingExample")]
+[assembly: AssemblyProduct("ApplicationHostingSpringNetExample")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ef8e2a2a-2abc-4896-a12b-41e21d753f86")]
+[assembly: Guid("672c4db4-8be3-47dc-bc76-f1a8b84283c3")]
 
 // Version information for an assembly consists of the following four values:
 //

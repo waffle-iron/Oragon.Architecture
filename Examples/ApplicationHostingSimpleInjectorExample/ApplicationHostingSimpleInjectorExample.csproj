@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39F605B3-A03B-48CA-A0AB-AD4E9697A6F7}</ProjectGuid>
+    <ProjectGuid>{352BAEC0-0F63-4662-983C-90FCC9EA885B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApplicationHostingExampleWithoutSpringNet</RootNamespace>
-    <AssemblyName>ApplicationHostingExampleWithoutSpringNet</AssemblyName>
+    <RootNamespace>ApplicationHostingSimpleInjectorExample</RootNamespace>
+    <AssemblyName>ApplicationHostingSimpleInjectorExample</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\[References]\SimpleInjector.2.5.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Diagnostics">
+      <HintPath>..\..\[References]\SimpleInjector.2.5.0\lib\net45\SimpleInjector.Diagnostics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,13 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstraper.cs" />
+    <Compile Include="AutoStartAppExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApplicationHostingExampleWithoutSpringNet.config" />
+    <None Include="ApplicationHostingExample.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationHostingExampleWithoutSpringNet.xml" />
+    <Content Include="ApplicationHostingExample.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.SimpleInjector\Oragon.Architecture.ApplicationHosting.SimpleInjector.csproj">
+      <Project>{11a4183d-ccfb-4bb1-b010-5c664cf22d7c}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting.SimpleInjector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

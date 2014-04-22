@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SimpleInjector\Oragon.Architecture.ApplicationHosting.SimpleInjector.csproj">
+      <Project>{11a4183d-ccfb-4bb1-b010-5c664cf22d7c}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting.SimpleInjector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
       <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>

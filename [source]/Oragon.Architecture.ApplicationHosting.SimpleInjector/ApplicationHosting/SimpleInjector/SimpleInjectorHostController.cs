@@ -14,19 +14,6 @@ namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 
 		public Container Container { get; set; }
 
-		public override void Start()
-		{
-			var container = new Container();
-			this.Bootstrap.Bootstrap(this.Container);
-			this.Container = container;
-
-			//this.context = Spring.Context.Support.ContextRegistry.GetContext();
-			//foreach (var item in this.context.GetObjects<ILifecycle>().Select(it => it.Value))
-			//{
-			//	item.Start();
-			//}
-		}
-
 		public void Setup(string bootstrapType)
 		{
 			Type type = System.Type.GetType(bootstrapType, true, false);
@@ -40,17 +27,31 @@ namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 				throw new System.InvalidOperationException(string.Format("Bootstrap '{0}' could not be found", bootstrapType));
 		}
 
+		public override void Start()
+		{
+			Container container = new Container();
+			this.Bootstrap.Bootstrap(container);
+			this.Container = container;
+
+			//this.context = Spring.Context.Support.ContextRegistry.GetContext();
+			//foreach (var item in this.context.GetObjects<ILifecycle>().Select(it => it.Value))
+			//{
+			//	item.Start();
+			//}
+		}
+
+		
+
 		public override void Stop()
 		{
-			//if (this.context != null)
-			//{
-			//	foreach (var item in this.context.GetObjects<ILifecycle>().Select(it => it.Value).Reverse())
-			//	{
-			//		item.Stop();
-			//	}
-			//	this.context.Dispose();
-			//	this.context = null;
-			//}
+			if (this.Container != null)
+			{
+				//foreach (var item in this.context.GetObjects<ILifecycle>().Select(it => it.Value).Reverse())
+				//{
+				//	item.Stop();
+				//}
+				this.Container = null;
+			}
 		}
 	}
 }
