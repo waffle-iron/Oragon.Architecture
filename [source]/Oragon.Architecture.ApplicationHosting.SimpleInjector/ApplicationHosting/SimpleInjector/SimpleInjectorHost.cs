@@ -14,12 +14,12 @@ namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 {
 	public class SimpleInjectorHost : ApplicationHost<SimpleInjectorHostController>
 	{
-		public string BootstrapType { get; set; }
+		public string FactoryType { get; set; }
 
 
 		protected override void Setup(SimpleInjectorHostController applicationHostController)
 		{
-			applicationHostController.Setup(this.BootstrapType);
+			applicationHostController.Setup(this.FactoryType);
 		}
 	}
 }

@@ -12,11 +12,11 @@ namespace Oragon.Architecture.ApplicationHosting.Ninject
 {
 	public class NinjectApplicationHost : ApplicationHost<NinjectApplicationHostController>
 	{
-		public string BootstrapType { get; set; }
+		public string FactoryType { get; set; }
 
 		protected override void Setup(NinjectApplicationHostController applicationHostController)
 		{
-			applicationHostController.Setup(this.BootstrapType);
+			applicationHostController.Setup(this.FactoryType);
 		}
 	}
 }

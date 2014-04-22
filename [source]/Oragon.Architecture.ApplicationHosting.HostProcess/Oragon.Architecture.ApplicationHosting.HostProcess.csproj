@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.Ninject\Oragon.Architecture.ApplicationHosting.Ninject.csproj">
+      <Project>{a38c30a4-62c5-41c4-aea4-96ea1450d0cc}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting.Ninject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SimpleInjector\Oragon.Architecture.ApplicationHosting.SimpleInjector.csproj">
       <Project>{11a4183d-ccfb-4bb1-b010-5c664cf22d7c}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SimpleInjector</Name>

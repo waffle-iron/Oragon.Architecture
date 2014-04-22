@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 {
-	public interface ISimpleInjectorBootstrap
+	public interface ISimpleInjectorFactory
 	{
-		void Bootstrap(Container container);
+		Container BuildContainer();
 	}
 }

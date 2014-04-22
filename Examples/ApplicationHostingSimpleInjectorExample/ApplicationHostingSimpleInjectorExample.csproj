@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstraper.cs" />
+    <Compile Include="SimpleInjectorFactory.cs" />
     <Compile Include="AutoStartAppExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 {
 	public class SimpleInjectorHostController : ApplicationHostController
 	{
-		private ISimpleInjectorBootstrap Bootstrap { get; set; }
+		private ISimpleInjectorFactory Factory { get; set; }
 
 		public Container Container { get; set; }
 
@@ -20,17 +20,16 @@ namespace Oragon.Architecture.ApplicationHosting.SimpleInjector
 			if (type == null)
 				throw new System.InvalidOperationException(string.Format("Type '{0}' could not be found", bootstrapType));
 
-			if (typeof(ISimpleInjectorBootstrap).IsAssignableFrom(type))
-				this.Bootstrap = Activator.CreateInstance(type) as ISimpleInjectorBootstrap;
+			if (typeof(ISimpleInjectorFactory).IsAssignableFrom(type))
+				this.Factory = Activator.CreateInstance(type) as ISimpleInjectorFactory;
 
-			if (this.Bootstrap == null)
+			if (this.Factory == null)
 				throw new System.InvalidOperationException(string.Format("Bootstrap '{0}' could not be found", bootstrapType));
 		}
 
 		public override void Start()
 		{
-			Container container = new Container();
-			this.Bootstrap.Bootstrap(container);
+			Container container = this.Factory.BuildContainer();
 			this.Container = container;
 
 			//this.context = Spring.Context.Support.ContextRegistry.GetContext();
