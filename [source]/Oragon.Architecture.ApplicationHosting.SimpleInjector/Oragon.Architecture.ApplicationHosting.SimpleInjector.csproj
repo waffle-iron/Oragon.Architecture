@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77959256-0D53-4FD6-A7DE-385D032F48B5}</ProjectGuid>
+    <ProjectGuid>{11A4183D-CCFB-4BB1-B010-5C664CF22D7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oragon.Architecture</RootNamespace>
-    <AssemblyName>Oragon.Architecture.ApplicationHosting</AssemblyName>
+    <AssemblyName>Oragon.Architecture.ApplicationHosting.SimpleInjector</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NDepend.Path, Version=1.0.0.0, Culture=neutral, PublicKeyToken=663402f81ccece54, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NDepend.Path">
       <HintPath>..\..\[References]\Oragon.Architecture.External.NDepend.Path.1.0.0\lib\NDepend.Path.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -50,24 +49,19 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\AccountType.cs" />
-    <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
-    <Compile Include="ApplicationHosting\Credential.cs" />
-    <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
-    <Compile Include="ApplicationHosting\StartMode.cs" />
-    <Compile Include="ApplicationHosting\ApplicationHost.cs" />
-    <Compile Include="ApplicationHosting\WindowsServiceConfiguration.cs" />
+    <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHost.cs" />
+    <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHostController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
-      <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
-      <Name>Oragon.Architecture</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
+      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

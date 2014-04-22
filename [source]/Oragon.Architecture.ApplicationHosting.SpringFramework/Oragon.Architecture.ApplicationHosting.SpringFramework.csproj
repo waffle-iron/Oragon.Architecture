@@ -60,8 +60,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\SpringApplicationHost.cs" />
-    <Compile Include="ApplicationHosting\SpringApplicationHostController.cs" />
+    <Compile Include="ApplicationHosting\SpringFramework\SpringApplicationHost.cs" />
+    <Compile Include="ApplicationHosting\SpringFramework\SpringApplicationHostController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

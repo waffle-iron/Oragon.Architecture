@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.ApplicationHosting
+namespace Oragon.Architecture.ApplicationHosting.SpringFramework
 {
 	public class SpringApplicationHostController : ApplicationHostController
 	{
