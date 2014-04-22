@@ -18,15 +18,10 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string Name { get; set; }
 		public string FriendlyName { get; set; }
 		public string Description { get; set; }
-
 		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
 		public abstract void Stop();
-
 		public string ApplicationConfigurationFile { get; set; }
-
 		public string ApplicationBaseDirectory { get; set; }
-
-
 
 		protected AppDomain CreateDomain(string appDomainName, IAbsoluteDirectoryPath absoluteApplicationBaseDirectory, IAbsoluteFilePath absoluteApplicationConfigurationFile)
 		{
@@ -94,8 +89,11 @@ namespace Oragon.Architecture.ApplicationHosting
 
 			Type typeOfApplicationController = typeof(T);
 			this.applicationHostController = (T)this.privateAppDomain.CreateInstanceAndUnwrap(typeOfApplicationController.Assembly.FullName, typeOfApplicationController.FullName);
+			this.Setup(this.applicationHostController);
 			this.applicationHostController.Start();
 		}
+
+		protected virtual void Setup(T applicationHostController) { }
 
 		public override void Stop()
 		{

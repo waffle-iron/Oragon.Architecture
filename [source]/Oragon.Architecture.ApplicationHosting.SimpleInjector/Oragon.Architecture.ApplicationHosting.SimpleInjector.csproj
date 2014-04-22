@@ -33,6 +33,12 @@
     <Reference Include="NDepend.Path">
       <HintPath>..\..\[References]\Oragon.Architecture.External.NDepend.Path.1.0.0\lib\NDepend.Path.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\..\[References]\SimpleInjector.2.5.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Diagnostics">
+      <HintPath>..\..\[References]\SimpleInjector.2.5.0\lib\net45\SimpleInjector.Diagnostics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -49,6 +55,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApplicationHosting\SimpleInjector\ISimpleInjectorBootstrap.cs" />
     <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHost.cs" />
     <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHostController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
