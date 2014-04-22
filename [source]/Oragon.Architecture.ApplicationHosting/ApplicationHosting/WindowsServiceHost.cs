@@ -79,7 +79,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			{
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
 			}
-
 			return true;
 		}
 
