@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Spring.Objects.Factory.Attributes;
+﻿using Spring.Objects.Factory.Attributes;
+using System;
 
 namespace Oragon.Architecture.Aop.Data.Abstractions
 {
@@ -10,7 +7,6 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 		where ContextType : AbstractContext<AttributeType>
 		where AttributeType : AbstractContextAttribute
 	{
-
 		[Required]
 		protected string ObjectContextKey { get; set; }
 
@@ -24,6 +20,5 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 				return returnValue;
 			}
 		}
-
 	}
 }

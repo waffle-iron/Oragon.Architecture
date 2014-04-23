@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Oragon.Architecture.Aop.Data.Abstractions
 {
 	public abstract class AbstractContext<AttributeType> : IDisposable
 		where AttributeType : AbstractContextAttribute
 	{
-
 		protected Stack<AbstractContext<AttributeType>> ContextStack { get; private set; }
-		protected AttributeType ContextAttribute { get; private set; }
 
+		protected AttributeType ContextAttribute { get; private set; }
 
 		public AbstractContext(AttributeType contextAttribute, Stack<AbstractContext<AttributeType>> contextStack)
 		{
@@ -26,10 +24,10 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			get { return this.ContextAttribute.ContextKey; }
 		}
 
-
 		#region Dispose Methods
 
 		private bool disposed = false;
+
 		public void Dispose()
 		{
 			Dispose(true);
@@ -73,7 +71,6 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 				Spring.Threading.LogicalThreadContext.SetData(firstParentWithSameKey.ContextKey, firstParentWithSameKey);
 			}
 		}
-		
 
 		~AbstractContext()
 		{
@@ -81,7 +78,6 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			Dispose(false);
 		}
 
-		#endregion
-
+		#endregion Dispose Methods
 	}
 }

@@ -1,9 +1,8 @@
 ﻿using AopAlliance.Intercept;
+using Oragon.Architecture.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Aop.Data.Abstractions
 {
@@ -11,7 +10,6 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 		where AttributeType : AbstractContextAttribute
 		where ContextType : AbstractContext<AttributeType>
 	{
-
 		protected abstract string ContextStackListKey { get; }
 
 		protected Stack<AbstractContext<AttributeType>> ContextStack
@@ -28,8 +26,6 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			}
 		}
 
-
-
 		public object Invoke(IMethodInvocation invocation)
 		{
 			object returnValue = null;
@@ -43,11 +39,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 
 		protected abstract Func<AttributeType, bool> AttributeQueryFilter { get; }
 
-
-
 		protected abstract object Invoke(IMethodInvocation invocation, IEnumerable<AttributeType> contextAttributes);
-
-
 
 		/// <summary>
 		/// Obtém informações de persistência definidas nos métodos
@@ -60,7 +52,5 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			IEnumerable<AttributeType> returnValue = invocation.GetAttibutes<AttributeType>(AttributeQueryFilter);
 			return returnValue;
 		}
-
-
 	}
 }
