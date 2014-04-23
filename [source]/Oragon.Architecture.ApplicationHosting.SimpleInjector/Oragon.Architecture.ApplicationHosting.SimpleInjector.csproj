@@ -55,9 +55,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\SimpleInjector\ISimpleInjectorFactory.cs" />
-    <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHost.cs" />
-    <Compile Include="ApplicationHosting\SimpleInjector\SimpleInjectorHostController.cs" />
+    <Compile Include="ApplicationHosting\SimpleInjector\Contract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AutoStartAppExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpringFrameworkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
       <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
+      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

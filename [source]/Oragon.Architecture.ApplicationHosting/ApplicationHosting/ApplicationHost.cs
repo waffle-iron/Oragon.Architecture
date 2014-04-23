@@ -18,6 +18,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string Name { get; set; }
 		public string FriendlyName { get; set; }
 		public string Description { get; set; }
+		public string FactoryType { get; set; }
 		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
 		public abstract void Stop();
 		public string ApplicationConfigurationFile { get; set; }
@@ -72,10 +73,11 @@ namespace Oragon.Architecture.ApplicationHosting
 
 	}
 
-	public abstract class ApplicationHost<T> : ApplicationHost
-		where T : ApplicationHostController
+	public abstract class ApplicationHost<ApplicationHostControllerType, FactoryType, ContainerType> : ApplicationHost
+		where ApplicationHostControllerType : ApplicationHostController<FactoryType, ContainerType>
+		where FactoryType : IContainerFactory<ContainerType>
 	{
-		private T applicationHostController;
+		private ApplicationHostControllerType applicationHostController;
 
 		private AppDomain privateAppDomain;
 
@@ -87,13 +89,12 @@ namespace Oragon.Architecture.ApplicationHosting
 			IAbsoluteFilePath absoluteApplicationConfigurationFile = this.GetAbsoluteFilePath(baseDirectory);
 			this.privateAppDomain = this.CreateDomain(this.Name, absoluteApplicationBaseDirectory, absoluteApplicationConfigurationFile);
 
-			Type typeOfApplicationController = typeof(T);
-			this.applicationHostController = (T)this.privateAppDomain.CreateInstanceAndUnwrap(typeOfApplicationController.Assembly.FullName, typeOfApplicationController.FullName);
-			this.Setup(this.applicationHostController);
+			Type typeOfApplicationController = typeof(ApplicationHostControllerType);
+			this.applicationHostController = (ApplicationHostControllerType)this.privateAppDomain.CreateInstanceAndUnwrap(typeOfApplicationController.Assembly.FullName, typeOfApplicationController.FullName);
+			this.applicationHostController.SetFactoryType(this.FactoryType);
+			this.applicationHostController.InitializeContainer();
 			this.applicationHostController.Start();
 		}
-
-		protected virtual void Setup(T applicationHostController) { }
 
 		public override void Stop()
 		{

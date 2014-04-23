@@ -7,16 +7,12 @@ using System.Diagnostics.Contracts;
 using System.Security.Policy;
 using System.Security;
 using System.Security.Permissions;
+using Ninject;
 
 namespace Oragon.Architecture.ApplicationHosting.Ninject
 {
-	public class NinjectApplicationHost : ApplicationHost<NinjectApplicationHostController>
-	{
-		public string FactoryType { get; set; }
+	public interface INinjectFactory : IContainerFactory<IKernel> { }
+	public class NinjectApplicationHostController : ApplicationHostController<INinjectFactory, IKernel> { }
+	public class NinjectApplicationHost : ApplicationHost<NinjectApplicationHostController, INinjectFactory, IKernel> { }
 
-		protected override void Setup(NinjectApplicationHostController applicationHostController)
-		{
-			applicationHostController.Setup(this.FactoryType);
-		}
-	}
 }

@@ -53,6 +53,7 @@
     <Compile Include="ApplicationHosting\AccountType.cs" />
     <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
+    <Compile Include="ApplicationHosting\IContainerFactory.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
     <Compile Include="ApplicationHosting\StartMode.cs" />
     <Compile Include="ApplicationHosting\ApplicationHost.cs" />

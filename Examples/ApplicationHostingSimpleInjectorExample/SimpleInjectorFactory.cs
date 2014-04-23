@@ -10,7 +10,7 @@ namespace ApplicationHostingSimpleInjectorExample
 {
 	public class SimpleInjectorFactory : ISimpleInjectorFactory
 	{
-		public Container BuildContainer()
+		public Container CreateContainer()
 		{
 			Container container = new Container();
 

@@ -9,7 +9,7 @@ namespace ApplicationHostingNinjectExample
 {
 	public class NinjectFactory : INinjectFactory
 	{
-		public Ninject.IKernel BuildKernel()
+		public Ninject.IKernel CreateContainer()
 		{
 			var kernel = new Ninject.StandardKernel();
 			kernel.Bind<IAutoStartAppExample>().To<AutoStartAppExample>();

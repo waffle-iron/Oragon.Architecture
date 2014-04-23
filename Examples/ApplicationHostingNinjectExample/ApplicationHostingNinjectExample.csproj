@@ -58,6 +58,10 @@
       <Project>{a38c30a4-62c5-41c4-aea4-96ea1450d0cc}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.Ninject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
+      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

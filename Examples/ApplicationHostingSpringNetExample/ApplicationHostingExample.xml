@@ -27,10 +27,11 @@
 
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
-				<object type="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringApplicationHost, Oragon.Architecture.ApplicationHosting.SpringFramework">
+				<object type="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkApplicationHost, Oragon.Architecture.ApplicationHosting.SpringFramework">
 					<property name="Name" value="Application Hosting Example" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
+					<property name="FactoryType" value="ApplicationHostingSpringNetExample.SpringFrameworkFactory, ApplicationHostingSpringNetExample"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
 					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
 				</object>
