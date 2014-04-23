@@ -102,9 +102,25 @@ namespace Oragon.Architecture.Caching.Redis
 
 		#endregion
 
+
 		public void Dispose()
 		{
-			this.NativeClient.Dispose();
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				// free managed resources
+				if (this.NativeClient != null)
+				{
+					this.NativeClient.Dispose();
+					this.NativeClient = null;
+				}
+			}
+		}
+
+		
 	}
 }

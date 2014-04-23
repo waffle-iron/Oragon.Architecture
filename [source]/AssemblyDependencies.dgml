@@ -1,120 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
-  <Nodes>
-    <Node Id="(@7)" Category="CodeSchema_Assembly" Bounds="-59.0008078887635,-49.5164021880168,182.64,25" CodeSchemaProperty_StrongName="Oragon.Architecture, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.dll" UseManualLocation="True" />
-    <Node Id="(@8)" Category="CodeSchema_Assembly" Bounds="210.639192111237,1.58143598494124,120.666596666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Topshelf, Version=3.1.122.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[References]\Topshelf.3.1.3\lib\net40-full\Topshelf.dll" Group="Collapsed" Label="Topshelf.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@10" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:06" Bounds="99.085982985533,-140.516602188017,286.816666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(77959256-0d53-4fd6-a7de-385d032f48b5.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.dll" UseManualLocation="True" />
-    <Node Id="@12" Category="CodeSchema_Assembly" Bounds="547.770152222348,-134.516502188017,152.603541333333,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="NDepend.Path, Version=1.0.0.0, Culture=neutral, PublicKeyToken=663402f81ccece54" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[References]\Oragon.Architecture.External.NDepend.Path.1.0.0\lib\NDepend.Path.dll" Group="Collapsed" Label="NDepend.Path.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-    <Node Id="@14" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:07" Bounds="348.052468965864,-256.516702188017,382.373333333333,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting.SpringFramework, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.SpringFramework.dll" UseManualLocation="True" />
-    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="04/22/2014 12:03:08" Bounds="-41.1841977008021,-253.516702188017,359.236666666667,25" CodeSchemaProperty_StrongName="Oragon.Architecture.ApplicationHosting.HostProcess, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPath)" Group="Collapsed" Label="Oragon.Architecture.ApplicationHosting.HostProcess.exe" UseManualLocation="True" />
-    <Node Id="@6" Category="CodeSchema_Assembly" Bounds="361.305788777903,4.49862408257222,137.343260666667,25" CodeSchemaProperty_IsExternal="True" CodeSchemaProperty_StrongName="Spring.Core, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="D:\Projetos\Oragon.Architecture\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll" Group="Collapsed" Label="Spring.Core.dll" UseManualLocation="True">
-      <Category Ref="Category2" />
-      <Category Ref="FileSystem.Category.FileOfType.dll" />
-    </Node>
-  </Nodes>
-  <Links>
-    <Link Source="@10" Target="(@7)" Category="References" Bounds="69.4484233526335,-115.516602188017,144.175747047923,62.4242372448857" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="12">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@10" Target="(@8)" Category="References" Bounds="244.999616414715,-115.516602188017,21.7006152829012,108.27353237472" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="40">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-      <Category Ref="Implements" />
-    </Link>
-    <Link Source="@10" Target="@12" Category="References" Bounds="385.9026496522,-125.761584267632,152.868615027072,2.4037756965576" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="8">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@10" Target="@6" Category="References" Bounds="258.65510092927,-115.516602188017,148.044236872787,114.508856192447" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="18">
-      <Category Ref="CodeSchema_AttributeUse" />
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@14" Target="@10" Category="InheritsFrom" Bounds="282.853411420597,-231.516702188017,224.408939352086,87.7233828915484" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="7">
-      <Category Ref="CodeSchema_Calls" />
-    </Link>
-    <Link Source="@14" Target="@12" Category="References" Bounds="547.931005323778,-231.516702188017,62.3109743678568,89.6110051422652" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="15">
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@14" Target="@6" Category="References" Bounds="438.685181586505,-231.516702188017,95.3214204778615,227.713351563134" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="33">
-      <Category Ref="CodeSchema_AttributeUse" />
-      <Category Ref="CodeSchema_Calls" />
-      <Category Ref="CodeSchema_ReturnTypeLink" />
-    </Link>
-    <Link Source="@2" Target="@10" Category="CodeSchema_Calls" Bounds="149.945207380071,-228.516702188017,74.9413532035014,81.3796434935751" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="2" />
-  </Links>
-  <Categories>
-    <Category Id="Category2" Label="Category 2" Background="#FF339933" IsTag="True" />
-    <Category Id="CodeSchema_Assembly" Label="Assembly" BasedOn="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Assembly" NavigationActionLabel="Assemblies" />
-    <Category Id="CodeSchema_AttributeUse" Label="Uses Attribute" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Used by" OutgoingActionLabel="Uses Attribute" />
-    <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
-    <Category Id="CodeSchema_ReturnTypeLink" Label="Return" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Return types" OutgoingActionLabel="Return types" />
-    <Category Id="File" Label="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" NavigationActionLabel="Files" />
-    <Category Id="FileSystem.Category.FileOfType.dll" BasedOn="CodeSchema_Assembly" CanBeDataDriven="True" IsProviderRoot="False" />
-    <Category Id="Implements" Label="Implements" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Implemented by" OutgoingActionLabel="Implements" />
-    <Category Id="InheritsFrom" Label="Inherits From" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Inherited By" OutgoingActionLabel="Inherits From" />
-    <Category Id="References" Label="References" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References" />
-  </Categories>
+<DirectedGraph DataVirtualized="True" Layout="ForceDirected" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes />
+  <Links />
   <Properties>
-    <Property Id="AssemblyTimestamp" DataType="System.DateTime" />
-    <Property Id="Background" Label="Background" Description="The background color" DataType="System.Windows.Media.Brush" />
-    <Property Id="Bounds" DataType="System.Windows.Rect" />
-    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
-    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
-    <Property Id="CodeSchemaProperty_IsExternal" Label="Is External" Description="Flag indicating whether this node is considered external" DataType="System.Boolean" />
-    <Property Id="CodeSchemaProperty_StrongName" Label="StrongName" Description="StrongName" DataType="System.String" />
     <Property Id="DataVirtualized" Label="Data Virtualized" Description="If true, the graph can contain nodes and links that represent data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
-    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
-    <Property Id="DelayedChildNodesState" Label="Delayed Child Nodes State" Description="Unspecified if the delayed child nodes state is not specified. NotFetched if the group contains child nodes that are not fetched into the graph yet. Fetched if the group has all its delayed child nodes already fetched." DataType="Microsoft.VisualStudio.GraphModel.DelayedDataState" />
-    <Property Id="DelayedCrossGroupLinksState" Label="Delayed Cross-Group Links State" Description="Unspecified if the delayed cross-group links state is not specified. NotFetched if delayed cross-group links on this node are not fetched into the graph yet. Fetched if all delayed cross-group links have already fetched." DataType="Microsoft.VisualStudio.GraphModel.DelayedDataState" />
     <Property Id="Expression" DataType="System.String" />
-    <Property Id="FilePath" Label="File Path" Description="File Path" DataType="System.String" />
-    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
     <Property Id="GroupLabel" DataType="System.String" />
-    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
-    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
     <Property Id="IsEnabled" DataType="System.Boolean" />
-    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
-    <Property Id="IsSourceVirtualized" Label="Link Source Virtualized" Description="If true, the link source end contains data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
-    <Property Id="IsTag" DataType="System.Boolean" />
-    <Property Id="IsTargetVirtualized" Label="Link Target Virtualized" Description="If true, the link target end contains data for virtualized nodes/links (i.e. not actually created in the graph)." DataType="System.Boolean" />
-    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
     <Property Id="Layout" DataType="System.String" />
-    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
-    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
     <Property Id="TargetType" DataType="System.Type" />
-    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="ToolTip" DataType="System.String" />
     <Property Id="Value" DataType="System.String" />
     <Property Id="ValueLabel" DataType="System.String" />
     <Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" />
-    <Property Id="Weight" Label="Weight" Description="Weight" DataType="System.Double" />
   </Properties>
-  <QualifiedNames>
-    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
-  </QualifiedNames>
-  <IdentifierAliases>
-    <Alias n="1" Uri="Assembly=$(7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPathUri)" />
-    <Alias n="2" Id="(@1)" />
-    <Alias n="5" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[references]/Spring.Core.2.0.0-RC1/lib/net45/Spring.Core.dll" />
-    <Alias n="6" Id="(@5)" />
-    <Alias n="7" Uri="Assembly=$(b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPathUri)" />
-    <Alias n="8" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[References]/Topshelf.3.1.3/lib/net40-full/Topshelf.dll" />
-    <Alias n="9" Uri="Assembly=$(77959256-0d53-4fd6-a7de-385d032f48b5.OutputPathUri)" />
-    <Alias n="10" Id="(@9)" />
-    <Alias n="11" Uri="Assembly=file:///D:/Projetos/Oragon.Architecture/[References]/Oragon.Architecture.External.NDepend.Path.1.0.0/lib/NDepend.Path.dll" />
-    <Alias n="12" Id="(@11)" />
-    <Alias n="13" Uri="Assembly=$(66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPathUri)" />
-    <Alias n="14" Id="(@13)" />
-  </IdentifierAliases>
   <Styles>
+    <Style TargetType="Node" GroupLabel="Circular References" ToolTip="Node is part of a strongly coupled component" ValueLabel="Nodes">
+      <Condition Expression="IsStronglyConnected" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Circular References" ToolTip="Node is part of a strongly coupled component" ValueLabel="Links">
+      <Condition Expression="IsCircularLink" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
     <Style TargetType="Node" GroupLabel="Category 1" ValueLabel="Has category">
       <Condition Expression="HasCategory('Category1')" />
       <Setter Property="Background" Value="#FFE51400" />
@@ -265,16 +175,12 @@
     <Path Id="006be62c-99fa-41f9-b390-0e8c82017566.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Serialization\bin\Debug\Oragon.Architecture.Serialization.dll" />
     <Path Id="496e3b18-a9e9-4eab-8e7e-96509bb09551.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.NHibernate\bin\Debug\Oragon.Architecture.Aop.Data.NHibernate.dll" />
     <Path Id="66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.SpringFramework\bin\Debug\Oragon.Architecture.ApplicationHosting.SpringFramework.dll" />
-    <Path Id="66c927a0-cd78-4bd2-8900-8ccad02e0dfe.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting.SpringFramework/bin/Debug/Oragon.Architecture.ApplicationHosting.SpringFramework.dll" />
     <Path Id="6e34bdf2-fe49-4258-b358-9bbc923a6ad1.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.ExceptionHandling\bin\Debug\Oragon.Architecture.Aop.ExceptionHandling.dll" />
     <Path Id="77959256-0d53-4fd6-a7de-385d032f48b5.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting\bin\Debug\Oragon.Architecture.ApplicationHosting.dll" />
-    <Path Id="77959256-0d53-4fd6-a7de-385d032f48b5.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting/bin/Debug/Oragon.Architecture.ApplicationHosting.dll" />
     <Path Id="7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.HostProcess\bin\Debug\Oragon.Architecture.ApplicationHosting.HostProcess.exe" />
-    <Path Id="7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture.ApplicationHosting.HostProcess/bin/Debug/Oragon.Architecture.ApplicationHosting.HostProcess.exe" />
     <Path Id="85fd6324-7cc6-43b6-a567-537b3b9ffcac.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.FluentNHibernate\bin\Debug\Oragon.Architecture.Aop.Data.FluentNHibernate.dll" />
     <Path Id="9209f672-85ea-43db-9ab9-61664d82bc33.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Web\bin\Debug\Oragon.Architecture.Web.dll" />
     <Path Id="b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture\bin\Debug\Oragon.Architecture.dll" />
-    <Path Id="b9cb8ba0-3389-4203-a02d-fa3a6091f31c.OutputPathUri" Value="file:///D:/Projetos/Oragon.Architecture/[source]/Oragon.Architecture/bin/Debug/Oragon.Architecture.dll" />
     <Path Id="d69a2068-7e08-438e-a956-4c9c326c5e40.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop\bin\Debug\Oragon.Architecture.Aop.dll" />
     <Path Id="d9d06542-797d-4a57-95e5-c0a44727a386.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.MongoDB\bin\Debug\Oragon.Architecture.Aop.Data.MongoDB.dll" />
     <Path Id="dbe9c81b-d625-4942-be54-d5a927496df0.OutputPath" Value="D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.Aop.Data.Redis\bin\Debug\Oragon.Architecture.Aop.Data.Redis.dll" />

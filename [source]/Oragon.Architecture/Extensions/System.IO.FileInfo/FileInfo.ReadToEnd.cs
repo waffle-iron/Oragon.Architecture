@@ -20,6 +20,7 @@ namespace Oragon.Architecture.Extensions
 		///     The rest of the stream as a string, from the current position to the end. If the current position is at the
 		///     end of the stream, returns an empty string ("").
 		/// </returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public static string ReadToEnd(this FileInfo @this, long position = 0)
 		{
 			using (FileStream stream = File.Open(@this.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))

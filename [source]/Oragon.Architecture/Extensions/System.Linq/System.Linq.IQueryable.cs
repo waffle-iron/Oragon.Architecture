@@ -422,7 +422,8 @@ namespace Oragon.Architecture.Extensions.DynamicLinq
 		}
 	}
 
-	[Serializable]
+
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly"), Serializable]
 	public class ParseException : Exception
 	{
 		public ParseException()

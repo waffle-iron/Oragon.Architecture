@@ -43,13 +43,27 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 			return returnValue;
 		}
 
+		private bool isDisposed;
 		public void Dispose()
+		{
+			if (this.isDisposed == false)
+			{
+				this.isDisposed = true;
+				this.Dispose(true);
+			}
+
+
+		}
+
+		private void Dispose(bool dispose)
 		{
 			if (!this.IsFake)
 			{
 				LogContext itemToSet = (this.Parent != null) ? this.Parent : null;
 				Spring.Threading.LogicalThreadContext.SetData("LogContext", itemToSet);
 			}
+			if (dispose)
+				GC.SuppressFinalize(this);
 		}
 
 		public static LogContext Current

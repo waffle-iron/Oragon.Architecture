@@ -18,6 +18,12 @@ namespace ApplicationHostingSpringNetExample
 		public void Dispose()
 		{
 			Console.WriteLine("AutoStartAppExample Stop");
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+		protected virtual void Dispose(bool disposing)
+		{
+			
 		}
 
 

@@ -17,6 +17,7 @@ namespace Oragon.Architecture.Extensions
 		/// </summary>
 		/// <param name="this">The @this to act on.</param>
 		/// <returns>The response stream as a string, from the current position to the end.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public static string ReadToEndAndDispose(this WebResponse @this)
 		{
 			using (WebResponse response = @this)

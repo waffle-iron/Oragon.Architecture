@@ -51,11 +51,8 @@ namespace Oragon.Architecture.ApplicationHosting
 					var parameterValueIndex = parameterKeyIndex + 1;
 					if (this.Arguments.Count > parameterValueIndex)
 						return this.Arguments[parameterValueIndex];
-					else
-						throw new ArgumentException("The argument -servicename must be before a name of service");
 				}
-				else
-					return null;
+				return null;
 			}
 		}
 
