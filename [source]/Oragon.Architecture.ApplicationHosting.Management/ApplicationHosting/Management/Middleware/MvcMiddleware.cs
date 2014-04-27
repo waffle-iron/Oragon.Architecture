@@ -21,12 +21,10 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 
 		private System.Web.Http.HttpConfiguration HttpConfiguration { get; set; }
 
-		private List<System.Reflection.Assembly> Assemblies { get; set; }
-
 		private IEnumerable<Controller> Controllers { get; set; }
 
 
-		public MvcMiddleware(AppFunc next, MvcMiddlewareOptions options, System.Web.Http.HttpConfiguration httpConfiguration, IEnumerable<System.Reflection.Assembly> assemblies)
+		public MvcMiddleware(AppFunc next, MvcMiddlewareOptions options, System.Web.Http.HttpConfiguration httpConfiguration)
 		{
 			if (next == null)
 			{
@@ -40,9 +38,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 			this.Options = options;
 			this.HttpConfiguration = httpConfiguration;
 
-
-			this.Assemblies = new List<System.Reflection.Assembly>(assemblies);
-
 			this.MiddlewareInitialize();
 		}
 
@@ -50,7 +45,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 		{
 			var controlerBaseType = typeof(Controller);
 
-			var query = from assembly in this.Assemblies
+			var query = from assembly in this.Options.Assemblies
 						from type in assembly.ExportedTypes
 						where
 							type.Name.EndsWith("Controller")
@@ -73,7 +68,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 		public Task Invoke(EnvironmentVariables environment)
 		{
 			IOwinContext owinContext = new OwinContext(environment);
-			if (!this.Options.RootPath.HasValue || owinContext.Request.Path.ToString().ToLower().StartsWith(this.Options.RootPath.ToString().ToLower()))
+			//if (!this.Options.RootPath.HasValue || owinContext.Request.Path.ToString().ToLower().StartsWith(this.Options.RootPath.ToString().ToLower()))
 			{
 				System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(owinContext.Request.Method), owinContext.Request.Uri);
 				IHttpRouteData routeInfo = this.HttpConfiguration.Routes.GetRouteData(httpRequestMessage);

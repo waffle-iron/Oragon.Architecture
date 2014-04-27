@@ -22,9 +22,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 				.OpenTag("h1", new { @class = "oi" })
 				.WriteLine("Oragon Architecture Application Server")
 				.CloseTag("h1")
-				.OpenTag("h1", new { @class = "oi" })
+				.OpenTag("h2", new { @class = "oi" })
 				.WriteLine("Oragon Architecture Application Server")
-				.CloseTag("h1")
+				.CloseTag("h2")
 				.CloseBody()
 				.CloseHtml();
 		}

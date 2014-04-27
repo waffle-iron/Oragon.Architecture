@@ -90,6 +90,7 @@
     <Compile Include="ApplicationHosting\Management\Middleware\SimpleView.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\PingController.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\Controller.cs" />
+    <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\HomeController.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostConfiguration.cs" />

@@ -22,9 +22,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 
 		public bool Invoke()
 		{
-			var controllerName = (string)RouteInfo.Values["controller"];
-			var actionName = (string)RouteInfo.Values["action"];
-
 			Controller currentController = this.GetController();
 			if (currentController != null)
 			{
