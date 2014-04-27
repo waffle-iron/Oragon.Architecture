@@ -19,6 +19,8 @@ namespace Oragon.Architecture.ApplicationHosting
 	
 		public string Description { get; set; }
 
+		public Uri MonitoringEndPoint { get; set; }
+		
 		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
 
 		public List<ApplicationHost> Applications { get; set; }

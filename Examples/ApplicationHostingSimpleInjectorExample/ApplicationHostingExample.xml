@@ -11,7 +11,8 @@
 		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 		<property name="Description" value="Example of Simple way to deply business services" />
-
+		<property name="MonitoringEndPoint" value="http://localhost:7777" />
+		
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
 				<property name="StartMode" value="AutomaticallyDelayed" />

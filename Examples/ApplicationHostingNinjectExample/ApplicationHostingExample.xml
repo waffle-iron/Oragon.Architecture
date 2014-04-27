@@ -11,6 +11,7 @@
 		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 		<property name="Description" value="Example of Simple way to deply business services" />
+		<property name="MonitoringEndPoint" value="http://localhost:7777" />
 
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
@@ -28,8 +29,8 @@
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
 				<object type="Oragon.Architecture.ApplicationHosting.Ninject.NinjectApplicationHost, Oragon.Architecture.ApplicationHosting.Ninject">
-					<property name="Name" value="Application Hosting Example" />
-					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
+					<property name="Name" value="Application Hosting Ninject Example" />
+					<property name="FriendlyName" value="Oragon Architecture Application Ninject Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="FactoryType" value="ApplicationHostingNinjectExample.NinjectFactory, ApplicationHostingNinjectExample"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />

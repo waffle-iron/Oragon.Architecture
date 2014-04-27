@@ -238,9 +238,6 @@
     <Compile Include="Services\MessageEnvelope.cs" />
     <Compile Include="Services\RabbitMQServiceClientFactory.cs" />
     <Compile Include="Services\RabbitMQServiceHost.cs" />
-    <Compile Include="Services\ServiceContainer.cs" />
-    <Compile Include="Services\ServiceManager.cs" />
-    <Compile Include="Services\ServiceProcessEntryPoint.cs" />
     <Compile Include="Services\ServiceProxyFactory.cs" />
     <Compile Include="Services\RabbitMQServiceUtils.cs" />
     <Compile Include="Services\ServiceStartException.cs" />

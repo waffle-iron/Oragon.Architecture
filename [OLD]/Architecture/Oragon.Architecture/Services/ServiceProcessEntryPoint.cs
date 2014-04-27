@@ -109,43 +109,43 @@ namespace Oragon.Architecture.Services
 				TopshelfExitCode exitCode = HostFactory.Run(hostConfig =>
 				{
 					hostConfig.UseNLog();
-					hostConfig.Service<Oragon.Architecture.Services.ServiceManager>(serviceConfigurator =>
-					{
-						serviceConfigurator.ConstructUsing(() => applicationContext.GetObject<Oragon.Architecture.Services.ServiceManager>());
-						serviceConfigurator.WhenStarted((serviceManagerInstance, hostControl) => serviceManagerInstance.Start(hostControl));
-						serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) =>
-						{
-							var returnValue = serviceManagerInstance.Stop(hostControl);
-							AppDomain.Unload(AppDomain.CurrentDomain);
-							return returnValue;
-						});
-					});
+					//hostConfig.Service<Oragon.Architecture.Services.ServiceManager>(serviceConfigurator =>
+					//{
+					//	serviceConfigurator.ConstructUsing(() => applicationContext.GetObject<Oragon.Architecture.Services.ServiceManager>());
+					//	serviceConfigurator.WhenStarted((serviceManagerInstance, hostControl) => serviceManagerInstance.Start(hostControl));
+					//	serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) =>
+					//	{
+					//		var returnValue = serviceManagerInstance.Stop(hostControl);
+					//		AppDomain.Unload(AppDomain.CurrentDomain);
+					//		return returnValue;
+					//	});
+					//});
 
-					if (serviceDescriptor.Dependences != null)
-					{
-						foreach (string dependency in serviceDescriptor.Dependences)
-						{
-							hostConfig.AddDependency(dependency);
-						}
-					}
-					switch (serviceDescriptor.StartMode)
-					{
-						case StartMode.Automatically: hostConfig.StartAutomatically(); break;
-						case StartMode.AutomaticallyDelayed: hostConfig.StartAutomaticallyDelayed(); break;
-						case StartMode.Disabled: hostConfig.Disabled(); break;
-						case StartMode.Manually: hostConfig.StartManually(); break;
-					}
-					switch (serviceDescriptor.IdentityType)
-					{
-						case AccountType.LocalService: hostConfig.RunAsLocalService(); break;
-						case AccountType.LocalSystem: hostConfig.RunAsLocalSystem(); break;
-						case AccountType.NetworkService: hostConfig.RunAsNetworkService(); break;
-						case AccountType.Prompt: hostConfig.RunAsPrompt(); break;
-						case AccountType.Custom: hostConfig.RunAs(serviceDescriptor.CustomIdentityCredential.Username, serviceDescriptor.CustomIdentityCredential.Password); break;
-					}
-					hostConfig.SetServiceName(serviceDescriptor.Name);
-					hostConfig.SetDisplayName(serviceDescriptor.FriendlyName);
-					hostConfig.SetDescription(serviceDescriptor.Description);
+					//if (serviceDescriptor.Dependences != null)
+					//{
+					//	foreach (string dependency in serviceDescriptor.Dependences)
+					//	{
+					//		hostConfig.AddDependency(dependency);
+					//	}
+					//}
+					//switch (serviceDescriptor.StartMode)
+					//{
+					//	case StartMode.Automatically: hostConfig.StartAutomatically(); break;
+					//	case StartMode.AutomaticallyDelayed: hostConfig.StartAutomaticallyDelayed(); break;
+					//	case StartMode.Disabled: hostConfig.Disabled(); break;
+					//	case StartMode.Manually: hostConfig.StartManually(); break;
+					//}
+					//switch (serviceDescriptor.IdentityType)
+					//{
+					//	case AccountType.LocalService: hostConfig.RunAsLocalService(); break;
+					//	case AccountType.LocalSystem: hostConfig.RunAsLocalSystem(); break;
+					//	case AccountType.NetworkService: hostConfig.RunAsNetworkService(); break;
+					//	case AccountType.Prompt: hostConfig.RunAsPrompt(); break;
+					//	case AccountType.Custom: hostConfig.RunAs(serviceDescriptor.CustomIdentityCredential.Username, serviceDescriptor.CustomIdentityCredential.Password); break;
+					//}
+					//hostConfig.SetServiceName(serviceDescriptor.Name);
+					//hostConfig.SetDisplayName(serviceDescriptor.FriendlyName);
+					//hostConfig.SetDescription(serviceDescriptor.Description);
 				});
 			}
 

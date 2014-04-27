@@ -116,7 +116,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			{
 				this.FillServiceHosts(descriptorsApplicationContext);
 			}
+
 			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
+
 			if (this.IsConsole)
 			{
 				exitCode = this.ServiceHost.RunConsoleMode(this.Arguments, this.ServiceConfigurationFile);
