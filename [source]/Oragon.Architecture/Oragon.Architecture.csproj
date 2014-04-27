@@ -140,6 +140,7 @@
     <Compile Include="Extensions\System.Object\Object.NotIn.cs" />
     <Compile Include="Extensions\System.Object\Object.SerializeBinary.cs" />
     <Compile Include="Extensions\System.Object\Object.SerializeXml.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToDictionary.cs" />
     <Compile Include="Extensions\System.Object\Object.ToBoolean.cs" />
     <Compile Include="Extensions\System.Object\Object.ToDateTime.cs" />
     <Compile Include="Extensions\System.Object\Object.ToDouble.cs" />

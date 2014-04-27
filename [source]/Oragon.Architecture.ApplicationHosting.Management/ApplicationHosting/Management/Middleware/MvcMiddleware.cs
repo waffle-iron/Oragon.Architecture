@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using EnvironmentVariables = System.Collections.Generic.IDictionary<string, object>;
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
-using Controller = Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers.Controller;
+using Controller = Oragon.Architecture.ApplicationHosting.Management.Middleware;
 using System.Web.Http.Routing;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 {
@@ -38,6 +39,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 			this.Next = next;
 			this.Options = options;
 			this.HttpConfiguration = httpConfiguration;
+
 
 			this.Assemblies = new List<System.Reflection.Assembly>(assemblies);
 
@@ -73,26 +75,19 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 			IOwinContext owinContext = new OwinContext(environment);
 			if (!this.Options.RootPath.HasValue || owinContext.Request.Path.ToString().ToLower().StartsWith(this.Options.RootPath.ToString().ToLower()))
 			{
-				System.Net.Http.HttpMethod method = new System.Net.Http.HttpMethod(owinContext.Request.Method);
-				System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(method, owinContext.Request.Uri);
+				System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(owinContext.Request.Method), owinContext.Request.Uri);
 				IHttpRouteData routeInfo = this.HttpConfiguration.Routes.GetRouteData(httpRequestMessage);
-				if (routeInfo == null)
+				if (routeInfo != null)
 				{
-					return this.Next(environment);
-				}
-				else
-				{
-					var controllerName = routeInfo.Values["controller"];
-					var actionName = routeInfo.Values["action"];
-
-
-
-
-
+					ControllerActionInvoker invoker = new ControllerActionInvoker(this.Controllers, routeInfo, owinContext);
+					if (invoker.Invoke())
+					{
+						return Task.FromResult<int>(0);
+					}
 				}
 				//WelcomePage welcomePage = new WelcomePage();
 				//welcomePage.Execute(owinContext);
-				//return Task.FromResult<int>(0);
+
 			}
 			return this.Next(environment);
 		}

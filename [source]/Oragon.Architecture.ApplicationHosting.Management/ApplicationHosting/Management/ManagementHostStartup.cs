@@ -46,11 +46,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		private void ConfigureWebMvc(IAppBuilder app)
 		{
+			string rootPath = "management";
+
 			var configWebMvc = new HttpConfiguration();
-			configWebMvc.Routes.MapHttpRoute("WebMvc", "{controller}/{action}", new { controller = "Home", action = "Index", id = RouteParameter.Optional });
+			configWebMvc.Routes.MapHttpRoute("WebMvc", rootPath + "/{controller}/{action}", new { controller = "Home", action = "Index", id = RouteParameter.Optional });
 
 			var middlewareOptions = new MvcMiddlewareOptions();
-			middlewareOptions.RootPath = new Microsoft.Owin.PathString("/management");
+			middlewareOptions.RootPath = new Microsoft.Owin.PathString("/" +rootPath);
 
 			var assemblies = new System.Reflection.Assembly[] { typeof(ManagementHostStartup).Assembly };
 
