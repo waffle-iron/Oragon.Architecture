@@ -65,7 +65,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 		}
 
 
-		public Task Invoke(EnvironmentVariables environment)
+		public async Task Invoke(EnvironmentVariables environment)
 		{
 			IOwinContext owinContext = new OwinContext(environment);
 			//if (!this.Options.RootPath.HasValue || owinContext.Request.Path.ToString().ToLower().StartsWith(this.Options.RootPath.ToString().ToLower()))
@@ -77,14 +77,14 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 					ControllerActionInvoker invoker = new ControllerActionInvoker(this.Controllers, routeInfo, owinContext);
 					if (invoker.Invoke())
 					{
-						return Task.FromResult<int>(0);
+						await Task.FromResult<int>(0);
 					}
 				}
 				//WelcomePage welcomePage = new WelcomePage();
 				//welcomePage.Execute(owinContext);
 
 			}
-			return this.Next(environment);
+			await this.Next(environment);
 		}
 	}
 }
