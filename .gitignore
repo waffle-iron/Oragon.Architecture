@@ -1,10 +1,4 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-Architecture/*/[Bb]in/
-Architecture/*/[Oo]bj/
-/\[Publish\]/Debug/*
-/\[Publish\]/Release/*
-/\[Publish\]/Log/*
-
 /.svn/*
 /.git/*
 
@@ -17,7 +11,19 @@ Architecture/*/[Oo]bj/
 # Others
 *.dbmdl
 
-/\[source\]/*/bin/*
-/\[source\]/*/obj/*
-/Examples/*/bin/*
-/Examples/*/obj/*
+/\[OLD\]/\[Publish\]/Debug/*
+/\[OLD\]/\[Publish\]/Release/*
+/\[OLD\]/\[Publish\]/Log/*
+/\[OLD\]/Architecture/*/[Bb]in/*
+/\[OLD\]/Architecture/*/[Oo]bj/*
+/\[OLD\]/CodeGen/*/[Bb]in/*
+/\[OLD\]/CodeGen/*/[Oo]bj/*
+
+
+
+/\[OLD\]/Architecture/*/[Bb]in/*
+/\[OLD\]/Architecture/*/[Oo]bj/*
+/\[source\]/*/[Bb]in/*
+/\[source\]/*/[Oo]bj/*
+/Examples/*/[Bb]in/*
+/Examples/*/[Oo]bj/*
