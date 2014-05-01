@@ -71,6 +71,7 @@
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotNullOrEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNullOrEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.Remove.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.TryRemove.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.AddOrUpdate.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.GetOrAdd.cs" />

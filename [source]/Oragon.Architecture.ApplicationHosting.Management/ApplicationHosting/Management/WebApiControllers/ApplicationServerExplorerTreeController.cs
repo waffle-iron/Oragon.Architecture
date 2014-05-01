@@ -13,7 +13,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 	public class ApplicationServerExplorerTreeController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
-		MessageRepository MessageRepository { get; set; }
+		NotificationRepository NotificationRepository { get; set; }
 
 		[HttpGet]
 		public IEnumerable<TreeItem> Get(string node)

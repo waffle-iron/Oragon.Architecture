@@ -7,12 +7,12 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 {
-	public class MessageRepository
+	public class NotificationRepository
 	{
 		private Queue<String> messageQueue;
 
-
-		public MessageRepository()
+		object syncLock = new Object();
+		public NotificationRepository()
 		{
 			this.messageQueue = new Queue<string>();
 			this.AddMessage("Management Host is Live");
@@ -28,8 +28,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 		public IEnumerable<string> GetMessages()
 		{
 			List<string> messages = new List<string>();
-			while (this.messageQueue.Count > 0)
-				messages.Add(this.messageQueue.Dequeue());
+			lock (this.syncLock)
+			{
+				while (this.messageQueue.Count > 0)
+					messages.Add(this.messageQueue.Dequeue());
+			}
 			return messages;
 		}
 

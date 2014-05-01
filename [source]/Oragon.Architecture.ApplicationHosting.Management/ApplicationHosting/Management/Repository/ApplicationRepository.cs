@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 {
@@ -25,11 +26,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 
 		public void Unregister(Guid ID)
 		{
-			HostDescriptor hostDescriptor = this.Clients.FirstOrDefault(it => it.ID == ID);
-			if (hostDescriptor != null)
-			{
-				this.Clients.Remove(hostDescriptor);
-			}
+			this.Clients.Remove(it => it.ID == ID);
 		}
 	}
 }

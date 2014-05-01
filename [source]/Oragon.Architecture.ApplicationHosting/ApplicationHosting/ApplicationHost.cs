@@ -24,6 +24,13 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string ApplicationConfigurationFile { get; set; }
 		public string ApplicationBaseDirectory { get; set; }
 
+		public List<AppDomainStatistic> AppDomainStatisticHistory { get; set; }
+
+		public ApplicationHost()
+		{
+			this.AppDomainStatisticHistory = new List<AppDomainStatistic>();
+		}
+
 		protected AppDomain CreateDomain(string appDomainName, IAbsoluteDirectoryPath absoluteApplicationBaseDirectory, IAbsoluteFilePath absoluteApplicationConfigurationFile)
 		{
 			Evidence domainEvidence = new Evidence();
@@ -83,13 +90,22 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private System.Timers.Timer heartBeatTimer;
 
+		private System.Timers.Timer monitoringTimer;
+
 		public override void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
 		{
 			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
-			heartBeatTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
+			this.heartBeatTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
 			{
 				this.applicationHostController.HeartBeat();
 			};
+
+			this.monitoringTimer = new System.Timers.Timer(new TimeSpan(0, 0, 30).TotalMilliseconds);
+			this.monitoringTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
+			{
+				this.AppDomainStatisticHistory.Add(this.applicationHostController.GetAppDomainStatistics());
+			};
+
 
 			Contract.Requires(baseDirectory != null && baseDirectory.Exists);
 
@@ -103,10 +119,12 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.applicationHostController.InitializeContainer();
 			this.applicationHostController.Start();
 			this.heartBeatTimer.Start();
+			this.monitoringTimer.Start();
 		}
 
 		public override void Stop()
 		{
+			this.monitoringTimer.Stop();
 			this.heartBeatTimer.Stop();
 			this.heartBeatTimer.Dispose();
 			this.heartBeatTimer = null;

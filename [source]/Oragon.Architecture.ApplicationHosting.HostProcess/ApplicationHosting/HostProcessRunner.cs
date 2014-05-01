@@ -112,6 +112,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual TopshelfExitCode Run()
 		{
+			AppDomain.MonitoringIsEnabled = true;
 			using (IApplicationContext descriptorsApplicationContext = this.BuildDescriptorsApplicationContext())
 			{
 				this.FillServiceHosts(descriptorsApplicationContext);

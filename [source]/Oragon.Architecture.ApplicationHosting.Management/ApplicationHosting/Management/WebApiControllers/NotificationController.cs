@@ -10,15 +10,15 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
-	public class MessageController : ApiController
+	public class NotificationController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
-		MessageRepository MessageRepository { get; set; }
+		NotificationRepository NotificationRepository { get; set; }
 
 		[HttpGet]
 		public IEnumerable<string> GetMessages()
 		{
-			return this.MessageRepository.GetMessages();
+			return this.NotificationRepository.GetMessages();
 		}
 
 	}

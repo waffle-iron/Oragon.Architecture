@@ -102,10 +102,10 @@
     <Compile Include="ApplicationHosting\Management\Middleware\SpringDependencyResolver.cs" />
     <Compile Include="ApplicationHosting\Management\Model\TreeItem.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\ApplicationRepository.cs" />
-    <Compile Include="ApplicationHosting\Management\Repository\MessageRepository.cs" />
+    <Compile Include="ApplicationHosting\Management\Repository\NotificationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\Controller.cs" />
-    <Compile Include="ApplicationHosting\Management\WebApiControllers\MessageController.cs" />
+    <Compile Include="ApplicationHosting\Management\WebApiControllers\NotificationController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\RegisterServiceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\HomeController.cs" />

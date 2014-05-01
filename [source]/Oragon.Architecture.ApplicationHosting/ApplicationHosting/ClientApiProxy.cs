@@ -51,7 +51,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		{
 			HostDescriptor hostDescriptor = new HostDescriptor()
 			{
-				ID = Guid.Empty,
+				ID = windowsServiceHost.ClientID,
 				PID = System.Diagnostics.Process.GetCurrentProcess().Id,
 				Description = windowsServiceHost.Description,
 				FriendlyName = windowsServiceHost.FriendlyName,
@@ -71,8 +71,6 @@ namespace Oragon.Architecture.ApplicationHosting
 				).ToList()
 			};
 
-
-
 			using (HttpClient client = this.BuildRequest())
 			{
 				HttpResponseMessage response = await client.PostAsJsonAsync("api/RegisterService/Register", hostDescriptor);
@@ -86,7 +84,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		}
 
 
-		internal async void UnregisterHost(System.Guid id)
+		internal async Task<int> UnregisterHost(System.Guid id)
 		{
 			HostDescriptor hostDescriptor = new HostDescriptor()
 			{
@@ -98,9 +96,10 @@ namespace Oragon.Architecture.ApplicationHosting
 				HttpResponseMessage response = await client.PostAsJsonAsync("api/RegisterService/Unregister", hostDescriptor);
 				if (response.IsSuccessStatusCode)
 				{
-
+					return 0;
 				}
 			}
+			return -1;
 		}
 	}
 }

@@ -1,4 +1,8 @@
-﻿Ext.require(['*']);
+﻿/// <reference path="frameworks/linq.js" />
+/// <reference path="frameworks/radio.js" />
+
+
+Ext.require(['*']);
 Ext.onReady(function () {
 
 	var northRegion = {
@@ -175,15 +179,15 @@ Ext.onReady(function () {
 			'afterrender': function () {
 				setInterval(function () {
 					Ext.Ajax.request({
-						url: '/api/Message/GetMessages/',
+						url: '/api/Notification/GetMessages/',
 						timeout: 60000,
 						params: {},
 						success: function (response) {
 							var lines = Ext.JSON.decode(response.responseText, true);
 							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
-							Ext.Array.forEach(lines, function (line, index) {
+							Enumerable.from(lines).forEach(function (line) {
 								notificationCenterTextArea.setValue(line + "\r\n" + notificationCenterTextArea.getValue());
-							});							
+							});
 						}
 					});
 				}, 1000);

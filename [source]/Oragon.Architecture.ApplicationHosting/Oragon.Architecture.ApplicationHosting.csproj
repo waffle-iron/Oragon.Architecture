@@ -58,6 +58,7 @@
     <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
     <Compile Include="ApplicationHosting\ClientApiProxy.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
+    <Compile Include="ApplicationHosting\AppDomainStatistic.cs" />
     <Compile Include="ApplicationHosting\IContainerFactory.cs" />
     <Compile Include="ApplicationHosting\Model\Model.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />

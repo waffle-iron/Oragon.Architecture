@@ -13,23 +13,23 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 	public class RegisterServiceController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
-		MessageRepository MessageRepository { get; set; }
+		NotificationRepository NotificationRepository { get; set; }
 
 		[HttpPost]
 		public Guid Register(HostDescriptor hostDescriptor)
 		{
-			this.MessageRepository.AddMessage("Host registring with PID:{1} on machine '{0}'".FormatWith(hostDescriptor.MachineName, hostDescriptor.PID));
+			this.NotificationRepository.AddMessage("Host registring with PID:{1} on machine '{0}'".FormatWith(hostDescriptor.MachineName, hostDescriptor.PID));
 			Guid returnValue = this.ApplicationRepository.Register(hostDescriptor);
-			this.MessageRepository.AddMessage("Host registred with ID {0}".FormatWith(returnValue));
+			this.NotificationRepository.AddMessage("Host registred with ID {0}".FormatWith(returnValue));
 			return returnValue;
 		}
 
 		[HttpPost]
 		public void Unregister(HostDescriptor hostDescriptor)
 		{
-			this.MessageRepository.AddMessage("Unrgistring host {0}".FormatWith(hostDescriptor.ID));
+			this.NotificationRepository.AddMessage("Unrgistring host {0}".FormatWith(hostDescriptor.ID));
 			this.ApplicationRepository.Unregister(hostDescriptor.ID);
-			this.MessageRepository.AddMessage("Host unregistred");
+			this.NotificationRepository.AddMessage("Host unregistred");
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class WindowsServiceHost : ServiceControl
 	{
-		private Guid clientID;
+		public Guid ClientID { get; set; }
 
 		public string Name { get; set; }
 
@@ -78,18 +78,17 @@ namespace Oragon.Architecture.ApplicationHosting
 			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
 			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
 
-			if (this.MonitoringEndPoint != null)
-			{
-				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
-				proxy.RegisterHost(this)
-					.ContinueWith(it => this.clientID = it.Result);
-			}
-
-
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			foreach (var application in tmpApplicationList)
 			{
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
+			}
+
+			if (this.MonitoringEndPoint != null)
+			{
+				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
+				proxy.RegisterHost(this)
+					.ContinueWith(it => this.ClientID = it.Result);
 			}
 			return true;
 		}
@@ -99,7 +98,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			if (this.MonitoringEndPoint != null)
 			{
 				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
-				proxy.UnregisterHost(this.clientID);
+				proxy.UnregisterHost(this.ClientID);
 			}
 
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);

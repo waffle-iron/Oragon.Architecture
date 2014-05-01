@@ -15,6 +15,16 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual void HeartBeat() { }
 
+		public virtual AppDomainStatistic GetAppDomainStatistics()
+		{
+			return new AppDomainStatistic()
+			{
+				MonitoringTotalAllocatedMemorySize = AppDomain.CurrentDomain.MonitoringTotalAllocatedMemorySize,
+				MonitoringSurvivedMemorySize = AppDomain.CurrentDomain.MonitoringSurvivedMemorySize,
+				Date = DateTime.Now,
+			};
+		}
+
 		private FactoryType Factory { get; set; }
 
 		protected ContainerType Container { get; set; }
