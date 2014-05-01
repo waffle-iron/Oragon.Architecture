@@ -48,6 +48,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			.OpenScript()
 			.WriteLine("var hostUrl = 'http://{0}/';", this.Request.Host.Value)
 			.CloseScript()
+			.Script("/resource/script/Frameworks/Radio.js")
+			.Script("/resource/script/Frameworks/Linq.js")
 			.Script("/resource/script/home.js")
 			.CloseHead()
 			.OpenBody()
