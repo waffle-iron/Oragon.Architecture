@@ -9,11 +9,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 {
 	public class ControllerActionInvoker
 	{
-		private IEnumerable<Controller> Controllers;
+		private IDictionary<string, Controller> Controllers;
 		private System.Web.Http.Routing.IHttpRouteData RouteInfo;
 		private Microsoft.Owin.IOwinContext OwinContext;
 
-		public ControllerActionInvoker(IEnumerable<Controller> controllers, System.Web.Http.Routing.IHttpRouteData routeInfo, Microsoft.Owin.IOwinContext owinContext)
+		public ControllerActionInvoker(IDictionary<string, Controller> controllers, System.Web.Http.Routing.IHttpRouteData routeInfo, Microsoft.Owin.IOwinContext owinContext)
 		{
 			this.Controllers = controllers;
 			this.RouteInfo = routeInfo;
@@ -60,7 +60,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 			else
 			{
 				IList<string> parameters = this.OwinContext.Request.Query.GetValues(parameterName);
-				if (parameters.Count == 1)
+				if (parameters != null && parameters.Count == 1)
 					return parameters[0];
 			}
 			return Type.Missing;
@@ -69,11 +69,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 		private Controller GetController()
 		{
 			var controllerName = (string)RouteInfo.Values["controller"];
-			var controllerQuery = this.Controllers.Where(it => it.Name.ToLower() == "{0}Controller".FormatWith(controllerName).ToLower());
+			var controllerQuery = this.Controllers.Where(it => it.Key == "{0}Controller".FormatWith(controllerName));
 			var qtd = controllerQuery.Count();
 			if (qtd == 1)
 			{
-				return controllerQuery.Single();
+				return controllerQuery.Single().Value;
 			}
 			return null;
 		}

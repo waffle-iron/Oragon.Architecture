@@ -32,7 +32,7 @@
 					<property name="Name" value="Application Hosting Example" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
-					<property name="FactoryType" value="ApplicationHostingManagementExample.SpringFrameworkFactory, ApplicationHostingManagementExample"></property>
+					<property name="FactoryType" value="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkFactory, Oragon.Architecture.ApplicationHosting.SpringFramework"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
 					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
 				</object>

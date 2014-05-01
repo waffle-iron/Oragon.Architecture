@@ -2,6 +2,7 @@
 using Oragon.Architecture;
 using Oragon.Architecture.Extensions;
 using Owin;
+using Spring.Context;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Attributes;
 using System;
@@ -12,16 +13,22 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management
 {
-	public class ManagementHost : IInitializingObject, IDisposable
+	public class ManagementHost : IInitializingObject, IDisposable, IApplicationContextAware
 	{
+		public static ManagementHost Current { get; private set; }
+
+
 		private IDisposable server;
 
 		[Required]
 		public ManagementHostConfiguration Configuration { get; set; }
 
+
+		public IApplicationContext ApplicationContext { get; set; }
+
 		public ManagementHost()
 		{
-			
+			ManagementHost.Current = this;
 		}
 
 		private IEnumerable<string> GetAllIPAddresses()
@@ -70,6 +77,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			this.server.Dispose();
 		}
 
-		
+
+
 	}
 }

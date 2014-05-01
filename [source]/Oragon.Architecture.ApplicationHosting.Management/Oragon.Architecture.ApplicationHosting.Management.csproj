@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -51,6 +51,13 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture.ExtJS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Oragon.Architecture.ExtJS.7.0.0-alpha1\lib\Oragon.Architecture.ExtJS.dll</HintPath>
+    </Reference>
+    <Reference Include="Oragon.Architecture.Icons">
+      <HintPath>..\..\[References]\Oragon.Architecture.Icons.7.0.0-alpha1\lib\Oragon.Architecture.Icons.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\..\[References]\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -87,7 +94,11 @@
     </Compile>
     <Compile Include="ApplicationHosting\Management\Middleware\ControllerActionInvoker.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\ControllerContext.cs" />
+    <Compile Include="ApplicationHosting\Management\Middleware\HtmlMediaTypeFormatter.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\SimpleView.cs" />
+    <Compile Include="ApplicationHosting\Management\Middleware\SpringDependencyResolver.cs" />
+    <Compile Include="ApplicationHosting\Management\Model\TreeItem.cs" />
+    <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\PingController.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\Controller.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
@@ -115,7 +126,12 @@
       <Name>Oragon.Architecture</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\Images\OragonAppServer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

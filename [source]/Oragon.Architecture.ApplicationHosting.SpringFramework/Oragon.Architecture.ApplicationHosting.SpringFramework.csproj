@@ -61,6 +61,7 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ApplicationHosting\SpringFramework\Contract.cs" />
+    <Compile Include="ApplicationHosting\SpringFramework\SpringFrameworkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

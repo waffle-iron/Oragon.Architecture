@@ -83,6 +83,7 @@
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Join.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.NotContains.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
     <Compile Include="Extensions\System.Collections.IDictionary\IDictionary.ToHashtable.cs" />
     <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteBoolean.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Extensions\System.IO.FileInfo\FileInfo.GetFileNameWithoutExtension.cs" />
     <Compile Include="Extensions\System.IO.FileInfo\FileInfo.ReadToEnd.cs" />
     <Compile Include="Extensions\System.IO.Stream\Stream.ReadToEnd.cs" />
+    <Compile Include="Extensions\System.IO.Stream\Stream.Write.cs" />
     <Compile Include="Extensions\System.IO.Stream\Stream.ToByteArray.cs" />
     <Compile Include="Extensions\System.Linq.Expressions\Expression.And.cs" />
     <Compile Include="Extensions\System.Linq\System.Linq.IQueryable.cs" />

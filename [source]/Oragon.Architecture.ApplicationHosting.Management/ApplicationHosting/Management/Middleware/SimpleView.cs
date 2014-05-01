@@ -110,7 +110,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 
 		public SimpleViewResult Script(string scriptName)
 		{
-			scriptName = this.UrlHelper.Content(scriptName);
+			//scriptName = this.UrlHelper.Content(scriptName);
 			this.WriteLine(@"<script type='text/javascript' charset='utf-8' src='{0}'></script>", scriptName);
 			return this;
 		}
@@ -122,7 +122,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 
 		public SimpleViewResult Stylesheet(string stylesheet)
 		{
-			stylesheet = this.UrlHelper.Content(stylesheet);
+			//stylesheet = this.UrlHelper.Content(stylesheet);
 			this.WriteLine(@"<link rel='stylesheet' type='text/css' href='{0}'/> ", stylesheet);
 			return this;
 		}

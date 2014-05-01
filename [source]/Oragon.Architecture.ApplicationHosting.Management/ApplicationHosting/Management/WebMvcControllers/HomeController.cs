@@ -11,23 +11,53 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 {
 	public class HomeController : Controller
 	{
-		public MvcResult Index()
+		public MvcResult Index(string style = "classic")
 		{
-			return this.SimpleView()
-				.DefineDoctype()
-				.OpenHtml()
-				.OpenHead()
-				.CloseHead()
-				.OpenBody()
-				.OpenTag("h1", new { @class = "oi" })
-				.WriteLine("Oragon Architecture Application Server")
-				.CloseTag("h1")
-				.OpenTag("h2", new { @class = "oi" })
-				.WriteLine("Oragon Architecture Application Server")
-				.CloseTag("h2")
-				.CloseBody()
-				.CloseHtml();
+			Func<SimpleViewResult, SimpleViewResult> crisp = (it =>
+				it.Stylesheet("/resource/extjs/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all-debug.css")
+				.Script("/resource/extjs/build/ext-all.js")
+				.Script("/resource/extjs/build/packages/ext-theme-crisp/build/ext-theme-crisp.js")
+			);
+
+			Func<SimpleViewResult, SimpleViewResult> gray = (it =>
+				it.Stylesheet("/resource/extjs/build/packages/ext-theme-gray/build/resources/ext-theme-gray-all-debug.css")
+				.Script("/resource/extjs/build/ext-all.js")
+			);
+
+			Func<SimpleViewResult, SimpleViewResult> classic = (it =>
+				it.Stylesheet("/resource/extjs/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css")
+				.Script("/resource/extjs/build/ext-all.js")
+				.Script("/resource/extjs/build/packages/ext-theme-classic/build/ext-theme-classic.js")
+			);
+
+			var view = this.SimpleView();
+
+			view.DefineDoctype()
+			.OpenHtml()
+			.OpenHead();
+			switch (style)
+			{
+				case "classic":
+					classic(view); break;
+				case "gray":
+					gray(view); break;
+				case "crisp": 
+					crisp(view); break;
+			}
+			view.Stylesheet("/resource/icons/style.css")
+			.OpenScript()
+			.WriteLine("var hostUrl = 'http://{0}/';", this.Request.Host.Value)
+			.CloseScript()
+			.Script("/resource/script/home.js")
+			.CloseHead()
+			.OpenBody()
+			.CloseBody()
+			.CloseHtml();
+
+			return view;
 		}
+
+
 
 		public MvcResult Test()
 		{

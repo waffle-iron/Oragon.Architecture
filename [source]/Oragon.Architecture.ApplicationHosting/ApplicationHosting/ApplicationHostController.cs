@@ -13,6 +13,8 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual void Stop() { }
 
+		public virtual void HeartBeat() { }
+
 		private FactoryType Factory { get; set; }
 
 		protected ContainerType Container { get; set; }

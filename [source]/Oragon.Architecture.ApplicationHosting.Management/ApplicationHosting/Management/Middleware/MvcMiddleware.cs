@@ -12,17 +12,12 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 {
-
-
 	public class MvcMiddleware
 	{
 		private AppFunc Next { get; set; }
 		private MvcMiddlewareOptions Options { get; set; }
-
 		private System.Web.Http.HttpConfiguration HttpConfiguration { get; set; }
-
-		private IEnumerable<Controller> Controllers { get; set; }
-
+		private IDictionary<string, Controller> Controllers { get; set; }
 
 		public MvcMiddleware(AppFunc next, MvcMiddlewareOptions options, System.Web.Http.HttpConfiguration httpConfiguration)
 		{
@@ -37,52 +32,27 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 			this.Next = next;
 			this.Options = options;
 			this.HttpConfiguration = httpConfiguration;
-
 			this.MiddlewareInitialize();
 		}
 
 		private void MiddlewareInitialize()
 		{
-			var controlerBaseType = typeof(Controller);
-
-			var query = from assembly in this.Options.Assemblies
-						from type in assembly.ExportedTypes
-						where
-							type.Name.EndsWith("Controller")
-							&&
-							type.IsAbstract == false
-							&&
-							controlerBaseType.IsAssignableFrom(type)
-						select type;
-
-			this.Controllers = query.Select(type =>
-			{
-				Controller controller = (Controller)Activator.CreateInstance(type);
-				controller.Initialize(type);
-				return controller;
-			}).ToArray();
-
+			this.Controllers = this.Options.ApplicationContext.GetObjects<Controller>();
 		}
 
 
 		public async Task Invoke(EnvironmentVariables environment)
 		{
 			IOwinContext owinContext = new OwinContext(environment);
-			//if (!this.Options.RootPath.HasValue || owinContext.Request.Path.ToString().ToLower().StartsWith(this.Options.RootPath.ToString().ToLower()))
+			System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(owinContext.Request.Method), owinContext.Request.Uri);
+			IHttpRouteData routeInfo = this.HttpConfiguration.Routes.GetRouteData(httpRequestMessage);
+			if (routeInfo != null)
 			{
-				System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(owinContext.Request.Method), owinContext.Request.Uri);
-				IHttpRouteData routeInfo = this.HttpConfiguration.Routes.GetRouteData(httpRequestMessage);
-				if (routeInfo != null)
+				ControllerActionInvoker invoker = new ControllerActionInvoker(this.Controllers, routeInfo, owinContext);
+				if (invoker.Invoke())
 				{
-					ControllerActionInvoker invoker = new ControllerActionInvoker(this.Controllers, routeInfo, owinContext);
-					if (invoker.Invoke())
-					{
-						await Task.FromResult<int>(0);
-					}
+					await Task.FromResult<int>(0);
 				}
-				//WelcomePage welcomePage = new WelcomePage();
-				//welcomePage.Execute(owinContext);
-
 			}
 			await this.Next(environment);
 		}

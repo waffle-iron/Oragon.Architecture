@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Spring.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,32 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 {
 	public class MvcMiddlewareOptions
 	{
-		public List<System.Reflection.Assembly> Assemblies {get; private set;}
+		public IApplicationContext ApplicationContext { get; private set; }
+		
+		//public List<System.Reflection.Assembly> Assemblies {get; private set;}
 
-		public MvcMiddlewareOptions()
+		public MvcMiddlewareOptions(IApplicationContext applicationContext)
 		{
-			this.Assemblies = new List<System.Reflection.Assembly>();
+			this.ApplicationContext = applicationContext;
 		}
 
-		public void AddAssembly(System.Reflection.Assembly assembly)
-		{
-			this.Assemblies.Add(assembly);
-		}
+		
 
-		public void AddAssembly<T>()
-		{
-			System.Reflection.Assembly assembly = typeof(T).Assembly;
-			this.AddAssembly(assembly);
-		}
+		//public MvcMiddlewareOptions()
+		//{
+		//	this.Assemblies = new List<System.Reflection.Assembly>();
+		//}
+
+		//public void AddAssembly(System.Reflection.Assembly assembly)
+		//{
+		//	this.Assemblies.Add(assembly);
+		//}
+
+		//public void AddAssembly<T>()
+		//{
+		//	System.Reflection.Assembly assembly = typeof(T).Assembly;
+		//	this.AddAssembly(assembly);
+		//}
 
 
 		

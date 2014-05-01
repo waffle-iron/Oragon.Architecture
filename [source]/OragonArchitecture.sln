@@ -72,6 +72,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Applica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationHostingManagementExample", "..\Examples\ApplicationHostingManagementExample\ApplicationHostingManagementExample.csproj", "{FA304AC3-586E-4206-B553-D23239272168}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Networking", "Oragon.Architecture.Networking\Oragon.Architecture.Networking.csproj", "{075FD45D-0C60-4433-9E8F-C7EF51AAECAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,10 @@ Global
 		{FA304AC3-586E-4206-B553-D23239272168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA304AC3-586E-4206-B553-D23239272168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA304AC3-586E-4206-B553-D23239272168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075FD45D-0C60-4433-9E8F-C7EF51AAECAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075FD45D-0C60-4433-9E8F-C7EF51AAECAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075FD45D-0C60-4433-9E8F-C7EF51AAECAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075FD45D-0C60-4433-9E8F-C7EF51AAECAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +167,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{006BE62C-99FA-41F9-B390-0E8C82017566} = {A7A7DF79-56F5-4E56-BEF2-007EA5559D49}
 		{B9CB8BA0-3389-4203-A02D-FA3A6091F31C} = {A7A7DF79-56F5-4E56-BEF2-007EA5559D49}
+		{075FD45D-0C60-4433-9E8F-C7EF51AAECAA} = {A7A7DF79-56F5-4E56-BEF2-007EA5559D49}
 		{496E3B18-A9E9-4EAB-8E7E-96509BB09551} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 		{D9D06542-797D-4A57-95E5-C0A44727A386} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 		{D69A2068-7E08-438E-A956-4C9C326C5E40} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}

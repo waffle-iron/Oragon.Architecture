@@ -81,8 +81,18 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private AppDomain privateAppDomain;
 
+		private System.Timers.Timer heartBeatTimer;
+
+
+
 		public override void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
 		{
+			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
+			heartBeatTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
+			{
+				this.applicationHostController.HeartBeat();
+			};
+
 			Contract.Requires(baseDirectory != null && baseDirectory.Exists);
 
 			IAbsoluteDirectoryPath absoluteApplicationBaseDirectory = this.GetAbsoluteDirectoryPath(baseDirectory);
@@ -94,10 +104,17 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.applicationHostController.SetFactoryType(this.FactoryType);
 			this.applicationHostController.InitializeContainer();
 			this.applicationHostController.Start();
+			this.heartBeatTimer.Start();
 		}
+
+
 
 		public override void Stop()
 		{
+			this.heartBeatTimer.Stop();
+			this.heartBeatTimer.Dispose();
+			this.heartBeatTimer = null;
+
 			this.applicationHostController.Stop();
 			AppDomain.Unload(this.privateAppDomain);
 			this.applicationHostController = null;

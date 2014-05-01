@@ -111,4 +111,21 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 		}
 	}
 
+
+	public class StreamResult : MvcResult
+	{
+		public string ContentType { get; set; }
+
+		public System.IO.Stream Stream { get; set; }
+
+		public override void Execute(IOwinContext context)
+		{
+			if (context == null)
+			{
+				throw new ArgumentNullException("context");
+			}
+			context.Response.ContentType = this.ContentType;
+			this.Stream.CopyTo(context.Response.Body);
+		}
+	}
 }
