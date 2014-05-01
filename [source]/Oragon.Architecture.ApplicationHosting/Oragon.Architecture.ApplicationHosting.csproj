@@ -37,6 +37,10 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,8 +56,10 @@
     </Compile>
     <Compile Include="ApplicationHosting\AccountType.cs" />
     <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
+    <Compile Include="ApplicationHosting\ClientApiProxy.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
     <Compile Include="ApplicationHosting\IContainerFactory.cs" />
+    <Compile Include="ApplicationHosting\Model\Model.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
     <Compile Include="ApplicationHosting\StartMode.cs" />
     <Compile Include="ApplicationHosting\ApplicationHost.cs" />

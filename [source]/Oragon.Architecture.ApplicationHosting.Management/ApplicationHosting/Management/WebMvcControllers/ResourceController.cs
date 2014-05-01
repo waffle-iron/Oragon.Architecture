@@ -56,7 +56,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 						else
 							fullName += "." + parts[i];
 					}
-					Console.WriteLine(fullName);
 					System.IO.Stream stream = assemblyMapping.Assembly.GetManifestResourceStream(fullName);
 					return new StreamResult() { Stream = stream, ContentType = contentType };
 				}

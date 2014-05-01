@@ -83,8 +83,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private System.Timers.Timer heartBeatTimer;
 
-
-
 		public override void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
 		{
 			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
@@ -106,8 +104,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.applicationHostController.Start();
 			this.heartBeatTimer.Start();
 		}
-
-
 
 		public override void Stop()
 		{

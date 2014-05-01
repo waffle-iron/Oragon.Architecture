@@ -87,6 +87,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Topshelf">
+      <HintPath>..\..\[References]\Topshelf.3.1.3\lib\net40-full\Topshelf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GlobalAssemblyInfo.cs">
@@ -98,9 +101,10 @@
     <Compile Include="ApplicationHosting\Management\Middleware\SimpleView.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\SpringDependencyResolver.cs" />
     <Compile Include="ApplicationHosting\Management\Model\TreeItem.cs" />
+    <Compile Include="ApplicationHosting\Management\Repository\ApplicationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
-    <Compile Include="ApplicationHosting\Management\WebApiControllers\PingController.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\Controller.cs" />
+    <Compile Include="ApplicationHosting\Management\WebApiControllers\RegisterServiceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\HomeController.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
@@ -117,6 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
+      <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
       <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
       <Name>Oragon.Architecture.Serialization</Name>

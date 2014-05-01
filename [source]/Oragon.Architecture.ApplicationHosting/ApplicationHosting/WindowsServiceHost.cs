@@ -13,14 +13,16 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class WindowsServiceHost : ServiceControl
 	{
+		private Guid clientID;
+
 		public string Name { get; set; }
 
 		public string FriendlyName { get; set; }
-	
+
 		public string Description { get; set; }
 
 		public Uri MonitoringEndPoint { get; set; }
-		
+
 		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
 
 		public List<ApplicationHost> Applications { get; set; }
@@ -76,6 +78,14 @@ namespace Oragon.Architecture.ApplicationHosting
 			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
 			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
 
+			if (this.MonitoringEndPoint != null)
+			{
+				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
+				proxy.RegisterHost(this)
+					.ContinueWith(it => this.clientID = it.Result);
+			}
+
+
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			foreach (var application in tmpApplicationList)
 			{
@@ -86,6 +96,12 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public bool Stop(HostControl hostControl)
 		{
+			if (this.MonitoringEndPoint != null)
+			{
+				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
+				proxy.UnregisterHost(this.clientID);
+			}
+
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			tmpApplicationList.Reverse();
 			foreach (var application in tmpApplicationList)
@@ -102,7 +118,22 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
 		{
-			this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
+			IFilePath filePath = null;
+			if (configurationFileName.TryGetFilePath(out filePath))
+			{
+				if (filePath.IsAbsolutePath)
+				{
+					this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
+				}
+				else if (filePath.IsRelativePath)
+				{
+					this.ConfigurationFilePath = configurationFileName.ToRelativeFilePath().GetAbsolutePathFrom(Environment.CurrentDirectory.ToAbsoluteDirectoryPath());
+				}
+				if (this.ConfigurationFilePath.Exists == false)
+					throw new System.IO.FileNotFoundException("ConfigurationFileName cannot be found", configurationFileName);
+			}
+			else
+				throw new InvalidOperationException("ConfigurationFileName '{0}' is not a valid path.".FormatWith(configurationFileName));
 
 			this.WriteHeader();
 

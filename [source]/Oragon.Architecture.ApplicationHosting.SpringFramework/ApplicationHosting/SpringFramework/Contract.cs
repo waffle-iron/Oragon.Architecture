@@ -9,7 +9,13 @@ namespace Oragon.Architecture.ApplicationHosting.SpringFramework
 {
 
 	public interface ISpringFrameworkFactory : IContainerFactory<IApplicationContext> { }
-	public class SpringFrameworkApplicationHost : ApplicationHost<SpringFrameworkApplicationHostController, ISpringFrameworkFactory, IApplicationContext> { }
+	public class SpringFrameworkApplicationHost : ApplicationHost<SpringFrameworkApplicationHostController, ISpringFrameworkFactory, IApplicationContext> 
+	{
+		public SpringFrameworkApplicationHost()
+		{
+			this.FactoryType = "Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkFactory, Oragon.Architecture.ApplicationHosting.SpringFramework";
+		}
+	}
 	public class SpringFrameworkApplicationHostController : ApplicationHostController<ISpringFrameworkFactory, IApplicationContext>
 	{
 		public override void Start()

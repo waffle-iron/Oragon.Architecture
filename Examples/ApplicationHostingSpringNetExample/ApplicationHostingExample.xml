@@ -7,7 +7,7 @@
 	xmlns:nv="http://www.springframework.net/nvelocity"
 	>
 
-	<object name="ServiceDescriptor" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
+	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
 		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 		<property name="Description" value="Example of Simple way to deply business services" />

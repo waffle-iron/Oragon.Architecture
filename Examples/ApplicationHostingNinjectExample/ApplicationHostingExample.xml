@@ -7,10 +7,10 @@
 	xmlns:nv="http://www.springframework.net/nvelocity"
 	>
 
-	<object name="ServiceDescriptor" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
-		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
-		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
-		<property name="Description" value="Example of Simple way to deply business services" />
+	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
+		<property name="Name" value="Oragon ArchitectureApplicationHostingNinjectExample" />
+		<property name="FriendlyName" value="Oragon Architecture Application Hosting Ninject Example" />
+		<property name="Description" value="Ninject Example" />
 		<property name="MonitoringEndPoint" value="http://localhost:7777" />
 
 		<property name="WindowsServiceConfiguration">
@@ -29,8 +29,8 @@
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
 				<object type="Oragon.Architecture.ApplicationHosting.Ninject.NinjectApplicationHost, Oragon.Architecture.ApplicationHosting.Ninject">
-					<property name="Name" value="Application Hosting Ninject Example" />
-					<property name="FriendlyName" value="Oragon Architecture Application Ninject Hosting Example" />
+					<property name="Name" value="Oragon Architecture Application Hosting Ninject Example" />
+					<property name="FriendlyName" value="Oragon Architecture Application Hosting Ninject Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="FactoryType" value="ApplicationHostingNinjectExample.NinjectFactory, ApplicationHostingNinjectExample"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />

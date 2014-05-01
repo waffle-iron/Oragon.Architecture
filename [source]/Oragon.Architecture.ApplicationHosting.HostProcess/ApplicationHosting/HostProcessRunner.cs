@@ -118,6 +118,10 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 
 			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
+			if (this.IsDebug)
+			{
+				System.Diagnostics.Debugger.Launch();
+			}
 
 			if (this.IsConsole)
 			{
