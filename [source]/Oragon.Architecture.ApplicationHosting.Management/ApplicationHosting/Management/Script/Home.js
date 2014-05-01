@@ -142,7 +142,7 @@ Ext.onReady(function () {
 			{
 				xtype: 'textareafield',
 				grow: true,
-				name: 'NotificationCenterTextArea',
+				id: 'NotificationCenterTextArea',
 				//anchor: '100%',
 				border: false,
 				readOnly: true,
@@ -151,7 +151,7 @@ Ext.onReady(function () {
 					width: '100%',
 					height: '100%'
 				},
-				value: '[2014-04-29 20:40] Interface Administrativa Inicializada'
+				value: ''
 			}
 
 		]
@@ -170,7 +170,25 @@ Ext.onReady(function () {
 			centerRegion,
 			westRegion,
 			southRegion
-		]
+		],
+		listeners: {
+			'afterrender': function () {
+				setInterval(function () {
+					Ext.Ajax.request({
+						url: '/api/Message/GetMessages/',
+						timeout: 60000,
+						params: {},
+						success: function (response) {
+							var lines = Ext.JSON.decode(response.responseText, true);
+							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
+							Ext.Array.forEach(lines, function (line, index) {
+								notificationCenterTextArea.setValue(line + "\r\n" + notificationCenterTextArea.getValue());
+							});							
+						}
+					});
+				}, 1000);
+			}
+		}
 	});
 
 });

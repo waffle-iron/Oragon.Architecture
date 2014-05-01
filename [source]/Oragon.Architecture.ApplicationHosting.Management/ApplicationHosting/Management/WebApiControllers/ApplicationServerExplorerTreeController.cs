@@ -13,6 +13,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 	public class ApplicationServerExplorerTreeController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
+		MessageRepository MessageRepository { get; set; }
 
 		[HttpGet]
 		public IEnumerable<TreeItem> Get(string node)
@@ -22,7 +23,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 				return new TreeItem[] { 
 					
 					new TreeItem(){ 
-						id="root/Servers", 
+						id="Servers", 
 						text = "Servers", 
 						iconCls= "AppIcons-folder-brick", 
 						leaf=false, 
@@ -32,7 +33,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 					new TreeItem(){ id="root/Repository",text = "Repository", iconCls= "AppIcons-information", leaf=false, expanded = true, children = null}
 				};
 			}
-			else if (node == "root/Servers")
+			else if (node == "Servers")
 			{
 				var query = from client in this.ApplicationRepository.Clients
 							group client by new
@@ -46,28 +47,42 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								iconCls = "AppIcons-server",
 								leaf = false,
 								expanded = true,
-								children = grouper.Select( it =>
+								children = grouper.Select(it =>
 									new TreeItem()
 									{
-										id = "root/Servers/Server/{0}/Host/{1}".FormatWith(grouper.Key.MachineName, it.ID),
+										id = "Host/{0}".FormatWith(it.ID),
 										text = "Host {0} :{1}".FormatWith(it.FriendlyName, it.PID),
-										iconCls = "AppIcons-application-xp-terminal",
+										iconCls = "AppIcons-application-cascade",
 										leaf = false,
 										expanded = false,
 										children = null
 									}
 								).ToList()
 							};
-
 				return query;
-				
 			}
-			else
+			else if (node.StartsWith("Host/"))
 			{
-				return new TreeItem[] { 
-			
-				};
+				var id = node.Substring("Host/".Length);
+				Oragon.Architecture.ApplicationHosting.Model.HostDescriptor hostDescriptor = this.ApplicationRepository.Clients.SingleOrDefault(it => it.ID == Guid.Parse(id));
+				if (hostDescriptor != null)
+				{
+					int index = 0;
+					return hostDescriptor.Applications.Select(it =>
+						new TreeItem()
+						{
+							id = "Application/{0}/{1}/".FormatWith(id, ++index),
+							text = it.FriendlyName,
+							iconCls = "AppIcons-application",
+							leaf = true,
+							expanded = false,
+							children = null
+						}
+					);
+				}
 			}
+
+			return new TreeItem[] { };
 
 		}
 	}
