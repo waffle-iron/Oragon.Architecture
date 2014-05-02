@@ -12,9 +12,6 @@ namespace Oragon.Architecture.Web.Owin.Resolvers
 	{
 		public ICollection<Type> GetControllerTypes(IAssembliesResolver assembliesResolver)
 		{
-			IDictionary<string, object> objectDic1 = this.ApplicationContext.GetObjects<object>();
-
-
 			IDictionary<string, T> objectDic = this.ApplicationContext.GetObjects<T>();
 			return objectDic.Select(it => it.Value.GetType()).ToList();
 		}
