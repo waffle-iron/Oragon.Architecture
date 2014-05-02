@@ -9,12 +9,38 @@ namespace Oragon.Architecture.ApplicationHosting
 	public abstract class ApplicationHostController<FactoryType, ContainerType> : MarshalByRefObject
 		where FactoryType : IContainerFactory<ContainerType>
 	{
+		public ApplicationHostController()
+		{
+			//AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
+			//{
+			//	Console.WriteLine(args.Name);
+			//	return null;
+			//};
+			//AppDomain.CurrentDomain.TypeResolve += delegate(object sender, ResolveEventArgs args)
+			//{
+			//	Console.WriteLine(args.Name);
+			//	return null;
+			//};
+			//AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += delegate(object sender, ResolveEventArgs args)
+			//{
+			//	Console.WriteLine(args.Name);
+			//	return null;
+			//}; 
+
+			
+		}
+
+
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
 		public virtual void Start() { }
 
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
 		public virtual void Stop() { }
 
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
 		public virtual void HeartBeat() { }
 
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
 		public virtual AppDomainStatistic GetAppDomainStatistics()
 		{
 			return new AppDomainStatistic()
@@ -23,6 +49,12 @@ namespace Oragon.Architecture.ApplicationHosting
 				MonitoringSurvivedMemorySize = AppDomain.CurrentDomain.MonitoringSurvivedMemorySize,
 				Date = DateTime.Now,
 			};
+		}
+
+		public override object InitializeLifetimeService()
+		{
+			// This ensures the object lasts for as long as the client wants it
+			return null;
 		}
 
 		private FactoryType Factory { get; set; }

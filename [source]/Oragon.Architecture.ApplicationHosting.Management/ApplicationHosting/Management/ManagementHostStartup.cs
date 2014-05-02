@@ -1,6 +1,8 @@
 ﻿using Microsoft.Owin.Hosting;
 using Oragon.Architecture;
+using Oragon.Architecture.ApplicationHosting.Management.Middleware;
 using Oragon.Architecture.Extensions;
+using Oragon.Architecture.Web.Owin.OMvc;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -8,13 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using MvcMiddlewareOptions = Oragon.Architecture.ApplicationHosting.Management.Middleware.MvcMiddlewareOptions;
-using MvcMiddleware = Oragon.Architecture.ApplicationHosting.Management.Middleware.MvcMiddleware;
 
 namespace Oragon.Architecture.ApplicationHosting.Management
 {
 	public class ManagementHostStartup
 	{
+		public static HttpConfiguration WebApiHttpConfiguration;
+
+
 		public void Configuration(Owin.IAppBuilder app)
 		{
 			this.ConfigureErrorPage(app);
@@ -36,12 +39,17 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		private void ConfigureWebApi(IAppBuilder app)
 		{
 			var httpConfig = new HttpConfiguration();
-			httpConfig.DependencyResolver = new Oragon.Architecture.ApplicationHosting.Management.Middleware.SpringDependencyResolver(ManagementHost.Current.ApplicationContext);
-			httpConfig.MapHttpAttributeRoutes();
-			httpConfig.Routes.MapHttpRoute("WebApi", "api/{controller}/{action}", new { controller = "Ping", action = RouteParameter.Optional });
+			httpConfig.DependencyResolver = new Oragon.Architecture.Web.Owin.Resolvers.SpringDependencyResolver(ManagementHost.Current.ApplicationContext);
+			//httpConfig.MapHttpAttributeRoutes();
+			httpConfig.Routes.MapHttpRoute(
+				name: "WebApi", 
+				routeTemplate: "api/{controller}/{action}", 
+				defaults: new { controller = "Ping", action = RouteParameter.Optional }
+				
+			);
 
 			httpConfig.Formatters.Clear();
-			httpConfig.Formatters.Add(new Oragon.Architecture.ApplicationHosting.Management.Middleware.HtmlMediaTypeFormatter());
+			httpConfig.Formatters.Add(new HtmlMediaTypeFormatter());
 			httpConfig.Formatters.Add(new System.Net.Http.Formatting.JsonMediaTypeFormatter());
 			httpConfig.Formatters.Add(new System.Net.Http.Formatting.BsonMediaTypeFormatter());
 			httpConfig.Formatters.Add(new System.Net.Http.Formatting.XmlMediaTypeFormatter());
@@ -49,6 +57,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			httpConfig.Formatters.Add(new System.Web.Http.ModelBinding.JQueryMvcFormUrlEncodedFormatter());
 
 			app.UseWebApi(httpConfig);
+
+			ManagementHostStartup.WebApiHttpConfiguration = httpConfig;
 		}
 
 
@@ -56,10 +66,10 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			var httpConfig = new HttpConfiguration();
 			httpConfig.Routes.MapHttpRoute("WebMvc", "management/{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = RouteParameter.Optional });
-			httpConfig.Routes.MapHttpRoute("WebMvc_resjs", "resource/{*resourceName}", new { controller = "Resource", action = "LoadFrom", resourceName = RouteParameter.Optional });
+			httpConfig.Routes.MapHttpRoute("WebMvc_resjs", "dynRes/{*resourceName}", new { controller = "Resource", action = "LoadFrom", resourceName = RouteParameter.Optional });
 
-			var middlewareOptions = new MvcMiddlewareOptions(ManagementHost.Current.ApplicationContext);
-			app.Use<MvcMiddleware>(middlewareOptions, httpConfig);
+			var middlewareOptions = new OMvcMiddlewareOptions(ManagementHost.Current.ApplicationContext);
+			app.Use<OMvcMiddleware>(middlewareOptions, httpConfig);
 		}
 
 

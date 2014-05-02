@@ -33,7 +33,7 @@
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Management" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
-					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
+					<property name="ApplicationConfigurationFile" value="./bin/Debug/ApplicationHostingManagementExample.dll.config" />
 				</object>
 			</list>
 		</property>

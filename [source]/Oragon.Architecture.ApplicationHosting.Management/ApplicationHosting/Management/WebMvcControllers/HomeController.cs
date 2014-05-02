@@ -1,4 +1,6 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Management.Middleware;
+using Oragon.Architecture.Web.Owin.OMvc;
+using Oragon.Architecture.Web.Owin.OMvc.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +11,25 @@ using System.Web.Http;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 {
-	public class HomeController : Controller
+	public class HomeController : OMvcController
 	{
 		public MvcResult Index(string style = "classic")
 		{
 			Func<SimpleViewResult, SimpleViewResult> crisp = (it =>
-				it.Stylesheet("/resource/extjs/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all-debug.css")
-				.Script("/resource/extjs/build/ext-all.js")
-				.Script("/resource/extjs/build/packages/ext-theme-crisp/build/ext-theme-crisp.js")
+				it.Stylesheet("/dynRes/extjs/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all-debug.css")
+				.Script("/dynRes/extjs/build/ext-all.js")
+				.Script("/dynRes/extjs/build/packages/ext-theme-crisp/build/ext-theme-crisp.js")
 			);
 
 			Func<SimpleViewResult, SimpleViewResult> gray = (it =>
-				it.Stylesheet("/resource/extjs/build/packages/ext-theme-gray/build/resources/ext-theme-gray-all-debug.css")
-				.Script("/resource/extjs/build/ext-all.js")
+				it.Stylesheet("/dynRes/extjs/build/packages/ext-theme-gray/build/resources/ext-theme-gray-all-debug.css")
+				.Script("/dynRes/extjs/build/ext-all.js")
 			);
 
 			Func<SimpleViewResult, SimpleViewResult> classic = (it =>
-				it.Stylesheet("/resource/extjs/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css")
-				.Script("/resource/extjs/build/ext-all.js")
-				.Script("/resource/extjs/build/packages/ext-theme-classic/build/ext-theme-classic.js")
+				it.Stylesheet("/dynRes/extjs/build/packages/ext-theme-classic/build/resources/ext-theme-classic-all-debug.css")
+				.Script("/dynRes/extjs/build/ext-all.js")
+				.Script("/dynRes/extjs/build/packages/ext-theme-classic/build/ext-theme-classic.js")
 			);
 
 			var view = this.SimpleView();
@@ -44,13 +46,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 				case "crisp": 
 					crisp(view); break;
 			}
-			view.Stylesheet("/resource/icons/style.css")
+			view.Stylesheet("/dynRes/icons/style.css")
 			.OpenScript()
 			.WriteLine("var hostUrl = 'http://{0}/';", this.Request.Host.Value)
 			.CloseScript()
-			.Script("/resource/script/Frameworks/Radio.js")
-			.Script("/resource/script/Frameworks/Linq.js")
-			.Script("/resource/script/home.js")
+			.Script("/dynRes/ApplicationHosting/Management/Script/Frameworks/Radio.js")
+			.Script("/dynRes/ApplicationHosting/Management/Script/Frameworks/Linq.js")
+			.Script("/dynRes/ApplicationHosting/Management/Script/Home.js")
 			.CloseHead()
 			.OpenBody()
 			.CloseBody()

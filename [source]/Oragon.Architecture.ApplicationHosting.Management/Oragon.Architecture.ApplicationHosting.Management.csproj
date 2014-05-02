@@ -50,7 +50,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\[References]\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\[References]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Oragon.Architecture.ExtJS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,12 +74,12 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.Owin">
+    <Reference Include="System.Web.Http.Owin, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Microsoft.AspNet.WebApi.Owin.5.1.2\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -95,16 +95,13 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\Management\Middleware\ControllerActionInvoker.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\ControllerContext.cs" />
+    <Compile Include="ApplicationHosting\Management\OragonHttpControllerSelector.cs" />
+    <Compile Include="ApplicationHosting\Management\HttpControllerTypeCache.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\HtmlMediaTypeFormatter.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\SimpleView.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\SpringDependencyResolver.cs" />
     <Compile Include="ApplicationHosting\Management\Model\TreeItem.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\ApplicationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\NotificationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\Controller.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\NotificationController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\RegisterServiceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
@@ -112,10 +109,7 @@
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostConfiguration.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostStartup.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\MvcMiddleware.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\MvcMiddlewareOptions.cs" />
     <Compile Include="ApplicationHosting\Management\Model\PingResponse.cs" />
-    <Compile Include="ApplicationHosting\Management\Middleware\MvcResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +124,10 @@
     <ProjectReference Include="..\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
       <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
       <Name>Oragon.Architecture.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oragon.Architecture.Web.Owin.OMvc\Oragon.Architecture.Web.Owin.OMvc.csproj">
+      <Project>{4883749d-de88-416b-a94f-30e905dcd79d}</Project>
+      <Name>Oragon.Architecture.Web.Owin.OMvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
@@ -150,7 +148,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	   Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
