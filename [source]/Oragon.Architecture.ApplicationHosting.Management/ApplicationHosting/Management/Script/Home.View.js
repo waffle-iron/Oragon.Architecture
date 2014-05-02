@@ -1,9 +1,13 @@
 ﻿/// <reference path="frameworks/linq.js" />
 /// <reference path="frameworks/radio.js" />
+var eventoMenuContexto = "itemclick";
 
+HomeController.init();
 
 Ext.require(['*']);
 Ext.onReady(function () {
+
+	HomeController.beforeLoad();
 
 	var northRegion = {
 		region: 'north',
@@ -190,9 +194,10 @@ Ext.onReady(function () {
 							});
 						}
 					});
-				}, 1000);
+				}, 10000);
 			}
 		}
 	});
 
-});
+	HomeController.afterLoad();
+});//Ext.onReady

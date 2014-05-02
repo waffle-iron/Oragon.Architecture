@@ -22,7 +22,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 		public override void Execute(Microsoft.Owin.IOwinContext context)
 		{
 			Contract.Requires(context.IsNotNull());
-			context.Response.Redirect(this.Url);
+			context.Response.Headers.SetValues("Refresh", "0", this.Url);
 		}
 	}
 }

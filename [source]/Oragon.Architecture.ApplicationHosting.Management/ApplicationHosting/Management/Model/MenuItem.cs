@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Model
 {
-	public class TreeItem
+	public class MenuItem
 	{
 		public string text { get; set; }
 		public string iconCls { get; set; }
-		public bool leaf { get; set; }
-		public bool expanded { get; set; }
-		public IEnumerable<TreeItem> children { get; set; }
-
-		public IEnumerable<MenuItem> menuItems { get; set; }
-
-		public string id { get; set; }
+		public string handlerFunction { get; set; }
+		public ActionConfirmation actionConfirmation { get; set; }
+		public bool disabled { get; set; }
 	}
+	
 }

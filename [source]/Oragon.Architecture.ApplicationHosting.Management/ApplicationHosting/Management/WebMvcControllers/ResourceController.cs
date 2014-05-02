@@ -49,19 +49,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 
 //		public MvcResult LoadFrom(string resourceName)
 //		{
-//			//extjs/build/ext-all.js
-//			string[] parts = resourceName.Split('/');
-//			string contentType = MimeTypeResolver.ResolveMimeType(this.Request.Uri);
 
-
-//#if DEBUG
-//			if (parts[0].ToLower() == "script")
-//			{
-//				var fileName = @"D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.Management\ApplicationHosting\Management\" + resourceName;
-//				string fileContent = System.IO.File.ReadAllText(fileName);
-//				return new ContentResult() { Content = fileContent, ContentType = contentType };
-//			}
-//#endif
 //			foreach (AssemblyMapping assemblyMapping in this.resourceAssemblies)
 //			{
 //				if (parts[0].ToLower() == assemblyMapping.Folder.ToLower())
@@ -82,6 +70,15 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 //		}
 		public MvcResult LoadFrom(string resourceName)
 		{
+#if DEBUG
+			string startConst = @"ApplicationHosting/Management/";
+			if (resourceName.ToLower().StartsWith(startConst.ToLower()))
+			{
+				var fileName = @"D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.Management\ApplicationHosting\Management\" + resourceName.Substring(startConst.Length);
+				string fileContent = System.IO.File.ReadAllText(fileName);
+				return new ContentResult() { Content = fileContent, ContentType = MimeTypeResolver.ResolveMimeType(this.Request.Uri) };
+			}
+#endif
 			return new EmbeddedResourceResult(this.resourceAssemblies);
 		}
 	}

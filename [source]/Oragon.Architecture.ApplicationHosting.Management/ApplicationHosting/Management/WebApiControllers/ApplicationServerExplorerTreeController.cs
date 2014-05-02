@@ -15,6 +15,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		ApplicationRepository ApplicationRepository { get; set; }
 		NotificationRepository NotificationRepository { get; set; }
 
+
 		[HttpGet]
 		public IEnumerable<TreeItem> Get(string node)
 		{
@@ -23,17 +24,25 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 				return new TreeItem[] { 
 					
 					new TreeItem(){ 
-						id="Servers", 
+						id="/Servers/", 
 						text = "Servers", 
 						iconCls= "AppIcons-folder-brick", 
 						leaf=false, 
 						expanded = false, 
 						children = null,
+						menuItems = new MenuItem[]{
+							new MenuItem(){ 
+								text="Refresh", 
+								iconCls="AppIcons-arrow-refresh-small", 
+								handlerFunction="HomeController.refreshTreeNode",
+								actionConfirmation = new ActionConfirmation("Atualizar", MessageBoxButtons.YESNO, MessageBoxIcon.INFO, "Are you shure?", MessageBoxButton.YES)
+							} 
+						}
 					},
 					new TreeItem(){ id="root/Repository",text = "Repository", iconCls= "AppIcons-information", leaf=false, expanded = true, children = null}
 				};
 			}
-			else if (node == "Servers")
+			else if (node == "/Servers/")
 			{
 				var query = from client in this.ApplicationRepository.Clients
 							group client by new
@@ -42,7 +51,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 							} into grouper
 							select new TreeItem()
 							{
-								id = "Server/{0}".FormatWith(grouper.Key.MachineName),
+								id = "/Server/{0}".FormatWith(grouper.Key.MachineName),
 								text = "Server {0}".FormatWith(grouper.Key.MachineName),
 								iconCls = "AppIcons-server",
 								leaf = false,
@@ -50,7 +59,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								children = grouper.Select(it =>
 									new TreeItem()
 									{
-										id = "Host/{0}".FormatWith(it.ID),
+										id = "/Host/{0}".FormatWith(it.ID),
 										text = "Host {0} :{1}".FormatWith(it.FriendlyName, it.PID),
 										iconCls = "AppIcons-application-cascade",
 										leaf = false,
@@ -61,9 +70,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 							};
 				return query;
 			}
-			else if (node.StartsWith("Host/"))
+			else if (node.StartsWith("/Host/"))
 			{
-				var id = node.Substring("Host/".Length);
+				var id = node.Substring("/Host/".Length);
 				Oragon.Architecture.ApplicationHosting.Model.HostDescriptor hostDescriptor = this.ApplicationRepository.Clients.SingleOrDefault(it => it.ID == Guid.Parse(id));
 				if (hostDescriptor != null)
 				{

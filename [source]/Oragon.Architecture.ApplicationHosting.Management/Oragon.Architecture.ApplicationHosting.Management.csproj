@@ -95,6 +95,11 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApplicationHosting\Management\Model\ActionConfirmation.cs" />
+    <Compile Include="ApplicationHosting\Management\Model\MenuItem.cs" />
+    <Compile Include="ApplicationHosting\Management\Model\MessageBoxButton.cs" />
+    <Compile Include="ApplicationHosting\Management\Model\MessageBoxButtons.cs" />
+    <Compile Include="ApplicationHosting\Management\Model\MessageBoxIcon.cs" />
     <Compile Include="ApplicationHosting\Management\OragonHttpControllerSelector.cs" />
     <Compile Include="ApplicationHosting\Management\HttpControllerTypeCache.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\HtmlMediaTypeFormatter.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\NotificationController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\RegisterServiceController.cs" />
+    <Compile Include="ApplicationHosting\Management\WebMvcControllers\RedirectController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\HomeController.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
@@ -135,7 +141,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.View.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\Images\OragonAppServer.png" />
@@ -145,6 +151,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\Script\Frameworks\Linq.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationHosting\Management\Script\Frameworks\Oragon.TreeViewManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.Controller.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

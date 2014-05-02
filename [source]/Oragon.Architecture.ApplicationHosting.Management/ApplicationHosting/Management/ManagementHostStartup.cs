@@ -67,6 +67,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			var httpConfig = new HttpConfiguration();
 			httpConfig.Routes.MapHttpRoute("WebMvc", "management/{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = RouteParameter.Optional });
 			httpConfig.Routes.MapHttpRoute("WebMvc_resjs", "dynRes/{*resourceName}", new { controller = "Resource", action = "LoadFrom", resourceName = RouteParameter.Optional });
+			httpConfig.Routes.MapHttpRoute("WebMvcRedirect", "", new { controller = "Redirect", action = "ToHome", resourceName = RouteParameter.Optional });
 
 			var middlewareOptions = new OMvcMiddlewareOptions(ManagementHost.Current.ApplicationContext);
 			app.Use<OMvcMiddleware>(middlewareOptions, httpConfig);
