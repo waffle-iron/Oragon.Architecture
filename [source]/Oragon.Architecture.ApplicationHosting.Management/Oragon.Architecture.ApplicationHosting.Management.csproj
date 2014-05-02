@@ -147,15 +147,15 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ApplicationHosting\Management\Model\ActionConfirmation.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\MenuItem.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\MessageBoxButton.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\MessageBoxButtons.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\MessageBoxIcon.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\ActionConfirmation.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\MenuItem.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\MessageBoxButton.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\MessageBoxButtons.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\MessageBoxIcon.cs" />
     <Compile Include="ApplicationHosting\Management\OragonHttpControllerSelector.cs" />
     <Compile Include="ApplicationHosting\Management\HttpControllerTypeCache.cs" />
     <Compile Include="ApplicationHosting\Management\Middleware\HtmlMediaTypeFormatter.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\TreeItem.cs" />
+    <Compile Include="ApplicationHosting\Management\ViewModel\TreeItem.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\ApplicationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\NotificationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
@@ -167,7 +167,6 @@
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostConfiguration.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostStartup.cs" />
-    <Compile Include="ApplicationHosting\Management\Model\PingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

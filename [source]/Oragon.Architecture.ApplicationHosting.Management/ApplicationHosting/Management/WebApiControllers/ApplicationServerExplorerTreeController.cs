@@ -1,4 +1,4 @@
-﻿using Oragon.Architecture.ApplicationHosting.Management.Model;
+﻿using Oragon.Architecture.ApplicationHosting.Management.ViewModel;
 using Oragon.Architecture.ApplicationHosting.Management.Repository;
 using System;
 using System.Collections.Generic;
