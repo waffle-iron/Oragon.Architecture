@@ -8,6 +8,7 @@ using Spring.Objects.Factory.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,11 +32,26 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			ManagementHost.Current = this;
 		}
 
-		private IEnumerable<string> GetAllIPAddresses()
+		private IEnumerable<string> GetExternalsIps()
 		{
-			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
-			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
-			return iplist;
+			var iplist = from ipAddress in Dns.GetHostAddresses(Dns.GetHostName())
+						 where
+							(
+								ipAddress.IsIPv4MappedToIPv6
+								||
+								ipAddress.IsIPv6LinkLocal
+								||
+								ipAddress.IsIPv6Multicast
+								||
+								ipAddress.IsIPv6SiteLocal
+								||
+								ipAddress.IsIPv6Teredo
+							) == false
+						 select
+							 ipAddress.ToString();
+
+
+			return iplist.ToArray(); //Only IPV4 IP`s
 		}
 
 
@@ -49,8 +65,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			if (this.Configuration.AllowRemoteMonitoring)
 			{
 				options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.MonitoringPort));
-				IEnumerable<string> IPList = GetAllIPAddresses();
-				int nIP = 0;
+				IEnumerable<string> IPList = this.GetExternalsIps();
 				foreach (string ipAddress in IPList)
 				{
 					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.MonitoringPort));
