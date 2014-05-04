@@ -92,7 +92,5 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			this.server.Dispose();
 		}
 
-
-
 	}
 }

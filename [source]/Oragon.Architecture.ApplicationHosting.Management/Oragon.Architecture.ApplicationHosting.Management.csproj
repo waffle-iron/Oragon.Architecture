@@ -104,6 +104,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Oragon.Architecture.Bootstrap">
+      <HintPath>..\..\[References]\Oragon.Architecture.Bootstrap.7.0.0-alpha1\lib\Oragon.Architecture.Bootstrap.dll</HintPath>
+    </Reference>
     <Reference Include="Oragon.Architecture.ExtJS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Oragon.Architecture.ExtJS.7.0.0-alpha1\lib\Oragon.Architecture.ExtJS.dll</HintPath>
@@ -147,6 +150,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApplicationHosting\Management\Storage\Db4OStorageProvider.cs" />
+    <Compile Include="ApplicationHosting\Management\Storage\IStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\ViewModel\ActionConfirmation.cs" />
     <Compile Include="ApplicationHosting\Management\ViewModel\MenuItem.cs" />
     <Compile Include="ApplicationHosting\Management\ViewModel\MessageBoxButton.cs" />
@@ -192,20 +197,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.View.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Home.View.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Images\OragonAppServer.png" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Radio.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Frameworks\Radio.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Linq.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Frameworks\Linq.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Oragon.TreeViewManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Home.Controller.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Frameworks\Oragon.TreeViewManager.js" />
-    <EmbeddedResource Include="ApplicationHosting\Management\Script\Home.Controller.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\icon-storage-db4o.fw.png" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\icon-storage-filesystem.fw.png" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\Oragon App Server.fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
@@ -51,10 +52,16 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 							fullName += "." + parts[i];
 					}
 					System.IO.Stream stream = assemblyMapping.Assembly.GetManifestResourceStream(fullName);
-					var streamResult = new StreamResult() { Stream = stream, ContentType = contentType };
-					streamResult.Execute(context);
+					if (stream != null)
+					{
+						var streamResult = new StreamResult() { Stream = stream, ContentType = contentType };
+						streamResult.Execute(context);
+						return;
+					}
 				}
 			}
+
+			throw new System.IO.FileNotFoundException("Resource binded with '{0}' could not be found.".FormatWith(pathAndQuery));
 		}
 
 

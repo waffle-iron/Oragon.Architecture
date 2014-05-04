@@ -130,6 +130,12 @@ Ext.onReady(function () {
 		minWidth: 200,
 		title: 'Application Server Explorer',
 		iconCls: 'AppIcons-sitemap-color',
+		tools: [
+					//{ type: 'pin' },
+					{ type: 'refresh' },
+					{ type: 'search' }
+					
+		],
 		store: appServerExplorerStore
 	});
 

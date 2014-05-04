@@ -1,4 +1,5 @@
 ﻿using NDepend.Path;
+using Oragon.Architecture.ApplicationHosting.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

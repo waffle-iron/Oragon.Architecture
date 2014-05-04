@@ -107,6 +107,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Oragon.Architecture.Bootstrap">
+      <HintPath>..\..\[References]\Oragon.Architecture.Bootstrap.7.0.0-alpha1\lib\Oragon.Architecture.Bootstrap.dll</HintPath>
+    </Reference>
     <Reference Include="Oragon.Architecture.ExtJS">
       <HintPath>..\..\[References]\Oragon.Architecture.ExtJS.7.0.0-alpha1\lib\Oragon.Architecture.ExtJS.dll</HintPath>
     </Reference>

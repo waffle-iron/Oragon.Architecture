@@ -45,6 +45,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/extjs/", assemblyName: "Oragon.Architecture.ExtJS"));
 			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/ApplicationHosting/Management/", assemblyName: "Oragon.Architecture.ApplicationHosting.Management"));
 			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/icons/", assemblyName: "Oragon.Architecture.Icons"));
+			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/bootstrap/", assemblyName: "Oragon.Architecture.Bootstrap"));
 		}
 
 //		public MvcResult LoadFrom(string resourceName)
