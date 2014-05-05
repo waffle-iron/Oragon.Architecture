@@ -31,7 +31,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public ApplicationHost()
 		{
-			this.AppDomainStatisticHistory = new List<AppDomainStatistic>();
 		}
 
 		protected AppDomain CreateDomain(string appDomainName, IAbsoluteDirectoryPath absoluteApplicationBaseDirectory, IAbsoluteFilePath absoluteApplicationConfigurationFile)
@@ -55,55 +54,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			AppDomainSetup domainSetup = new AppDomainSetup()
 			{
 				ApplicationBase = absoluteApplicationBaseDirectory.DirectoryInfo.FullName,
-				//PrivateBinPath = absoluteApplicationBaseDirectory.DirectoryInfo.FullName,
-				//PrivateBinPathProbe = absoluteApplicationBaseDirectory.DirectoryInfo.FullName,
 				ConfigurationFile = absoluteApplicationConfigurationFile.FileInfo.FullName,
 				ShadowCopyFiles = this.EnableShadowCopy.ToString()
 			};
 
 			AppDomain appDomain = AppDomain.CreateDomain(appDomainName, domainEvidence, domainSetup, permissions);			
-			//Console.WriteLine("BaseDirectory " + appDomain.BaseDirectory);
-			//Console.WriteLine("DynamicDirectory " + appDomain.DynamicDirectory);
-			//Console.WriteLine("FriendlyName " + appDomain.FriendlyName);
-			//Console.WriteLine("Id " + appDomain.Id.ToString());
-			//Console.WriteLine("IsFullyTrusted " + appDomain.IsFullyTrusted.ToString());
-			//Console.WriteLine("RelativeSearchPath " + appDomain.RelativeSearchPath);
-			//Console.WriteLine("SetupInformation.CachePath " + appDomain.SetupInformation.CachePath);
-			//Console.WriteLine("SetupInformation.PrivateBinPath " + appDomain.SetupInformation.PrivateBinPath);
-			//Console.WriteLine("SetupInformation.PrivateBinPathProbe " + appDomain.SetupInformation.PrivateBinPathProbe);
-
-			//appDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//};
-			//appDomain.TypeResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//};
-			//appDomain.ReflectionOnlyAssemblyResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//}; 
-
-			//AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//};
-			//AppDomain.CurrentDomain.TypeResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//};
-			//AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += delegate(object sender, ResolveEventArgs args)
-			//{
-			//	Console.WriteLine(args.Name);
-			//	return null;
-			//}; 
-
 			return appDomain;
 		}
 
@@ -140,8 +95,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private System.Timers.Timer heartBeatTimer;
 
-		private System.Timers.Timer monitoringTimer;
-
 		public override void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
 		{
 			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
@@ -149,13 +102,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			{
 				this.applicationHostController.HeartBeat();
 			};
-
-			this.monitoringTimer = new System.Timers.Timer(new TimeSpan(0, 0, 30).TotalMilliseconds);
-			this.monitoringTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
-			{
-				this.AppDomainStatisticHistory.Add(this.applicationHostController.GetAppDomainStatistics());
-			};
-
 
 			Contract.Requires(baseDirectory != null && baseDirectory.Exists);
 
@@ -169,12 +115,10 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.applicationHostController.InitializeContainer();
 			this.applicationHostController.Start();
 			this.heartBeatTimer.Start();
-			this.monitoringTimer.Start();
 		}
 
 		public override void Stop()
 		{
-			this.monitoringTimer.Stop();
 			this.heartBeatTimer.Stop();
 			this.heartBeatTimer.Dispose();
 			this.heartBeatTimer = null;

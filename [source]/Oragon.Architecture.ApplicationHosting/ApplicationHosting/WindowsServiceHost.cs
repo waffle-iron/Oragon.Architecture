@@ -151,28 +151,94 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		protected virtual void WriteHeader()
 		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("Oragon Architcture Application Hosting " + this.GetType().Assembly.GetAssemblyInformationalVersion());
-			Console.WriteLine("AssemblyVersion : " + this.GetType().Assembly.GetAssemblyVersion());
-			Console.WriteLine("AssemblyFileVersion : " + this.GetType().Assembly.GetAssemblyFileVersion());
-			Console.Write("Windows Service: ");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.Write(this.Name + " ");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.Write("( ");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.Write(this.FriendlyName);
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine(" )");
-			Console.Write("Description: ");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine(this.Description);
-			Console.WriteLine(string.Format("Start Timeout: {0}  Stop TimeOut: {1}", this.WindowsServiceConfiguration.StartTimeOut.ToString(), this.WindowsServiceConfiguration.StopTimeOut.ToString()));
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
+			Queue<string> asciiArt = new Queue<string>();
+
+			for (int i = 0; i < Console.WindowHeight; i++)
+			{
+				asciiArt.Enqueue(string.Empty.PadRight(Console.WindowWidth - 1, ' '));
+			}
+			asciiArt.Enqueue(@"																                                 ");
+			asciiArt.Enqueue(@" ██████╗ ██████╗  █████╗  ██████╗  ██████╗ ███╗   ██╗                                         ");
+			asciiArt.Enqueue(@"██╔═══██╗██╔══██╗██╔══██╗██╔════╝ ██╔═══██╗████╗  ██║                                         ");
+			asciiArt.Enqueue(@"██║   ██║██████╔╝███████║██║  ███╗██║   ██║██╔██╗ ██║                                         ");
+			asciiArt.Enqueue(@"██║   ██║██╔══██╗██╔══██║██║   ██║██║   ██║██║╚██╗██║                                         ");
+			asciiArt.Enqueue(@"╚██████╔╝██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║                                         ");
+			asciiArt.Enqueue(@" ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝                                         ");
+			asciiArt.Enqueue(@"                                                                                              ");
+			//asciiArt.Enqueue(@" █████╗ ██████╗  ██████╗██╗  ██╗██╗████████╗███████╗ ██████╗████████╗██╗   ██╗██████╗ ███████╗");
+			//asciiArt.Enqueue(@"██╔══██╗██╔══██╗██╔════╝██║  ██║██║╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝");
+			//asciiArt.Enqueue(@"███████║██████╔╝██║     ███████║██║   ██║   █████╗  ██║        ██║   ██║   ██║██████╔╝█████╗  ");
+			//asciiArt.Enqueue(@"██╔══██║██╔══██╗██║     ██╔══██║██║   ██║   ██╔══╝  ██║        ██║   ██║   ██║██╔══██╗██╔══╝  ");
+			//asciiArt.Enqueue(@"██║  ██║██║  ██║╚██████╗██║  ██║██║   ██║   ███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗");
+			//asciiArt.Enqueue(@"╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝");
+			asciiArt.Enqueue(@"                                                                                              ");
+			asciiArt.Enqueue(@" █████╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗            ");
+			asciiArt.Enqueue(@"██╔══██╗██╔══██╗██╔══██╗██║     ██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║            ");
+			asciiArt.Enqueue(@"███████║██████╔╝██████╔╝██║     ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║            ");
+			asciiArt.Enqueue(@"██╔══██║██╔═══╝ ██╔═══╝ ██║     ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║            ");
+			asciiArt.Enqueue(@"██║  ██║██║     ██║     ███████╗██║╚██████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║            ");
+			asciiArt.Enqueue(@"╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝            ");
+			asciiArt.Enqueue(@"                                                                                              ");
+			asciiArt.Enqueue(@"███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗                                              ");
+			asciiArt.Enqueue(@"██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗                                             ");
+			asciiArt.Enqueue(@"███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝                                             ");
+			asciiArt.Enqueue(@"╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══╝  ██╔══██╗                                             ");
+			asciiArt.Enqueue(@"███████║███████╗██║  ██║ ╚████╔╝ ███████╗██║  ██║                                             ");
+			asciiArt.Enqueue(@"╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝                                             ");
+			for (int i = 0; i < Console.WindowHeight; i++)
+			{
+				asciiArt.Enqueue(string.Empty.PadRight(Console.WindowWidth - 1, ' '));
+			}
+			while (asciiArt.Count > 0)
+			{
+				string[] array = asciiArt.ToArray();
+				asciiArt.Dequeue();
+				for (int i = 0; i < array.Length && i < Console.WindowHeight; i++)
+				{
+					Console.WriteLine(array[i].PadRight(Console.WindowWidth-1,' '));
+				}
+				Console.SetCursorPosition(0, 0);
+				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 15));
+			}
+			Console.SetCursorPosition(0, 0);
+			var headerText = "Oragon Architecture Application Hosting";
+
+			Console.BackgroundColor = ConsoleColor.DarkGray;
+			Console.ForegroundColor = ConsoleColor.Black;
+			for (int i = 0; i < Console.WindowWidth; i++)
+				Console.Write(" ");
+
+			var position = Math.Abs((Console.WindowWidth - headerText.Length) / 2);
+			Console.SetCursorPosition(position, 0);
+			Console.Write(headerText);
+
+			int headerSize = 7;
+			for (int i = 1; i < headerSize; i++)
+			{
+				Console.SetCursorPosition(0, i);
+				Console.Write(" ");
+				Console.SetCursorPosition(Console.WindowWidth - 1, i);
+				Console.Write(" ");
+			}
+			Console.SetCursorPosition(0, headerSize);
+			for (int i = 0; i < Console.WindowWidth; i++)
+				Console.Write(" ");
+
+			Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
+			Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+
+
 			Console.ResetColor();
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.SetCursorPosition(1, 1); Red("Version: "); Green(this.GetType().Assembly.GetAssemblyInformationalVersion());
+			Console.SetCursorPosition(1, 2); Red("AssemblyFileVersion: "); Green(this.GetType().Assembly.GetAssemblyFileVersion());
+			Console.SetCursorPosition(1, 3); Red("ServiceName: "); Green(this.Name);
+			Console.SetCursorPosition(1, 4); Red("FriendlyName: "); Green(this.FriendlyName);
+			Console.SetCursorPosition(1, 5); Red("Description: "); Green(this.Description);
+			Console.SetCursorPosition(1, 6); Green(string.Format("Start Timeout: {0}  Stop TimeOut: {1}", this.WindowsServiceConfiguration.StartTimeOut.ToString(), this.WindowsServiceConfiguration.StopTimeOut.ToString()));
+			Console.ResetColor();
+
+			Console.SetCursorPosition(0, headerSize + 2);
 		}
 
 		protected virtual void WriteBeforeStart()
@@ -180,12 +246,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		}
 		protected virtual void WriteAfterStart()
 		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("Rodando... pressione a tecla 'ESC' tecla para finalizar...");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
+			Console.WriteLine("Running!");
 			Console.ResetColor();
 		}
 
@@ -194,33 +255,29 @@ namespace Oragon.Architecture.ApplicationHosting
 			ConsoleKeyInfo keyInfo;
 			do
 			{
+				Console.Write("Press 'ESC' or 'END' keys to stop...");
+				Console.ResetColor();
+				Console.ForegroundColor = Console.BackgroundColor;
 				keyInfo = Console.ReadKey();
+				Console.WriteLine(string.Empty);
+				Console.ResetColor();
 			} while (keys.Length != 0 && keys.Contains(keyInfo.Key) == false);
 		}
 
 		protected virtual void WriteBeforeStop()
 		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("Finalizando...");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
+			Console.WriteLine("Stoping...");
 			Console.ResetColor();
 		}
 		protected virtual void WriteAfterStop()
 		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine("Finalizado!! Pressione qualquer tecla para sair!");
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("#######################################################");
+			Console.WriteLine("All itens of pipeline are stopped!");
+			Console.WriteLine("See you late!");
 			Console.ResetColor();
-			for (int i = 1; i <= 60; i++)
+			for (int i = 1; i <= 15; i++)
 			{
 				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
-				Console.Write("-");
+				Console.Write(".");
 			}
 		}
 	}
