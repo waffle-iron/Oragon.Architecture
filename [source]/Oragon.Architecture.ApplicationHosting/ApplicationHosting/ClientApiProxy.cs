@@ -47,7 +47,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			return iplist.ToList();
 		}
 
-		public async Task<Guid> RegisterHost(WindowsServiceHost windowsServiceHost)
+		public async Task<Guid> RegisterHost(ConsoleServiceHost windowsServiceHost)
 		{
 			HostDescriptor hostDescriptor = new HostDescriptor()
 			{
