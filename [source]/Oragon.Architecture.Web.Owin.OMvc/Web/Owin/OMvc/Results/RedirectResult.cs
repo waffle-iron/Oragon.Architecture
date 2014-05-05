@@ -9,6 +9,14 @@ using System.Web.Http.Routing;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class RedirectResultExtensions
+	{
+		public static RedirectResult Redirect(this OMvcController @this, string url)
+		{
+			return new RedirectResult(url);
+		}
+	}
+
 	public class RedirectResult : MvcResult
 	{
 		public string Url { get; private set; }

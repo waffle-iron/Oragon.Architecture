@@ -2,7 +2,7 @@
 
 	init: function()
 	{
-		
+		Ext.setGlyphFontFamily('Pictos');
 	},
 
 	beforeLoad: function () {

@@ -46,7 +46,11 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 				result = (MvcResult)currentAction.Invoke(currentController, bindedParameters);
 			}
 			if (result != null)
+			{
+				result.ControllerType = currentController.GetType();
+				result.ActionMethod = currentAction;
 				result.Execute(this.OwinContext);
+			}
 			return true;
 		}
 

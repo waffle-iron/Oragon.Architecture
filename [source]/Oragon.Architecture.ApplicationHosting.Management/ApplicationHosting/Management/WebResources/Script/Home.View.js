@@ -91,12 +91,12 @@ Ext.onReady(function () {
 		region: 'center',
 		width: 400,
 		height: 400,
-		renderTo: document.body,
 		items: [{
 			title: 'Dashboard',
 			closable: false,
 		}, {
 			title: 'Bar',
+			glyph: 42,
 			closable: true,
 			tabConfig: {
 				title: 'Custom Title',

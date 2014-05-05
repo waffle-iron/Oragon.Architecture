@@ -8,6 +8,19 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class HttpStatusCodeResultExtensions
+	{
+		public static HttpStatusCodeResult HttpStatusCode(this OMvcController @this, int statusCode)
+		{
+			return new HttpStatusCodeResult(statusCode);
+		}
+		public static HttpStatusCodeResult HttpStatusCode(this OMvcController @this, HttpStatusCode statusCode)
+		{
+			return new HttpStatusCodeResult(statusCode);
+		}
+	}
+
+
 	public class HttpStatusCodeResult : MvcResult
 	{
 		/// <summary>Gets the HTTP status code.</summary>

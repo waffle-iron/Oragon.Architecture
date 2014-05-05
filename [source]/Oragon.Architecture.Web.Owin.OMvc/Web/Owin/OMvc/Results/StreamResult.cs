@@ -6,9 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
 using System.Net.Mime;
+using System.IO;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class StreamResultExtensions
+	{
+		public static StreamResult Stream(this OMvcController @this, Stream stream, string contentType)
+		{
+			return new StreamResult() { Stream = stream, ContentType = contentType };
+		}
+	}
+
 	public class StreamResult : MvcResult
 	{
 		public string ContentType { get; set; }

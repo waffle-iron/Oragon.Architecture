@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+
+	public static class JavaScriptResultExtensions
+	{
+		public static JavaScriptResult JavaScript(this OMvcController @this, string script)
+		{
+			return new JavaScriptResult() { JavaScript = script };
+		}
+	
+	}
+
+
 	public class JavaScriptResult : MvcResult
 	{
 		public string JavaScript { get; set; }

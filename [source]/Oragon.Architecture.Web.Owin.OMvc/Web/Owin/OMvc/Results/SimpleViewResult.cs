@@ -8,6 +8,15 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class SimpleViewResultExtensions
+	{
+		public static SimpleViewResult SimpleView(this OMvcController @this)
+		{
+			return new SimpleViewResult(@this.CreateUrlHelper());
+		}
+	}
+
+
 	public class SimpleViewResult : MvcResult
 	{
 		private System.IO.StringWriter HTML { get; set; }

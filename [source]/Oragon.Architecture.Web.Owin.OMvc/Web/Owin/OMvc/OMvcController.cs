@@ -34,43 +34,11 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(request.Method), request.Uri);
 			return httpRequestMessage;
 		}
-		protected System.Web.Http.Routing.UrlHelper UrlHelper()
+		public System.Web.Http.Routing.UrlHelper CreateUrlHelper()
 		{
 			return new System.Web.Http.Routing.UrlHelper(this.RequestMessage());
 		}
-		protected SimpleViewResult SimpleView()
-		{
-			return new SimpleViewResult(this.UrlHelper());
-		}
-		protected HttpStatusCodeResult HttpStatusCode(int statusCode)
-		{
-			return new HttpStatusCodeResult(statusCode);
-		}
-		protected HttpStatusCodeResult HttpStatusCode(HttpStatusCode statusCode)
-		{
-			return new HttpStatusCodeResult(statusCode);
-		}
-		protected JavaScriptResult JavaScript(string script)
-		{
-			return new JavaScriptResult() { JavaScript = script };
-		}
-		protected ContentResult Content(string content)
-		{
-			return new ContentResult() { Content = content };
-		}
-		protected JsonResult Json(object data)
-		{
-			return new JsonResult() { Data = data };
-		}
+		
 
-		protected RedirectResult Redirect(string url)
-		{
-			return new RedirectResult(url);
-		}
-
-		protected StreamResult Stream(Stream stream, string contentType)
-		{
-			return new StreamResult() { Stream = stream, ContentType = contentType };
-		}
 	}
 }

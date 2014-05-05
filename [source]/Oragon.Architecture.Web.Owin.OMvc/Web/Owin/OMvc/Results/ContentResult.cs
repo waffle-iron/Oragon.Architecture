@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class ContentResultExtensions
+	{
+		public static ContentResult Content(this OMvcController @this, string content)
+		{
+			return new ContentResult() { Content = content };
+		}
+	
+	}
+
 	public class ContentResult : MvcResult
 	{
 		public string Content { get; set; }

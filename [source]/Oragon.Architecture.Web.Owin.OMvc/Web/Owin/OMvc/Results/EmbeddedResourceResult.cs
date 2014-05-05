@@ -7,6 +7,17 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class EmbeddedResourceResultExtensions
+	{
+		public static EmbeddedResourceResult EmbeddedResource(this OMvcController @this, IEnumerable<Oragon.Architecture.Web.Owin.OMvc.Results.EmbeddedResourceResult.AssemblyMapping> mappings)
+		{
+			return new EmbeddedResourceResult(mappings);
+		}
+	
+	}
+
+
+
 	public class EmbeddedResourceResult : MvcResult
 	{
 		public class AssemblyMapping

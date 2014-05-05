@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
+	public static class JsonResultExtensions
+	{
+		public static JsonResult Json(this OMvcController @this, object data)
+		{
+			return new JsonResult() { Data = data };
+		}
+
+	}
+
 	public class JsonResult : MvcResult
 	{
 		public object Data { get; set; }
