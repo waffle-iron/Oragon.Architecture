@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Model
 {
-	
-
-
 	public class ApplicationDescriptor
 	{
 		public string Name { get; set; }

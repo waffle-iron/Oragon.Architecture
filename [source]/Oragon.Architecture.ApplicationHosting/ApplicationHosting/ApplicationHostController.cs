@@ -49,6 +49,7 @@ namespace Oragon.Architecture.ApplicationHosting
 				MonitoringTotalAllocatedMemorySize = AppDomain.CurrentDomain.MonitoringTotalAllocatedMemorySize,
 				MonitoringSurvivedMemorySize = AppDomain.CurrentDomain.MonitoringSurvivedMemorySize,
 				Date = DateTime.Now,
+				Assemblies = AppDomain.CurrentDomain.GetAssemblies().Select(it => new AssemblyDescriptor() { Name = it.FullName }).ToList()
 			};
 		}
 

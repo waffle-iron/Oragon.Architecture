@@ -23,8 +23,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public Uri MonitoringEndPoint { get; set; }
 
-		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
-
 		public List<ApplicationHost> Applications { get; set; }
 
 		public IAbsoluteFilePath ConfigurationFilePath { get; protected set; }
@@ -98,6 +96,13 @@ namespace Oragon.Architecture.ApplicationHosting
 			return TopshelfExitCode.Ok;
 		}
 
+		Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
+		Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+
+		Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
+		Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
+		Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
+
 		protected virtual void WriteHeader()
 		{
 			Queue<string> asciiArt = new Queue<string>();
@@ -114,12 +119,12 @@ namespace Oragon.Architecture.ApplicationHosting
 			asciiArt.Enqueue(@"╚██████╔╝██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║                                         ");
 			asciiArt.Enqueue(@" ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝                                         ");
 			asciiArt.Enqueue(@"                                                                                              ");
-			//asciiArt.Enqueue(@" █████╗ ██████╗  ██████╗██╗  ██╗██╗████████╗███████╗ ██████╗████████╗██╗   ██╗██████╗ ███████╗");
-			//asciiArt.Enqueue(@"██╔══██╗██╔══██╗██╔════╝██║  ██║██║╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝");
-			//asciiArt.Enqueue(@"███████║██████╔╝██║     ███████║██║   ██║   █████╗  ██║        ██║   ██║   ██║██████╔╝█████╗  ");
-			//asciiArt.Enqueue(@"██╔══██║██╔══██╗██║     ██╔══██║██║   ██║   ██╔══╝  ██║        ██║   ██║   ██║██╔══██╗██╔══╝  ");
-			//asciiArt.Enqueue(@"██║  ██║██║  ██║╚██████╗██║  ██║██║   ██║   ███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗");
-			//asciiArt.Enqueue(@"╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝");
+			asciiArt.Enqueue(@" █████╗ ██████╗  ██████╗██╗  ██╗██╗████████╗███████╗ ██████╗████████╗██╗   ██╗██████╗ ███████╗");
+			asciiArt.Enqueue(@"██╔══██╗██╔══██╗██╔════╝██║  ██║██║╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝");
+			asciiArt.Enqueue(@"███████║██████╔╝██║     ███████║██║   ██║   █████╗  ██║        ██║   ██║   ██║██████╔╝█████╗  ");
+			asciiArt.Enqueue(@"██╔══██║██╔══██╗██║     ██╔══██║██║   ██║   ██╔══╝  ██║        ██║   ██║   ██║██╔══██╗██╔══╝  ");
+			asciiArt.Enqueue(@"██║  ██║██║  ██║╚██████╗██║  ██║██║   ██║   ███████╗╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗");
+			asciiArt.Enqueue(@"╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝");
 			asciiArt.Enqueue(@"                                                                                              ");
 			asciiArt.Enqueue(@" █████╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗            ");
 			asciiArt.Enqueue(@"██╔══██╗██╔══██╗██╔══██╗██║     ██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║            ");
@@ -146,10 +151,10 @@ namespace Oragon.Architecture.ApplicationHosting
 				{
 					Console.WriteLine(array[i].PadRight(Console.WindowWidth - 1, ' '));
 				}
-				Console.SetCursorPosition(0, 0);
+				Set0x0();
 				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 15));
 			}
-			Console.SetCursorPosition(0, 0);
+			Set0x0();
 			var headerText = "Oragon Architecture Application Hosting";
 
 			Console.BackgroundColor = ConsoleColor.DarkGray;
@@ -161,20 +166,19 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.SetCursorPosition(position, 0);
 			Console.Write(headerText);
 
-			int headerSize = 7;
-			for (int i = 1; i < headerSize; i++)
+			int headerSize = 5;
+			for (int i = 1; i < headerSize+1; i++)
 			{
-				Console.SetCursorPosition(0, i);
+				SetLeft(i);
 				Console.Write(" ");
-				Console.SetCursorPosition(Console.WindowWidth - 1, i);
+				SetRight(i);
 				Console.Write(" ");
 			}
-			Console.SetCursorPosition(0, headerSize);
+			SetLeft(headerSize+1);
 			for (int i = 0; i < Console.WindowWidth; i++)
 				Console.Write(" ");
 
-			Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
-			Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+			
 
 
 			Console.ResetColor();
@@ -184,10 +188,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.SetCursorPosition(1, 3); Red("ServiceName: "); Green(this.Name);
 			Console.SetCursorPosition(1, 4); Red("FriendlyName: "); Green(this.FriendlyName);
 			Console.SetCursorPosition(1, 5); Red("Description: "); Green(this.Description);
-			Console.SetCursorPosition(1, 6); Green(string.Format("Start Timeout: {0}  Stop TimeOut: {1}", this.WindowsServiceConfiguration.StartTimeOut.ToString(), this.WindowsServiceConfiguration.StopTimeOut.ToString()));
 			Console.ResetColor();
 
-			Console.SetCursorPosition(0, headerSize + 2);
+			SetLeft(headerSize + 2);
 		}
 
 		protected virtual void WriteBeforeStart()

@@ -14,5 +14,7 @@ namespace Oragon.Architecture.ApplicationHosting.Model
 		public DateTime Date { get; set; }
 
 		public long MonitoringSurvivedMemorySize { get; set; }
+
+		public List<AssemblyDescriptor> Assemblies { get; set; }
 	}
 }

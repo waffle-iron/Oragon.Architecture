@@ -13,6 +13,8 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class WindowsServiceHost : ConsoleServiceHost, ServiceControl
 	{
+		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
+
 		public void Configure(Topshelf.HostConfigurators.HostConfigurator hostConfig, string configurationFileName)
 		{
 			hostConfig.Service<WindowsServiceHost>(serviceConfigurator =>
