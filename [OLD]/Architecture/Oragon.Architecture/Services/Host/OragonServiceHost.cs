@@ -10,22 +10,13 @@ namespace Spring.ServiceModel
 {
 	public class OragonServiceHost : ServiceHost, IService
 	{
-		public OragonServiceHost(string serviceName, params Uri[] baseAddresses)
-			: this(serviceName, OragonServiceHost.GetApplicationContext(null), baseAddresses)
-		{
-		}
-		public OragonServiceHost(string serviceName, string contextName, params Uri[] baseAddresses)
-			: this(serviceName, OragonServiceHost.GetApplicationContext(contextName), baseAddresses)
-		{
-		}
-		public OragonServiceHost(string serviceName, IObjectFactory objectFactory, params Uri[] baseAddresses)
-			: this(serviceName, objectFactory, true, baseAddresses)
-		{
-		}
+
+
 		public OragonServiceHost(string serviceName, IObjectFactory objectFactory, bool useServiceProxyTypeCache, params Uri[] baseAddresses)
 			: base(OragonServiceHost.CreateServiceType(serviceName, objectFactory, useServiceProxyTypeCache), baseAddresses)
 		{
 		}
+
 		private static IApplicationContext GetApplicationContext(string contextName)
 		{
 			if (StringUtils.IsNullOrEmpty(contextName))

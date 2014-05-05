@@ -85,6 +85,7 @@
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Join.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.NotContains.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToList.cs" />
     <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
     <Compile Include="Extensions\System.Collections.IDictionary\IDictionary.ToHashtable.cs" />
     <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteBoolean.cs" />

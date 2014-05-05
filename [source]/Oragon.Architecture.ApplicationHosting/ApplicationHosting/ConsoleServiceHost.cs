@@ -8,6 +8,7 @@ using Oragon.Architecture.Extensions;
 using NDepend.Helpers;
 using NDepend.Path;
 using System.Diagnostics.Contracts;
+using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
@@ -27,6 +28,8 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public IAbsoluteFilePath ConfigurationFilePath { get; protected set; }
 
+		public IApplicationServerService ApplicationServer { get; set; }
+
 		public virtual void Start()
 		{
 			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
@@ -38,13 +41,50 @@ namespace Oragon.Architecture.ApplicationHosting
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
 			}
 
-			if (this.MonitoringEndPoint != null)
+			if (this.ApplicationServer == null)
 			{
-				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
-				proxy.RegisterHost(this)
-					.ContinueWith(it => this.ClientID = it.Result);
+				
+
+
+				var registerHostRequestMessage = new RegisterHostRequestMessage()
+				{
+					MachineDescriptor = new MachineDescriptor()
+					{
+						IPAddressList = this.GetAllIPAddresses(),
+						MachineName = Environment.MachineName
+					},
+					HostDescriptor = new HostDescriptor() {
+						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+						Description = this.Description,
+						FriendlyName = this.FriendlyName,
+						Name = this.Name,
+						Applications = this.Applications.ToList(it =>
+							new ApplicationDescriptor()
+							{
+								Name = it.Name,
+								FriendlyName = it.FriendlyName,
+								Description = it.Description,
+								FactoryType = it.FactoryType,
+								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
+								ApplicationBaseDirectory = it.ApplicationBaseDirectory								
+								
+							}
+						).ToList()					
+					}
+				};
+				RegisterHostResponseMessage registerHostResponseMessage =  this.ApplicationServer.RegisterHost(registerHostRequestMessage);
+				this.ClientID = registerHostResponseMessage.ClientID;
 			}
 		}
+
+
+		private List<string> GetAllIPAddresses()
+		{
+			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
+			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
+			return iplist.ToList();
+		}
+
 
 		public virtual void Stop()
 		{
@@ -167,18 +207,18 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.Write(headerText);
 
 			int headerSize = 5;
-			for (int i = 1; i < headerSize+1; i++)
+			for (int i = 1; i < headerSize + 1; i++)
 			{
 				SetLeft(i);
 				Console.Write(" ");
 				SetRight(i);
 				Console.Write(" ");
 			}
-			SetLeft(headerSize+1);
+			SetLeft(headerSize + 1);
 			for (int i = 0; i < Console.WindowWidth; i++)
 				Console.Write(" ");
 
-			
+
 
 
 			Console.ResetColor();

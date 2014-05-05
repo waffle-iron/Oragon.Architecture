@@ -73,7 +73,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public void Shutdown(HostControl hostControl)
 		{
-			
+			this.Stop();
 			return;
 		}
 

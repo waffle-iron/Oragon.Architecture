@@ -72,3 +72,6 @@ D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Release\Ora
 D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Release\Oragon.Architecture.pdb
 D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\bin\Release\Oragon.Architecture.XML
 D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Release\Oragon.Architecture.4.0.csprojResolveAssemblyReference.cache
+D:\Projetos\Oragon.Architecture\[OLD]\Architecture\Oragon.Architecture\obj\Release\Oragon.Architecture.4.0.csprojResolveAssemblyReference.cache
+D:\Projetos\Oragon.Architecture\[OLD]\Architecture\Oragon.Architecture\obj\Release\Oragon.Architecture.dll
+D:\Projetos\Oragon.Architecture\[OLD]\Architecture\Oragon.Architecture\obj\Release\Oragon.Architecture.pdb
