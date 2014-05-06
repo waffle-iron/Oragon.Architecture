@@ -14,18 +14,19 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class ConsoleServiceHost
 	{
-		Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+		private Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
 
-		Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
+		private Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
 
-		Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
+		private Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
 
-		Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
+		private Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
 
-		Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
+		private Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
+
+		private Services.WcfHost<Services.HostProcessService, IHostProcessService> hostProcessServiceHost;
 
 		public List<ApplicationHost> Applications { get; set; }
-
 
 		public Guid ClientID { get; set; }
 
@@ -35,8 +36,8 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public string FriendlyName { get; set; }
 
-		public Uri HttpMonitoringEndPoint { get; set; }
-		public Uri TcpMonitoringEndPoint { get; set; }
+		public Uri ApplicationServerTcpEndPoint { get; set; }
+		public Uri ApplicationServerHttpEndPoint { get; set; }
 
 		public string Name { get; set; }
 		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
@@ -83,8 +84,43 @@ namespace Oragon.Architecture.ApplicationHosting
 			{
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
 			}
+			this.CreateServerOfManagementApi();
+			this.RegisterOnApplicationServer();
+		}
 
-			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.HttpMonitoringEndPoint, tcpEndpointAddress: this.TcpMonitoringEndPoint))
+		public virtual void Stop()
+		{
+			this.UnregisterOnApplicationServer();
+			this.DestroyServerOfManagementApi();
+
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			tmpApplicationList.Reverse();
+			foreach (var application in tmpApplicationList)
+			{
+				application.Stop();
+			}
+		}
+
+		private void CreateServerOfManagementApi()
+		{
+			var apiEndpoint = new List<Uri>();
+			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
+			apiEndpoint.Add(new Uri("http://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
+
+			this.hostProcessServiceHost = new ApplicationHosting.Services.WcfHost<Services.HostProcessService, Services.Contracts.IHostProcessService>("HostProcessService", apiEndpoint.ToArray());
+			this.hostProcessServiceHost.Start();
+		}
+
+		public void DestroyServerOfManagementApi()
+		{
+			this.hostProcessServiceHost.Stop();
+		}
+
+		#region Application Server Integration
+
+		private void RegisterOnApplicationServer()
+		{
+			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.ApplicationServerHttpEndPoint, tcpEndpointAddress: this.ApplicationServerTcpEndPoint))
 			{
 				var requestMessage = new RegisterHostRequestMessage()
 				{
@@ -98,8 +134,10 @@ namespace Oragon.Architecture.ApplicationHosting
 						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
 						Description = this.Description,
 						FriendlyName = this.FriendlyName,
+						ManagementHttpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "http").Port,
+						ManagementTcpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "net.tcp").Port,
 						Name = this.Name,
-						Applications = this.Applications.ToList(it =>
+						Applications = this.Applications.ToList(it => 
 							new ApplicationDescriptor()
 							{
 								Name = it.Name,
@@ -116,13 +154,11 @@ namespace Oragon.Architecture.ApplicationHosting
 				RegisterHostResponseMessage responseMessage = applicationServerClient.Service.RegisterHost(requestMessage);
 				this.ClientID = responseMessage.ClientID;
 			}
-
 		}
 
-
-		public virtual void Stop()
+		private void UnregisterOnApplicationServer()
 		{
-			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.HttpMonitoringEndPoint, tcpEndpointAddress: this.TcpMonitoringEndPoint))
+			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.ApplicationServerHttpEndPoint, tcpEndpointAddress: this.ApplicationServerTcpEndPoint))
 			{
 				UnregisterHostRequestMessage requestMessage = new UnregisterHostRequestMessage()
 				{
@@ -130,14 +166,11 @@ namespace Oragon.Architecture.ApplicationHosting
 				};
 				UnregisterHostResponseMessage responseMessage = applicationServerClient.Service.UnregisterHost(requestMessage);
 			}
-
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
-			tmpApplicationList.Reverse();
-			foreach (var application in tmpApplicationList)
-			{
-				application.Stop();
-			}
 		}
+
+		#endregion
+
+		#region Console Management
 
 		protected virtual void WaitKeys(params ConsoleKey[] keys)
 		{
@@ -271,11 +304,15 @@ namespace Oragon.Architecture.ApplicationHosting
 			SetLeft(headerSize + 2);
 		}
 
+		#endregion
+
 		private List<string> GetAllIPAddresses()
 		{
 			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
 			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
 			return iplist.ToList();
 		}
+
+		
 	}
 }

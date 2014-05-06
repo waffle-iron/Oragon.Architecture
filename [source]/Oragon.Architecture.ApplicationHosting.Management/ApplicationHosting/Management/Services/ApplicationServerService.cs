@@ -6,6 +6,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Services
 {
@@ -32,7 +33,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Services
 			this.NotificationRepository.AddMessage("Host unregistred");
 			*/
 
-			return null;
+			Uri tcpUri = new Uri("net.tcp://{0}:{1}".FormatWith(request.MachineDescriptor.MachineName, request.HostDescriptor.ManagementTcpPort));
+			Uri httpUri = new Uri("http://{0}:{1}".FormatWith(request.MachineDescriptor.MachineName, request.HostDescriptor.ManagementHttpPort));
+			using (var hostProcessServiceClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IHostProcessService>(serviceName: "HostProcessService", httpEndpointAddress: httpUri, tcpEndpointAddress: tcpUri))
+			{
+				hostProcessServiceClient.Service.HeartBeat();
+			}
+			return new RegisterHostResponseMessage() { ClientID = Guid.NewGuid() };
 		}
 
 		public UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request)

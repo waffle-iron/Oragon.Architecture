@@ -54,11 +54,13 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 			Uri[] reurnValue = baseAddresses.ToArray();
 			if (reurnValue.Any(it => it.Port == 0))
 			{
-				int dynamicPort = DynamicPort.GetFreePort();
 				for (int i = 0; i < reurnValue.Length; i++)
 				{
 					if (reurnValue[i].Port == 0)
+					{
+						int dynamicPort = DynamicPort.GetFreePort();
 						reurnValue[i] = reurnValue[i].Port(dynamicPort);
+					}
 				}
 			}
 			return reurnValue;

@@ -18,8 +18,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 	{
 		public static ManagementHost Current { get; private set; }
 
+		private IDisposable webServer;
 
-		private IDisposable server;
+		private ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService> applicationServerServiceHost;
 
 		[Required]
 		public ManagementHostConfiguration Configuration { get; set; }
@@ -59,16 +60,16 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public void AfterPropertiesSet()
 		{
-			IEnumerable<string> IPList = this.GetExternalsIps();
-			List<Uri> apiEndpoint = BuildApiEndpoints(IPList);
-			var ApplicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray());
-			ApplicationServerServiceHost.Start(this.ApplicationServerServiceInstance);
+			List<Uri> apiEndpoint = BuildApiEndpoints();
+			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray());
+			this.applicationServerServiceHost.Start(this.ApplicationServerServiceInstance);
 
+			IEnumerable<string> IPList = this.GetExternalsIps();
 			var options = BuildWebAppOptions(IPList);
-			this.server = WebApp.Start<ManagementHostStartup>(options);
+			this.webServer = WebApp.Start<ManagementHostStartup>(options);
 		}
 
-		private List<Uri> BuildApiEndpoints(IEnumerable<string> IPList)
+		private List<Uri> BuildApiEndpoints()
 		{
 			var apiEndpoint = new List<Uri>();
 			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, this.Configuration.ApiTcpPort)));
@@ -108,8 +109,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		protected virtual void DisposeChild()
 		{
-			this.server.Dispose();
+			this.applicationServerServiceHost.Stop();
+			this.applicationServerServiceHost = null;
+			this.webServer.Dispose();
+			this.webServer = null;
 		}
+
+
 
 	}
 }
