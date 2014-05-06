@@ -1,78 +1,61 @@
-﻿using Spring.Objects.Factory;
-using Spring.ServiceModel;
+﻿
 using System;
-using System;
-using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.Hosting
 {
-	public class WcfServiceHostFactory : IFactoryObject, IInitializingObject, IObjectFactoryAware
+	public class WcfServiceHostFactory
 	{
-		public List<IServiceBehavior> Behaviors { get; set; }
-		public List<ServiceEndpointConfiguration> ServiceEndpoints { get; set; }
-
-		public WcfServiceHostFactory()
-		{
-			this.UseServiceProxyTypeCache = true;
-		}
-		protected WcfServiceHost ServiceHost;
-		public string TargetName { get; set; }
 		public Uri[] BaseAddresses { get; set; }
-		public bool UseServiceProxyTypeCache { get; set; }
-		public virtual IObjectFactory ObjectFactory { get; set; }
-		public virtual System.Type ObjectType { get { return typeof(WcfServiceHost); } }
-		public virtual bool IsSingleton { get { return false; } }
 
-		public virtual object GetObject()
+		public List<IServiceBehavior> Behaviors { get; set; }
+
+		public List<ServiceEndpointConfiguration> ServiceEndpoints { get; set; }
+		public virtual ServiceHost BuildHost(object instance)
 		{
-			return this.ServiceHost;
-		}
-		public virtual void AfterPropertiesSet()
-		{
-			this.ValidateConfiguration();
-			this.ServiceHost = new WcfServiceHost(this.TargetName, this.ObjectFactory, this.UseServiceProxyTypeCache, this.BaseAddresses);
-			this.ConfigureHost();
+			ServiceHost serviceHost = new ServiceHost(instance, this.BaseAddresses);
+			this.ConfigureHost(serviceHost);
+			return serviceHost;
 		}
 
-		protected virtual void ConfigureHost()
+		public virtual ServiceHost BuildHost(Type serviceType)
 		{
-			this.AddBehaviors();
-			this.AddServiceEndpoints();
+			ServiceHost serviceHost = new ServiceHost(serviceType, this.BaseAddresses);
+			this.ConfigureHost(serviceHost);
+			return serviceHost;
 		}
 
-		protected void AddBehaviors()
+		protected virtual void AddBehaviors(ServiceHost serviceHost)
 		{
 			if (this.Behaviors != null && this.Behaviors.Count > 0)
 			{
 				foreach (IServiceBehavior currentServiceBehavior in this.Behaviors)
 				{
-					this.ServiceHost.Description.Behaviors.Add(currentServiceBehavior);
+					serviceHost.Description.Behaviors.Add(currentServiceBehavior);
 				}
 			}
 		}
 
-		protected void AddServiceEndpoints()
+		protected virtual void AddServiceEndpoints(ServiceHost serviceHost)
 		{
 			if (this.ServiceEndpoints != null && this.ServiceEndpoints.Count > 0)
 			{
 				foreach (ServiceEndpointConfiguration currentServiceEndpoint in this.ServiceEndpoints)
 				{
-					this.ServiceHost.AddServiceEndpoint(currentServiceEndpoint.ServiceInterface, currentServiceEndpoint.Binding, currentServiceEndpoint.Name);
+					serviceHost.AddServiceEndpoint(currentServiceEndpoint.ServiceInterface, currentServiceEndpoint.Binding, currentServiceEndpoint.Name);
 				}
 			}
 		}
 
-		protected virtual void ValidateConfiguration()
+		protected virtual void ConfigureHost(ServiceHost serviceHost)
 		{
-			if (this.TargetName == null)
-			{
-				throw new System.ArgumentException("The TargetName property is required.");
-			}
+			this.AddBehaviors(serviceHost);
+			this.AddServiceEndpoints(serviceHost);
 		}
 	}
 }

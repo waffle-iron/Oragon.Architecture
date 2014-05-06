@@ -76,6 +76,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Oragon.Architecture.Services\Oragon.Architecture.Services.csproj">
+      <Project>{47fa90ac-d1b5-4105-9656-f5df49b3feb5}</Project>
+      <Name>Oragon.Architecture.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
       <Name>Oragon.Architecture</Name>

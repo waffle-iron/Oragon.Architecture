@@ -7,24 +7,34 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Services
 {
-	public class WcfHost<ServiceType>
+	public class WcfClient<ServiceInterface> : IDisposable
 	{
-		private ServiceHost host;
+		public ServiceInterface Service { get; private set; }
 
-		public void Start(params Uri[] baseAddresses)
+		private ChannelFactory<ServiceInterface> channelFactory;
+
+
+		public WcfClient(string endpointAddress)
 		{
-			this.host = new ServiceHost(typeof(ServiceType), baseAddresses);
-
-			host.Open(new TimeSpan(0, 1, 0));
+			var myEndpoint = new EndpointAddress(endpointAddress);
+			this.channelFactory = new ChannelFactory<ServiceInterface>(WcfHelper.BuildNetTcpBinding(), myEndpoint);
+			try
+			{
+				this.Service = this.channelFactory.CreateChannel();
+			}
+			catch
+			{
+				if (this.Service != null)
+				{
+					((ICommunicationObject)this.Service).Abort();
+				}
+			}
 		}
 
-		public void Stop()
+		public void Dispose()
 		{
-			if (this.host != null)
-			{
-				this.host.Close();
-				this.host = null;
-			}
+			((ICommunicationObject)this.Service).Close();
+			this.channelFactory.Close();
 		}
 	}
 }

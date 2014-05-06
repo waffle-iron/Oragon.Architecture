@@ -1,51 +1,37 @@
-﻿using Spring.Objects.Factory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.Hosting
 {
-	public enum MexBindingProtocol
-	{
-		None,
-		Http,
-		Https,
-		NamedPipe,
-		Tcp
-	}
+	
 
-	public class MexBindingFactory : IFactoryObject
+	public static class MexBindingResolver
 	{
-		public MexBindingProtocol Protocol { get; set; }
 
-		public object GetObject()
+		public static Binding Resolve(MexBindingProtocol protocol)
 		{
 			System.ServiceModel.Channels.Binding returnValue = null;
-			if (this.Protocol == MexBindingProtocol.None)
+			if (protocol == MexBindingProtocol.None)
 				returnValue = null;
-			else if (this.Protocol == MexBindingProtocol.Http)
+			else if (protocol == MexBindingProtocol.Http)
 				returnValue = System.ServiceModel.Description.MetadataExchangeBindings.CreateMexHttpBinding();
-			else if (this.Protocol == MexBindingProtocol.Https)
+			else if (protocol == MexBindingProtocol.Https)
 				System.ServiceModel.Description.MetadataExchangeBindings.CreateMexHttpsBinding();
-			else if (this.Protocol == MexBindingProtocol.NamedPipe)
+			else if (protocol == MexBindingProtocol.NamedPipe)
 				System.ServiceModel.Description.MetadataExchangeBindings.CreateMexNamedPipeBinding();
-			else if (this.Protocol == MexBindingProtocol.Tcp)
+			else if (protocol == MexBindingProtocol.Tcp)
 				System.ServiceModel.Description.MetadataExchangeBindings.CreateMexTcpBinding();
 			else
 				throw new InvalidOperationException("Tipo de Protocolo não suportado ou não configurado");
 			return returnValue;
 		}
 
-		public bool IsSingleton
-		{
-			get { return false; }
-		}
-
-		public Type ObjectType
-		{
-			get { return typeof(System.ServiceModel.Channels.Binding); }
-		}
 	}
+
+
+	
 }

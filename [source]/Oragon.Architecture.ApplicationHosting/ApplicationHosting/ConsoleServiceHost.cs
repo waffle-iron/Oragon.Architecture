@@ -14,94 +14,31 @@ namespace Oragon.Architecture.ApplicationHosting
 {
 	public class ConsoleServiceHost
 	{
-		public Guid ClientID { get; set; }
+		Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
 
-		public string Name { get; set; }
+		Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
 
-		public string FriendlyName { get; set; }
+		Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
 
-		public string Description { get; set; }
+		Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
 
-		public Uri MonitoringEndPoint { get; set; }
+		Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
 
 		public List<ApplicationHost> Applications { get; set; }
 
-		public IAbsoluteFilePath ConfigurationFilePath { get; protected set; }
-
 		public IApplicationServerService ApplicationServer { get; set; }
 
-		public virtual void Start()
-		{
-			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
-			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
+		public Guid ClientID { get; set; }
 
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
-			foreach (var application in tmpApplicationList)
-			{
-				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
-			}
+		public IAbsoluteFilePath ConfigurationFilePath { get; protected set; }
 
-			if (this.ApplicationServer == null)
-			{
-				
+		public string Description { get; set; }
 
+		public string FriendlyName { get; set; }
 
-				var registerHostRequestMessage = new RegisterHostRequestMessage()
-				{
-					MachineDescriptor = new MachineDescriptor()
-					{
-						IPAddressList = this.GetAllIPAddresses(),
-						MachineName = Environment.MachineName
-					},
-					HostDescriptor = new HostDescriptor() {
-						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
-						Description = this.Description,
-						FriendlyName = this.FriendlyName,
-						Name = this.Name,
-						Applications = this.Applications.ToList(it =>
-							new ApplicationDescriptor()
-							{
-								Name = it.Name,
-								FriendlyName = it.FriendlyName,
-								Description = it.Description,
-								FactoryType = it.FactoryType,
-								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
-								ApplicationBaseDirectory = it.ApplicationBaseDirectory								
-								
-							}
-						).ToList()					
-					}
-				};
-				RegisterHostResponseMessage registerHostResponseMessage =  this.ApplicationServer.RegisterHost(registerHostRequestMessage);
-				this.ClientID = registerHostResponseMessage.ClientID;
-			}
-		}
+		public Uri MonitoringEndPoint { get; set; }
 
-
-		private List<string> GetAllIPAddresses()
-		{
-			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
-			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
-			return iplist.ToList();
-		}
-
-
-		public virtual void Stop()
-		{
-			if (this.MonitoringEndPoint != null)
-			{
-				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
-				proxy.UnregisterHost(this.ClientID);
-			}
-
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
-			tmpApplicationList.Reverse();
-			foreach (var application in tmpApplicationList)
-			{
-				application.Stop();
-			}
-		}
-
+		public string Name { get; set; }
 		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
 		{
 			IFilePath filePath = null;
@@ -136,12 +73,108 @@ namespace Oragon.Architecture.ApplicationHosting
 			return TopshelfExitCode.Ok;
 		}
 
-		Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
-		Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+		public virtual void Start()
+		{
+			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
+			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
 
-		Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
-		Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
-		Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			foreach (var application in tmpApplicationList)
+			{
+				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
+			}
+
+			if (this.ApplicationServer == null)
+			{
+				var registerHostRequestMessage = new RegisterHostRequestMessage()
+				{
+					MachineDescriptor = new MachineDescriptor()
+					{
+						IPAddressList = this.GetAllIPAddresses(),
+						MachineName = Environment.MachineName
+					},
+					HostDescriptor = new HostDescriptor() {
+						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+						Description = this.Description,
+						FriendlyName = this.FriendlyName,
+						Name = this.Name,
+						Applications = this.Applications.ToList(it =>
+							new ApplicationDescriptor()
+							{
+								Name = it.Name,
+								FriendlyName = it.FriendlyName,
+								Description = it.Description,
+								FactoryType = it.FactoryType,
+								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
+								ApplicationBaseDirectory = it.ApplicationBaseDirectory								
+								
+							}
+						).ToList()					
+					}
+				};
+				RegisterHostResponseMessage registerHostResponseMessage =  this.ApplicationServer.RegisterHost(registerHostRequestMessage);
+				this.ClientID = registerHostResponseMessage.ClientID;
+			}
+		}
+
+
+		public virtual void Stop()
+		{
+			if (this.MonitoringEndPoint != null)
+			{
+				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
+				proxy.UnregisterHost(this.ClientID);
+			}
+
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			tmpApplicationList.Reverse();
+			foreach (var application in tmpApplicationList)
+			{
+				application.Stop();
+			}
+		}
+
+		protected virtual void WaitKeys(params ConsoleKey[] keys)
+		{
+			ConsoleKeyInfo keyInfo;
+			do
+			{
+				Console.Write("Press 'ESC' or 'END' keys to stop...");
+				Console.ResetColor();
+				Console.ForegroundColor = Console.BackgroundColor;
+				keyInfo = Console.ReadKey();
+				Console.WriteLine(string.Empty);
+				Console.ResetColor();
+			} while (keys.Length != 0 && keys.Contains(keyInfo.Key) == false);
+		}
+
+		protected virtual void WriteAfterStart()
+		{
+			Console.WriteLine("Running!");
+			Console.ResetColor();
+		}
+
+		protected virtual void WriteAfterStop()
+		{
+			Console.WriteLine("All itens of pipeline are stopped!");
+			Console.WriteLine("See you late!");
+			Console.ResetColor();
+			for (int i = 1; i <= 15; i++)
+			{
+				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
+				Console.Write(".");
+			}
+		}
+
+		protected virtual void WriteBeforeStart()
+		{
+		}
+
+		protected virtual void WriteBeforeStop()
+		{
+			Console.WriteLine("Stoping...");
+			Console.ResetColor();
+		}
 
 		protected virtual void WriteHeader()
 		{
@@ -233,44 +266,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			SetLeft(headerSize + 2);
 		}
 
-		protected virtual void WriteBeforeStart()
+		private List<string> GetAllIPAddresses()
 		{
-		}
-		protected virtual void WriteAfterStart()
-		{
-			Console.WriteLine("Running!");
-			Console.ResetColor();
-		}
-
-		protected virtual void WaitKeys(params ConsoleKey[] keys)
-		{
-			ConsoleKeyInfo keyInfo;
-			do
-			{
-				Console.Write("Press 'ESC' or 'END' keys to stop...");
-				Console.ResetColor();
-				Console.ForegroundColor = Console.BackgroundColor;
-				keyInfo = Console.ReadKey();
-				Console.WriteLine(string.Empty);
-				Console.ResetColor();
-			} while (keys.Length != 0 && keys.Contains(keyInfo.Key) == false);
-		}
-
-		protected virtual void WriteBeforeStop()
-		{
-			Console.WriteLine("Stoping...");
-			Console.ResetColor();
-		}
-		protected virtual void WriteAfterStop()
-		{
-			Console.WriteLine("All itens of pipeline are stopped!");
-			Console.WriteLine("See you late!");
-			Console.ResetColor();
-			for (int i = 1; i <= 15; i++)
-			{
-				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
-				Console.Write(".");
-			}
+			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
+			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
+			return iplist.ToList();
 		}
 	}
 }
