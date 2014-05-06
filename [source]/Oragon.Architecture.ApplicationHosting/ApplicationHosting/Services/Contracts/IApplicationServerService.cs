@@ -16,7 +16,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request);
 
 		[OperationContract]
-		UnregisterRostResponseMessage UnregisterRost(UnregisterRostRequestMessage request);
+		UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request);
 
 		[OperationContract]
 		void HeartBeat();
@@ -98,17 +98,17 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	}
 	#endregion
 
-	#region UnregisterRost
+	#region UnregisterHost
 	[Serializable]
 	[DataContract(IsReference = true)]
-	public class UnregisterRostRequestMessage
+	public class UnregisterHostRequestMessage
 	{
-
+		public Guid ClientID { get; set; }
 	}
 
 	[Serializable]
 	[DataContract(IsReference = true)]
-	public class UnregisterRostResponseMessage
+	public class UnregisterHostResponseMessage
 	{
 
 	}

@@ -26,7 +26,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public List<ApplicationHost> Applications { get; set; }
 
-		public IApplicationServerService ApplicationServer { get; set; }
 
 		public Guid ClientID { get; set; }
 
@@ -84,36 +83,42 @@ namespace Oragon.Architecture.ApplicationHosting
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
 			}
 
-			if (this.ApplicationServer == null)
+			if (this.MonitoringEndPoint != null)
 			{
-				var registerHostRequestMessage = new RegisterHostRequestMessage()
+				using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(this.MonitoringEndPoint.ToString()))
 				{
-					MachineDescriptor = new MachineDescriptor()
+					var requestMessage = new RegisterHostRequestMessage()
 					{
-						IPAddressList = this.GetAllIPAddresses(),
-						MachineName = Environment.MachineName
-					},
-					HostDescriptor = new HostDescriptor() {
-						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
-						Description = this.Description,
-						FriendlyName = this.FriendlyName,
-						Name = this.Name,
-						Applications = this.Applications.ToList(it =>
-							new ApplicationDescriptor()
-							{
-								Name = it.Name,
-								FriendlyName = it.FriendlyName,
-								Description = it.Description,
-								FactoryType = it.FactoryType,
-								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
-								ApplicationBaseDirectory = it.ApplicationBaseDirectory								
-								
-							}
-						).ToList()					
-					}
-				};
-				RegisterHostResponseMessage registerHostResponseMessage =  this.ApplicationServer.RegisterHost(registerHostRequestMessage);
-				this.ClientID = registerHostResponseMessage.ClientID;
+						MachineDescriptor = new MachineDescriptor()
+						{
+							IPAddressList = this.GetAllIPAddresses(),
+							MachineName = Environment.MachineName
+						},
+						HostDescriptor = new HostDescriptor()
+						{
+							PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+							Description = this.Description,
+							FriendlyName = this.FriendlyName,
+							Name = this.Name,
+							Applications = this.Applications.ToList(it =>
+								new ApplicationDescriptor()
+								{
+									Name = it.Name,
+									FriendlyName = it.FriendlyName,
+									Description = it.Description,
+									FactoryType = it.FactoryType,
+									ApplicationConfigurationFile = it.ApplicationConfigurationFile,
+									ApplicationBaseDirectory = it.ApplicationBaseDirectory
+
+								}
+							).ToList()
+						}
+					};
+					RegisterHostResponseMessage responseMessage = applicationServerClient.Service.RegisterHost(requestMessage);
+					this.ClientID = responseMessage.ClientID;
+				}
+
+				
 			}
 		}
 
@@ -122,10 +127,15 @@ namespace Oragon.Architecture.ApplicationHosting
 		{
 			if (this.MonitoringEndPoint != null)
 			{
-				ClientApiProxy proxy = new ClientApiProxy(this.MonitoringEndPoint);
-				proxy.UnregisterHost(this.ClientID);
+				using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(this.MonitoringEndPoint.ToString()))
+				{
+					UnregisterHostRequestMessage requestMessage = new UnregisterHostRequestMessage()
+					{
+						ClientID = this.ClientID
+					};
+					UnregisterHostResponseMessage responseMessage = applicationServerClient.Service.UnregisterHost(requestMessage);
+				}
 			}
-
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			tmpApplicationList.Reverse();
 			foreach (var application in tmpApplicationList)
