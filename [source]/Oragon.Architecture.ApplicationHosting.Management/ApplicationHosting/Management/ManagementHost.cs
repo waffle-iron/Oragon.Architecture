@@ -59,16 +59,16 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			var options = new StartOptions();
 			options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
-			options.Urls.Add("http://localhost:{0}".FormatWith(this.Configuration.MonitoringPort));
-			options.Urls.Add("http://127.0.0.1:{0}".FormatWith(this.Configuration.MonitoringPort));
+			options.Urls.Add("http://localhost:{0}".FormatWith(this.Configuration.ManagementPort));
+			options.Urls.Add("http://127.0.0.1:{0}".FormatWith(this.Configuration.ManagementPort));
 
 			if (this.Configuration.AllowRemoteMonitoring)
 			{
-				options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.MonitoringPort));
+				options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
 				IEnumerable<string> IPList = this.GetExternalsIps();
 				foreach (string ipAddress in IPList)
 				{
-					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.MonitoringPort));
+					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.ManagementPort));
 				}
 			}
 			this.server = WebApp.Start<ManagementHostStartup>(options);
