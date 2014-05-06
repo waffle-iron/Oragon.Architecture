@@ -124,6 +124,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\[References]\Spring.Services.2.0.0-RC1\lib\net45\Spring.Services.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />

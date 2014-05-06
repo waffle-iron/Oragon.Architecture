@@ -11,26 +11,28 @@ using Oragon.Architecture.Extensions;
 namespace Oragon.Architecture.ApplicationHosting.Services
 {
 	public class WcfHost<ServiceType, ServiceInterface>
-		where ServiceType : ServiceInterface
+		//where ServiceType : ServiceInterface
+		where ServiceType : class, ServiceInterface
 	{
 		private ServiceHost host;
 
 		public string Name { get; set; }
 
-		public WcfHost(string name)
+		public Uri[] BaseAddresses { get; set; }
+
+		public WcfHost(string name, params Uri[] baseAddresses)
 		{
 			this.Name = name;
+			this.BaseAddresses = this.AnalyseDynamicPorts(baseAddresses);
 		}
 
-		public void Start(params Uri[] baseAddresses)
+		public void Start(ServiceType serviceInstance = default(ServiceType))
 		{
-			Uri[] urlsToBase = this.AnalyseDynamicPorts(baseAddresses);
-
 			WcfServiceHostFactory wcfServiceHostFactory = new WcfServiceHostFactory()
 			{
-				BaseAddresses = urlsToBase,
+				BaseAddresses = this.BaseAddresses,
 				Behaviors = new List<System.ServiceModel.Description.IServiceBehavior>() { 
-					new System.ServiceModel.Description.ServiceMetadataBehavior(){ HttpGetEnabled = true}
+					new System.ServiceModel.Description.ServiceMetadataBehavior(){ HttpGetEnabled = true},
 				},
 				ServiceEndpoints = new List<ServiceEndpointConfiguration>()
 				{
@@ -39,15 +41,17 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 					WcfHelper.BuildEndpoint<ServiceInterface>(WcfHelper.EndpointType.Mex, this.Name),
 				}
 			};
-			this.host = wcfServiceHostFactory.BuildHost(typeof(ServiceType));
+
+			if (default(ServiceType) == serviceInstance)
+				this.host = wcfServiceHostFactory.BuildHost(typeof(ServiceType));
+			else
+				this.host = wcfServiceHostFactory.BuildHost(serviceInstance);
 			host.Open();
 		}
 
 		private Uri[] AnalyseDynamicPorts(Uri[] baseAddresses)
 		{
-			Uri[] reurnValue = null;
-			Array.Copy(baseAddresses, reurnValue, baseAddresses.Length);
-
+			Uri[] reurnValue = baseAddresses.ToArray();
 			if (reurnValue.Any(it => it.Port == 0))
 			{
 				int dynamicPort = DynamicPort.GetFreePort();

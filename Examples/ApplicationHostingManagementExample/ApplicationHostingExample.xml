@@ -11,7 +11,8 @@
 		<property name="Name" value="ApplicationHostingManagementExample" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Management" />
 		<property name="Description" value="Management Server" />
-		<property name="MonitoringEndPoint" value="http://localhost:7778" />
+		<property name="TcpMonitoringEndPoint" value="net.tcp://localhost:7778" />
+		<property name="HttpMonitoringEndPoint" value="http://localhost:7779" />
 
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">

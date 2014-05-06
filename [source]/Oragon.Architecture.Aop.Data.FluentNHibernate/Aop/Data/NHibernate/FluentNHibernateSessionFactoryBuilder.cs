@@ -10,13 +10,13 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 	/// <summary>
 	/// Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
 	/// </summary>
-	public abstract class FluentNHibernateSessionFactoryBuilder: AbstractSessionFactoryBuilder
+	public abstract class FluentNHibernateSessionFactoryBuilder : AbstractSessionFactoryBuilder
 	{
 		public FluentNHibernateSessionFactoryBuilder()
 		{
 		}
 
-		
+
 		/// <summary>
 		/// Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
 		/// </summary>
@@ -73,38 +73,57 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			{
 
 				case "MySql.Data.MySqlClient":
-					var configMySqlClient = FluentNH.Cfg.Db.MySQLConfiguration.Standard
-						.ConnectionString(connectionStringSettings.ConnectionString)
-						.MaxFetchDepth(this.MaxFetchDepth)
-						.IsolationLevel(this.DefaultIsolationLevel);
-					if(this.EnabledDiagnostics)
-						configMySqlClient = configMySqlClient.ShowSql().FormatSql();
-					returnValue = configMySqlClient;
+					returnValue = this.ConfigureForMySQL(connectionStringSettings);
 					break;
 
 				case "System.Data.SqlClient":
-					var configSqlClient = FluentNH.Cfg.Db.MsSqlConfiguration.MsSql2008
-						.ConnectionString(connectionStringSettings.ConnectionString)
-						.MaxFetchDepth(this.MaxFetchDepth)
-						.IsolationLevel(this.DefaultIsolationLevel);
-					if(this.EnabledDiagnostics)
-						configSqlClient = configSqlClient.ShowSql().FormatSql();
-					returnValue = configSqlClient;
+					returnValue = this.ConfigureSQLServer(connectionStringSettings);
 					break;
 
 				case "System.Data.DB2Client":
-					var configDB2Client = FluentNH.Cfg.Db.DB2Configuration.Standard
-						.ConnectionString(connectionStringSettings.ConnectionString)						
-						.MaxFetchDepth(this.MaxFetchDepth)
-						.IsolationLevel(this.DefaultIsolationLevel);
-					if(this.EnabledDiagnostics)
-						configDB2Client = configDB2Client.ShowSql().FormatSql();
-					returnValue = configDB2Client;
+					returnValue = this.ConfigureDB2(connectionStringSettings);
 					break;
 
 				default:
 					throw new ConfigurationErrorsException("This ConnectionString dont have ProviderName defined. Use 'MySql.Data.MySqlClient', 'System.Data.DB2Client' or 'System.Data.SqlClient'.");
 			}
+			return returnValue;
+		}
+
+		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureDB2(ConnectionStringSettings connectionStringSettings)
+		{
+			var configDB2Client = FluentNH.Cfg.Db.DB2Configuration.Standard
+							   .ConnectionString(connectionStringSettings.ConnectionString)
+							   .MaxFetchDepth(this.MaxFetchDepth)
+							   .IsolationLevel(this.DefaultIsolationLevel);
+			if (this.EnabledDiagnostics)
+				configDB2Client = configDB2Client.ShowSql().FormatSql();
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configDB2Client;
+			return returnValue;
+		}
+
+		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureSQLServer(ConnectionStringSettings connectionStringSettings)
+		{
+			var configSqlClient = FluentNH.Cfg.Db.MsSqlConfiguration.MsSql2008
+							   .ConnectionString(connectionStringSettings.ConnectionString)
+							   .MaxFetchDepth(this.MaxFetchDepth)
+							   .IsolationLevel(this.DefaultIsolationLevel);
+			if (this.EnabledDiagnostics)
+				configSqlClient = configSqlClient.ShowSql().FormatSql();
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configSqlClient;
+			return returnValue;
+		}
+
+		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureForMySQL(ConnectionStringSettings connectionStringSettings)
+		{
+
+			var configMySqlClient = FluentNH.Cfg.Db.MySQLConfiguration.Standard
+							   .ConnectionString(connectionStringSettings.ConnectionString)
+							   .MaxFetchDepth(this.MaxFetchDepth)
+							   .IsolationLevel(this.DefaultIsolationLevel);
+			if (this.EnabledDiagnostics)
+				configMySqlClient = configMySqlClient.ShowSql().FormatSql();
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configMySqlClient;
 			return returnValue;
 		}
 

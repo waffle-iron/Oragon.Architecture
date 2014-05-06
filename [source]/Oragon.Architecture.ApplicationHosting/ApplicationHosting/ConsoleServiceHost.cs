@@ -35,7 +35,8 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public string FriendlyName { get; set; }
 
-		public Uri MonitoringEndPoint { get; set; }
+		public Uri HttpMonitoringEndPoint { get; set; }
+		public Uri TcpMonitoringEndPoint { get; set; }
 
 		public string Name { get; set; }
 		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
@@ -83,59 +84,53 @@ namespace Oragon.Architecture.ApplicationHosting
 				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
 			}
 
-			if (this.MonitoringEndPoint != null)
+			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.HttpMonitoringEndPoint, tcpEndpointAddress: this.TcpMonitoringEndPoint))
 			{
-				using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(this.MonitoringEndPoint.ToString()))
+				var requestMessage = new RegisterHostRequestMessage()
 				{
-					var requestMessage = new RegisterHostRequestMessage()
+					MachineDescriptor = new MachineDescriptor()
 					{
-						MachineDescriptor = new MachineDescriptor()
-						{
-							IPAddressList = this.GetAllIPAddresses(),
-							MachineName = Environment.MachineName
-						},
-						HostDescriptor = new HostDescriptor()
-						{
-							PID = System.Diagnostics.Process.GetCurrentProcess().Id,
-							Description = this.Description,
-							FriendlyName = this.FriendlyName,
-							Name = this.Name,
-							Applications = this.Applications.ToList(it =>
-								new ApplicationDescriptor()
-								{
-									Name = it.Name,
-									FriendlyName = it.FriendlyName,
-									Description = it.Description,
-									FactoryType = it.FactoryType,
-									ApplicationConfigurationFile = it.ApplicationConfigurationFile,
-									ApplicationBaseDirectory = it.ApplicationBaseDirectory
+						IPAddressList = this.GetAllIPAddresses(),
+						MachineName = Environment.MachineName
+					},
+					HostDescriptor = new HostDescriptor()
+					{
+						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+						Description = this.Description,
+						FriendlyName = this.FriendlyName,
+						Name = this.Name,
+						Applications = this.Applications.ToList(it =>
+							new ApplicationDescriptor()
+							{
+								Name = it.Name,
+								FriendlyName = it.FriendlyName,
+								Description = it.Description,
+								FactoryType = it.FactoryType,
+								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
+								ApplicationBaseDirectory = it.ApplicationBaseDirectory
 
-								}
-							).ToList()
-						}
-					};
-					RegisterHostResponseMessage responseMessage = applicationServerClient.Service.RegisterHost(requestMessage);
-					this.ClientID = responseMessage.ClientID;
-				}
-
-				
+							}
+						).ToList()
+					}
+				};
+				RegisterHostResponseMessage responseMessage = applicationServerClient.Service.RegisterHost(requestMessage);
+				this.ClientID = responseMessage.ClientID;
 			}
+
 		}
 
 
 		public virtual void Stop()
 		{
-			if (this.MonitoringEndPoint != null)
+			using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(serviceName: "ApplicationServerService", httpEndpointAddress: this.HttpMonitoringEndPoint, tcpEndpointAddress: this.TcpMonitoringEndPoint))
 			{
-				using (var applicationServerClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IApplicationServerService>(this.MonitoringEndPoint.ToString()))
+				UnregisterHostRequestMessage requestMessage = new UnregisterHostRequestMessage()
 				{
-					UnregisterHostRequestMessage requestMessage = new UnregisterHostRequestMessage()
-					{
-						ClientID = this.ClientID
-					};
-					UnregisterHostResponseMessage responseMessage = applicationServerClient.Service.UnregisterHost(requestMessage);
-				}
+					ClientID = this.ClientID
+				};
+				UnregisterHostResponseMessage responseMessage = applicationServerClient.Service.UnregisterHost(requestMessage);
 			}
+
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			tmpApplicationList.Reverse();
 			foreach (var application in tmpApplicationList)

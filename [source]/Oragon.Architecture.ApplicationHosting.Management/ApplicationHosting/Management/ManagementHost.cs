@@ -27,6 +27,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public IApplicationContext ApplicationContext { get; set; }
 
+		public Services.ApplicationServerService ApplicationServerServiceInstance { get; set; }
+
 		public ManagementHost()
 		{
 			ManagementHost.Current = this;
@@ -57,21 +59,38 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public void AfterPropertiesSet()
 		{
+			IEnumerable<string> IPList = this.GetExternalsIps();
+			List<Uri> apiEndpoint = BuildApiEndpoints(IPList);
+			var ApplicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray());
+			ApplicationServerServiceHost.Start(this.ApplicationServerServiceInstance);
+
+			var options = BuildWebAppOptions(IPList);
+			this.server = WebApp.Start<ManagementHostStartup>(options);
+		}
+
+		private List<Uri> BuildApiEndpoints(IEnumerable<string> IPList)
+		{
+			var apiEndpoint = new List<Uri>();
+			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, this.Configuration.ApiTcpPort)));
+			apiEndpoint.Add(new Uri("http://{0}:{1}/".FormatWith(Environment.MachineName, this.Configuration.ApiHttpPort)));
+			return apiEndpoint;
+		}
+
+		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
+		{
 			var options = new StartOptions();
 			options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
 			options.Urls.Add("http://localhost:{0}".FormatWith(this.Configuration.ManagementPort));
 			options.Urls.Add("http://127.0.0.1:{0}".FormatWith(this.Configuration.ManagementPort));
-
+			options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
 			if (this.Configuration.AllowRemoteMonitoring)
 			{
-				options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
-				IEnumerable<string> IPList = this.GetExternalsIps();
 				foreach (string ipAddress in IPList)
 				{
 					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.ManagementPort));
 				}
 			}
-			this.server = WebApp.Start<ManagementHostStartup>(options);
+			return options;
 		}
 
 

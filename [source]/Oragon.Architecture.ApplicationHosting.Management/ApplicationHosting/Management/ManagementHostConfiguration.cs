@@ -11,9 +11,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 	{
 		[Required]
 		public int ManagementPort { get; set; }
-		
+
 		[Required]
-		public int ApiPort { get; set; }
+		public int ApiTcpPort { get; set; }
+		[Required]
+		public int ApiHttpPort { get; set; }
 
 		[Required]
 		public bool AllowRemoteMonitoring { get; set; }

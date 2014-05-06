@@ -120,6 +120,9 @@
     <Reference Include="Spring.Core">
       <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\[References]\Spring.Services.2.0.0-RC1\lib\net45\Spring.Services.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -150,6 +153,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApplicationHosting\Management\Services\ApplicationServerService.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\Db4OStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\IStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\ViewModel\ActionConfirmation.cs" />
@@ -165,7 +169,6 @@
     <Compile Include="ApplicationHosting\Management\Repository\NotificationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\NotificationController.cs" />
-    <Compile Include="ApplicationHosting\Management\WebApiControllers\RegisterServiceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\RedirectController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\ResourceController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\HomeController.cs" />

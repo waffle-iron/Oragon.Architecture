@@ -4,6 +4,8 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Oragon.Architecture.Extensions;
+
 
 namespace Oragon.Architecture.ApplicationHosting.Services
 {
@@ -14,19 +16,41 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 		private ChannelFactory<ServiceInterface> channelFactory;
 
 
-		public WcfClient(string endpointAddress)
+		public WcfClient(string serviceName, Uri tcpEndpointAddress, Uri httpEndpointAddress)
 		{
-			var myEndpoint = new EndpointAddress(endpointAddress);
-			this.channelFactory = new ChannelFactory<ServiceInterface>(WcfHelper.BuildNetTcpBinding(), myEndpoint);
+
+			tcpEndpointAddress = tcpEndpointAddress.Path("/{0}/".FormatWith(serviceName));
+			httpEndpointAddress = httpEndpointAddress.Path("/{0}/".FormatWith(serviceName));
+
 			try
 			{
+				this.channelFactory = new ChannelFactory<ServiceInterface>(WcfHelper.BuildNetTcpBinding(), new EndpointAddress(tcpEndpointAddress.ToString()));
 				this.Service = this.channelFactory.CreateChannel();
 			}
 			catch
 			{
+
 				if (this.Service != null)
-				{
 					((ICommunicationObject)this.Service).Abort();
+
+				if (this.channelFactory != null)
+					this.channelFactory.Close();
+
+				try
+				{
+					this.channelFactory = new ChannelFactory<ServiceInterface>(WcfHelper.BuildBasicHttpBinding(), new EndpointAddress(httpEndpointAddress.ToString()));
+					this.Service = this.channelFactory.CreateChannel();
+				}
+				catch
+				{
+
+					if (this.Service != null)
+						((ICommunicationObject)this.Service).Abort();
+
+					if (this.channelFactory != null)
+						this.channelFactory.Close();
+
+					throw;
 				}
 			}
 		}

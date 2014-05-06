@@ -57,9 +57,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Home.View.js")
 			.CloseHead()
 			.OpenBody()
-			.OpenTag("div", new { @class = "headerContainer" })
-				.OpenTag("div", new { @class = "headerContainer" })
-			.CloseTag("div")
+			//.OpenTag("div", new { @class = "headerContainer" })
+			//	.OpenTag("div", new { @class = "headerContainer" })
+			//.CloseTag("div")
 			.CloseBody()
 			.CloseHtml();
 
