@@ -20,14 +20,15 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string FriendlyName { get; set; }
 		public string Description { get; set; }
 		public string FactoryType { get; set; }
-		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
-		public abstract void Stop();
 		public string ApplicationConfigurationFile { get; set; }
 		public string ApplicationBaseDirectory { get; set; }
-
 		public bool EnableShadowCopy { get; set; }
-
 		public List<AppDomainStatistic> AppDomainStatisticHistory { get; set; }
+
+
+		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
+		public abstract void Stop();
+
 
 		public ApplicationHost()
 		{
@@ -89,7 +90,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		where ApplicationHostControllerType : ApplicationHostController<FactoryType, ContainerType>
 		where FactoryType : IContainerFactory<ContainerType>
 	{
-		private ApplicationHostControllerType applicationHostController;
+		private volatile ApplicationHostControllerType applicationHostController;
 
 		private AppDomain privateAppDomain;
 

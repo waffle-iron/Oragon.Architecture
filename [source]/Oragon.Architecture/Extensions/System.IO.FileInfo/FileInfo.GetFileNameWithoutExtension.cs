@@ -17,7 +17,7 @@ namespace Oragon.Architecture.Extensions
 		/// <returns>The file name without extension.</returns>
 		public static string GetFileNameWithoutExtension(this FileInfo @this)
 		{
-			return Path.GetFileNameWithoutExtension(@this.Name);
+			return System.IO.Path.GetFileNameWithoutExtension(@this.Name);
 		}
 	}
 }

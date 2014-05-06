@@ -204,6 +204,13 @@
     <Compile Include="Extensions\System.Type\Type.GetPrivateProperty.cs" />
     <Compile Include="Extensions\System.Type\Type.GetPublicField.cs" />
     <Compile Include="Extensions\System.Type\Type.GetPublicProperty.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Fragment.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Host.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Password.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Path.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.UserName.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Scheme.cs" />
+    <Compile Include="Extensions\System.Uri\Uri.Query.cs" />
     <Compile Include="Logging\AbstractLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Loggers\DiagnosticsLogger.cs" />
@@ -216,6 +223,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\System.Reflection.Assembly\System.Reflection.Assembly.GetAssemblyVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\System.Uri\Uri.Port.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
