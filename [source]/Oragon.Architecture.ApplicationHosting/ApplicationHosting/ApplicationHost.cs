@@ -1,5 +1,5 @@
 ﻿using NDepend.Path;
-using Oragon.Architecture.ApplicationHosting.Model;
+using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,12 +23,11 @@ namespace Oragon.Architecture.ApplicationHosting
 		public string ApplicationConfigurationFile { get; set; }
 		public string ApplicationBaseDirectory { get; set; }
 		public bool EnableShadowCopy { get; set; }
-		public List<AppDomainStatistic> AppDomainStatisticHistory { get; set; }
 
 
 		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
 		public abstract void Stop();
-
+		public abstract AppDomainStatistic GetAppDomainStatistics();
 
 		public ApplicationHost()
 		{
@@ -84,6 +83,21 @@ namespace Oragon.Architecture.ApplicationHosting
 			return absoluteApplicationConfigurationFile;
 		}
 
+		public virtual ApplicationDescriptor ToDescriptor()
+		{
+			return new ApplicationDescriptor()
+			{
+				Name = this.Name,
+				FriendlyName = this.FriendlyName,
+				Description = this.Description,
+				FactoryType = this.FactoryType,
+				ApplicationConfigurationFile = this.ApplicationConfigurationFile,
+				ApplicationBaseDirectory = this.ApplicationBaseDirectory,
+				TypeName = this.GetType().FullName
+			};
+		}
+
+
 	}
 
 	public abstract class ApplicationHost<ApplicationHostControllerType, FactoryType, ContainerType> : ApplicationHost
@@ -116,6 +130,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.applicationHostController.InitializeContainer();
 			this.applicationHostController.Start();
 			this.heartBeatTimer.Start();
+		}
+
+		public override AppDomainStatistic GetAppDomainStatistics()
+		{
+			return this.applicationHostController.GetAppDomainStatistics();
 		}
 
 		public override void Stop()

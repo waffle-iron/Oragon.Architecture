@@ -58,17 +58,19 @@
     </Compile>
     <Compile Include="ApplicationHosting\AccountType.cs" />
     <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
-    <Compile Include="ApplicationHosting\ClientApiProxy.cs" />
     <Compile Include="ApplicationHosting\ConsoleServiceHost.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
-    <Compile Include="ApplicationHosting\Model\AppDomainStatistic.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\AppDomainStatistic.cs" />
     <Compile Include="ApplicationHosting\IContainerFactory.cs" />
-    <Compile Include="ApplicationHosting\Model\AssemblyDescriptor.cs" />
-    <Compile Include="ApplicationHosting\Model\ApplicationDescriptor.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\AssemblyDescriptor.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\ApplicationDescriptor.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\ApplicationStatistic.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\HostStatistic.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\HostDescriptor.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IApplicationServerService.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IHeartBeatService.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IHostProcessService.cs" />
-    <Compile Include="ApplicationHosting\Services\HostProcessService.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\MachineDescriptor.cs" />
     <Compile Include="ApplicationHosting\Services\WcfClient.cs" />
     <Compile Include="ApplicationHosting\Services\WcfHelper.cs" />
     <Compile Include="ApplicationHosting\Services\WcfHost.cs" />

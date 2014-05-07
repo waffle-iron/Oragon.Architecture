@@ -12,7 +12,7 @@ using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
-	public class ConsoleServiceHost
+	public class ConsoleServiceHost : IHostProcessService
 	{
 		private Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
 
@@ -24,8 +24,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
 
-		private Services.WcfHost<Services.HostProcessService, IHostProcessService> hostProcessServiceHost;
-
+		private Services.WcfHost<ConsoleServiceHost, IHostProcessService> hostProcessServiceHost;
 
 		public List<ApplicationHost> Applications { get; set; }
 
@@ -108,11 +107,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
 			apiEndpoint.Add(new Uri("http://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
 
-			this.hostProcessServiceHost = new ApplicationHosting.Services.WcfHost<Services.HostProcessService, Services.Contracts.IHostProcessService>()
+			this.hostProcessServiceHost = new ApplicationHosting.Services.WcfHost<ConsoleServiceHost, Services.Contracts.IHostProcessService>()
 			{
-				Name = "HostProcessService", 
+				Name = "HostProcessService",
 				BaseAddresses = apiEndpoint.ToArray(),
-				ServiceInstance = null,
+				ServiceInstance = this,
 				ConcurrencyMode = System.ServiceModel.ConcurrencyMode.Multiple,
 				InstanceContextMode = System.ServiceModel.InstanceContextMode.Single
 			};
@@ -145,18 +144,7 @@ namespace Oragon.Architecture.ApplicationHosting
 						ManagementHttpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "http").Port,
 						ManagementTcpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "net.tcp").Port,
 						Name = this.Name,
-						Applications = this.Applications.ToList(it =>
-							new ApplicationDescriptor()
-							{
-								Name = it.Name,
-								FriendlyName = it.FriendlyName,
-								Description = it.Description,
-								FactoryType = it.FactoryType,
-								ApplicationConfigurationFile = it.ApplicationConfigurationFile,
-								ApplicationBaseDirectory = it.ApplicationBaseDirectory
-
-							}
-						).ToList()
+						Applications = this.Applications.ToList(it => it.ToDescriptor())
 					}
 				};
 				RegisterHostResponseMessage responseMessage = applicationServerClient.Service.RegisterHost(requestMessage);
@@ -321,6 +309,48 @@ namespace Oragon.Architecture.ApplicationHosting
 			return iplist.ToList();
 		}
 
+		#region IHostProcessService Methods
 
+		public HostStatistic CollectStatistics()
+		{
+			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+
+			HostStatistic returnValue = new HostStatistic()
+			{
+				ApplicationStatistics = new List<ApplicationStatistic>()
+			};
+
+			foreach (var application in tmpApplicationList)
+			{
+				returnValue.ApplicationStatistics.Add(new ApplicationStatistic()
+				{
+					AppDomainStatistic = application.GetAppDomainStatistics(),
+					ApplicationDescriptor = application.ToDescriptor()
+				});
+			}
+			return returnValue;
+		}
+
+		public virtual void AddApplication()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void StartApplication()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void StopApplication()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual void HeartBeat()
+		{
+
+		}
+
+		#endregion
 	}
 }

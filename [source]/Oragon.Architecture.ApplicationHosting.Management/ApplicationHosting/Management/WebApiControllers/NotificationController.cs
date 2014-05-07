@@ -1,5 +1,4 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Management.Repository;
-using Oragon.Architecture.ApplicationHosting.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

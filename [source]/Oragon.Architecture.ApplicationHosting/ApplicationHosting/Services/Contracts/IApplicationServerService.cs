@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Runtime.Serialization;
-using Oragon.Architecture.ApplicationHosting.Model;
 
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
@@ -17,8 +16,6 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 
 		[OperationContract]
 		UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request);
-
-		
 
 	}
 
@@ -37,65 +34,12 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 
 	}
 
-	[DataContract(IsReference = true)]
-	public class MachineDescriptor
-	{
-		[DataMember]
-		public string MachineName { get; set; }
-
-		[DataMember]
-		public List<string> IPAddressList { get; set; }
-	}
-
-
-
-	[DataContract(IsReference = true)]
-	public class HostDescriptor
-	{
-		[DataMember]
-		public int ManagementHttpPort { get; set; }
-
-		[DataMember]
-		public int ManagementTcpPort { get; set; }
-		
-		[DataMember]
-		public string Name { get; set; }
-
-		[DataMember]
-		public string FriendlyName { get; set; }
-
-		[DataMember]
-		public string Description { get; set; }
-
-		[DataMember]
-		public List<ApplicationDescriptor> Applications { get; set; }
-
-		[DataMember]
-		public int PID { get; set; }
-	}
-
-	[DataContract(IsReference = true)]
-	public class ApplicationDescriptor
-	{
-		[DataMember]
-		public string Name { get; set; }
-		[DataMember]
-		public string FriendlyName { get; set; }
-		[DataMember]
-		public string Description { get; set; }
-		[DataMember]
-		public string FactoryType { get; set; }
-		[DataMember]
-		public string ApplicationConfigurationFile { get; set; }
-		[DataMember]
-		public string ApplicationBaseDirectory { get; set; }
-	}
-
 
 	[Serializable]
 	[DataContract(IsReference = true)]
 	public class RegisterHostResponseMessage
 	{
+		[DataMember]
 		public Guid ClientID { get; set; }
 	}
 	#endregion
@@ -105,6 +49,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	[DataContract(IsReference = true)]
 	public class UnregisterHostRequestMessage
 	{
+		[DataMember]
 		public Guid ClientID { get; set; }
 	}
 

@@ -11,7 +11,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	public interface IHostProcessService : IHeartBeatService
 	{
 		[OperationContract]
-		void CollectStatistics();
+		HostStatistic CollectStatistics();
 		
 		[OperationContract]
 		void AddApplication();

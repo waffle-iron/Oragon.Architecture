@@ -1,4 +1,4 @@
-﻿using Oragon.Architecture.ApplicationHosting.Model;
+﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

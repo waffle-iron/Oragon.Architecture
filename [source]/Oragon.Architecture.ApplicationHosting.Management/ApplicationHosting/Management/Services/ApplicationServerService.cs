@@ -37,6 +37,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Services
 			using (var hostProcessServiceClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IHostProcessService>(serviceName: "HostProcessService", httpEndpointAddress: httpUri, tcpEndpointAddress: tcpUri))
 			{
 				hostProcessServiceClient.Service.HeartBeat();
+				hostProcessServiceClient.Service.CollectStatistics();
 			}
 			return new RegisterHostResponseMessage() { ClientID = Guid.NewGuid() };
 		}
