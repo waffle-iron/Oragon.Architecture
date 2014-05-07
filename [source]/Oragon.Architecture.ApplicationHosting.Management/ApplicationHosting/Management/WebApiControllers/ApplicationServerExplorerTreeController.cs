@@ -22,17 +22,20 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		{
 			if (node == "root")
 			{
-				return new TreeItem[] { 
-					
-					new TreeItem(){ 
+				return new TreeItem[] 
+				{ 
+					new TreeItem()
+					{ 
 						id="/Servers/", 
 						text = "Servers", 
 						iconCls= "AppIcons-folder-brick", 
 						leaf=false, 
 						expanded = false, 
 						children = null,
-						menuItems = new MenuItem[]{
-							new MenuItem(){ 
+						menuItems = new MenuItem[]
+						{
+							new MenuItem()
+							{ 
 								text="Refresh", 
 								iconCls="AppIcons-arrow-refresh-small", 
 								handlerFunction="HomeController.refreshTreeNode",
@@ -40,41 +43,51 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 							} 
 						}
 					},
-					new TreeItem(){ id="root/Repository",text = "Repository", iconCls= "AppIcons-information", leaf=false, expanded = true, children = null}
+					new TreeItem()
+					{ 
+						id="root/Repository",
+						text = "Repository", 
+						iconCls= "AppIcons-information", 
+						leaf=false, 
+						expanded = true, 
+						children = null,
+						
+					}
 				};
 			}
 			else if (node == "/Servers/")
 			{
-				return this.ApplicationRepository.Machines.Select(
-					it =>
-					new TreeItem()
+				var query = from machine in this.ApplicationRepository.Machines
+							select new TreeItem()
 							{
-								id = "/Server/{0}/".FormatWith(it.MachineDescriptor.MachineName),
-								text = "Server {0}".FormatWith(it.MachineDescriptor.MachineName),
+								id = "/Server/{0}/".FormatWith(machine.MachineDescriptor.MachineName),
+								text = "Server {0}".FormatWith(machine.MachineDescriptor.MachineName),
 								iconCls = "AppIcons-server",
 								leaf = false,
 								expanded = false,
 								children = null
-							}
-					);
+							};
 
+				return query.ToList();
 			}
 			else if (node.StartsWith("/Server/"))
 			{
 				string machineName = node.Split("/", StringSplitOptions.RemoveEmptyEntries).Last();
-				Machine machine = this.ApplicationRepository.Machines.Single(it => it.MachineDescriptor.MachineName == machineName);
 
-				return machine.Hosts.Select(it =>
-					new TreeItem()
-					{
-						id = "/Host/{0}/".FormatWith(it.ID),
-						text = "Host {0} :{1}".FormatWith(it.HostDescriptor.FriendlyName, it.HostDescriptor.PID),
-						iconCls = "AppIcons-application-cascade",
-						leaf = false,
-						expanded = false,
-						children = null
-					}
-				);
+				var query = from machine in this.ApplicationRepository.Machines
+							from host in machine.Hosts
+							where machine.MachineDescriptor.MachineName == machineName
+							select new TreeItem()
+							{
+								id = "/Host/{0}/".FormatWith(host.ID),
+								text = "Host {0} :{1}".FormatWith(host.HostDescriptor.FriendlyName, host.HostDescriptor.PID),
+								iconCls = "AppIcons-application-cascade",
+								leaf = false,
+								expanded = false,
+								children = null
+							};
+
+				return query.ToList();
 			}
 			else if (node.StartsWith("/Host/"))
 			{
@@ -92,7 +105,17 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								iconCls = "AppIcons-application",
 								leaf = true,
 								expanded = false,
-								children = null
+								children = null,
+								menuItems = new MenuItem[]
+								{
+									new MenuItem()
+									{ 
+										text="Stop", 
+										iconCls="AppIcons-control-stop-blue", 
+										handlerFunction="HomeController.stopApplication",
+										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNO, MessageBoxIcon.WARNING, "Are you shure? This operation stop application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+									} 
+								}
 							};
 
 				return query.ToList();

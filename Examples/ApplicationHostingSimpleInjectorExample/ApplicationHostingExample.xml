@@ -8,9 +8,10 @@
 	>
 
 	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
-		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
-		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
-		<property name="Description" value="Example of Simple way to deply business services" />
+		<property name="Name" value="Hosting SimpleInjector Example" />
+		<property name="FriendlyName" value="Hosting SimpleInjector Example" />
+		<property name="Description" value="Hosting SimpleInjector Example" />
+
 		<property name="ApplicationServerTcpEndPoint" value="net.tcp://localhost:7778" />
 		<property name="ApplicationServerHttpEndPoint" value="http://localhost:7779" />
 		

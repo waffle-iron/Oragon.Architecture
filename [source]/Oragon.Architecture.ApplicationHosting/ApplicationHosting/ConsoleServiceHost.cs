@@ -348,7 +348,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual void HeartBeat()
 		{
-
+			System.Diagnostics.Debug.WriteLine("{0} receive heartbeat ping.".FormatWith(this.Name));
 		}
 
 		#endregion

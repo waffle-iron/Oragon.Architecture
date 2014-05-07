@@ -30,13 +30,13 @@
 					if(menuItem.actionConfirmation == null)
 					{
 						menuItem.handler = function (widget, event) {
-							TreeViewManager.defaultMenuItemHandlers.handlerWithoutConfirmation(record.data, menuItem);
+							Oragon.Architecture.Scripting.TreeViewManager.defaultMenuItemHandlers.handlerWithoutConfirmation(record.data, menuItem);
 						}
 					}
 					else
 					{
 						menuItem.handler = function (widget, event) {
-							TreeViewManager.defaultMenuItemHandlers.handlerWithConfirmation(record.data, menuItem);
+							Oragon.Architecture.Scripting.TreeViewManager.defaultMenuItemHandlers.handlerWithConfirmation(record.data, menuItem);
 						}
 					}
 
@@ -52,8 +52,12 @@
 	refreshTreeNode: function (data, menuItem) {
 		
 
-	}
+	},
 
+	stopApplication: function (data, menuItem) {
+		
+
+	}
 
 
 }

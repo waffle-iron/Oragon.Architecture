@@ -20,7 +20,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 			this.Machines = new List<Machine>();
 		}
 
-		public Guid Register(RegisterHostRequestMessage registerMessage)
+		public Host Register(RegisterHostRequestMessage registerMessage)
 		{
 			lock (syncLock)
 			{
@@ -38,17 +38,18 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 				{
 					machine.MachineDescriptor = registerMessage.MachineDescriptor;
 				}
-
-				Guid id = Guid.NewGuid();
-				machine.Hosts.Add(new Host() { ID = id, HostDescriptor = registerMessage.HostDescriptor });
-				return id;
+				Host host = new Host() { ID = Guid.NewGuid(), HostDescriptor = registerMessage.HostDescriptor };
+				machine.Hosts.Add(host);
+				return host;
 			}
 		}
 
-		public void Unregister(UnregisterHostRequestMessage unregisterMessage)
+
+		public Host Unregister(UnregisterHostRequestMessage unregisterMessage)
 		{
 			lock (syncLock)
 			{
+				Host returnValue = null;
 				var query = from machine in this.Machines
 							from host in machine.Hosts
 							where
@@ -59,8 +60,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 				{
 					var tuple = query.Single();
 					tuple.machine.Hosts.Remove(tuple.host);
+					returnValue = tuple.host;
 				}
+				return returnValue;
 			}
+
 		}
 	}
 }

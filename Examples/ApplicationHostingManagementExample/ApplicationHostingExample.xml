@@ -8,7 +8,7 @@
 	>
 
 	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
-		<property name="Name" value="ApplicationHostingManagementExample" />
+		<property name="Name" value="Management WCF OWIN UI" />
 		<property name="FriendlyName" value="Oragon Architecture Application Hosting Management" />
 		<property name="Description" value="Management Server" />
 		<property name="ApplicationServerTcpEndPoint" value="net.tcp://localhost:7778" />

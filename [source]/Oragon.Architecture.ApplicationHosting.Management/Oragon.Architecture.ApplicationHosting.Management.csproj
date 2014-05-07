@@ -220,6 +220,9 @@
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\icon-storage-filesystem.fw.png" />
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\Oragon App Server.fw.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Oragon.AjaxManager.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	   Other similar extension points exist, see Microsoft.Common.targets.

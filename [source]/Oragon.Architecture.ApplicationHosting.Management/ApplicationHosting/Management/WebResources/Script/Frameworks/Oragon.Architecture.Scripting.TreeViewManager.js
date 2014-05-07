@@ -1,5 +1,8 @@
-﻿var TreeViewManager = {
+﻿var Oragon = Oragon || {};
+Oragon.Architecture = Oragon.Architecture || {};
+Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
+Oragon.Architecture.Scripting.TreeViewManager = {
 	defaultMenuItemHandlers: {
 
 		handlerWithConfirmation: function (data, menuItem) {
