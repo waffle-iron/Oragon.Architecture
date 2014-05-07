@@ -49,6 +49,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			view.Stylesheet("/dynRes/icons/style.css")
 			.OpenScript()
 			.WriteLine("var hostUrl = 'http://{0}/';", this.Request.Host.Value)
+			.WriteLine("var clientID = '{0}';", Guid.NewGuid())
 			.CloseScript()
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Frameworks/Radio.js")
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Frameworks/Linq.js")

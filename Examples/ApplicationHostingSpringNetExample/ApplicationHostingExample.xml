@@ -9,9 +9,10 @@
 
 	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
 		<property name="Name" value="OragonArchitectureApplicationHostingExample" />
-		<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
-		<property name="Description" value="Example of Simple way to deply business services" />
-		<property name="MonitoringEndPoint" value="http://localhost:7777" />
+		<property name="FriendlyName" value="Hosting SimpleInjector Example" />
+		<property name="Description" value="SimpleInjector Example" />
+		<property name="ApplicationServerTcpEndPoint" value="net.tcp://localhost:7778" />
+		<property name="ApplicationServerHttpEndPoint" value="http://localhost:7779" />
 
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
@@ -28,14 +29,14 @@
 
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
-				<object type="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkApplicationHost, Oragon.Architecture.ApplicationHosting.SpringFramework">
+				<!--<object type="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkApplicationHost, Oragon.Architecture.ApplicationHosting.SpringFramework">
 					<property name="Name" value="Application Hosting Example" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="FactoryType" value="Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkFactory, Oragon.Architecture.ApplicationHosting.SpringFramework"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
 					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
-				</object>
+				</object>-->
 			</list>
 		</property>
 	</object>

@@ -153,6 +153,9 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ApplicationHosting\Management\Repository\Models\ApplicationModel\Host.cs" />
+    <Compile Include="ApplicationHosting\Management\Repository\Models\ApplicationModel\Machine.cs" />
+    <Compile Include="ApplicationHosting\Management\Repository\Models\NotificationModel\Notification.cs" />
     <Compile Include="ApplicationHosting\Management\Services\ApplicationServerService.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\Db4OStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\IStorageProvider.cs" />

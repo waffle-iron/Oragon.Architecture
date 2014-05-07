@@ -6,36 +6,31 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Threading
 {
-	public delegate void SingleMethod();
-
 	public static class ApartmentStateHelper
 	{
-		public static void RunSta(SingleMethod method)
+		public static void RunSta(Action method)
 		{
 			Run(method, System.Threading.ApartmentState.STA);
 		}
 
-		public static void RunMta(SingleMethod method)
+		public static void RunMta(Action method)
 		{
 			Run(method, System.Threading.ApartmentState.MTA);
 		}
 
-		public static void RunUnknown(SingleMethod method)
+		public static void RunUnknown(Action method)
 		{
 			Run(method, System.Threading.ApartmentState.Unknown);
 		}
 
-		private static void Run(SingleMethod method, System.Threading.ApartmentState apartmentState)
+		private static void Run(Action method, System.Threading.ApartmentState apartmentState)
 		{
-
 			System.Threading.ManualResetEvent evnt = new System.Threading.ManualResetEvent(false);
-
 			System.Threading.Thread thread = new System.Threading.Thread(delegate()
 			{
 				method();
 				evnt.Set();
 			});
-
 			thread.SetApartmentState(apartmentState);
 			thread.Start();
 			evnt.WaitOne();

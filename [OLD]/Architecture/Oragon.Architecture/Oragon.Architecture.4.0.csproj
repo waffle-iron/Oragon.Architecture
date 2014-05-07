@@ -230,10 +230,6 @@
     <Compile Include="Merging\MergeResult.cs" />
     <Compile Include="Schedule\SchedulerService.cs" />
     <Compile Include="Services\EnvelopeNullException.cs" />
-    <Compile Include="Services\Host\MexBindingFactory.cs" />
-    <Compile Include="Services\Host\OragonServiceHost.cs" />
-    <Compile Include="Services\Host\ServiceEndpointConfiguration.cs" />
-    <Compile Include="Services\Host\ServiceHostFactoryObject.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\MessageEnvelope.cs" />
     <Compile Include="Services\RabbitMQServiceClientFactory.cs" />

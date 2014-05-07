@@ -15,23 +15,14 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Services
 		ApplicationRepository ApplicationRepository { get; set; }
 		NotificationRepository NotificationRepository { get; set; }
 
+		public void Init()
+		{
+			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.GenericNotification, "Application Host Initialized", string.Empty);
+		}
+
 		public RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request)
 		{
-			Console.WriteLine("ApplicationServerService RegisterHost received");
-
-			/*
-			this.NotificationRepository.AddMessage("Host registring with PID:{1} on machine '{0}'".FormatWith(hostDescriptor.MachineName, hostDescriptor.PID));
-			Guid returnValue = this.ApplicationRepository.Register(hostDescriptor);
-			this.NotificationRepository.AddMessage("Host registred with ID {0}".FormatWith(returnValue));
-			return returnValue;
-
-
-			
-			this.NotificationRepository.AddMessage("Unrgistring host {0}".FormatWith(hostDescriptor.ID));
-			this.ApplicationRepository.Unregister(hostDescriptor.ID);
-			this.NotificationRepository.AddMessage("Host unregistred");
-			*/
-
+			Guid id = this.ApplicationRepository.Register(request);
 			Uri tcpUri = new Uri("net.tcp://{0}:{1}".FormatWith(request.MachineDescriptor.MachineName, request.HostDescriptor.ManagementTcpPort));
 			Uri httpUri = new Uri("http://{0}:{1}".FormatWith(request.MachineDescriptor.MachineName, request.HostDescriptor.ManagementHttpPort));
 			using (var hostProcessServiceClient = new Oragon.Architecture.ApplicationHosting.Services.WcfClient<IHostProcessService>(serviceName: "HostProcessService", httpEndpointAddress: httpUri, tcpEndpointAddress: tcpUri))
@@ -39,12 +30,15 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Services
 				hostProcessServiceClient.Service.HeartBeat();
 				hostProcessServiceClient.Service.CollectStatistics();
 			}
-			return new RegisterHostResponseMessage() { ClientID = Guid.NewGuid() };
+			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.ApplicationRegistered, "Application Regitered", id.ToString("D"));
+			return new RegisterHostResponseMessage() { ClientID = id };
 		}
 
 		public UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request)
 		{
-			return null;
+			this.ApplicationRepository.Unregister(request);
+			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.ApplicationUnregistered, "Application Unregitered", request.ClientID.ToString("D"));
+			return new UnregisterHostResponseMessage();
 		}
 
 		public void HeartBeat()

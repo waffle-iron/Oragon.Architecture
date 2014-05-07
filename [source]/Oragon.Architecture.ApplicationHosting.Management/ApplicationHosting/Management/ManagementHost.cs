@@ -70,7 +70,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 				InstanceContextMode = System.ServiceModel.InstanceContextMode.Single
 			};
 			this.applicationServerServiceHost.Start();
-
+			this.ApplicationServerServiceInstance.Init();
 			IEnumerable<string> IPList = this.GetExternalsIps();
 			var options = BuildWebAppOptions(IPList);
 			this.webServer = WebApp.Start<ManagementHostStartup>(options);

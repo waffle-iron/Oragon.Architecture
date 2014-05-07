@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Oragon.Architecture.Extensions;
+using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
@@ -14,10 +15,10 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		ApplicationRepository ApplicationRepository { get; set; }
 		NotificationRepository NotificationRepository { get; set; }
 
-		[HttpGet]
-		public IEnumerable<string> GetMessages()
+		[HttpPost]
+		public IEnumerable<Notification> GetMessages(Guid? clientID)
 		{
-			return this.NotificationRepository.GetMessages();
+			return this.NotificationRepository.GetMessages(clientID.Value);
 		}
 
 	}

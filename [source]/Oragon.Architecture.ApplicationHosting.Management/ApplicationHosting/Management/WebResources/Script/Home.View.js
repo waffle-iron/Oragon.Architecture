@@ -189,14 +189,23 @@ Ext.onReady(function () {
 			'afterrender': function () {
 				setInterval(function () {
 					Ext.Ajax.request({
-						url: '/api/Notification/GetMessages/',
+						url: '/api/Notification/GetMessages/?clientID=' + clientID,
 						timeout: 60000,
-						params: {},
+						params: {
+							clientID: clientID
+						},
 						success: function (response) {
 							var lines = Ext.JSON.decode(response.responseText, true);
 							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
 							Enumerable.from(lines).forEach(function (line) {
-								notificationCenterTextArea.setValue(line + "\r\n" + notificationCenterTextArea.getValue());
+								notificationCenterTextArea.setValue(
+									line.Date + "\t" +
+									line.Message + "\t" +
+									line.MessageType + "\t" +
+									"\r\n" +
+									notificationCenterTextArea.getValue()
+
+								);
 							});
 						}
 					});

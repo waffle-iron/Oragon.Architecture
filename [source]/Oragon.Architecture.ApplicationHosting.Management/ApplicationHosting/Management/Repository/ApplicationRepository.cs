@@ -5,28 +5,62 @@ using System.Text;
 using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
 using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 {
 	public class ApplicationRepository
 	{
-		public Dictionary<Guid, HostDescriptor> Clients { get; private set; }
+		object syncLock = new Object();
+
+		public List<Machine> Machines { get; private set; }
 
 		public ApplicationRepository()
 		{
-			this.Clients = new Dictionary<Guid, HostDescriptor>();
+			this.Machines = new List<Machine>();
 		}
 
-		public Guid Register(HostDescriptor hostDescriptor)
+		public Guid Register(RegisterHostRequestMessage registerMessage)
 		{
-			Guid ID = Guid.NewGuid();
-			this.Clients.Add(ID, hostDescriptor);
-			return ID;
+			lock (syncLock)
+			{
+				Machine machine = this.Machines.SingleOrDefault(it => it.MachineDescriptor.MachineName == registerMessage.MachineDescriptor.MachineName);
+				if (machine == null)
+				{
+					machine = new Machine()
+					{
+						MachineDescriptor = registerMessage.MachineDescriptor,
+						Hosts = new List<Host>()
+					};
+					this.Machines.Add(machine);
+				}
+				else
+				{
+					machine.MachineDescriptor = registerMessage.MachineDescriptor;
+				}
+
+				Guid id = Guid.NewGuid();
+				machine.Hosts.Add(new Host() { ID = id, HostDescriptor = registerMessage.HostDescriptor });
+				return id;
+			}
 		}
 
-		public void Unregister(Guid ID)
+		public void Unregister(UnregisterHostRequestMessage unregisterMessage)
 		{
-			this.Clients.Remove(ID);
+			lock (syncLock)
+			{
+				var query = from machine in this.Machines
+							from host in machine.Hosts
+							where
+							host.ID == unregisterMessage.ClientID
+							select new { machine = machine, host = host };
+
+				if (query.Any())
+				{
+					var tuple = query.Single();
+					tuple.machine.Hosts.Remove(tuple.host);
+				}
+			}
 		}
 	}
 }

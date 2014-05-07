@@ -8,10 +8,11 @@
 	>
 
 	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
-		<property name="Name" value="Oragon ArchitectureApplicationHostingNinjectExample" />
-		<property name="FriendlyName" value="Oragon Architecture Application Hosting Ninject Example" />
+		<property name="Name" value="OragonArchitectureApplicationHostingNinjectExample" />
+		<property name="FriendlyName" value="Hosting Ninject Example" />
 		<property name="Description" value="Ninject Example" />
-		<property name="MonitoringEndPoint" value="http://localhost:7777" />
+		<property name="ApplicationServerTcpEndPoint" value="net.tcp://localhost:7778" />
+		<property name="ApplicationServerHttpEndPoint" value="http://localhost:7779" />
 
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
@@ -28,14 +29,14 @@
 
 		<property name="Applications">
 			<list element-type="Oragon.Architecture.ApplicationHosting.ApplicationHost, Oragon.Architecture.ApplicationHosting">
-				<object type="Oragon.Architecture.ApplicationHosting.Ninject.NinjectApplicationHost, Oragon.Architecture.ApplicationHosting.Ninject">
+				<!--<object type="Oragon.Architecture.ApplicationHosting.Ninject.NinjectApplicationHost, Oragon.Architecture.ApplicationHosting.Ninject">
 					<property name="Name" value="Oragon Architecture Application Hosting Ninject Example" />
 					<property name="FriendlyName" value="Oragon Architecture Application Hosting Ninject Example" />
 					<property name="Description" value="Example of Simple way to deply business services" />
 					<property name="FactoryType" value="ApplicationHostingNinjectExample.NinjectFactory, ApplicationHostingNinjectExample"></property>
 					<property name="ApplicationBaseDirectory" value="./bin/Debug/" />
 					<property name="ApplicationConfigurationFile" value="./ApplicationHostingExample.config" />
-				</object>
+				</object>-->
 			</list>
 		</property>
 	</object>
