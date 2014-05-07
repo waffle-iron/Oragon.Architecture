@@ -11,8 +11,8 @@ using Oragon.Architecture.Extensions;
 namespace Oragon.Architecture.ApplicationHosting.Services
 {
 	public class WcfHost<ServiceType, ServiceInterface>
-		//where ServiceType : ServiceInterface
-		where ServiceType : class, ServiceInterface
+		where ServiceType : class,  ServiceInterface, new()
+		//where ServiceInterface : Object
 	{
 		private ServiceHost host;
 
@@ -20,14 +20,17 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 
 		public Uri[] BaseAddresses { get; set; }
 
+		public ServiceInterface ServiceInstance { get; set; }
+
 		public WcfHost(string name, params Uri[] baseAddresses)
 		{
 			this.Name = name;
 			this.BaseAddresses = this.AnalyseDynamicPorts(baseAddresses);
 		}
 
-		public void Start(ServiceType serviceInstance = default(ServiceType))
+		public void Start()
 		{
+			var serviceInterfaceType = typeof(ServiceInterface);
 			WcfServiceHostFactory wcfServiceHostFactory = new WcfServiceHostFactory()
 			{
 				BaseAddresses = this.BaseAddresses,
@@ -36,16 +39,16 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 				},
 				ServiceEndpoints = new List<ServiceEndpointConfiguration>()
 				{
-					WcfHelper.BuildEndpoint<ServiceInterface>(WcfHelper.EndpointType.Http, this.Name),
-					WcfHelper.BuildEndpoint<ServiceInterface>(WcfHelper.EndpointType.NetTcp, this.Name),
-					WcfHelper.BuildEndpoint<ServiceInterface>(WcfHelper.EndpointType.Mex, this.Name),
+					WcfHelper.BuildEndpoint(WcfHelper.EndpointType.Http, this.Name, serviceInterfaceType),
+					WcfHelper.BuildEndpoint(WcfHelper.EndpointType.NetTcp, this.Name, serviceInterfaceType),
+					WcfHelper.BuildEndpoint(WcfHelper.EndpointType.Mex, this.Name, serviceInterfaceType),
 				}
 			};
 
-			if (default(ServiceType) == serviceInstance)
+			if (this.ServiceInstance != null)
 				this.host = wcfServiceHostFactory.BuildHost(typeof(ServiceType));
 			else
-				this.host = wcfServiceHostFactory.BuildHost(serviceInstance);
+				this.host = wcfServiceHostFactory.BuildHost(this.ServiceInstance);
 			host.Open();
 		}
 

@@ -10,7 +10,7 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Services
 {
-	[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
+	[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
 	public class ApplicationServerService : IApplicationServerService
 	{
 		ApplicationRepository ApplicationRepository { get; set; }

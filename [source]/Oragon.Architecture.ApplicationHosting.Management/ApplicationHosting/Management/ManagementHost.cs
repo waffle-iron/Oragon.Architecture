@@ -61,8 +61,10 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		public void AfterPropertiesSet()
 		{
 			List<Uri> apiEndpoint = BuildApiEndpoints();
-			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray());
-			this.applicationServerServiceHost.Start(this.ApplicationServerServiceInstance);
+			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray()) {
+				ServiceInstance = this.ApplicationServerServiceInstance
+			};
+			this.applicationServerServiceHost.Start();
 
 			IEnumerable<string> IPList = this.GetExternalsIps();
 			var options = BuildWebAppOptions(IPList);

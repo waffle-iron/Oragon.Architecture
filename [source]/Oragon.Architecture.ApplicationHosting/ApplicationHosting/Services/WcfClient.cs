@@ -15,13 +15,10 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 
 		private ChannelFactory<ServiceInterface> channelFactory;
 
-
 		public WcfClient(string serviceName, Uri tcpEndpointAddress, Uri httpEndpointAddress)
 		{
-
 			tcpEndpointAddress = tcpEndpointAddress.Path("/{0}/".FormatWith(serviceName));
 			httpEndpointAddress = httpEndpointAddress.Path("/{0}/".FormatWith(serviceName));
-
 			try
 			{
 				this.channelFactory = new ChannelFactory<ServiceInterface>(WcfHelper.BuildNetTcpBinding(), new EndpointAddress(tcpEndpointAddress.ToString()));

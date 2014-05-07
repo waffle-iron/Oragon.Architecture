@@ -50,9 +50,8 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 			};
 		}
 
-		public static ServiceEndpointConfiguration BuildEndpoint<ServiceInterface>(EndpointType type, string name)
+		public static ServiceEndpointConfiguration BuildEndpoint(EndpointType type, string name, Type serviceInterfaceType)
 		{
-			var serviceInterfaceType = typeof(ServiceInterface);
 			ServiceEndpointConfiguration returnValue = null;
 			switch (type)
 			{
