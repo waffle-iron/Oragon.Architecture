@@ -11,6 +11,9 @@ namespace Oragon.Architecture.Services.Hosting
 {
 	public class WcfServiceHostFactory
 	{
+		public ConcurrencyMode ConcurrencyMode { get; set; }
+		public InstanceContextMode InstanceContextMode { get; set; }
+
 		public Uri[] BaseAddresses { get; set; }
 
 		public List<IServiceBehavior> Behaviors { get; set; }
@@ -28,6 +31,13 @@ namespace Oragon.Architecture.Services.Hosting
 			ServiceHost serviceHost = new ServiceHost(serviceType, this.BaseAddresses);
 			this.ConfigureHost(serviceHost);
 			return serviceHost;
+		}
+
+		protected virtual void ConfigureHost(ServiceHost serviceHost)
+		{
+			this.AddBehaviors(serviceHost);
+			this.AddServiceEndpoints(serviceHost);
+			this.ConfigureServiceBehaviorAttribute(serviceHost);
 		}
 
 		protected virtual void AddBehaviors(ServiceHost serviceHost)
@@ -52,10 +62,12 @@ namespace Oragon.Architecture.Services.Hosting
 			}
 		}
 
-		protected virtual void ConfigureHost(ServiceHost serviceHost)
+		protected virtual void ConfigureServiceBehaviorAttribute(ServiceHost serviceHost)
 		{
-			this.AddBehaviors(serviceHost);
-			this.AddServiceEndpoints(serviceHost);
+			var attr = serviceHost.Description.Behaviors.Find<ServiceBehaviorAttribute>();
+			attr.ConcurrencyMode = this.ConcurrencyMode;
+			attr.InstanceContextMode = this.InstanceContextMode;
 		}
+		
 	}
 }

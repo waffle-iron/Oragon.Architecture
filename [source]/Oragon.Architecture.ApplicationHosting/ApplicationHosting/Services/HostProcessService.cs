@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Services
 {
-	[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
 	public class HostProcessService : IHostProcessService
 	{
 		public void CollectStatistics()
@@ -33,7 +32,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 
 		public void HeartBeat()
 		{
-			
+			Console.WriteLine("HostProcessService HeartBeat received");
 		}
 	}
 }

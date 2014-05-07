@@ -61,8 +61,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		public void AfterPropertiesSet()
 		{
 			List<Uri> apiEndpoint = BuildApiEndpoints();
-			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>("ApplicationServerService", apiEndpoint.ToArray()) {
-				ServiceInstance = this.ApplicationServerServiceInstance
+			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>()
+			{
+				Name= "ApplicationServerService",
+				BaseAddresses =  apiEndpoint.ToArray(),
+				ServiceInstance = this.ApplicationServerServiceInstance,
+				ConcurrencyMode = System.ServiceModel.ConcurrencyMode.Multiple,
+				InstanceContextMode = System.ServiceModel.InstanceContextMode.Single
 			};
 			this.applicationServerServiceHost.Start();
 

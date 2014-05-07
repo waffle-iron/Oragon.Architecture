@@ -10,7 +10,7 @@ using Oragon.Architecture.ApplicationHosting.Model;
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
 	[ServiceContract]
-	public interface IApplicationServerService
+	public interface IApplicationServerService : IHeartBeatService
 	{
 		[OperationContract]
 		RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request);
@@ -18,8 +18,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		[OperationContract]
 		UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request);
 
-		[OperationContract]
-		void HeartBeat();
+		
 
 	}
 

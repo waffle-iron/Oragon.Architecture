@@ -66,6 +66,7 @@
     <Compile Include="ApplicationHosting\Model\AssemblyDescriptor.cs" />
     <Compile Include="ApplicationHosting\Model\ApplicationDescriptor.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IApplicationServerService.cs" />
+    <Compile Include="ApplicationHosting\Services\Contracts\IHeartBeatService.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IHostProcessService.cs" />
     <Compile Include="ApplicationHosting\Services\HostProcessService.cs" />
     <Compile Include="ApplicationHosting\Services\WcfClient.cs" />

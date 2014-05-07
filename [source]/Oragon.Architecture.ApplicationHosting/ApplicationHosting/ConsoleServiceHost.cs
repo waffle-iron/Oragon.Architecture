@@ -26,6 +26,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private Services.WcfHost<Services.HostProcessService, IHostProcessService> hostProcessServiceHost;
 
+
 		public List<ApplicationHost> Applications { get; set; }
 
 		public Guid ClientID { get; set; }
@@ -107,7 +108,14 @@ namespace Oragon.Architecture.ApplicationHosting
 			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
 			apiEndpoint.Add(new Uri("http://{0}:{1}/".FormatWith(Environment.MachineName, 0)));
 
-			this.hostProcessServiceHost = new ApplicationHosting.Services.WcfHost<Services.HostProcessService, Services.Contracts.IHostProcessService>("HostProcessService", apiEndpoint.ToArray());
+			this.hostProcessServiceHost = new ApplicationHosting.Services.WcfHost<Services.HostProcessService, Services.Contracts.IHostProcessService>()
+			{
+				Name = "HostProcessService", 
+				BaseAddresses = apiEndpoint.ToArray(),
+				ServiceInstance = null,
+				ConcurrencyMode = System.ServiceModel.ConcurrencyMode.Multiple,
+				InstanceContextMode = System.ServiceModel.InstanceContextMode.Single
+			};
 			this.hostProcessServiceHost.Start();
 		}
 
@@ -137,7 +145,7 @@ namespace Oragon.Architecture.ApplicationHosting
 						ManagementHttpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "http").Port,
 						ManagementTcpPort = this.hostProcessServiceHost.BaseAddresses.Single(it => it.Scheme == "net.tcp").Port,
 						Name = this.Name,
-						Applications = this.Applications.ToList(it => 
+						Applications = this.Applications.ToList(it =>
 							new ApplicationDescriptor()
 							{
 								Name = it.Name,
@@ -313,6 +321,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			return iplist.ToList();
 		}
 
-		
+
 	}
 }

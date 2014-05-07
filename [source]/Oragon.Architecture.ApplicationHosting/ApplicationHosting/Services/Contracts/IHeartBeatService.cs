@@ -8,20 +8,9 @@ using System.Threading.Tasks;
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
 	[ServiceContract]
-	public interface IHostProcessService : IHeartBeatService
+	public interface IHeartBeatService
 	{
 		[OperationContract]
-		void CollectStatistics();
-		
-		[OperationContract]
-		void AddApplication();
-		
-		[OperationContract]
-		void StartApplication();
-
-		[OperationContract]
-		void StopApplication();
-
-
+		void HeartBeat();
 	}
 }

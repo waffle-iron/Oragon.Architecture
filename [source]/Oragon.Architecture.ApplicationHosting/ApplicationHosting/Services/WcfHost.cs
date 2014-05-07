@@ -12,20 +12,32 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 {
 	public class WcfHost<ServiceType, ServiceInterface>
 		where ServiceType : class,  ServiceInterface, new()
-		//where ServiceInterface : Object
+	//where ServiceInterface : Object
 	{
 		private ServiceHost host;
 
 		public string Name { get; set; }
 
-		public Uri[] BaseAddresses { get; set; }
+		private Uri[] _baseAddresses;
+		public Uri[] BaseAddresses
+		{
+			get
+			{
+				return this._baseAddresses;
+			}
+			set
+			{
+				this._baseAddresses = this.AnalyseDynamicPorts(value);
+			}
+		}
+
+		public ConcurrencyMode ConcurrencyMode { get; set; }
+		public InstanceContextMode InstanceContextMode { get; set; }
 
 		public ServiceInterface ServiceInstance { get; set; }
 
-		public WcfHost(string name, params Uri[] baseAddresses)
+		public WcfHost()
 		{
-			this.Name = name;
-			this.BaseAddresses = this.AnalyseDynamicPorts(baseAddresses);
 		}
 
 		public void Start()
@@ -33,6 +45,8 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 			var serviceInterfaceType = typeof(ServiceInterface);
 			WcfServiceHostFactory wcfServiceHostFactory = new WcfServiceHostFactory()
 			{
+				ConcurrencyMode = this.ConcurrencyMode,
+				InstanceContextMode = this.InstanceContextMode,
 				BaseAddresses = this.BaseAddresses,
 				Behaviors = new List<System.ServiceModel.Description.IServiceBehavior>() { 
 					new System.ServiceModel.Description.ServiceMetadataBehavior(){ HttpGetEnabled = true},
@@ -44,8 +58,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 					WcfHelper.BuildEndpoint(WcfHelper.EndpointType.Mex, this.Name, serviceInterfaceType),
 				}
 			};
-
-			if (this.ServiceInstance != null)
+			if (this.ServiceInstance == null)
 				this.host = wcfServiceHostFactory.BuildHost(typeof(ServiceType));
 			else
 				this.host = wcfServiceHostFactory.BuildHost(this.ServiceInstance);

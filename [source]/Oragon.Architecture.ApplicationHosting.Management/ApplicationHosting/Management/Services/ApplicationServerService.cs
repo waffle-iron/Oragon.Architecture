@@ -10,7 +10,6 @@ using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Services
 {
-	[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
 	public class ApplicationServerService : IApplicationServerService
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
@@ -18,7 +17,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Services
 
 		public RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request)
 		{
-
+			Console.WriteLine("ApplicationServerService RegisterHost received");
 
 			/*
 			this.NotificationRepository.AddMessage("Host registring with PID:{1} on machine '{0}'".FormatWith(hostDescriptor.MachineName, hostDescriptor.PID));
