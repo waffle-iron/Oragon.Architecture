@@ -40,12 +40,28 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 		public override void Initialize()
 		{
 			base.Initialize();
+			string startTime = DateTime.Today.ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'", System.Globalization.CultureInfo.InvariantCulture);
+			Func<Microsoft.Owin.IOwinContext, bool> setCache = (context) => {
+				context.Response.Expires = DateTime.Today.AddDays(365);
+				context.Response.ETag = startTime;
+				context.Response.Headers.Append("Cache-Control", "max-age=" + ((long)TimeSpan.FromDays(365).TotalSeconds).ToString(System.Globalization.CultureInfo.InvariantCulture));
+				context.Response.Headers.Append("Last-Modified", startTime);
+				if (context.Request.Headers["If-Modified-Since"] == startTime)
+				{
+					context.Response.ContentType = MimeTypeResolver.ResolveMimeType(context.Request.Uri);
+					context.Response.StatusCode = 304;
+					context.Response.ReasonPhrase = "Resource is not Modified";
+					context.Response.Write(string.Empty);
+					return false;
+				}
+				return true;
+			};
 
 			this.resourceAssemblies = new List<AssemblyMapping>();
-			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/extjs/", assemblyName: "Oragon.Architecture.ExtJS"));
 			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/ApplicationHosting/Management/", assemblyName: "Oragon.Architecture.ApplicationHosting.Management"));
-			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/icons/", assemblyName: "Oragon.Architecture.Icons"));
-			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/bootstrap/", assemblyName: "Oragon.Architecture.Bootstrap"));
+			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/extjs/", assemblyName: "Oragon.Architecture.ExtJS", beforeResultExecution: setCache));
+			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/icons/", assemblyName: "Oragon.Architecture.Icons", beforeResultExecution: setCache));
+			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/bootstrap/", assemblyName: "Oragon.Architecture.Bootstrap", beforeResultExecution: setCache));
 		}
 
 //		public MvcResult LoadFrom(string resourceName)

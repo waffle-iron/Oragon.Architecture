@@ -184,34 +184,7 @@ Ext.onReady(function () {
 			centerRegion,
 			westRegion,
 			southRegion
-		],
-		listeners: {
-			'afterrender': function () {
-				setInterval(function () {
-					Ext.Ajax.request({
-						url: '/api/Notification/GetMessages/?clientID=' + clientID,
-						timeout: 60000,
-						params: {
-							clientID: clientID
-						},
-						success: function (response) {
-							var lines = Ext.JSON.decode(response.responseText, true);
-							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
-							Enumerable.from(lines).forEach(function (line) {
-								notificationCenterTextArea.setValue(
-									line.Date + "\t" +
-									line.Message + "\t" +
-									line.MessageType + "\t" +
-									"\r\n" +
-									notificationCenterTextArea.getValue()
-
-								);
-							});
-						}
-					});
-				}, 10000);
-			}
-		}
+		]
 	});
 
 	HomeController.afterLoad();

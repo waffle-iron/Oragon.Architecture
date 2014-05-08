@@ -3,6 +3,9 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.TreeViewManager = {
+
+	init: function () { },
+
 	defaultMenuItemHandlers: {
 
 		handlerWithConfirmation: function (data, menuItem) {
@@ -25,3 +28,4 @@ Oragon.Architecture.Scripting.TreeViewManager = {
 	}
 
 };
+Oragon.Architecture.Scripting.TreeViewManager.init();

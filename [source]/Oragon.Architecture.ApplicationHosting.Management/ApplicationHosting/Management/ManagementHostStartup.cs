@@ -22,8 +22,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			this.ConfigureErrorPage(app);
 			this.ConfigureWelcomePage(app);
-			this.ConfigureWebMvc(app);
 			this.ConfigureWebApi(app);
+			this.ConfigureWebMvc(app);
 		}
 
 		private void ConfigureWelcomePage(IAppBuilder app)

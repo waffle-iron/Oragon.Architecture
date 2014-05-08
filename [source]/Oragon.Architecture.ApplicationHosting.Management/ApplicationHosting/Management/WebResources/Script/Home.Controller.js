@@ -2,7 +2,7 @@
 
 	init: function()
 	{
-		Ext.setGlyphFontFamily('Pictos');
+		
 	},
 
 	beforeLoad: function () {
@@ -12,6 +12,46 @@
 	afterLoad: function()
 	{
 		HomeController.setupTreeViewContextMenu();
+
+		Oragon.Architecture.Scripting.TimerManager.run({
+			intervalInSeconds: 0,
+			autoReschedule: true,
+			fn: function (timerConfig) {
+				timerConfig.intervalInSeconds = 15;
+
+				Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
+					waiting: {
+						title: "Aguardando...",
+						message: "Aguarde a execução da tarefa!"
+					},
+					urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
+					params: {
+						clientID: clientID
+					},
+					listeners: {
+						success: function (data) {
+							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
+							Enumerable.from(data).forEach(function (itemOfData) {
+								notificationCenterTextArea.setValue(
+									itemOfData.Date + "\t" +
+									itemOfData.Message + "\t" +
+									itemOfData.MessageType + "\t" +
+									"\r\n" +
+									notificationCenterTextArea.getValue()
+								);
+							});
+
+						},
+						failure: function (resultInfo) {
+
+							console.log(resultInfo);
+						},
+					}
+				});
+
+				
+			}
+		});
 	},
 
 	setupTreeViewContextMenu: function()

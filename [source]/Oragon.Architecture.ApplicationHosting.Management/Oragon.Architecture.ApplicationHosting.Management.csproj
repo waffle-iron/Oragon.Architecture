@@ -212,7 +212,7 @@
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Linq.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Oragon.TreeViewManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TreeViewManager.js" />
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Home.Controller.js" />
   </ItemGroup>
   <ItemGroup>
@@ -221,7 +221,19 @@
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\Oragon App Server.fw.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Oragon.AjaxManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\AjaxManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\ErrorManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\WaitingManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\Reflection.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TimerManager.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

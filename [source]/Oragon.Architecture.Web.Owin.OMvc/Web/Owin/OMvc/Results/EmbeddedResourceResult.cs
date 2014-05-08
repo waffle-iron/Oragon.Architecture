@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
+using Microsoft.Owin;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
@@ -13,7 +14,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 		{
 			return new EmbeddedResourceResult(mappings);
 		}
-	
+
 	}
 
 
@@ -28,11 +29,16 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 
 			public System.Reflection.Assembly Assembly { get; private set; }
 
-			public AssemblyMapping(string virtualFolder, string assemblyName)
+			public Action<IOwinContext> AfterResultExecution { get; set; }
+			public Func<IOwinContext, bool> BeforeResultExecution { get; set; }
+
+			public AssemblyMapping(string virtualFolder, string assemblyName, Func<IOwinContext, bool> beforeResultExecution = null, Action<IOwinContext> afterResultExecution = null)
 			{
 				this.Assembly = System.Reflection.Assembly.Load(assemblyName);
 				this.VirtualFolder = virtualFolder;
 				this.AssemblyName = assemblyName;
+				this.BeforeResultExecution = beforeResultExecution;
+				this.AfterResultExecution = afterResultExecution;
 			}
 		}
 
@@ -43,7 +49,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			this.mappings = mappings.ToList();
 		}
 
-		public override void Execute(Microsoft.Owin.IOwinContext context)
+		public override void Execute(IOwinContext context)
 		{
 			string pathAndQuery = context.Request.Uri.PathAndQuery;
 			string[] parts = pathAndQuery.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
@@ -66,7 +72,19 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 					if (stream != null)
 					{
 						var streamResult = new StreamResult() { Stream = stream, ContentType = contentType };
-						streamResult.Execute(context);
+						bool canExecute = true;
+						if (assemblyMapping.BeforeResultExecution != null)
+						{
+							canExecute = assemblyMapping.BeforeResultExecution(context);
+						}
+						if (canExecute)
+						{
+							streamResult.Execute(context);
+							if (assemblyMapping.AfterResultExecution != null)
+							{
+								assemblyMapping.AfterResultExecution(context);
+							}
+						}
 						return;
 					}
 				}
