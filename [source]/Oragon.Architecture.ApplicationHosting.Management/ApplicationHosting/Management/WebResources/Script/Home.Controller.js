@@ -24,7 +24,8 @@
 						title: "Aguardando...",
 						message: "Aguarde a execução da tarefa!"
 					},
-					urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
+					//urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
+					urlToSend: '/api/Notification/GetMessages/'+clientID,
 					params: {
 						clientID: clientID
 					},

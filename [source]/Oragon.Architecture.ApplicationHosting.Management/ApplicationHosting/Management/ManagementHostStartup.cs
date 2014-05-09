@@ -40,13 +40,13 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			var httpConfig = new HttpConfiguration();
 			httpConfig.DependencyResolver = new Oragon.Architecture.Web.Owin.Resolvers.SpringDependencyResolver(ManagementHost.Current.ApplicationContext);
-			//httpConfig.MapHttpAttributeRoutes();
-			httpConfig.Routes.MapHttpRoute(
-				name: "WebApi", 
-				routeTemplate: "api/{controller}/{action}", 
-				defaults: new { controller = "Ping", action = RouteParameter.Optional }
-				
-			);
+			httpConfig.MapHttpAttributeRoutes();
+			//httpConfig.Routes.MapHttpRoute(
+			//	name: "WebApi",
+			//	routeTemplate: "api/{controller}/{action}/{id}",
+			//	defaults: new { id = RouteParameter.Optional }
+
+			//);
 
 			httpConfig.Formatters.Clear();
 			httpConfig.Formatters.Add(new HtmlMediaTypeFormatter());
@@ -65,9 +65,27 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		private void ConfigureWebMvc(IAppBuilder app)
 		{
 			var httpConfig = new HttpConfiguration();
-			httpConfig.Routes.MapHttpRoute("WebMvc", "management/{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = RouteParameter.Optional });
-			httpConfig.Routes.MapHttpRoute("WebMvc_resjs", "dynRes/{*resourceName}", new { controller = "Resource", action = "LoadFrom", resourceName = RouteParameter.Optional });
-			httpConfig.Routes.MapHttpRoute("WebMvcRedirect", "", new { controller = "Redirect", action = "ToHome", resourceName = RouteParameter.Optional });
+			httpConfig.Routes.MapHttpRoute(
+				name: "WebMvc1", 
+				routeTemplate: "management/{controller}/{action}/", 
+				defaults: new { controller = "Home", action = "Index" }
+			);
+			httpConfig.Routes.MapHttpRoute(
+				name: "WebMvc2",
+				routeTemplate: "management/{controller}/{action}/{id}",
+				defaults: new { controller = "Home", action = "Index", id = RouteParameter.Optional },
+				constraints: new { id = @"\d+" }
+			);
+			httpConfig.Routes.MapHttpRoute(
+				name: "WebMvc_resjs",
+				routeTemplate: "dynRes/{*resourceName}",
+				defaults: new { controller = "Resource", action = "LoadFrom", resourceName = RouteParameter.Optional }
+			);
+			httpConfig.Routes.MapHttpRoute(
+				name: "WebMvcRedirect",
+				routeTemplate: "",
+				defaults: new { controller = "Redirect", action = "ToHome", resourceName = RouteParameter.Optional }
+			);
 
 			var middlewareOptions = new OMvcMiddlewareOptions(ManagementHost.Current.ApplicationContext);
 			app.Use<OMvcMiddleware>(middlewareOptions, httpConfig);

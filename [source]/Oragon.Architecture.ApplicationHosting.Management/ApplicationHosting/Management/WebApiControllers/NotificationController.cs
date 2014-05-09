@@ -10,15 +10,17 @@ using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.Notifi
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
+	[RoutePrefix("api/Notification")]
 	public class NotificationController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
 		NotificationRepository NotificationRepository { get; set; }
 
 		[HttpPost]
-		public IEnumerable<Notification> GetMessages(Guid? clientID)
+		[Route("GetMessages/{clientID:guid}/")]
+		public IEnumerable<Notification> GetMessages(Guid clientID)
 		{
-			return this.NotificationRepository.GetMessages(clientID.Value);
+			return this.NotificationRepository.GetMessages(clientID);
 		}
 
 	}

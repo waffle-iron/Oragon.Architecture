@@ -108,7 +108,7 @@ Ext.onReady(function () {
 	var appServerExplorerStore = Ext.create('Ext.data.TreeStore', {
 		proxy: {
 			type: 'ajax',
-			url: '/api/ApplicationServerExplorerTree/'
+			url: '/api/ApplicationServerExplorerTree/GetNodes/'
 		},
 		root: {
 			text: 'Application Server Explorer',

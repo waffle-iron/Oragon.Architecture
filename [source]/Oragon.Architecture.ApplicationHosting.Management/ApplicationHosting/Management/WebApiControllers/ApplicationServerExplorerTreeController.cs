@@ -11,6 +11,7 @@ using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.Applic
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
+	[RoutePrefix("api/ApplicationServerExplorerTree")]
 	public class ApplicationServerExplorerTreeController : ApiController
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
@@ -18,7 +19,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 
 
 		[HttpGet]
-		public IEnumerable<TreeItem> Get(string node)
+		[Route("GetNodes")]
+		public IEnumerable<TreeItem> GetNodes(string node)
 		{
 			if (node == "root")
 			{
@@ -45,12 +47,29 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 					},
 					new TreeItem()
 					{ 
-						id="root/Repository",
+						id="/Repository",
 						text = "Repository", 
 						iconCls= "AppIcons-information", 
 						leaf=false, 
-						expanded = true, 
+						expanded = false, 
 						children = null,
+						menuItems = new MenuItem[]
+						{
+							new MenuItem()
+							{ 
+								text="Refresh", 
+								iconCls="AppIcons-arrow-refresh-small", 
+								handlerFunction="HomeController.refreshTreeNode",
+								actionConfirmation = null
+							},
+							new MenuItem()
+							{ 
+								text="Add New Application", 
+								iconCls="AppIcons-application-add", 
+								handlerFunction="HomeController.refreshTreeNode",
+								actionConfirmation = null
+							}
+						}
 						
 					}
 				};
