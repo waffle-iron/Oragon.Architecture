@@ -203,9 +203,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Home.View.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Radio.js" />
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TreeViewManager.js" />
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Home.Controller.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\icon-storage-db4o.fw.png" />
@@ -234,6 +230,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TimerManager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\App.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\view\HomeNorthRegion.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\view\HomeCenterRegion.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\view\HomeSouthRegion.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\view\ServerExplorerTree.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\controller\ServerExplorerTree.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
