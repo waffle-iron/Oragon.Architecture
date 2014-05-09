@@ -3,7 +3,7 @@
 
 	//models: ['Post', 'Comment'],
 
-	controllers: ['ServerExplorerTree'],
+	controllers: ['ServerExplorerTreeController', 'MenuController'],
 
 	appFolder: '/dynRes/ApplicationHosting/Management/WebResources/Script',
 
@@ -20,7 +20,7 @@
 				Ext.create('OragonAppServerManagement.view.HomeNorthRegion', {}),
 				Ext.create('OragonAppServerManagement.view.HomeCenterRegion', {}),
 				Ext.create('OragonAppServerManagement.view.ServerExplorerTree', { id: 'ServerExplorerTree' }),
-				Ext.create('OragonAppServerManagement.view.HomeSouthRegion', {})
+				Ext.create('OragonAppServerManagement.view.HomeSouthRegion', { id: 'NotificationCenter'})
 			]
 		});
 
@@ -28,15 +28,9 @@
 
 		Oragon.Architecture.Scripting.TimerManager.run({
 			intervalInSeconds: 0,
-			autoReschedule: true,
 			fn: function (timerConfig) {
-				timerConfig.intervalInSeconds = 15;
-
 				Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
-					waiting: {
-						title: "Aguardando...",
-						message: "Aguarde a execução da tarefa!"
-					},
+					waiting: 'NoWait',
 					//urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
 					urlToSend: '/api/Notification/GetMessages/' + clientID,
 					params: {
@@ -53,12 +47,15 @@
 									"\r\n" +
 									notificationCenterTextArea.getValue()
 								);
-							});
 
+								radio(itemOfData.MessageType).broadcast({ sender: null, record: itemOfData });
+							});
+							timerConfig.intervalInSeconds = 5;
+							timerConfig.ScheduleNext();
 						},
 						failure: function (resultInfo) {
-
-							console.log(resultInfo);
+							timerConfig.intervalInSeconds = 30;
+							timerConfig.ScheduleNext();
 						},
 					}
 				});

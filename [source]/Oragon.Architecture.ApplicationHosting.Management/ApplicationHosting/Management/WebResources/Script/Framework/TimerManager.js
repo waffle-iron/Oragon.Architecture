@@ -23,10 +23,13 @@ Oragon.Architecture.Scripting.TimerManager = {
 	},
 
 	_runJob: function (innerTimerConfig) {
-		var jobResult = innerTimerConfig.fn(innerTimerConfig);
-		if (jobResult && innerTimerConfig.autoReschedule) {
-			Oragon.Architecture.Scripting.TimerManager.run(innerTimerConfig)
+		if (Ext.isEmpty(innerTimerConfig.ScheduleNext))
+		{
+			innerTimerConfig.ScheduleNext = function () {
+				Oragon.Architecture.Scripting.TimerManager.run(innerTimerConfig);
+			};
 		}
+		innerTimerConfig.fn(innerTimerConfig);		
 	}
 	
 

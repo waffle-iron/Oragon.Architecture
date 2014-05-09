@@ -4,7 +4,6 @@
 	region: 'south',
 
 	iconCls: 'AppIcons-application-view-list',
-	id: 'NotificationCenter',
 	height: 100,
 	split: true,
 	closable: true,

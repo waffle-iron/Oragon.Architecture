@@ -203,13 +203,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Radio.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\Radio.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Linq.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TreeViewManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\Linq.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\icon-storage-db4o.fw.png" />
@@ -217,19 +214,19 @@
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Images\Oragon App Server.fw.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\AjaxManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\AjaxManager.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\ErrorManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\ErrorManager.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\WaitingManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\WaitingManager.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\Reflection.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\Reflection.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Frameworks\Managers\TimerManager.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\Framework\TimerManager.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\App.js" />
@@ -247,7 +244,10 @@
     <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\view\ServerExplorerTree.js" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\controller\ServerExplorerTree.js" />
+    <EmbeddedResource Include="ApplicationHosting\Management\WebResources\Script\controller\ServerExplorerTreeController.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationHosting\Management\WebResources\Script\controller\MenuController.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,6 +14,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository.Models.No
 		[DataMember]
 		public Guid ID { get; set; }
 
+		[DataMember]
 		public string ContentID { get; set; }
 
 		[DataMember]

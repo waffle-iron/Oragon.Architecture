@@ -43,7 +43,19 @@ Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
 		}
 	}),
 
-	
+	listeners: {
+		itemcontextmenu: function (sender, record, element, index, eventInfo, options) {
+			radio('ServerExplorerTree|ItemContextMenu').broadcast({
+				sender: sender,
+				record: record,
+				element: element,
+				index: index,
+				eventInfo: eventInfo,
+				options: options
+			});
+		}
+	},
+
 
 	initComponent: function () {
 

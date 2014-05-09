@@ -6,12 +6,14 @@ Oragon.Architecture.Scripting.WaitingManager = {
 
 	init: function(){
 
-		radio('AjaxManager:StartRequest').subscribe(function(configObject){
-			configObject.waitingRef = Oragon.Architecture.Scripting.WaitingManager.showWaiting(configObject.waiting, configObject.timeout);
+		radio('AjaxManager:StartRequest').subscribe(function (configObject) {
+			if (configObject.waiting != 'NoWait')
+				configObject.waitingRef = Oragon.Architecture.Scripting.WaitingManager.showWaiting(configObject.waiting, configObject.timeout);
 		});
 
-		radio('AjaxManager:EndRequest').subscribe(function(resultInfo){
-			Oragon.Architecture.Scripting.WaitingManager.stopWaiting(resultInfo.configObject.waitingRef);
+		radio('AjaxManager:EndRequest').subscribe(function (resultInfo) {
+			if (resultInfo.configObject.waiting != 'NoWait')
+				Oragon.Architecture.Scripting.WaitingManager.stopWaiting(resultInfo.configObject.waitingRef);
 		});
 
 	},

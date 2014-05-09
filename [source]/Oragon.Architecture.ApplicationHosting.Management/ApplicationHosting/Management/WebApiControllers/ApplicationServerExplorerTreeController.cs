@@ -22,6 +22,16 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		[Route("GetNodes")]
 		public IEnumerable<TreeItem> GetNodes(string node)
 		{
+			var nodeRefresh = new MenuItem()
+			{
+				text = "Refresh",
+				iconCls = "AppIcons-arrow-refresh-small",
+				actionRoute = "Node|Refresh",
+				actionConfirmation = null
+			};
+
+
+
 			if (node == "root")
 			{
 				return new TreeItem[] 
@@ -36,13 +46,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 						children = null,
 						menuItems = new MenuItem[]
 						{
-							new MenuItem()
-							{ 
-								text="Refresh", 
-								iconCls="AppIcons-arrow-refresh-small", 
-								handlerFunction="HomeController.refreshTreeNode",
-								actionConfirmation = new ActionConfirmation("Atualizar", MessageBoxButtons.YESNO, MessageBoxIcon.INFO, "Are you shure?", MessageBoxButton.YES)
-							} 
+							nodeRefresh 
 						}
 					},
 					new TreeItem()
@@ -55,18 +59,12 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 						children = null,
 						menuItems = new MenuItem[]
 						{
-							new MenuItem()
-							{ 
-								text="Refresh", 
-								iconCls="AppIcons-arrow-refresh-small", 
-								handlerFunction="HomeController.refreshTreeNode",
-								actionConfirmation = null
-							},
+							nodeRefresh,
 							new MenuItem()
 							{ 
 								text="Add New Application", 
 								iconCls="AppIcons-application-add", 
-								handlerFunction="HomeController.refreshTreeNode",
+								actionRoute="Repository|Add",
 								actionConfirmation = null
 							}
 						}
@@ -84,7 +82,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								iconCls = "AppIcons-server",
 								leaf = false,
 								expanded = false,
-								children = null
+								children = null,
+								menuItems = new MenuItem[]
+								{
+									nodeRefresh 
+								}
 							};
 
 				return query.ToList();
@@ -103,7 +105,18 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								iconCls = "AppIcons-application-cascade",
 								leaf = false,
 								expanded = false,
-								children = null
+								children = null,
+								menuItems = new MenuItem[]
+								{
+									nodeRefresh,
+									new MenuItem()
+									{ 
+										text="Add Application", 
+										iconCls="AppIcons-application-add", 
+										actionRoute="Host|AddApplication",
+										actionConfirmation = null,
+									} 
+								}
 							};
 
 				return query.ToList();
@@ -127,12 +140,27 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								children = null,
 								menuItems = new MenuItem[]
 								{
+									nodeRefresh,
 									new MenuItem()
 									{ 
-										text="Stop", 
+										text="Start Application", 
+										iconCls="AppIcons-control-play-blue", 
+										actionRoute="Application|Start",
+										actionConfirmation = new ActionConfirmation("Start Application", MessageBoxButtons.YESNO, MessageBoxIcon.QUESTION, "Please confirm start operation this application on server '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+									} ,
+									new MenuItem()
+									{ 
+										text="Stop Application", 
 										iconCls="AppIcons-control-stop-blue", 
-										handlerFunction="HomeController.stopApplication",
-										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNO, MessageBoxIcon.WARNING, "Are you shure? This operation stop application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+										actionRoute="Application|Stop",
+										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.QUESTION, "Are you shure? This operation will stop this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+									} ,
+									new MenuItem()
+									{ 
+										text="Remove Application", 
+										iconCls="AppIcons-application-delete", 
+										actionRoute="Application|Remove",
+										actionConfirmation = new ActionConfirmation("Remove Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.WARNING, "Realy? Are you shure? This operation will REMOVE this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
 									} 
 								}
 							};

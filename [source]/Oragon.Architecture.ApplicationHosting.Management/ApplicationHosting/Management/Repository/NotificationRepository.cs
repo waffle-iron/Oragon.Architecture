@@ -18,9 +18,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 
 		public static class NotificationTypes
 		{
-			public const string GenericNotification = "GENERIC:NOTIFICATION";
-			public const string ApplicationRegistered = "APPLICATION:REGISTERED";
-			public const string ApplicationUnregistered = "APPLICATION:UNREGISTERED";
+			public const string GenericNotification = "GENERIC|NOTIFICATION";
+			public const string ApplicationRegistered = "HOST|REGISTERED";
+			public const string ApplicationUnregistered = "HOST|UNREGISTERED";
 		}
 
 		
