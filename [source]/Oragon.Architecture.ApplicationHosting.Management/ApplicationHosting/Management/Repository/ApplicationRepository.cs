@@ -15,9 +15,10 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 
 		public List<Machine> Machines { get; private set; }
 
+		public string ApplicationRepositoryPath { get; set; }
+
 		public ApplicationRepository()
 		{
-			this.Machines = new List<Machine>();
 		}
 
 		public Host Register(RegisterHostRequestMessage registerMessage)
@@ -65,6 +66,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 				return returnValue;
 			}
 
+		}
+
+		public static Guid CreateNewTempApplication()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

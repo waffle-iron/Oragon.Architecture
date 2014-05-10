@@ -170,6 +170,7 @@
     <Compile Include="ApplicationHosting\Management\ViewModel\TreeItem.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\ApplicationRepository.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\NotificationRepository.cs" />
+    <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationRepositoryController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\ApplicationServerExplorerTreeController.cs" />
     <Compile Include="ApplicationHosting\Management\WebApiControllers\NotificationController.cs" />
     <Compile Include="ApplicationHosting\Management\WebMvcControllers\RedirectController.cs" />
