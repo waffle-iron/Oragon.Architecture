@@ -25,42 +25,76 @@
 		});
 
 
+		$.connection.hub.url = (hostUrl + "signalr");
 
-		Oragon.Architecture.Scripting.TimerManager.run({
-			intervalInSeconds: 0,
-			fn: function (timerConfig) {
-				Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
-					waiting: 'NoWait',
-					//urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
-					urlToSend: '/api/Notification/GetMessages/' + clientID,
-					params: {
-						clientID: clientID
-					},
-					listeners: {
-						success: function (data) {
-							var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
-							Enumerable.from(data).forEach(function (itemOfData) {
-								notificationCenterTextArea.setValue(
-									itemOfData.Date + "\t" +
-									itemOfData.Message + "\t" +
-									itemOfData.MessageType + "\t" +
-									"\r\n" +
-									notificationCenterTextArea.getValue()
-								);
+		var NotificationHub = $.connection.NotificationHub;
 
-								radio(itemOfData.MessageType).broadcast({ sender: null, record: itemOfData });
-							});
-							timerConfig.intervalInSeconds = 5;
-							timerConfig.ScheduleNext();
-						},
-						failure: function (resultInfo) {
-							timerConfig.intervalInSeconds = 30;
-							timerConfig.ScheduleNext();
-						},
-					}
-				});
-			}
+		NotificationHub.client.receiveMessages = function (messages) {
+
+			var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
+			Enumerable.from(messages).forEach(function (itemOfData) {
+				notificationCenterTextArea.setValue(
+					itemOfData.Date + "\t" +
+					itemOfData.Message + "\t" +
+					itemOfData.MessageType + "\t" +
+					"\r\n" +
+					notificationCenterTextArea.getValue()
+				);
+
+				radio(itemOfData.MessageType).broadcast({ sender: null, record: itemOfData });
+			});
+
+		};
+
+		$.connection.hub.start().done(function () {
+			NotificationHub.server.RegisterWebManagement(clientID);
 		});
 
+
+
+		//Oragon.Architecture.Scripting.TimerManager.run({
+		//	intervalInSeconds: 0,
+		//	fn: function (timerConfig) {
+		//		Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
+		//			waiting: 'NoWait',
+		//			//urlToSend: '/api/Notification/GetMessages/?clientID=' + clientID,
+		//			urlToSend: '/api/Notification/GetMessages/' + clientID,
+		//			params: {
+		//				clientID: clientID
+		//			},
+		//			listeners: {
+		//				success: function (data) {
+		//					var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
+		//					Enumerable.from(data).forEach(function (itemOfData) {
+		//						notificationCenterTextArea.setValue(
+		//							itemOfData.Date + "\t" +
+		//							itemOfData.Message + "\t" +
+		//							itemOfData.MessageType + "\t" +
+		//							"\r\n" +
+		//							notificationCenterTextArea.getValue()
+		//						);
+
+		//						radio(itemOfData.MessageType).broadcast({ sender: null, record: itemOfData });
+		//					});
+		//					timerConfig.intervalInSeconds = 5;
+		//					timerConfig.ScheduleNext();
+		//				},
+		//				failure: function (resultInfo) {
+		//					timerConfig.intervalInSeconds = 30;
+		//					timerConfig.ScheduleNext();
+		//				},
+		//			}
+		//		});
+		//	}
+		//});
+
 	}
+});
+
+
+$(function () {
+	
+	
+
+
 });

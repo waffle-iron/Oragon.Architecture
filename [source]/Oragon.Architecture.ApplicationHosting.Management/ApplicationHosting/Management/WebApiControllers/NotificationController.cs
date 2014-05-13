@@ -20,7 +20,14 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		[Route("GetMessages/{clientID:guid}/")]
 		public IEnumerable<Notification> GetMessages(Guid clientID)
 		{
-			return this.NotificationRepository.GetMessages(clientID);
+			System.Threading.Thread.Sleep(new TimeSpan(0, 0, 2));
+
+			IEnumerable<Notification> returnValue = this.NotificationRepository.GetMessages(clientID);
+
+
+			
+
+			return returnValue; 
 		}
 
 	}

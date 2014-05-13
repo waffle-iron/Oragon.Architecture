@@ -51,6 +51,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			.WriteLine("var hostUrl = 'http://{0}/';", this.Request.Host.Value)
 			.WriteLine("var clientID = '{0}';", Guid.NewGuid())
 			.CloseScript()
+
+			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Framework/jquery-2.1.1.js")
+			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Framework/jquery.signalR.js")
+			.Script("/signalr/hubs")
+
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Framework/Radio.js")
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Framework/Linq.js")
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/Framework/Reflection.js")

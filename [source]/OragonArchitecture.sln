@@ -95,6 +95,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Services.SpringFramework", "Oragon.Architecture.Services.SpringFramework\Oragon.Architecture.Services.SpringFramework.csproj", "{53E63625-7F2C-4204-9682-EDD2EB76F4B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Web.SignalR.SpringFramework", "Oragon.Architecture.Web.SignalR.SpringFramework\Oragon.Architecture.Web.SignalR.SpringFramework.csproj", "{73CDE5C0-9791-4783-A8B0-3A18738428FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{53E63625-7F2C-4204-9682-EDD2EB76F4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53E63625-7F2C-4204-9682-EDD2EB76F4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53E63625-7F2C-4204-9682-EDD2EB76F4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CDE5C0-9791-4783-A8B0-3A18738428FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CDE5C0-9791-4783-A8B0-3A18738428FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CDE5C0-9791-4783-A8B0-3A18738428FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CDE5C0-9791-4783-A8B0-3A18738428FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -213,6 +219,7 @@ Global
 		{DBE9C81B-D625-4942-BE54-D5A927496DF0} = {50EAFBC1-28BB-4ABF-AD57-0E8BB898A677}
 		{9209F672-85EA-43DB-9AB9-61664D82BC33} = {13F3E12B-5498-453E-8114-52E15C6CE679}
 		{4883749D-DE88-416B-A94F-30E905DCD79D} = {13F3E12B-5498-453E-8114-52E15C6CE679}
+		{73CDE5C0-9791-4783-A8B0-3A18738428FC} = {13F3E12B-5498-453E-8114-52E15C6CE679}
 		{B6E02F16-B7F7-4D78-B1B8-B07FFECB4EFA} = {6A97958E-12AA-4B1A-9509-533F9B85D58E}
 		{77959256-0D53-4FD6-A7DE-385D032F48B5} = {4270F32A-655D-4C4E-8AB7-89FE58B3140A}
 		{7BC1475E-E5CA-4ED3-A0F5-21F0521B2A53} = {4270F32A-655D-4C4E-8AB7-89FE58B3140A}

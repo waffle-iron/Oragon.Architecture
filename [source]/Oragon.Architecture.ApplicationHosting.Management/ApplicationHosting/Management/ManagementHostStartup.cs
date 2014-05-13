@@ -10,6 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.AspNet.SignalR;
+using Microsoft.Owin.Cors;
+
 
 namespace Oragon.Architecture.ApplicationHosting.Management
 {
@@ -20,6 +23,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public void Configuration(Owin.IAppBuilder app)
 		{
+			this.ConfigureSignalR(app);
 			this.ConfigureErrorPage(app);
 			this.ConfigureWelcomePage(app);
 			this.ConfigureWebApi(app);
@@ -66,8 +70,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			var httpConfig = new HttpConfiguration();
 			httpConfig.Routes.MapHttpRoute(
-				name: "WebMvc1", 
-				routeTemplate: "management/{controller}/{action}/", 
+				name: "WebMvc1",
+				routeTemplate: "management/{controller}/{action}/",
 				defaults: new { controller = "Home", action = "Index" }
 			);
 			httpConfig.Routes.MapHttpRoute(
@@ -91,6 +95,20 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			app.Use<OMvcMiddleware>(middlewareOptions, httpConfig);
 		}
 
+
+		private void ConfigureSignalR(IAppBuilder app)
+		{
+			
+			var signalR_DependencyResolver = ManagementHost.Current.ApplicationContext.GetObject<Oragon.Architecture.Web.SignalR.SpringFramework.SpringDependencyResolver>();
+			var hubConfiguration = new HubConfiguration() { EnableDetailedErrors = true, EnableJavaScriptProxies = true, EnableJSONP = true, Resolver = signalR_DependencyResolver };
+
+	
+			//app.MapHubs(hubConfiguration);
+			app.UseCors(CorsOptions.AllowAll);
+			//app.MapSignalR<Oragon.Architecture.Web.SignalR.SpringFramework.SpringPersistentConnection>("/signalr", hubConfiguration);
+			app.MapSignalR(hubConfiguration);
+			//GlobalHost.DependencyResolver = signalR_DependencyResolver;
+		}
 
 	}
 
