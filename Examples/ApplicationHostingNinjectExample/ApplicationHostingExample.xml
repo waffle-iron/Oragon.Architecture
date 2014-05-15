@@ -11,7 +11,7 @@
 		<property name="Name" value="Hosting Ninject Example" />
 		<property name="FriendlyName" value="Hosting Ninject Example" />
 		<property name="Description" value="Hosting Ninject Example" />
-		<property name="ApplicationServerEndPoint" value="net.tcp://localhost:7778" />
+		<property name="ApplicationServerEndPoint" value="http://localhost:7777" />
 
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
