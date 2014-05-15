@@ -50,11 +50,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ApplicationHostingExample.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationHostingExample.xml" />
+    <Content Include="ApplicationHostingExample.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.SimpleInjector\Oragon.Architecture.ApplicationHosting.SimpleInjector.csproj">

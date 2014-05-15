@@ -170,7 +170,6 @@
     <Compile Include="ApplicationHosting\Management\Repository\Models\ApplicationModel\Host.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\Models\ApplicationModel\Machine.cs" />
     <Compile Include="ApplicationHosting\Management\Repository\Models\NotificationModel\Notification.cs" />
-    <Compile Include="ApplicationHosting\Management\Services\ApplicationServerService.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\Db4OStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\Storage\IStorageProvider.cs" />
     <Compile Include="ApplicationHosting\Management\ViewModel\ActionConfirmation.cs" />
@@ -193,6 +192,7 @@
     <Compile Include="ApplicationHosting\Management\ManagementHost.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostConfiguration.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostStartup.cs" />
+    <Compile Include="ApplicationHosting\Management\WebSignalRControllers\HostHub.cs" />
     <Compile Include="ApplicationHosting\Management\WebSignalRControllers\NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -270,6 +270,9 @@
     <Content Include="ApplicationHosting\Management\WebResources\Script\controller\MenuController.js" />
     <Content Include="ApplicationHosting\Management\WebResources\Script\Framework\jquery-2.1.1.js" />
     <Content Include="ApplicationHosting\Management\WebResources\Script\Framework\jquery.signalR.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApplicationHosting\Management\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

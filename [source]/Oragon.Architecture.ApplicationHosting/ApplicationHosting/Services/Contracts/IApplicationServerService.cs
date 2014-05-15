@@ -8,17 +8,6 @@ using System.Runtime.Serialization;
 
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
-	[ServiceContract]
-	public interface IApplicationServerService : IHeartBeatService
-	{
-		[OperationContract]
-		RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request);
-
-		[OperationContract]
-		UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request);
-
-	}
-
 	#region Register RegisterHost
 
 	[Serializable]

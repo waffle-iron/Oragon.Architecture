@@ -20,15 +20,12 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		private IDisposable webServer;
 
-		private ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService> applicationServerServiceHost;
-
 		[Required]
 		public ManagementHostConfiguration Configuration { get; set; }
 
 
 		public IApplicationContext ApplicationContext { get; set; }
 
-		public Services.ApplicationServerService ApplicationServerServiceInstance { get; set; }
 
 		public ManagementHost()
 		{
@@ -60,29 +57,12 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public void AfterPropertiesSet()
 		{
-			List<Uri> apiEndpoint = BuildApiEndpoints();
-			this.applicationServerServiceHost = new ApplicationHosting.Services.WcfHost<Services.ApplicationServerService, ApplicationHosting.Services.Contracts.IApplicationServerService>()
-			{
-				Name= "ApplicationServerService",
-				BaseAddresses =  apiEndpoint.ToArray(),
-				ServiceInstance = this.ApplicationServerServiceInstance,
-				ConcurrencyMode = System.ServiceModel.ConcurrencyMode.Multiple,
-				InstanceContextMode = System.ServiceModel.InstanceContextMode.Single
-			};
-			this.applicationServerServiceHost.Start();
-			this.ApplicationServerServiceInstance.Init();
 			IEnumerable<string> IPList = this.GetExternalsIps();
 			var options = BuildWebAppOptions(IPList);
 			this.webServer = WebApp.Start<ManagementHostStartup>(options);
 		}
 
-		private List<Uri> BuildApiEndpoints()
-		{
-			var apiEndpoint = new List<Uri>();
-			apiEndpoint.Add(new Uri("net.tcp://{0}:{1}/".FormatWith(Environment.MachineName, this.Configuration.ApiTcpPort)));
-			apiEndpoint.Add(new Uri("http://{0}:{1}/".FormatWith(Environment.MachineName, this.Configuration.ApiHttpPort)));
-			return apiEndpoint;
-		}
+		
 
 		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
 		{
@@ -116,8 +96,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		protected virtual void DisposeChild()
 		{
-			this.applicationServerServiceHost.Stop();
-			this.applicationServerServiceHost = null;
 			this.webServer.Dispose();
 			this.webServer = null;
 		}

@@ -12,12 +12,6 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	public class HostDescriptor
 	{
 		[DataMember]
-		public int ManagementHttpPort { get; set; }
-
-		[DataMember]
-		public int ManagementTcpPort { get; set; }
-
-		[DataMember]
 		public string Name { get; set; }
 
 		[DataMember]

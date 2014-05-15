@@ -56,7 +56,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 
 			IEnumerable<Notification> notifications = this.NotificationRepository.GetMessages(clientID);
 			Clients
-				.Client(Context.ConnectionId)
+				.Caller
 				.receiveMessages(notifications);
 
 		}

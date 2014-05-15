@@ -12,8 +12,7 @@
 		<property name="FriendlyName" value="Hosting SimpleInjector Example" />
 		<property name="Description" value="Hosting SimpleInjector Example" />
 
-		<property name="ApplicationServerTcpEndPoint" value="net.tcp://localhost:7778" />
-		<property name="ApplicationServerHttpEndPoint" value="http://localhost:7779" />
+		<property name="ApplicationServerEndPoint" value="net.tcp://localhost:7778" />
 		
 		<property name="WindowsServiceConfiguration">
 			<object type="Oragon.Architecture.ApplicationHosting.WindowsServiceConfiguration, Oragon.Architecture.ApplicationHosting">
