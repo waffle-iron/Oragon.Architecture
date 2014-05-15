@@ -1,5 +1,5 @@
 ﻿using Oragon.Architecture.Networking;
-using Oragon.Architecture.Services.Hosting;
+using Oragon.Architecture.Services.WcfServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
 
-namespace Oragon.Architecture.ApplicationHosting.Services
+namespace Oragon.Architecture.Services.WcfServices
 {
 	public class WcfHost<ServiceType, ServiceInterface>
 		where ServiceType : class,  ServiceInterface, new()

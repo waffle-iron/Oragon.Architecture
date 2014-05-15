@@ -7,7 +7,7 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.Services.Hosting
+namespace Oragon.Architecture.Services.WcfServices
 {
 	public class WcfServiceHostFactory
 	{

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,10 +45,13 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Hosting\MexBindingProtocol.cs" />
-    <Compile Include="Services\Hosting\MexBindingResolver.cs" />
-    <Compile Include="Services\Hosting\ServiceEndpointConfiguration.cs" />
-    <Compile Include="Services\Hosting\WcfServiceHostFactory.cs" />
+    <Compile Include="Services\WcfServices\MexBindingProtocol.cs" />
+    <Compile Include="Services\WcfServices\MexBindingResolver.cs" />
+    <Compile Include="Services\WcfServices\ServiceEndpointConfiguration.cs" />
+    <Compile Include="Services\WcfServices\WcfClient.cs" />
+    <Compile Include="Services\WcfServices\WcfHelper.cs" />
+    <Compile Include="Services\WcfServices\WcfHost.cs" />
+    <Compile Include="Services\WcfServices\WcfServiceHostFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

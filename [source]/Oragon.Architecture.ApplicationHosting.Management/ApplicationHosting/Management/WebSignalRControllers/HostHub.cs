@@ -16,7 +16,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 {
 	[CLSCompliant(false)]
 	[HubName("HostHub")]
-	public class HostHub : Hub
+	public class HostHub : Hub, Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHub
 	{
 		ApplicationRepository ApplicationRepository { get; set; }
 		NotificationRepository NotificationRepository { get; set; }
@@ -38,5 +38,17 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 			return new UnregisterHostResponseMessage();
 		}
 
+
+
+		public void Teste1(string argument)
+		{
+			Console.WriteLine(argument);
+			Clients.Caller.Teste("AAAA", 1);
+		}
+
+		public int Teste2(string argument)
+		{
+			return argument.Length;
+		}
 	}
 }

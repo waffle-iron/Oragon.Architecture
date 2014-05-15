@@ -72,6 +72,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Oragon.Architecture.External.db4o.7.0.0-alpha1\lib\net451\Db4objects.Db4o.Optional.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\..\[References]\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -193,6 +197,7 @@
     <Compile Include="ApplicationHosting\Management\ManagementHostConfiguration.cs" />
     <Compile Include="ApplicationHosting\Management\ManagementHostStartup.cs" />
     <Compile Include="ApplicationHosting\Management\WebSignalRControllers\HostHub.cs" />
+    <Compile Include="ApplicationHosting\Management\WebSignalRControllers\IHostHub.cs" />
     <Compile Include="ApplicationHosting\Management\WebSignalRControllers\NotificationHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -208,6 +213,14 @@
     <ProjectReference Include="..\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
       <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
       <Name>Oragon.Architecture.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oragon.Architecture.Services.SpringFramework\Oragon.Architecture.Services.SpringFramework.csproj">
+      <Project>{53e63625-7f2c-4204-9682-edd2eb76f4b1}</Project>
+      <Name>Oragon.Architecture.Services.SpringFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oragon.Architecture.Services\Oragon.Architecture.Services.csproj">
+      <Project>{47fa90ac-d1b5-4105-9656-f5df49b3feb5}</Project>
+      <Name>Oragon.Architecture.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.Web.Owin.OMvc\Oragon.Architecture.Web.Owin.OMvc.csproj">
       <Project>{4883749d-de88-416b-a94f-30e905dcd79d}</Project>

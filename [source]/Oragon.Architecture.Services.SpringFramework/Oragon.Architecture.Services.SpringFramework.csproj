@@ -36,6 +36,16 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\..\[References]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\..\[References]\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\[References]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\[References]\Spring.Aop.2.0.0-RC1\lib\net45\Spring.Aop.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Core">
       <HintPath>..\..\[References]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
@@ -56,9 +66,9 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Hosting\MexBindingFactory.cs" />
-    <Compile Include="Services\Hosting\SpringFrameworkWcfServiceHostFactory.cs" />
-    <Compile Include="Services\Proxy\ServiceProxyHelper.cs" />
+    <Compile Include="Services\SignalRServices\SignalRMediator.cs" />
+    <Compile Include="Services\WcfServices\MexBindingFactory.cs" />
+    <Compile Include="Services\WcfServices\SpringFrameworkWcfServiceHostFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

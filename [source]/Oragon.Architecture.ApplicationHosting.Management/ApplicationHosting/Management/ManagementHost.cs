@@ -57,12 +57,36 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		public void AfterPropertiesSet()
 		{
-			IEnumerable<string> IPList = this.GetExternalsIps();
-			var options = BuildWebAppOptions(IPList);
-			this.webServer = WebApp.Start<ManagementHostStartup>(options);
+			Oragon.Architecture.Threading.ThreadRunner.RunTask(delegate()
+			{//Teste
+				IEnumerable<string> IPList = this.GetExternalsIps();
+				var options = BuildWebAppOptions(IPList);
+				this.webServer = WebApp.Start<ManagementHostStartup>(options);
+			});
+
+			Oragon.Architecture.Threading.ThreadRunner.RunTask(delegate()
+			{//Teste
+				System.Threading.Thread.Sleep(1000 * 5);
+
+				var connection = new Microsoft.AspNet.SignalR.Client.HubConnection("http://localhost:7777/");
+				var mediator = new Oragon.Architecture.Services.SignalRServices.SignalRMediator<Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHub, Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHubClient>(connection, new TesteClass(), Oragon.Architecture.Text.FormatStrategy.None, Oragon.Architecture.Text.FormatStrategy.None);
+				connection.Start().Wait();
+				mediator.Server.Teste1("AAAAA");
+				int returnValue = mediator.Server.Teste2("bb");
+				Console.WriteLine("Foi");
+			});
 		}
 
-		
+		public class TesteClass : Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHubClient
+		{
+			public void Teste(string texto, int nome)
+			{
+				Console.WriteLine(texto);
+			}
+		}
+
+
+
 
 		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
 		{

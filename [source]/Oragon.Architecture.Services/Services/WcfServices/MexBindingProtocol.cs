@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.Services.Hosting
+namespace Oragon.Architecture.Services.WcfServices
 {
 	public enum MexBindingProtocol
 	{

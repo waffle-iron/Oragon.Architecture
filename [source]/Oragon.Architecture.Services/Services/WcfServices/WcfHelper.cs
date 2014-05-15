@@ -1,4 +1,4 @@
-﻿using Oragon.Architecture.Services.Hosting;
+﻿using Oragon.Architecture.Services.WcfServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,18 +6,18 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.ApplicationHosting.Services
+namespace Oragon.Architecture.Services.WcfServices
 {
-	public static class WcfHelper
+	internal static class WcfHelper
 	{
-		public enum EndpointType
+		internal enum EndpointType
 		{
 			NetTcp,
 			Http,
 			Mex
 		}
 
-		public static System.ServiceModel.BasicHttpBinding BuildBasicHttpBinding()
+		internal static System.ServiceModel.BasicHttpBinding BuildBasicHttpBinding()
 		{
 			return new System.ServiceModel.BasicHttpBinding()
 			{
@@ -27,7 +27,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 			};
 		}
 
-		public static System.ServiceModel.NetTcpBinding BuildNetTcpBinding()
+		internal static System.ServiceModel.NetTcpBinding BuildNetTcpBinding()
 		{
 			return new System.ServiceModel.NetTcpBinding()
 			{
@@ -50,7 +50,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services
 			};
 		}
 
-		public static ServiceEndpointConfiguration BuildEndpoint(EndpointType type, string name, Type serviceInterfaceType)
+		internal static ServiceEndpointConfiguration BuildEndpoint(EndpointType type, string name, Type serviceInterfaceType)
 		{
 			ServiceEndpointConfiguration returnValue = null;
 			switch (type)

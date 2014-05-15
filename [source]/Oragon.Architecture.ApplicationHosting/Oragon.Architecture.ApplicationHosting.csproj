@@ -78,9 +78,6 @@
     <Compile Include="ApplicationHosting\Services\Contracts\IHeartBeatService.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\IHostProcessService.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\MachineDescriptor.cs" />
-    <Compile Include="ApplicationHosting\Services\WcfClient.cs" />
-    <Compile Include="ApplicationHosting\Services\WcfHelper.cs" />
-    <Compile Include="ApplicationHosting\Services\WcfHost.cs" />
     <Compile Include="ApplicationHosting\WindowsServiceHost.cs" />
     <Compile Include="ApplicationHosting\StartMode.cs" />
     <Compile Include="ApplicationHosting\ApplicationHost.cs" />

@@ -111,21 +111,21 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.hubConnection.Start().Wait();
 
 			var requestMessage = new RegisterHostRequestMessage()
+			{
+				MachineDescriptor = new MachineDescriptor()
 				{
-					MachineDescriptor = new MachineDescriptor()
-					{
-						IPAddressList = this.GetAllIPAddresses(),
-						MachineName = Environment.MachineName
-					},
-					HostDescriptor = new HostDescriptor()
-					{
-						PID = System.Diagnostics.Process.GetCurrentProcess().Id,
-						Description = this.Description,
-						FriendlyName = this.FriendlyName,
-						Name = this.Name,
-						Applications = this.Applications.ToList(it => it.ToDescriptor())
-					}
-				};
+					IPAddressList = this.GetAllIPAddresses(),
+					MachineName = Environment.MachineName
+				},
+				HostDescriptor = new HostDescriptor()
+				{
+					PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+					Description = this.Description,
+					FriendlyName = this.FriendlyName,
+					Name = this.Name,
+					Applications = this.Applications.ToList(it => it.ToDescriptor())
+				}
+			};
 
 			RegisterHostResponseMessage responseMessage = await this.hostHubProxy.Invoke<RegisterHostResponseMessage>("RegisterHost", requestMessage);
 			this.ClientID = responseMessage.ClientID;

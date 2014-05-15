@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
 
 
-namespace Oragon.Architecture.ApplicationHosting.Services
+namespace Oragon.Architecture.Services.WcfServices
 {
 	public class WcfClient<ServiceInterface> : IDisposable
 	{

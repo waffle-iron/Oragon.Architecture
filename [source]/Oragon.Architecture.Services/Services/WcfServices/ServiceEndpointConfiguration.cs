@@ -5,7 +5,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oragon.Architecture.Services.Hosting
+namespace Oragon.Architecture.Services.WcfServices
 {
 	public class ServiceEndpointConfiguration
 	{

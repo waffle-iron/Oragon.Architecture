@@ -220,6 +220,10 @@
     <Compile Include="Networking\DynamicPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryHelper.cs" />
+    <Compile Include="Text\PascalCaseFormatStrategy.cs" />
+    <Compile Include="Text\CamelCaseFormatStrategy.cs" />
+    <Compile Include="Text\FormatStrategy.cs" />
+    <Compile Include="Threading\ThreadRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\System.Reflection.Assembly\System.Reflection.Assembly.GetAssemblyVersion.cs" />
