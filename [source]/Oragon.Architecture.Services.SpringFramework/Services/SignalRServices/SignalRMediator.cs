@@ -12,6 +12,7 @@ using Oragon.Architecture.Text;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Hubs;
 using System.Reflection;
+using System.Linq.Expressions;
 
 
 namespace Oragon.Architecture.Services.SignalRServices
@@ -121,31 +122,67 @@ namespace Oragon.Architecture.Services.SignalRServices
 				};
 				this.clientProxy = (TClientInterfaceType)clientProxyFactory.GetProxy();
 			}
-			this.MapClientMethods(clientInterfaceType);
+			this.BindClientMethodsAsServerEvents(clientInterfaceType);
 		}
 
-		private void MapClientMethods(Type clientInterface)
+		private void BindClientMethodsAsServerEvents(Type clientInterface)
 		{
 			foreach (var method in clientInterface.GetMethods())
 			{
-				string methodName = this.hubMethodFormatStrategy.Format(method.Name);
-				Subscription subscription = this.hubProxy.Subscribe(methodName);
-				subscription.Received += delegate(IList<Newtonsoft.Json.Linq.JToken> args)
-				{
-					List<object> argsToSend = new List<object>();
-					ParameterInfo[] parameters = method.GetParameters();
-					if (args.Count != parameters.Length)
-						throw new InvalidCastException("The method {0} cannot be called with this arguments.".FormatWith(methodName));
-
-					for (int i = 0; i < parameters.Length; i++)
-					{
-						object objectToSend = args[i].ToObject(parameters[i].ParameterType);
-						argsToSend.Add(objectToSend);
-					}
-					method.Invoke(this.clientProxy, argsToSend.ToArray());
-				};
+				Delegate delegateOfMethod = this.CreateDelegate(method);
+				this.Bind(delegateOfMethod);
 			}
 		}
+		Delegate CreateDelegate(MethodInfo method)
+		{
+			List<Type> args = method.GetParameters().Select(p => p.ParameterType).ToList();
+			Type delegateType;
+			if (method.ReturnType == typeof(void))
+			{
+				delegateType = Expression.GetActionType(args.ToArray());
+			}
+			else
+			{
+				args.Add(method.ReturnType);
+				delegateType = Expression.GetFuncType(args.ToArray());
+			}
+			Delegate delegateToReturn = Delegate.CreateDelegate(delegateType, null, method);
+			return delegateToReturn;
+		}
+
+		public void Bind(Delegate method)
+		{
+			MethodInfo methodInfo = method.GetMethodInfo();
+			this.Bind(methodInfo.Name, method, methodInfo);
+		}
+
+
+		public void Bind(string name, Delegate method)
+		{
+			MethodInfo methodInfo = method.GetMethodInfo();
+			this.Bind(name, method, methodInfo);
+		}
+
+		private void Bind(string name, Delegate method, MethodInfo methodInfo)
+		{
+			string methodName = this.hubMethodFormatStrategy.Format(name);
+			Subscription subscription = this.hubProxy.Subscribe(methodName);
+			subscription.Received += delegate(IList<Newtonsoft.Json.Linq.JToken> args)
+			{
+				List<object> argsToSend = new List<object>();
+				ParameterInfo[] parameters = methodInfo.GetParameters();
+				if (args.Count != parameters.Length)
+					throw new InvalidCastException("The method {0} cannot be called with this arguments.".FormatWith(methodName));
+
+				for (int i = 0; i < parameters.Length; i++)
+				{
+					object objectToSend = args[i].ToObject(parameters[i].ParameterType);
+					argsToSend.Add(objectToSend);
+				}
+				method.DynamicInvoke(argsToSend.ToArray());
+			};
+		}
+
 
 		#endregion
 

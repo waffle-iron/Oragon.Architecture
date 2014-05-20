@@ -41,21 +41,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\[References]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common, Version=4.0.19.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Common, Version=4.0.20.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\[References]\ServiceStack.Common.4.0.19\lib\net40\ServiceStack.Common.dll</HintPath>
+      <HintPath>..\..\[References]\ServiceStack.Common.4.0.20\lib\net40\ServiceStack.Common.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\[References]\ServiceStack.Interfaces.4.0.19\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\..\[References]\ServiceStack.Interfaces.4.0.20\lib\net40\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Redis, Version=4.0.19.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Redis, Version=4.0.20.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\[References]\ServiceStack.Redis.4.0.19\lib\net40\ServiceStack.Redis.dll</HintPath>
+      <HintPath>..\..\[References]\ServiceStack.Redis.4.0.20\lib\net40\ServiceStack.Redis.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=4.0.19.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Text, Version=4.0.20.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\[References]\ServiceStack.Text.4.0.19\lib\net40\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\[References]\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Aop">
       <HintPath>..\..\[references]\Spring.Aop.2.0.0-RC1\lib\net45\Spring.Aop.dll</HintPath>

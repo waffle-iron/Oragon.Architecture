@@ -83,7 +83,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			foreach (var application in tmpApplicationList)
 			{
-				application.Start(this.ConfigurationFilePath.ParentDirectoryPath);
+				Oragon.Architecture.Threading.ThreadRunner.RunTask(() =>
+					application.Start(this.ConfigurationFilePath.ParentDirectoryPath)
+				);
 			}
 			this.ConnectToApplicationServer().Wait();
 		}
