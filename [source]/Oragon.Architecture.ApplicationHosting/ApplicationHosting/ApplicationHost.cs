@@ -1,4 +1,4 @@
-﻿using NDepend.Path;
+﻿using Oragon.Architecture.IO.Path;
 using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		public bool EnableShadowCopy { get; set; }
 
 
-		public abstract void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory);
+		public abstract void Start(IAbsoluteDirectoryPath baseDirectory);
 		public abstract void Stop();
 		public abstract AppDomainStatistic GetAppDomainStatistics();
 
@@ -64,7 +64,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		
 
-		protected IAbsoluteDirectoryPath GetAbsoluteDirectoryPath(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
+		protected IAbsoluteDirectoryPath GetAbsoluteDirectoryPath(IAbsoluteDirectoryPath baseDirectory)
 		{
 			IRelativeDirectoryPath relativeApplicationBaseDirectory = this.ApplicationBaseDirectory.ToRelativeDirectoryPath();
 			IAbsoluteDirectoryPath absoluteApplicationBaseDirectory = relativeApplicationBaseDirectory.GetAbsolutePathFrom(baseDirectory);
@@ -74,7 +74,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			return absoluteApplicationBaseDirectory;
 		}
 
-		protected IAbsoluteFilePath GetAbsoluteFilePath(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
+		protected IAbsoluteFilePath GetAbsoluteFilePath(IAbsoluteDirectoryPath baseDirectory)
 		{
 			IRelativeFilePath relativeApplicationConfigurationFile = this.ApplicationConfigurationFile.ToRelativeFilePath();
 			IAbsoluteFilePath absoluteApplicationConfigurationFile = relativeApplicationConfigurationFile.GetAbsolutePathFrom(baseDirectory);
@@ -110,7 +110,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private System.Timers.Timer heartBeatTimer;
 
-		public override void Start(NDepend.Path.IAbsoluteDirectoryPath baseDirectory)
+		public override void Start(IAbsoluteDirectoryPath baseDirectory)
 		{
 			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
 			this.heartBeatTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)

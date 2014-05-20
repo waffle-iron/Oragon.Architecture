@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E69ED018-CCDF-44F2-812F-71D921B35CC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oragon.Architecture</RootNamespace>
+    <AssemblyName>Oragon.Architecture.IO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="APIPresentation.cs" />
+    <Compile Include="Extensions\OragonExtensions.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.HashSet\HashSet.Union.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.HashSet\HashSet.Intersect.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.ToReadOnlyClonedCollection.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.ToReadOnlyWrappedCollection.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Append.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Union.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Intersect.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToHashSet.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToReadOnlyClonedList.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Except.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Concat.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IReadOnlyList\IReadOnlyList.IndexOf.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IList\IList.ToReadOnlyWrappedList.cs" />
+    <Compile Include="Extensions\System.Object\Object.Concat.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToMultiKeyLookup.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToEnumerable.cs" />
+    <Compile Include="Extensions\System.String\String.EndsWithAny.cs" />
+    <Compile Include="Extensions\System.String\String.StartsWithAny.cs" />
+    <Compile Include="Extensions\System.String\String.EqualsAny.cs" />
+    <Compile Include="IO\Path\AbsolutePathKind.cs" />
+    <Compile Include="IO\Path\EnvVarPathResolvingStatus.cs" />
+    <Compile Include="IO\Path\ExtensionMethodsOnPathsCollection.cs" />
+    <Compile Include="IO\Path\IAbsoluteDirectoryPath.cs" />
+    <Compile Include="IO\Path\IAbsoluteFilePath.cs" />
+    <Compile Include="IO\Path\IAbsolutePath.cs" />
+    <Compile Include="IO\Path\IDirectoryPath.cs" />
+    <Compile Include="IO\Path\IDriveLetter.cs" />
+    <Compile Include="IO\Path\IEnvVarDirectoryPath.cs" />
+    <Compile Include="IO\Path\IEnvVarFilePath.cs" />
+    <Compile Include="IO\Path\IEnvVarPath.cs" />
+    <Compile Include="IO\Path\IFilePath.cs" />
+    <Compile Include="IO\Path\IPath.cs" />
+    <Compile Include="IO\Path\IRelativeDirectoryPath.cs" />
+    <Compile Include="IO\Path\IRelativeFilePath.cs" />
+    <Compile Include="IO\Path\IRelativePath.cs" />
+    <Compile Include="IO\Path\IVariableDirectoryPath.cs" />
+    <Compile Include="IO\Path\IVariableFilePath.cs" />
+    <Compile Include="IO\Path\IVariablePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsolutePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteRelativePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+DriveLetter.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarPathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+FilePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+MiscHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+PathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+PathBrowsingHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativeDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativeFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+UNCPathHelper.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariableDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariableFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariablePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariablePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers.cs" />
+    <Compile Include="IO\Path\PathMode.cs" />
+    <Compile Include="IO\Path\VariablePathResolvingStatus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

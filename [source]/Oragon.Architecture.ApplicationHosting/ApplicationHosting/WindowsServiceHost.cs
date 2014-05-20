@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 using Oragon.Architecture.Extensions;
-using NDepend.Helpers;
-using NDepend.Path;
+using Oragon.Architecture.IO.Path;
 using System.Diagnostics.Contracts;
 
 namespace Oragon.Architecture.ApplicationHosting
