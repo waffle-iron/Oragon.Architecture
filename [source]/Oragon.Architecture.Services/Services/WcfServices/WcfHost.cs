@@ -1,5 +1,4 @@
-﻿using Oragon.Architecture.Networking;
-using Oragon.Architecture.Services.WcfServices;
+﻿using Oragon.Architecture.Services.WcfServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
+using Oragon.Architecture.Networking;
 
 namespace Oragon.Architecture.Services.WcfServices
 {

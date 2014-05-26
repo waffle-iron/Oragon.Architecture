@@ -217,7 +217,6 @@
     <Compile Include="Logging\Loggers\SafeLogger.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\[Model].cs" />
-    <Compile Include="Networking\DynamicPort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetryHelper.cs" />
     <Compile Include="Text\PascalCaseFormatStrategy.cs" />
