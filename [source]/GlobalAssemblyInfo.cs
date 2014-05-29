@@ -19,4 +19,4 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("7.0.0")]
 [assembly: AssemblyFileVersion("7.0.0")]
-[assembly: AssemblyInformationalVersion("7.0.0-alpha1")]
+[assembly: AssemblyInformationalVersion("7.0.0")]// A configuração do NuGet usa esse atributo Exemplo: "7.0.0-alpha1"
