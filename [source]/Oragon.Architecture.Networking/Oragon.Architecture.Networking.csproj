@@ -44,7 +44,6 @@
     </Compile>
     <Compile Include="Networking\Commom\Message.cs" />
     <Compile Include="Networking\DynamicPort.cs" />
-    <Compile Include="Networking\Server.cs" />
     <Compile Include="Networking\Commom\MessageProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
