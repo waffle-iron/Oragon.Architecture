@@ -22,7 +22,7 @@ And much more...</description>
 		<tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
 	</metadata>
 	<files>
-		<file src="bin\$configuration$\Oragon.Architecture.dll" target="lib\Oragon.Architecture.dll" />
-		<file src="bin\$configuration$\Oragon.Architecture.pdb" target="lib\Oragon.Architecture.pdb"/>
+		<file src="..\bin\$configuration$\Oragon.Architecture.dll" target="lib\Oragon.Architecture.dll" />
+		<file src="..\bin\$configuration$\Oragon.Architecture.pdb" target="lib\Oragon.Architecture.pdb"/>
 	</files>
 </package>
