@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-	<metadata>
-		<id>Oragon.Architecture.Aop</id>
-		<version>$version$</version>
-		<title>Oragon.Architecture.Aop</title>
-		<authors>LuizCarlosFaria</authors>
-		<owners>luizcarlosfaria</owners>
-		<projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
-		<iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Aspect-Oriented Programming Core Library</description>
-		<summary>Provide abstractions to help you to implement powerful, useful and reliable AOP Aspects based and composite contexts</summary>
-		<copyright>Copyright 2014</copyright>
-		<language>en-US</language>
-		<tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
-		<dependencies>
-			<dependency id="Common.Logging" version="2.2.0"  />
-			<dependency id="Common.Logging.Core" version="2.2.0"  />
-			<dependency id="Spring.Aop" version="2.0.0-RC1" />
-			<dependency id="Spring.Core" version="2.0.0-RC1"  />
-			<dependency id="Oragon.Architecture" version="$version$"  />
-		</dependencies>
-	</metadata>
-	<files>
-		<file src="..\bin\$configuration$\Oragon.Architecture.Aop.dll" target="lib\Oragon.Architecture.Aop.dll" />
-		<file src="..\bin\$configuration$\Oragon.Architecture.Aop.pdb" target="lib\Oragon.Architecture.Aop.pdb"/>
-	</files>	
+  <metadata>
+    <id>Oragon.Architecture.Aop</id>
+    <version>$version$</version>
+    <title>Oragon.Architecture.Aop</title>
+    <authors>LuizCarlosFaria</authors>
+    <owners>luizcarlosfaria</owners>
+    <projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
+    <iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Aspect-Oriented Programming Core Library</description>
+    <summary>Provide abstractions to help you to implement powerful, useful and reliable AOP Aspects based and composite contexts</summary>
+    <copyright>Copyright 2014</copyright>
+    <language>en-US</language>
+    <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
+    <dependencies>
+      <dependency id="Common.Logging" version="2.2.0" />
+      <dependency id="Common.Logging.Core" version="2.2.0" />
+      <dependency id="Spring.Aop" version="2.0.0-RC1" />
+      <dependency id="Spring.Core" version="2.0.0-RC1" />
+      <dependency id="Oragon.Architecture" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\Oragon.Architecture.Aop.dll" target="lib\Oragon.Architecture.Aop.dll" />
+    <file src="..\bin\$configuration$\Oragon.Architecture.Aop.pdb" target="lib\Oragon.Architecture.Aop.pdb" />
+  </files>
 </package>

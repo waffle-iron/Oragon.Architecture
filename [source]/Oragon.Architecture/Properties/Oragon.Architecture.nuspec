@@ -1,28 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-	<metadata>
-		<id>Oragon.Architecture</id>
-		<version>$version$</version>
-		<title>Oragon.Architecture</title>
-		<authors>LuizCarlosFaria</authors>
-		<owners>luizcarlosfaria</owners>
-		<projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
-		<iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Inside Oragon Architecture you will find:
+  <metadata>
+    <id>Oragon.Architecture</id>
+    <version>$version$</version>
+    <title>Oragon.Architecture</title>
+    <authors>LuizCarlosFaria</authors>
+    <owners>luizcarlosfaria</owners>
+    <projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
+    <iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Inside Oragon Architecture you will find:
 Robust data code generator, responsible to generate FluentNhibernate Mappings(1), NHibernate (minimal) configuration, Entities and Data Process.
 Infrastructure to manage Data Access (MongoDB, NHibernate With MySQL, SQL Server or/and DB2, Redis)
 Infrastructure to help you to implement abstractions for AOP, using Spring.Net
 Infrastructure to use Exception Management and Handling using AOP.
 Infrastructure to Log Exceptions contextually with tags and values (improve business tracking)
 And much more...</description>
-		<summary>Oragon Architecture is a toolset of frameworks and architectural design to provide simple way to development robust and primorous applications and services.</summary>
-		<copyright>Copyright 2014</copyright>
-		<language>en-US</language>
-		<tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
-	</metadata>
-	<files>
-		<file src="..\bin\$configuration$\Oragon.Architecture.dll" target="lib\Oragon.Architecture.dll" />
-		<file src="..\bin\$configuration$\Oragon.Architecture.pdb" target="lib\Oragon.Architecture.pdb"/>
-	</files>
+    <summary>Oragon Architecture is a toolset of frameworks and architectural design to provide simple way to development robust and primorous applications and services.</summary>
+    <copyright>Copyright 2014</copyright>
+    <language>en-US</language>
+    <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\Oragon.Architecture.dll" target="lib\Oragon.Architecture.dll" />
+    <file src="..\bin\$configuration$\Oragon.Architecture.pdb" target="lib\Oragon.Architecture.pdb" />
+  </files>
 </package>

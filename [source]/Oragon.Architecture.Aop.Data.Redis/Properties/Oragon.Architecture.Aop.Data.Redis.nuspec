@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Oragon.Architecture.Aop.Data.Redis</id>
+    <version>$version$</version>
+    <title>Oragon.Architecture.Aop.Data.Redis</title>
+    <authors>LuizCarlos</authors>
+    <owners>LuizCarlos</owners>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package description</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Tag1 Tag2</tags>
+    <dependencies>
+      <dependency id="Common.Logging" version="2.2.0" />
+      <dependency id="Common.Logging.Core" version="2.2.0" />
+      <dependency id="Newtonsoft.Json" version="6.0.3" />
+      <dependency id="ServiceStack.Common" version="4.0.20" />
+      <dependency id="ServiceStack.Interfaces" version="4.0.20" />
+      <dependency id="ServiceStack.Redis" version="4.0.20" />
+      <dependency id="ServiceStack.Text" version="4.0.20" />
+      <dependency id="Spring.Aop" version="2.0.0-RC1" />
+      <dependency id="Spring.Core" version="2.0.0-RC1" />
+      <dependency id="Oragon.Architecture.Aop" version="$version$" />
+      <dependency id="Oragon.Architecture.Serialization" version="$version$" />
+      <dependency id="Oragon.Architecture" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\Oragon.Architecture.Aop.Data.Redis.dll" target="lib\Oragon.Architecture.Aop.Data.Redis.dll" />
+    <file src="..\bin\$configuration$\Oragon.Architecture.Aop.Data.Redis.pdb" target="lib\Oragon.Architecture.Aop.Data.Redis.pdb" />
+  </files>
+</package>
