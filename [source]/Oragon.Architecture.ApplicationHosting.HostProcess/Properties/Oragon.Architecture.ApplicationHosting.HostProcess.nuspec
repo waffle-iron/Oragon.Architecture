@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Oragon.Architecture.ApplicationHosting.HostProcess</id>
-    <version>$version$-GA</version>
+    <version>$version$</version>
     <title>Oragon.Architecture.ApplicationHosting.HostProcess</title>
     <authors>LuizCarlos</authors>
     <owners>LuizCarlos</owners>
@@ -22,11 +22,11 @@
       <dependency id="Oragon.Architecture.Icons" version="7.0.0-alpha1" />
       <dependency id="Spring.Core" version="2.0.0-RC1" />
       <dependency id="Topshelf" version="3.1.3" />
-      <dependency id="Oragon.Architecture.ApplicationHosting.Ninject" version="$version$-GA" />
-      <dependency id="Oragon.Architecture.ApplicationHosting.SimpleInjector" version="$version$-GA" />
-      <dependency id="Oragon.Architecture.ApplicationHosting.SpringFramework" version="$version$-GA" />
-      <dependency id="Oragon.Architecture.ApplicationHosting" version="$version$-GA" />
-      <dependency id="Oragon.Architecture" version="$version$-GA" />
+      <dependency id="Oragon.Architecture.ApplicationHosting.Ninject" version="$version$" />
+      <dependency id="Oragon.Architecture.ApplicationHosting.SimpleInjector" version="$version$" />
+      <dependency id="Oragon.Architecture.ApplicationHosting.SpringFramework" version="$version$" />
+      <dependency id="Oragon.Architecture.ApplicationHosting" version="$version$" />
+      <dependency id="Oragon.Architecture" version="$version$" />
     </dependencies>
   </metadata>
   <files>
