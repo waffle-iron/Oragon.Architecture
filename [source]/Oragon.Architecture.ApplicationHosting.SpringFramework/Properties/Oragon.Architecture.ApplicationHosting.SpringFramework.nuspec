@@ -6,8 +6,8 @@
     <title>Oragon.Architecture.ApplicationHosting.SpringFramework</title>
     <authors>LuizCarlos</authors>
     <owners>LuizCarlos</owners>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
+    <iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Package description</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
