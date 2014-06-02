@@ -67,6 +67,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Oragon.Architecture.Aop.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
