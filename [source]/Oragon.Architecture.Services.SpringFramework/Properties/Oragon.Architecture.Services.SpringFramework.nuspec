@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Oragon.Architecture.Services.SpringFramework</id>
-    <version>$version$</version>
+    <version>$version$-GA</version>
     <title>Oragon.Architecture.Services.SpringFramework</title>
     <authors>LuizCarlos</authors>
     <owners>LuizCarlos</owners>
@@ -21,8 +21,8 @@
       <dependency id="Spring.Aop" version="2.0.0-RC1" />
       <dependency id="Spring.Core" version="2.0.0-RC1" />
       <dependency id="Spring.Services" version="2.0.0-RC1" />
-      <dependency id="Oragon.Architecture.Services" version="$version$" />
-      <dependency id="Oragon.Architecture" version="$version$" />
+      <dependency id="Oragon.Architecture.Services" version="$version$-GA" />
+      <dependency id="Oragon.Architecture" version="$version$-GA" />
     </dependencies>
   </metadata>
   <files>
