@@ -12,7 +12,7 @@
     <description>Aspect-Oriented Programming Core Library</description>
     <summary>Provide abstractions to help you to implement powerful, useful and reliable AOP Aspects based and composite contexts</summary>
     <copyright>Copyright 2014</copyright>
-    <language>en-US</language>
+    <language>en-US</language>	
     <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
     <dependencies>
       <dependency id="Common.Logging" version="2.2.0" />

@@ -12,7 +12,8 @@
     <description>Package description</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
-    <tags>Tag1 Tag2</tags>
+	<language>en-US</language>
+    <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
     <dependencies>
       <dependency id="Ninject" version="3.2.2.0" />
       <dependency id="Topshelf" version="3.1.3" />
