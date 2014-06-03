@@ -12,7 +12,7 @@
     <description>Package description</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright 2014</copyright>
-	<language>en-US</language>
+    <language>en-US</language>
     <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="6.0.3" />
