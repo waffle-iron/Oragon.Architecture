@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30E4014D-8E36-4E02-AE1A-CD4EB1718683}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oragon.Resources.Bootstrap</RootNamespace>
+    <AssemblyName>Oragon.Resources.Bootstrap</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Oragon.Resources.Bootstrap.csproj" /><EmbeddedResource Include="Oragon.Resources.Bootstrap.csproj.user" /><EmbeddedResource Include="css\bootstrap-theme.css" /><EmbeddedResource Include="css\bootstrap-theme.css.map" /><EmbeddedResource Include="css\bootstrap-theme.min.css" /><EmbeddedResource Include="css\bootstrap.css" /><EmbeddedResource Include="css\bootstrap.css.map" /><EmbeddedResource Include="css\bootstrap.min.css" /><EmbeddedResource Include="fonts\glyphicons-halflings-regular.eot" /><EmbeddedResource Include="fonts\glyphicons-halflings-regular.svg" /><EmbeddedResource Include="fonts\glyphicons-halflings-regular.ttf" /><EmbeddedResource Include="fonts\glyphicons-halflings-regular.woff" /><EmbeddedResource Include="js\bootstrap.js" /><EmbeddedResource Include="js\bootstrap.min.js" /><EmbeddedResource Include="Properties\Oragon.Resources.Bootstrap.nuspec" /></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
