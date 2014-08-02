@@ -1,9 +1,0 @@
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\Oragon.Architecture.ExcelIntegrationTest.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\Oragon.Architecture.ExcelIntegrationTest.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\EPPlus.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\Oragon.Architecture.ExcelIntegration.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\Oragon.Architecture.ExcelIntegration.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\bin\Release\Oragon.Architecture.ExcelIntegration.xml
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\obj\Release\Oragon.Architecture.ExcelIntegrationTest.4.0.csprojResolveAssemblyReference.cache
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\obj\Release\Oragon.Architecture.ExcelIntegrationTest.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegrationTest\obj\Release\Oragon.Architecture.ExcelIntegrationTest.pdb

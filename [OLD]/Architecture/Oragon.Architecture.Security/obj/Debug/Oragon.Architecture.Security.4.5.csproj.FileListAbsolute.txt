@@ -1,5 +1,0 @@
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.Security\obj\Debug\Oragon.Architecture.Security.4.5.csprojResolveAssemblyReference.cache
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.Security\obj\Debug\Interop.ActiveDs.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.Security\obj\Debug\Oragon.Architecture.Security.4.5.csproj.ResolveComReference.cache
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.Security\obj\Debug\Oragon.Architecture.Security.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.Security\obj\Debug\Oragon.Architecture.Security.dll

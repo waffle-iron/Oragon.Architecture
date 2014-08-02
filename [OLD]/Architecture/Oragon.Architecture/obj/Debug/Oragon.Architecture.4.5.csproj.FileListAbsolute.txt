@@ -1,3 +1,0 @@
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Debug\Oragon.Architecture.4.5.csprojResolveAssemblyReference.cache
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Debug\Oragon.Architecture.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture\obj\Debug\Oragon.Architecture.dll

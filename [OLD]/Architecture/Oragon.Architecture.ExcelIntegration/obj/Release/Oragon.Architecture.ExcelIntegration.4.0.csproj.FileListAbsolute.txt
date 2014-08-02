@@ -1,7 +1,0 @@
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Release\Oragon.Architecture.ExcelIntegration.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Release\Oragon.Architecture.ExcelIntegration.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Release\EPPlus.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Release\Oragon.Architecture.ExcelIntegration.dll
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Release\Oragon.Architecture.ExcelIntegration.pdb
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\bin\Release\Oragon.Architecture.ExcelIntegration.XML
-D:\Projetos\Oragon.Architecture\Architecture\Oragon.Architecture.ExcelIntegration\obj\Release\Oragon.Architecture.ExcelIntegration.4.0.csprojResolveAssemblyReference.cache
