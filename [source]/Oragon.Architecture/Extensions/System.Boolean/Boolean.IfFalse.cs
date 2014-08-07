@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>F396C490-9448-475D-B3A9-FBAE682FDBB7</id>
 		/// <summary>
 		///     A bool extension method that execute an Action if the value is false.
@@ -22,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 				action();
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,25 +1,21 @@
-﻿using Microsoft.Owin.Hosting;
-using Oragon.Architecture;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin.Cors;
 using Oragon.Architecture.ApplicationHosting.Management.Middleware;
-using Oragon.Architecture.Extensions;
 using Oragon.Architecture.Web.Owin.OMvc;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.AspNet.SignalR;
-using Microsoft.Owin.Cors;
-
 
 namespace Oragon.Architecture.ApplicationHosting.Management
 {
 	public class ManagementHostStartup
 	{
+		#region Public Fields
+
 		public static HttpConfiguration WebApiHttpConfiguration;
 
+		#endregion Public Fields
+
+		#region Public Methods
 
 		public void Configuration(Owin.IAppBuilder app)
 		{
@@ -30,14 +26,25 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			this.ConfigureWebMvc(app);
 		}
 
-		private void ConfigureWelcomePage(IAppBuilder app)
-		{
-			app.UseWelcomePage("/welcome");
-		}
+		#endregion Public Methods
+
+		#region Private Methods
 
 		private void ConfigureErrorPage(IAppBuilder app)
 		{
 			app.UseErrorPage(Microsoft.Owin.Diagnostics.ErrorPageOptions.ShowAll);
+		}
+
+		private void ConfigureSignalR(IAppBuilder app)
+		{
+			var signalR_DependencyResolver = ManagementHost.Current.ApplicationContext.GetObject<Oragon.Architecture.Web.SignalR.SpringFramework.SpringDependencyResolver>();
+			var hubConfiguration = new HubConfiguration() { EnableDetailedErrors = true, EnableJavaScriptProxies = true, EnableJSONP = true, Resolver = signalR_DependencyResolver };
+
+			//app.MapHubs(hubConfiguration);
+			app.UseCors(CorsOptions.AllowAll);
+			//app.MapSignalR<Oragon.Architecture.Web.SignalR.SpringFramework.SpringPersistentConnection>("/signalr", hubConfiguration);
+			app.MapSignalR(hubConfiguration);
+			//GlobalHost.DependencyResolver = signalR_DependencyResolver;
 		}
 
 		private void ConfigureWebApi(IAppBuilder app)
@@ -64,7 +71,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 			ManagementHostStartup.WebApiHttpConfiguration = httpConfig;
 		}
-
 
 		private void ConfigureWebMvc(IAppBuilder app)
 		{
@@ -95,22 +101,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			app.Use<OMvcMiddleware>(middlewareOptions, httpConfig);
 		}
 
-
-		private void ConfigureSignalR(IAppBuilder app)
+		private void ConfigureWelcomePage(IAppBuilder app)
 		{
-			
-			var signalR_DependencyResolver = ManagementHost.Current.ApplicationContext.GetObject<Oragon.Architecture.Web.SignalR.SpringFramework.SpringDependencyResolver>();
-			var hubConfiguration = new HubConfiguration() { EnableDetailedErrors = true, EnableJavaScriptProxies = true, EnableJSONP = true, Resolver = signalR_DependencyResolver };
-
-	
-			//app.MapHubs(hubConfiguration);
-			app.UseCors(CorsOptions.AllowAll);
-			//app.MapSignalR<Oragon.Architecture.Web.SignalR.SpringFramework.SpringPersistentConnection>("/signalr", hubConfiguration);
-			app.MapSignalR(hubConfiguration);
-			//GlobalHost.DependencyResolver = signalR_DependencyResolver;
+			app.UseWelcomePage("/welcome");
 		}
 
+		#endregion Private Methods
 	}
-
-
 }

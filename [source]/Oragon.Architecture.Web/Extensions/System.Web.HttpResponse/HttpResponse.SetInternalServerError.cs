@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Web;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>B2F67928-6EEB-42E2-A984-020FF1CB65E8</id>
 		/// <summary>
 		///     A HttpResponse extension method that sets the response to status code 500 (Internal Server Error).
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 			@this.StatusCode = 500;
 			@this.StatusDescription = "Internal Server Error";
 		}
+
+		#endregion Public Methods
 	}
 }

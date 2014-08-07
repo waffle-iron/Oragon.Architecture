@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>EBD9B7B5-0B56-4868-9A62-04A9DF560D5E</id>
 		/// <summary>
 		///     A string extension method that query if this object contains the given value.
@@ -33,5 +32,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.IndexOf(value, comparisonType) != -1;
 		}
+
+		#endregion Public Methods
 	}
 }

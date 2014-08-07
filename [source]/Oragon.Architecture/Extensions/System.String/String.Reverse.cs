@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>7EF2717D-A5AA-45F5-AD50-47AB8AD046A7</id>
 		/// <summary>
 		///     A string extension method that reverses the given string.
@@ -26,5 +25,7 @@ namespace Oragon.Architecture.Extensions
 			Array.Reverse(chars);
 			return new string(chars);
 		}
+
+		#endregion Public Methods
 	}
 }

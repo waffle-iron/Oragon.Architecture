@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>E26D9726-A2A6-402C-9ED1-234EF36615FC</id>
 		/// <summary>
 		///     A Random extension method that flip a coin toss.
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.Next(2) == 0;
 		}
+
+		#endregion Public Methods
 	}
 }

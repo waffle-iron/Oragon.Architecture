@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>10C069F2-BAC4-4E79-A06D-5917D52E1A11</id>
 		/// <summary>
 		///     An ICollection&lt;T&gt; extension method that query if the collection is empty
@@ -21,5 +20,7 @@ namespace Oragon.Architecture.Extensions
 			bool hasAny = @this.GetEnumerator().MoveNext();
 			return !hasAny;
 		}
+
+		#endregion Public Methods
 	}
 }

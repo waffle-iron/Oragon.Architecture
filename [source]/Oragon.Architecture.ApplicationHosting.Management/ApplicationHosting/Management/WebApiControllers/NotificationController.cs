@@ -1,20 +1,23 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Management.Repository;
+using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
 	[RoutePrefix("api/Notification")]
 	public class NotificationController : ApiController
 	{
-		ApplicationRepository ApplicationRepository { get; set; }
-		NotificationRepository NotificationRepository { get; set; }
+		#region Private Properties
+
+		private ApplicationRepository ApplicationRepository { get; set; }
+
+		private NotificationRepository NotificationRepository { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		[HttpPost]
 		[Route("GetMessages/{clientID:guid}/")]
@@ -24,11 +27,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 
 			IEnumerable<Notification> returnValue = this.NotificationRepository.GetMessages(clientID);
 
-
-			
-
-			return returnValue; 
+			return returnValue;
 		}
 
+		#endregion Public Methods
 	}
 }

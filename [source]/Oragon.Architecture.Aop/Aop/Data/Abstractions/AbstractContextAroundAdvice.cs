@@ -10,7 +10,9 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 		where AttributeType : AbstractContextAttribute
 		where ContextType : AbstractContext<AttributeType>
 	{
-		protected abstract string ContextStackListKey { get; }
+		#region Protected Properties
+
+		protected abstract Func<AttributeType, bool> AttributeQueryFilter { get; }
 
 		protected Stack<AbstractContext<AttributeType>> ContextStack
 		{
@@ -26,6 +28,12 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			}
 		}
 
+		protected abstract string ContextStackListKey { get; }
+
+		#endregion Protected Properties
+
+		#region Public Methods
+
 		public object Invoke(IMethodInvocation invocation)
 		{
 			object returnValue = null;
@@ -37,12 +45,12 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			return returnValue;
 		}
 
-		protected abstract Func<AttributeType, bool> AttributeQueryFilter { get; }
+		#endregion Public Methods
 
-		protected abstract object Invoke(IMethodInvocation invocation, IEnumerable<AttributeType> contextAttributes);
+		#region Protected Methods
 
 		/// <summary>
-		/// Obtém informações de persistência definidas nos métodos
+		///     Obtém informações de persistência definidas nos métodos
 		/// </summary>
 		/// <param name="invocation"></param>
 		/// <returns></returns>
@@ -52,5 +60,9 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			IEnumerable<AttributeType> returnValue = invocation.GetAttibutes<AttributeType>(AttributeQueryFilter);
 			return returnValue;
 		}
+
+		protected abstract object Invoke(IMethodInvocation invocation, IEnumerable<AttributeType> contextAttributes);
+
+		#endregion Protected Methods
 	}
 }

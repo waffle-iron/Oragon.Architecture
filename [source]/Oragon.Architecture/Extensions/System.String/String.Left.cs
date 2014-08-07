@@ -1,12 +1,11 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>37D8994E-550E-4E9C-B9D0-43B21FB464CF</id>
 		/// <summary>
 		///     A string extension method that return the left part of the string.
@@ -18,5 +17,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.Substring(0, length);
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Oragon.Architecture.Data.ConnectionStrings
@@ -9,8 +6,13 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 	//TODO: Falta suporte a DB2
 	public class NHConfigFileConnectionStringDiscoverer : IConnectionStringDiscoverer
 	{
+		#region Public Properties
+
 		public string FileName { get; set; }
 
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public System.Configuration.ConnectionStringSettings GetConnectionString()
 		{
@@ -23,16 +25,9 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 			return settings;
 		}
 
-		private string GetProviderName(string driver_class)
-		{
-			if (driver_class.ToLower() == "nhibernate.driver.sqlclientdriver")
-				return "System.Data.SqlClient";
-			else if (driver_class.ToLower() == "nhibernate.driver.mysqldatadriver")
-				return "MySql.Data.MySqlClient";
-			else
-				return string.Empty;
-		}
+		#endregion Public Methods
 
+		#region Private Methods
 
 		private Dictionary<string, string> BuildDic()
 		{
@@ -47,5 +42,16 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 			return valueDic;
 		}
 
+		private string GetProviderName(string driver_class)
+		{
+			if (driver_class.ToLower() == "nhibernate.driver.sqlclientdriver")
+				return "System.Data.SqlClient";
+			else if (driver_class.ToLower() == "nhibernate.driver.mysqldatadriver")
+				return "MySql.Data.MySqlClient";
+			else
+				return string.Empty;
+		}
+
+		#endregion Private Methods
 	}
 }

@@ -7,9 +7,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 	public abstract class AbstractContext<AttributeType> : IDisposable
 		where AttributeType : AbstractContextAttribute
 	{
-		protected Stack<AbstractContext<AttributeType>> ContextStack { get; private set; }
-
-		protected AttributeType ContextAttribute { get; private set; }
+		#region Public Constructors
 
 		public AbstractContext(AttributeType contextAttribute, Stack<AbstractContext<AttributeType>> contextStack)
 		{
@@ -19,38 +17,35 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			this.ContextStack.Push(this);
 		}
 
+		#endregion Public Constructors
+
+		#region Protected Properties
+
+		protected AttributeType ContextAttribute { get; private set; }
+
 		protected string ContextKey
 		{
 			get { return this.ContextAttribute.ContextKey; }
 		}
 
+		protected Stack<AbstractContext<AttributeType>> ContextStack { get; private set; }
+
+		#endregion Protected Properties
+
 		#region Dispose Methods
 
 		private bool disposed = false;
+
+		~AbstractContext()
+		{
+			// Simply call Dispose(false).
+			Dispose(false);
+		}
 
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
-		}
-
-		private void Dispose(bool disposing)
-		{
-			if (!this.disposed)
-			{
-				if (disposing)
-				{
-					this.DisposeContext();
-				}
-				this.DisposeFields();
-				disposed = true;
-			}
-		}
-
-		protected virtual void DisposeFields()
-		{
-			this.ContextStack = null;
-			this.ContextAttribute = null;
 		}
 
 		protected virtual void DisposeContext()
@@ -72,10 +67,23 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			}
 		}
 
-		~AbstractContext()
+		protected virtual void DisposeFields()
 		{
-			// Simply call Dispose(false).
-			Dispose(false);
+			this.ContextStack = null;
+			this.ContextAttribute = null;
+		}
+
+		private void Dispose(bool disposing)
+		{
+			if (!this.disposed)
+			{
+				if (disposing)
+				{
+					this.DisposeContext();
+				}
+				this.DisposeFields();
+				disposed = true;
+			}
 		}
 
 		#endregion Dispose Methods

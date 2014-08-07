@@ -3,9 +3,7 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.ErrorManager = {
-
-	init: function () { 
-
+	init: function () {
 		radio('AjaxManager:EndRequest').subscribe(function (resultInfo) {
 			var configurationFactory = Oragon.Architecture.Scripting.ErrorManager.getConfigurationFactory(resultInfo);
 			if(Ext.isEmpty(configurationFactory)) return;
@@ -13,8 +11,7 @@ Oragon.Architecture.Scripting.ErrorManager = {
 			if(Ext.isEmpty(configuration)) return;
 			Oragon.Architecture.Scripting.ErrorManager.handle(configuration, resultInfo);
 		});
-
-	},		
+	},
 	handle: function(configuration, resultInfo)
 	{
 		var detailField = null;
@@ -85,8 +82,6 @@ Oragon.Architecture.Scripting.ErrorManager = {
 								text: 'Enviar informações sobre o Erro',
 								width: 200,
 								handler: function () {
-									
-
 									/*
 									Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
 										waitingMessage: "Enviando Bug Reporte...",
@@ -117,7 +112,6 @@ Oragon.Architecture.Scripting.ErrorManager = {
 		});
 		win.show();
 
-
 		/*if(Ext.isEmpty(configuration.messageDetails))
 		{
 			Ext.MessageBox.show({
@@ -127,16 +121,15 @@ Oragon.Architecture.Scripting.ErrorManager = {
 				msg: configuration.messageText,
 				icon: configuration.messageIcon
 			});
-
 		}*/
 	},
 
 	getConfigurationFactory: function (resultInfo) {
-		var currentHandler = null;		
+		var currentHandler = null;
 		if(resultInfo.httpStatusCode == 0)
 		{
 			currentHandler = function(resultInfo)
-			{ 
+			{
 				return {
 					status : 1,
 					messageTitle : 'Server Unavailable or Address Error',
@@ -144,14 +137,11 @@ Oragon.Architecture.Scripting.ErrorManager = {
 					messageText : Ext.String.format('The server did not respond to the address "{0}".', resultInfo.configObject.urlToSend),
 					messageDetails : null,
 					viewHtml: false
-				}; 
+				};
 			};
 		}
 		return currentHandler;
 	}
-
-
-
 
 	/*getMesageBoxConfigFromStatus: function (status) {
 		var returnObject = {
@@ -175,7 +165,7 @@ Oragon.Architecture.Scripting.ErrorManager = {
 				returnObject.messageTitle = "Informação";
 				returnObject.messageIcon = Ext.MessageBox.INFO;
 				break;
-			case 4: //Question 
+			case 4: //Question
 				returnObject.messageTitle = "Questionamento";
 				returnObject.messageIcon = Ext.MessageBox.QUESTION;
 				break;
@@ -250,7 +240,6 @@ Oragon.Architecture.Scripting.ErrorManager = {
 											mainRoute = currentWindow.Route;
 										currentWindow = currentWindow.parent;
 									}
-
 
 									Oragon.Architecture.Scripting.AjaxManager.sendAndReceiveUsingJson({
 										waitingMessage: "Enviando Bug Reporte...",

@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Web;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>7DAD6857-0E4B-4B9B-99FD-1C764755831B</id>
 		/// <summary>
 		///     A string extension method that Html encode a string and returns the encoded string.
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return HttpUtility.HtmlEncode(@this);
 		}
+
+		#endregion Public Methods
 	}
 }

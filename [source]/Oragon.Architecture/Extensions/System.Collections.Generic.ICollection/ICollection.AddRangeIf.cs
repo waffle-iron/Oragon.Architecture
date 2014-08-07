@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
@@ -10,10 +7,12 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>DC6B42E9-C0F7-47FE-819D-CF47862B7E72</id>
 		/// <summary>
-		///     An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
-		///     for value who satisfies the predicate.
+		///     An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only for value who satisfies
+		///     the predicate.
 		/// </summary>
 		/// <typeparam name="T">Generic type parameter.</typeparam>
 		/// <param name="this">The @this to act on.</param>
@@ -32,8 +31,8 @@ namespace Oragon.Architecture.Extensions
 
 		/// <id>6208839E-FA33-451C-A517-FB5BE3295DC1</id>
 		/// <summary>
-		///     An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only
-		///     for value who satisfies the predicate.
+		///     An ICollection&lt;T&gt; extension method that adds a collection of objects to the end of this collection only for value who satisfies
+		///     the predicate.
 		/// </summary>
 		/// <typeparam name="T">Generic type parameter.</typeparam>
 		/// <param name="this">The @this to act on.</param>
@@ -49,5 +48,7 @@ namespace Oragon.Architecture.Extensions
 				}
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

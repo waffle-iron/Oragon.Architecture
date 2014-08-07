@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>03F50E06-048A-4D8E-B503-3DD5C420EB2C</id>
 		/// <summary>
 		///     A FileInfo extension method that gets file name without extension.
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return System.IO.Path.GetFileNameWithoutExtension(@this.Name);
 		}
+
+		#endregion Public Methods
 	}
 }

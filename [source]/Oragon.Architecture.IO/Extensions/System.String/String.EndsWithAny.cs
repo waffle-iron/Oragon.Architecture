@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -10,8 +7,10 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <summary>
-		/// Gets a value indicating whether this string is equal <i>case sensitive</i> to any of the strings specified.
+		///     Gets a value indicating whether this string is equal <i>case sensitive</i> to any of the strings specified.
 		/// </summary>
 		/// <param name="thisString"></param>
 		/// <param name="args"></param>
@@ -22,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 			Contract.Requires(args != null, "args must not be null");
 			return args.Any(currentArg => thisString.EndsWith(currentArg));
 		}
+
+		#endregion Public Methods
 	}
 }

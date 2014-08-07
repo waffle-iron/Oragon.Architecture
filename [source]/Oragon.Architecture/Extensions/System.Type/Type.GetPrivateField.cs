@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Reflection;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>08AD98FB-4106-40E3-8693-5CD2CC2F1996</id>
 		/// <summary>
 		///     A Type extension method that gets a private field.
@@ -21,5 +20,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -4,14 +4,12 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.TimerManager = {
-
-	init: function () { 
-		
+	init: function () {
 	},
 
 	run: function (timerConfig)
 	{
-		/* 
+		/*
 		timerConfig: {
 			intervalInSeconds: 2,
 			fn: function(timerConfig){ return true/false}
@@ -19,7 +17,7 @@ Oragon.Architecture.Scripting.TimerManager = {
 		}
 		 */
 
-		setTimeout(Oragon.Architecture.Scripting.TimerManager._runJob, timerConfig.intervalInSeconds * 1000, timerConfig);		
+		setTimeout(Oragon.Architecture.Scripting.TimerManager._runJob, timerConfig.intervalInSeconds * 1000, timerConfig);
 	},
 
 	_runJob: function (innerTimerConfig) {
@@ -29,10 +27,7 @@ Oragon.Architecture.Scripting.TimerManager = {
 				Oragon.Architecture.Scripting.TimerManager.run(innerTimerConfig);
 			};
 		}
-		innerTimerConfig.fn(innerTimerConfig);		
+		innerTimerConfig.fn(innerTimerConfig);
 	}
-	
-
-
 };
 Oragon.Architecture.Scripting.TimerManager.init();

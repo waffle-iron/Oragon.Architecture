@@ -7,8 +7,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 		where ContextType : AbstractContext<AttributeType>
 		where AttributeType : AbstractContextAttribute
 	{
-		[Required]
-		protected string ObjectContextKey { get; set; }
+		#region Protected Properties
 
 		protected virtual ContextType ObjectContext
 		{
@@ -20,5 +19,10 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 				return returnValue;
 			}
 		}
+
+		[Required]
+		protected string ObjectContextKey { get; set; }
+
+		#endregion Protected Properties
 	}
 }

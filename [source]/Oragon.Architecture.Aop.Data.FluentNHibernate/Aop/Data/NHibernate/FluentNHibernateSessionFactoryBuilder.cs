@@ -1,24 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using NH = NHibernate;
 using FluentNH = FluentNHibernate;
-using Oragon.Architecture.Data.ConnectionStrings;
+using NH = NHibernate;
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
 	/// <summary>
-	/// Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
+	///     Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
 	/// </summary>
 	public abstract class FluentNHibernateSessionFactoryBuilder : AbstractSessionFactoryBuilder
 	{
+		#region Public Constructors
+
 		public FluentNHibernateSessionFactoryBuilder()
 		{
 		}
 
+		#endregion Public Constructors
+
+		#region Protected Methods
 
 		/// <summary>
-		/// Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
+		///     Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
 		/// </summary>
 		/// <returns></returns>
 		protected override NH.ISessionFactory BuildSessionFactoryInternal()
@@ -58,37 +61,9 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return sessionFactory;
 		}
 
-		private FluentNH.Cfg.Db.IPersistenceConfigurer GetDataBaseConfiguration()
-		{
-			string mySQLProviderName = "MySql.Data.MySqlClient".ToLower();
-			string sqlServerProviderName = "System.Data.SqlClient".ToLower();
-			string db2ProviderName = "System.Data.DB2Client".ToLower();
+		#endregion Protected Methods
 
-			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = null;
-
-			ConnectionStringSettings connectionStringSettings = this.GetProviderName();
-
-			string connectionStringSettingsProviderName = connectionStringSettings.ProviderName;
-			switch (connectionStringSettingsProviderName)
-			{
-
-				case "MySql.Data.MySqlClient":
-					returnValue = this.ConfigureForMySQL(connectionStringSettings);
-					break;
-
-				case "System.Data.SqlClient":
-					returnValue = this.ConfigureSQLServer(connectionStringSettings);
-					break;
-
-				case "System.Data.DB2Client":
-					returnValue = this.ConfigureDB2(connectionStringSettings);
-					break;
-
-				default:
-					throw new ConfigurationErrorsException("This ConnectionString dont have ProviderName defined. Use 'MySql.Data.MySqlClient', 'System.Data.DB2Client' or 'System.Data.SqlClient'.");
-			}
-			return returnValue;
-		}
+		#region Private Methods
 
 		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureDB2(ConnectionStringSettings connectionStringSettings)
 		{
@@ -99,6 +74,18 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			if (this.EnabledDiagnostics)
 				configDB2Client = configDB2Client.ShowSql().FormatSql();
 			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configDB2Client;
+			return returnValue;
+		}
+
+		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureForMySQL(ConnectionStringSettings connectionStringSettings)
+		{
+			var configMySqlClient = FluentNH.Cfg.Db.MySQLConfiguration.Standard
+							   .ConnectionString(connectionStringSettings.ConnectionString)
+							   .MaxFetchDepth(this.MaxFetchDepth)
+							   .IsolationLevel(this.DefaultIsolationLevel);
+			if (this.EnabledDiagnostics)
+				configMySqlClient = configMySqlClient.ShowSql().FormatSql();
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configMySqlClient;
 			return returnValue;
 		}
 
@@ -114,16 +101,34 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return returnValue;
 		}
 
-		private FluentNH.Cfg.Db.IPersistenceConfigurer ConfigureForMySQL(ConnectionStringSettings connectionStringSettings)
+		private FluentNH.Cfg.Db.IPersistenceConfigurer GetDataBaseConfiguration()
 		{
+			string mySQLProviderName = "MySql.Data.MySqlClient".ToLower();
+			string sqlServerProviderName = "System.Data.SqlClient".ToLower();
+			string db2ProviderName = "System.Data.DB2Client".ToLower();
 
-			var configMySqlClient = FluentNH.Cfg.Db.MySQLConfiguration.Standard
-							   .ConnectionString(connectionStringSettings.ConnectionString)
-							   .MaxFetchDepth(this.MaxFetchDepth)
-							   .IsolationLevel(this.DefaultIsolationLevel);
-			if (this.EnabledDiagnostics)
-				configMySqlClient = configMySqlClient.ShowSql().FormatSql();
-			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = configMySqlClient;
+			FluentNH.Cfg.Db.IPersistenceConfigurer returnValue = null;
+
+			ConnectionStringSettings connectionStringSettings = this.GetProviderName();
+
+			string connectionStringSettingsProviderName = connectionStringSettings.ProviderName;
+			switch (connectionStringSettingsProviderName)
+			{
+				case "MySql.Data.MySqlClient":
+					returnValue = this.ConfigureForMySQL(connectionStringSettings);
+					break;
+
+				case "System.Data.SqlClient":
+					returnValue = this.ConfigureSQLServer(connectionStringSettings);
+					break;
+
+				case "System.Data.DB2Client":
+					returnValue = this.ConfigureDB2(connectionStringSettings);
+					break;
+
+				default:
+					throw new ConfigurationErrorsException("This ConnectionString dont have ProviderName defined. Use 'MySql.Data.MySqlClient', 'System.Data.DB2Client' or 'System.Data.SqlClient'.");
+			}
 			return returnValue;
 		}
 
@@ -146,5 +151,6 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return connStrSettings;
 		}
 
+		#endregion Private Methods
 	}
 }

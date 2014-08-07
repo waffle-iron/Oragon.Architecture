@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class ExtensionMethods
 	{
+		#region Public Methods
+
 		/// <id>ED3ED365-C03A-49A5-9C3F-FF55C3716CC0</id>
 		/// <summary>
 		///     An ICollection&lt;T&gt; extension method that adds a range of values that's not already in the ICollection
@@ -44,5 +43,7 @@ namespace Oragon.Architecture.Extensions
 				}
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

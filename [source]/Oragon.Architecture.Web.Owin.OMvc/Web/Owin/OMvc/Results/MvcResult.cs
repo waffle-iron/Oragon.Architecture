@@ -1,18 +1,22 @@
 ﻿using Microsoft.Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public abstract class MvcResult
 	{
-		public abstract void Execute(IOwinContext context);
+		#region Public Properties
+
+		public System.Reflection.MethodInfo ActionMethod { get; set; }
 
 		public Type ControllerType { get; set; }
 
-		public System.Reflection.MethodInfo ActionMethod { get; set; }
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public abstract void Execute(IOwinContext context);
+
+		#endregion Public Methods
 	}
 }

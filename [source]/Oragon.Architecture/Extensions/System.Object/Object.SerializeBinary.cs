@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.IO;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>7D2C5D9B-D35A-45F3-84EF-4CF9854773F2</id>
 		/// <summary>
 		///     An object extension method that serialize an object to binary.
@@ -27,5 +26,7 @@ namespace Oragon.Architecture.Extensions
 				return Convert.ToBase64String(memoryStream.ToArray());
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

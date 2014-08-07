@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ExtendedTypes
 {
-
 	public class Range<T> : IEquatable<Range<T>>
 		 where T : struct, IComparable<T>, IEquatable<T>
 	{
+		#region Protected Fields
+
 		protected Nullable<T> startValue, endValue;
-		public Range() : this(new Nullable<T>(), new Nullable<T>()) { }
+
+		#endregion Protected Fields
+
+		#region Public Constructors
+
+		public Range()
+			: this(new Nullable<T>(), new Nullable<T>())
+		{
+		}
 
 		[DebuggerStepThrough]
 		public Range(Nullable<T> start, Nullable<T> end)
@@ -20,6 +25,20 @@ namespace Oragon.Architecture.ExtendedTypes
 			AssertstartFollowsend(start, end);
 			this.startValue = start;
 			this.endValue = end;
+		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public Nullable<T> End
+		{
+			get { return endValue; }
+			set
+			{
+				AssertstartFollowsend(this.startValue, value);
+				endValue = value;
+			}
 		}
 
 		public Nullable<T> Start
@@ -31,22 +50,19 @@ namespace Oragon.Architecture.ExtendedTypes
 				startValue = value;
 			}
 		}
-		public Nullable<T> End
-		{
-			get { return endValue; }
-			set
-			{
-				AssertstartFollowsend(this.startValue, value);
-				endValue = value;
-			}
-		}
 
-		[DebuggerStepThrough]
-		private void AssertstartFollowsend(Nullable<T> start, Nullable<T> end)
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public bool Equals(Range<T> other)
 		{
-			if (
-				(start.HasValue && end.HasValue) && (end.Value.CompareTo(start.Value) < 0))
-				throw new InvalidOperationException("Start must be less than or equal to End");
+			if (object.ReferenceEquals(other, null)) return false;
+
+			return
+				(Nullable.Compare<T>(this.startValue, other.startValue) == 0)
+				&&
+				(Nullable.Compare<T>(this.endValue, other.endValue) == 0);
 		}
 
 		[DebuggerStepThrough]
@@ -55,19 +71,7 @@ namespace Oragon.Architecture.ExtendedTypes
 			if (!Intersects(other)) throw new InvalidOperationException("Ranges do not intersect");
 			return new Range<T>(GetLaterstart(other.Start), GetEarlierend(other.End));
 		}
-		private Nullable<T> GetLaterstart(Nullable<T> other)
-		{
-			return Nullable.Compare<T>(startValue, other) >= 0 ? startValue : other;
-		}
-		private Nullable<T> GetEarlierend(Nullable<T> other)
-		{
-			//!end.HasValue == +infinity, not negative infinity
-			//as is the case with !start.HasValue
-			if (Nullable.Compare<T>(endValue, other) == 0) return other;
-			if (endValue.HasValue && !other.HasValue) return endValue;
-			if (!endValue.HasValue && other.HasValue) return other;
-			return (Nullable.Compare<T>(endValue, other) >= 0) ? other : endValue;
-		}
+
 		public bool Intersects(Range<T> other)
 		{
 			if (
@@ -108,16 +112,34 @@ namespace Oragon.Architecture.ExtendedTypes
 			}
 			return true;
 		}
-		public bool Equals(Range<T> other)
-		{
-			if (object.ReferenceEquals(other, null)) return false;
 
-			return
-				(Nullable.Compare<T>(this.startValue, other.startValue) == 0)
-				&&
-				(Nullable.Compare<T>(this.endValue, other.endValue) == 0);
+		#endregion Public Methods
+
+		#region Private Methods
+
+		[DebuggerStepThrough]
+		private void AssertstartFollowsend(Nullable<T> start, Nullable<T> end)
+		{
+			if (
+				(start.HasValue && end.HasValue) && (end.Value.CompareTo(start.Value) < 0))
+				throw new InvalidOperationException("Start must be less than or equal to End");
 		}
 
+		private Nullable<T> GetEarlierend(Nullable<T> other)
+		{
+			//!end.HasValue == +infinity, not negative infinity
+			//as is the case with !start.HasValue
+			if (Nullable.Compare<T>(endValue, other) == 0) return other;
+			if (endValue.HasValue && !other.HasValue) return endValue;
+			if (!endValue.HasValue && other.HasValue) return other;
+			return (Nullable.Compare<T>(endValue, other) >= 0) ? other : endValue;
+		}
 
+		private Nullable<T> GetLaterstart(Nullable<T> other)
+		{
+			return Nullable.Compare<T>(startValue, other) >= 0 ? startValue : other;
+		}
+
+		#endregion Private Methods
 	}
 }

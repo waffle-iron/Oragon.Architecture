@@ -1,14 +1,12 @@
 ﻿using Oragon.Architecture.Aop.Data.Abstractions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDBDriver = MongoDB.Driver;
 
 namespace Oragon.Architecture.Aop.Data.MongoDB
 {
 	public class MongoDBContext : AbstractContext<MongoDBContextAttribute>
 	{
+		#region Public Constructors
 
 		public MongoDBContext(MongoDBContextAttribute contextAttribute, Stack<AbstractContext<MongoDBContextAttribute>> contextStack)
 			: base(contextAttribute, contextStack)
@@ -17,10 +15,17 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			this.Server = this.Client.GetServer();
 		}
 
+		#endregion Public Constructors
+
+		#region Public Properties
+
 		public MongoDBDriver.MongoClient Client { get; private set; }
+
 		public MongoDBDriver.MongoServer Server { get; private set; }
 
+		#endregion Public Properties
 
+		#region Protected Methods
 
 		protected override void DisposeContext()
 		{
@@ -34,5 +39,6 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			base.DisposeFields();
 		}
 
+		#endregion Protected Methods
 	}
 }

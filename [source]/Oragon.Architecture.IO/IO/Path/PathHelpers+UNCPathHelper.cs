@@ -4,13 +4,20 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class UNCPathHelper
 		{
-			internal static bool StartLikeUNCPath(string pathStringNormalized)
-			{
-				Debug.Assert(pathStringNormalized != null);
-				return pathStringNormalized.IndexOf(MiscHelpers.TWO_DIR_SEPARATOR_STRING) == 0;
-			}
+			#region Internal Fields
+
+			//
+			// This two methods lets do work with UNCPath by converting them temporarily to drive letter path (easier to handle!)
+			//
+			internal const string FAKE_DRIVE_LETTER_PREFIX = @"C:";
+
+			#endregion Internal Fields
+
+			#region Internal Methods
 
 			internal static bool IsAnAbsoluteUNCPath(string pathStringNormalized)
 			{
@@ -34,8 +41,7 @@ namespace Oragon.Architecture.IO.Path
 				// Must begin with "\\"
 				if (pathStringNormalized.IndexOf(MiscHelpers.TWO_DIR_SEPARATOR_STRING) != 0) { return false; }
 
-				// Must have a separator after the double separator with at least a char in the middle
-				// means must have a separator after index 3
+				// Must have a separator after the double separator with at least a char in the middle means must have a separator after index 3
 				var twoDirSeparatorLength = MiscHelpers.TWO_DIR_SEPARATOR_STRING.Length;
 				var indexFirstSeparator = pathStringNormalized.IndexOf(MiscHelpers.DIR_SEPARATOR_STRING, twoDirSeparatorLength);
 				if (indexFirstSeparator == -1) { return false; }
@@ -64,10 +70,23 @@ namespace Oragon.Architecture.IO.Path
 				return true;
 			}
 
-			//
-			// This two methods lets do work with UNCPath by converting them temporarily to drive letter path (easier to handle!)
-			//
-			internal const string FAKE_DRIVE_LETTER_PREFIX = @"C:";
+			internal static bool StartLikeUNCPath(string pathStringNormalized)
+			{
+				Debug.Assert(pathStringNormalized != null);
+				return pathStringNormalized.IndexOf(MiscHelpers.TWO_DIR_SEPARATOR_STRING) == 0;
+			}
+
+			internal static string TranformDriveLetterIntoUNC(string driveLetterNormalizedPath, string uncServerShareStart)
+			{
+				Debug.Assert(driveLetterNormalizedPath != null);
+				Debug.Assert(driveLetterNormalizedPath.IsNormalized());
+				Debug.Assert(driveLetterNormalizedPath.StartsWith(FAKE_DRIVE_LETTER_PREFIX));
+				Debug.Assert(uncServerShareStart != null);
+				Debug.Assert(uncServerShareStart.Length > 0);
+				var tmp = driveLetterNormalizedPath.Remove(0, FAKE_DRIVE_LETTER_PREFIX.Length);
+				var uncNormalizedPath = tmp.Insert(0, uncServerShareStart);
+				return uncNormalizedPath;
+			}
 
 			internal static string TranformUNCIntoDriveLetter(string uncNormalizedPath, out string uncServerShareStart)
 			{
@@ -82,17 +101,9 @@ namespace Oragon.Architecture.IO.Path
 				return driveLetterNormalizedPath;
 			}
 
-			internal static string TranformDriveLetterIntoUNC(string driveLetterNormalizedPath, string uncServerShareStart)
-			{
-				Debug.Assert(driveLetterNormalizedPath != null);
-				Debug.Assert(driveLetterNormalizedPath.IsNormalized());
-				Debug.Assert(driveLetterNormalizedPath.StartsWith(FAKE_DRIVE_LETTER_PREFIX));
-				Debug.Assert(uncServerShareStart != null);
-				Debug.Assert(uncServerShareStart.Length > 0);
-				var tmp = driveLetterNormalizedPath.Remove(0, FAKE_DRIVE_LETTER_PREFIX.Length);
-				var uncNormalizedPath = tmp.Insert(0, uncServerShareStart);
-				return uncNormalizedPath;
-			}
+			#endregion Internal Methods
 		}
+
+		#endregion Private Classes
 	}
 }

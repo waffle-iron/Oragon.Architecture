@@ -1,16 +1,14 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using Oragon.Architecture.ExtendedTypes;
 using System;
-using System.Collections.Generic;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		public static bool IsIn<T>(this T value, Range<T> interval)
 			 where T : struct, IComparable<T>, IEquatable<T>
 		{
@@ -24,5 +22,7 @@ namespace Oragon.Architecture.Extensions
 
 			return returnValue;
 		}
+
+		#endregion Public Methods
 	}
 }

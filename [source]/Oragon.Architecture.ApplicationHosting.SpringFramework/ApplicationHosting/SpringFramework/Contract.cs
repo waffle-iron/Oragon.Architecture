@@ -1,23 +1,26 @@
 ﻿using Spring.Context;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.SpringFramework
 {
-
 	public interface ISpringFrameworkFactory : IContainerFactory<IApplicationContext> { }
-	public class SpringFrameworkApplicationHost : ApplicationHost<SpringFrameworkApplicationHostController, ISpringFrameworkFactory, IApplicationContext> 
+
+	public class SpringFrameworkApplicationHost : ApplicationHost<SpringFrameworkApplicationHostController, ISpringFrameworkFactory, IApplicationContext>
 	{
+		#region Public Constructors
+
 		public SpringFrameworkApplicationHost()
 		{
 			this.FactoryType = "Oragon.Architecture.ApplicationHosting.SpringFramework.SpringFrameworkFactory, Oragon.Architecture.ApplicationHosting.SpringFramework";
 		}
+
+		#endregion Public Constructors
 	}
+
 	public class SpringFrameworkApplicationHostController : ApplicationHostController<ISpringFrameworkFactory, IApplicationContext>
 	{
+		#region Public Methods
+
 		public override void Start()
 		{
 			foreach (var item in this.Container.GetObjects<ILifecycle>().Select(it => it.Value))
@@ -38,6 +41,7 @@ namespace Oragon.Architecture.ApplicationHosting.SpringFramework
 				this.Container = null;
 			}
 		}
-	}
 
+		#endregion Public Methods
+	}
 }

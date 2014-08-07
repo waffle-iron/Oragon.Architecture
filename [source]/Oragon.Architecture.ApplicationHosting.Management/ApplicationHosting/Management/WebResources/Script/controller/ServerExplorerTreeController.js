@@ -10,18 +10,14 @@
 	//	}
 	//},
 
-
 	init: function () {
-		
 		radio('ServerExplorerTree|ItemContextMenu').subscribe(this.onItemContextMenu);
 		radio('ContextMenu|Action|Click').subscribe(this.onContextMenuClick);
 		radio('HOST|REGISTERED').subscribe(this.onHostRegistered);
 		radio('HOST|UNREGISTERED').subscribe(this.onHostUnregistered);
-	},	
-
+	},
 
 	onLaunch: function (application) {
-		
 	},
 
 	onHostRegistered: function (broadcastData)
@@ -41,11 +37,9 @@
 		var node = serverExplorerTreeStore.getNodeById(idHost);
 		if (Ext.isEmpty(node)==false)
 			serverExplorerTreeStore.remove(node);
-
 	},
 
 	onItemContextMenu: function (broadcastData) {
-
 		broadcastData.eventInfo.stopEvent();
 		if (Ext.isEmpty(broadcastData.record.data.menuItems))
 			return;
@@ -60,7 +54,7 @@
 						messageBoxConfig.buttons = eval("(Ext.MessageBox." + menuItem.actionConfirmation.buttons + ")");
 						messageBoxConfig.fn = function (result) {
 							var performActionOnClickIn = menuItem.actionConfirmation.performActionOnClickIn.toLowerCase();
-							if (result == performActionOnClickIn) {								
+							if (result == performActionOnClickIn) {
 								radio('ContextMenu|Action|Click').broadcast({
 									sender: menuItem,
 									record: broadcastData.record,
@@ -85,7 +79,7 @@
 				return menuItem;
 			}).toArray()
 		});//Ext.create('Ext.menu.Menu'
-		currentContextMenu.showAt(broadcastData.eventInfo.getXY());		
+		currentContextMenu.showAt(broadcastData.eventInfo.getXY());
 	},
 
 	onContextMenuClick: function (broadcastData) {

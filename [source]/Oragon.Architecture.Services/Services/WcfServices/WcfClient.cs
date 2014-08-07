@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-
 
 namespace Oragon.Architecture.Services.WcfServices
 {
 	public class WcfClient<ServiceInterface> : IDisposable
 	{
-		public ServiceInterface Service { get; private set; }
+		#region Private Fields
 
 		private ChannelFactory<ServiceInterface> channelFactory;
+
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public WcfClient(string serviceName, Uri tcpEndpointAddress, Uri httpEndpointAddress)
 		{
@@ -26,7 +25,6 @@ namespace Oragon.Architecture.Services.WcfServices
 			}
 			catch
 			{
-
 				if (this.Service != null)
 					((ICommunicationObject)this.Service).Abort();
 
@@ -40,7 +38,6 @@ namespace Oragon.Architecture.Services.WcfServices
 				}
 				catch
 				{
-
 					if (this.Service != null)
 						((ICommunicationObject)this.Service).Abort();
 
@@ -52,10 +49,22 @@ namespace Oragon.Architecture.Services.WcfServices
 			}
 		}
 
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public ServiceInterface Service { get; private set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
 		public void Dispose()
 		{
 			((ICommunicationObject)this.Service).Close();
 			this.channelFactory.Close();
 		}
+
+		#endregion Public Methods
 	}
 }

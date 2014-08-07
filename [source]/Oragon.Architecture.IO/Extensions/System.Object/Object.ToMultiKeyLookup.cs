@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections;
@@ -14,6 +11,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Creates a <see cref="Lookup{TKey,TElement}"/> from an <see cref="IEnumerable{T}"/> according to a specified key selector function. <b>The funtion can return zero, one or several keys for an element.</b>.
 		///</summary>
@@ -44,8 +43,8 @@ namespace Oragon.Architecture.Extensions
 					if (!dicoLookup.TryGetValue(key, out seqTmp))
 					{
 						// A single sequence is added first, and if several elements share the same key we transform the single sequence into a list.
-						// This is an optimisation because a single sequence is cheaper than a List<T>,
-						// and we hope that most keys are not not shared by several elements.
+						// This is an optimisation because a single sequence is cheaper than a List<T>, and we hope that most keys are not not shared
+						// by several elements.
 						dicoLookup.Add(key, elem.ToEnumerable());
 						continue;
 					}
@@ -61,5 +60,7 @@ namespace Oragon.Architecture.Extensions
 			}
 			return dicoLookup;
 		}
+
+		#endregion Public Methods
 	}
 }

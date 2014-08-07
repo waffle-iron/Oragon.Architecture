@@ -1,14 +1,12 @@
 ﻿using NHibernate;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		public static IQuery SetAnsiString(this IQuery query, string name, string val)
 		{
 			if (val != null)
@@ -177,7 +175,6 @@ namespace Oragon.Architecture.Extensions
 			}
 		}
 
-
 		public static IQuery SetSingle(this IQuery query, string name, float? val)
 		{
 			if (val.HasValue)
@@ -238,5 +235,6 @@ namespace Oragon.Architecture.Extensions
 			}
 		}
 
+		#endregion Public Methods
 	}
 }

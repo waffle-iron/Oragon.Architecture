@@ -1,22 +1,21 @@
 ﻿using AopAlliance.Intercept;
 using Oragon.Architecture.Aop.Data.Abstractions;
-using Oragon.Architecture.Data;
 using Oragon.Architecture.Data.ConnectionStrings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Oragon.Architecture.Aop.Data.Redis
 {
 	public class RedisContextAroundAdvice : AbstractContextAroundAdvice<RedisContextAttribute, RedisContext>
 	{
+		#region Public Properties
+
 		public List<RedisConnectionString> ConnectionStrings { get; set; }
 
-		protected override string ContextStackListKey
-		{
-			get { return "Oragon.Architecture.AOP.Data.RedisContextAroundAdvice.Contexts"; }
-		}
+		#endregion Public Properties
+
+		#region Protected Properties
 
 		protected override Func<RedisContextAttribute, bool> AttributeQueryFilter
 		{
@@ -30,6 +29,15 @@ namespace Oragon.Architecture.Aop.Data.Redis
 			}
 		}
 
+		protected override string ContextStackListKey
+		{
+			get { return "Oragon.Architecture.AOP.Data.RedisContextAroundAdvice.Contexts"; }
+		}
+
+		#endregion Protected Properties
+
+		#region Protected Methods
+
 		protected override object Invoke(AopAlliance.Intercept.IMethodInvocation invocation, IEnumerable<RedisContextAttribute> contextAttributes)
 		{
 			object returnValue = null;
@@ -37,9 +45,13 @@ namespace Oragon.Architecture.Aop.Data.Redis
 			return returnValue;
 		}
 
+		#endregion Protected Methods
+
+		#region Private Methods
+
 		private object InvokeUsingContext(IMethodInvocation invocation, Stack<RedisContextAttribute> contextAttributesStack)
 		{
-			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente 
+			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente
 			//manda executar a chamada ao método de destino.
 			//Esse controle é necessário pois as os "Usings" de Contexto, Sessão e Transação precisam ser encadeados
 			object returnValue = null;
@@ -49,7 +61,7 @@ namespace Oragon.Architecture.Aop.Data.Redis
 			}
 			else
 			{
-				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o. 
+				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o.
 				RedisContextAttribute currentContextAttribute = contextAttributesStack.Pop();
 				//Criando o contexto
 				using (RedisContext currentContext = new RedisContext(currentContextAttribute, this.ContextStack))
@@ -60,6 +72,6 @@ namespace Oragon.Architecture.Aop.Data.Redis
 			return returnValue;
 		}
 
-
+		#endregion Private Methods
 	}
 }

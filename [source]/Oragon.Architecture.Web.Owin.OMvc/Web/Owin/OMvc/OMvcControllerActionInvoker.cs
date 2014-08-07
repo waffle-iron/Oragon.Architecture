@@ -1,19 +1,22 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
+using Oragon.Architecture.Web.Owin.OMvc.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.Web.Owin.OMvc.Results;
-using Oragon.Architecture.Web.Owin.OMvc;
 
 namespace Oragon.Architecture.Web.Owin.OMvc
 {
 	public class OMvcControllerActionInvoker
 	{
+		#region Private Fields
+
 		private IDictionary<string, OMvcController> Controllers;
-		private System.Web.Http.Routing.IHttpRouteData RouteInfo;
 		private Microsoft.Owin.IOwinContext OwinContext;
+		private System.Web.Http.Routing.IHttpRouteData RouteInfo;
+
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public OMvcControllerActionInvoker(IDictionary<string, OMvcController> controllers, System.Web.Http.Routing.IHttpRouteData routeInfo, Microsoft.Owin.IOwinContext owinContext)
 		{
@@ -21,6 +24,10 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			this.RouteInfo = routeInfo;
 			this.OwinContext = owinContext;
 		}
+
+		#endregion Public Constructors
+
+		#region Public Methods
 
 		public bool Invoke()
 		{
@@ -36,22 +43,32 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			return false;
 		}
 
-		private bool Invoke(OMvcController currentController, System.Reflection.MethodInfo currentAction)
+		#endregion Public Methods
+
+		#region Private Methods
+
+		private System.Reflection.MethodInfo GetAction(OMvcController currentController)
 		{
-			IEnumerable<KeyValuePair<string, object>> parameters = this.GetParameters(currentAction);
-			object[] bindedParameters = parameters.Select(it => it.Value).ToArray();
-			MvcResult result = null;
-			using (new OMvcControllerContext(this.OwinContext))
+			var actionName = (string)RouteInfo.Values["action"];
+			var actionQuery = currentController.Actions.Where(it => it.Name.ToLower() == actionName.ToLower());
+			var qtd = actionQuery.Count();
+			if (qtd == 1)
 			{
-				result = (MvcResult)currentAction.Invoke(currentController, bindedParameters);
+				return actionQuery.Single();
 			}
-			if (result != null)
+			return null;
+		}
+
+		private OMvcController GetController()
+		{
+			var controllerName = (string)RouteInfo.Values["controller"];
+			var controllerQuery = this.Controllers.Where(it => it.Key == "{0}Controller".FormatWith(controllerName));
+			var qtd = controllerQuery.Count();
+			if (qtd == 1)
 			{
-				result.ControllerType = currentController.GetType();
-				result.ActionMethod = currentAction;
-				result.Execute(this.OwinContext);
+				return controllerQuery.Single().Value;
 			}
-			return true;
+			return null;
 		}
 
 		private IEnumerable<KeyValuePair<string, object>> GetParameters(System.Reflection.MethodInfo currentAction)
@@ -72,29 +89,24 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			return Type.Missing;
 		}
 
-		private OMvcController GetController()
+		private bool Invoke(OMvcController currentController, System.Reflection.MethodInfo currentAction)
 		{
-			var controllerName = (string)RouteInfo.Values["controller"];
-			var controllerQuery = this.Controllers.Where(it => it.Key == "{0}Controller".FormatWith(controllerName));
-			var qtd = controllerQuery.Count();
-			if (qtd == 1)
+			IEnumerable<KeyValuePair<string, object>> parameters = this.GetParameters(currentAction);
+			object[] bindedParameters = parameters.Select(it => it.Value).ToArray();
+			MvcResult result = null;
+			using (new OMvcControllerContext(this.OwinContext))
 			{
-				return controllerQuery.Single().Value;
+				result = (MvcResult)currentAction.Invoke(currentController, bindedParameters);
 			}
-			return null;
+			if (result != null)
+			{
+				result.ControllerType = currentController.GetType();
+				result.ActionMethod = currentAction;
+				result.Execute(this.OwinContext);
+			}
+			return true;
 		}
 
-		private System.Reflection.MethodInfo GetAction(OMvcController currentController)
-		{
-			var actionName = (string)RouteInfo.Values["action"];
-			var actionQuery = currentController.Actions.Where(it => it.Name.ToLower() == actionName.ToLower());
-			var qtd = actionQuery.Count();
-			if (qtd == 1)
-			{
-				return actionQuery.Single();
-			}
-			return null;
-		}
-
+		#endregion Private Methods
 	}
 }

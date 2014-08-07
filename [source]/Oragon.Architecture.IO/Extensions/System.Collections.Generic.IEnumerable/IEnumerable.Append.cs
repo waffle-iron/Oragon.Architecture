@@ -1,9 +1,5 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -12,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Append <paramref name="element"/> at the end of <paramref name="seq"/>.
 		///</summary>
@@ -53,7 +51,6 @@ namespace Oragon.Architecture.Extensions
 			yield return element1;
 			yield return element2;
 		}
-
 
 		///<summary>
 		///Append <paramref name="element1"/>, <paramref name="element2"/> and <paramref name="element3"/> at the end of <paramref name="seq"/>.
@@ -136,5 +133,6 @@ namespace Oragon.Architecture.Extensions
 			yield return element5;
 		}
 
+		#endregion Public Methods
 	}
 }

@@ -1,10 +1,6 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel
 {
@@ -12,17 +8,24 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository.Models.Ap
 	[DataContract(IsReference = true)]
 	public class Host
 	{
-		[DataMember]
-		public Guid ID { get; set; }
+		#region Public Constructors
+
+		public Host()
+		{
+		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
 
 		public string ConnectionId { get; set; }
 
 		[DataMember]
 		public HostDescriptor HostDescriptor { get; set; }
 
-		public Host()
-		{
-		}
-		
+		[DataMember]
+		public Guid ID { get; set; }
+
+		#endregion Public Properties
 	}
 }

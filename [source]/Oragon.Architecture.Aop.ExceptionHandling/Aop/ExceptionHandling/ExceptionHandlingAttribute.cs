@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Oragon.Architecture.Aop.ExceptionHandling
 {
-
 	[AttributeUsage(AttributeTargets.Method)]
 	public class ExceptionHandlingAttribute : Attribute
 	{
-		public ExceptionHandlingStrategy Strategy { get; set; }
+		#region Public Constructors
 
 		public ExceptionHandlingAttribute(ExceptionHandlingStrategy strategy)
 		{
 			this.Strategy = strategy;
 		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public ExceptionHandlingStrategy Strategy { get; set; }
+
+		#endregion Public Properties
 	}
-
-
-
 }

@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>5AD22F51-335B-4544-8528-D7A87A5CBFF0</id>
 		/// <summary>
 		///     A T extension method that check if the value is between inclusively the minValue and maxValue.
@@ -22,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.CompareTo(minValue) >= 0 && @this.CompareTo(maxValue) <= 0;
 		}
+
+		#endregion Public Methods
 	}
 }

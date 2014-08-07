@@ -1,56 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
 
 namespace Oragon.Architecture.Logging
 {
 	/// <summary>
-	/// Classe LogEntry.
+	///     Classe LogEntry.
 	/// </summary>
 	[Serializable]
 	[DataContract(IsReference = true)]
 	public partial class LogEntry
 	{
+		#region Public Properties
 
 		/// <summary>
-		/// Define ou obtém um(a) LogEntryID da LogEntry.
-		/// </summary>
-		[DataMember]
-		public virtual long LogEntryID { get; set; }
-
-		/// <summary>
-		/// Define ou obtém um(a) Context da LogEntry.
-		/// </summary>
-		[DataMember]
-		public virtual string Context { get; set; }
-
-		/// <summary>
-		/// Define ou obtém um(a) Date da LogEntry.
-		/// </summary>
-		[DataMember]
-		public virtual DateTime Date { get; set; }
-
-		/// <summary>
-		/// Define ou obtém um(a) Content da LogEntry.
+		///     Define ou obtém um(a) Content da LogEntry.
 		/// </summary>
 		[DataMember]
 		public virtual string Content { get; set; }
 
 		/// <summary>
-		/// Define ou obtém um(a) LogLevel da LogEntry.
+		///     Define ou obtém um(a) Context da LogEntry.
+		/// </summary>
+		[DataMember]
+		public virtual string Context { get; set; }
+
+		/// <summary>
+		///     Define ou obtém um(a) Date da LogEntry.
+		/// </summary>
+		[DataMember]
+		public virtual DateTime Date { get; set; }
+
+		/// <summary>
+		///     Define ou obtém um(a) LogEntryID da LogEntry.
+		/// </summary>
+		[DataMember]
+		public virtual long LogEntryID { get; set; }
+
+		/// <summary>
+		///     Define ou obtém um(a) LogLevel da LogEntry.
 		/// </summary>
 		[DataMember]
 		public virtual LogLevel LogLevel { get; set; }
 
-
 		/// <summary>
-		/// Define ou obtém um(a) LogLevel da LogEntry.
+		///     Define ou obtém um(a) LogLevel da LogEntry.
 		/// </summary>
 		[DataMember]
 		public virtual Dictionary<string, string> Tags { get; set; }
 
+		#endregion Public Properties
 
 		//public LogEntryTransferObject()
 		//{ }
@@ -68,21 +67,29 @@ namespace Oragon.Architecture.Logging
 		//		this.Tags.Add(tagValue.Tag.Name, tagValue.Value);
 		//	}
 		//}
-
-
-		
 	}
 
 	public class LogTag
 	{
-		public long TagID { get; set; }
+		#region Public Properties
+
 		public string Name { get; set; }
+
+		public long TagID { get; set; }
+
+		#endregion Public Properties
 	}
 
 	public class LogTagValue
 	{
-		public long TagValueID { get; set; }
+		#region Public Properties
+
 		public long TagID { get; set; }
+
+		public long TagValueID { get; set; }
+
 		public string Value { get; set; }
+
+		#endregion Public Properties
 	}
 }

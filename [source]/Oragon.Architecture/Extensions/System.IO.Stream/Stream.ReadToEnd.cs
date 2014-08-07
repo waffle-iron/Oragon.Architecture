@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 
@@ -9,14 +6,16 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>C7AD1296-FA71-4F70-B22D-75E99B7B1C80</id>
 		/// <summary>
 		///     A Stream extension method that reads a stream to the end.
 		/// </summary>
 		/// <param name="this">The @this to act on.</param>
 		/// <returns>
-		///     The rest of the stream as a string, from the current position to the end. If the current position is at the
-		///     end of the stream, returns an empty string ("").
+		///     The rest of the stream as a string, from the current position to the end. If the current position is at the end of the stream, returns
+		///     an empty string ("").
 		/// </returns>
 		public static string ReadToEnd(this Stream @this)
 		{
@@ -33,8 +32,8 @@ namespace Oragon.Architecture.Extensions
 		/// <param name="this">The @this to act on.</param>
 		/// <param name="position">The position to set in the stream.</param>
 		/// <returns>
-		///     The rest of the stream as a string, from the current position to the end. If the current position is at the
-		///     end of the stream, returns an empty string ("").
+		///     The rest of the stream as a string, from the current position to the end. If the current position is at the end of the stream, returns
+		///     an empty string ("").
 		/// </returns>
 		public static string ReadToEnd(this Stream @this, long position)
 		{
@@ -45,5 +44,7 @@ namespace Oragon.Architecture.Extensions
 				return sr.ReadToEnd();
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

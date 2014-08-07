@@ -1,29 +1,23 @@
-﻿using System;
+﻿using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
+using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 {
 	public class NotificationRepository
 	{
-		object syncLock = new Object();
+		#region Private Fields
 
 		private List<Notification> notifications;
-
 		private System.Timers.Timer releaseTimer;
+		private object syncLock = new Object();
 
-		public static class NotificationTypes
-		{
-			public const string GenericNotification = "GENERIC|NOTIFICATION";
-			public const string ApplicationRegistered = "HOST|REGISTERED";
-			public const string ApplicationUnregistered = "HOST|UNREGISTERED";
-		}
+		#endregion Private Fields
 
-		
+		#region Public Constructors
+
 		public NotificationRepository()
 		{
 			this.notifications = new List<Notification>();
@@ -40,8 +34,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 			};
 		}
 
-		
+		#endregion Public Constructors
 
+		#region Public Methods
 
 		public void AddMessage(string messageType, string message, string contentID)
 		{
@@ -60,7 +55,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 			}
 		}
 
-
 		public IEnumerable<Notification> GetMessages(Guid clientID)
 		{
 			lock (this.syncLock)
@@ -74,5 +68,21 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 			}
 		}
 
+		#endregion Public Methods
+
+		#region Public Classes
+
+		public static class NotificationTypes
+		{
+			#region Public Fields
+
+			public const string ApplicationRegistered = "HOST|REGISTERED";
+			public const string ApplicationUnregistered = "HOST|UNREGISTERED";
+			public const string GenericNotification = "GENERIC|NOTIFICATION";
+
+			#endregion Public Fields
+		}
+
+		#endregion Public Classes
 	}
 }

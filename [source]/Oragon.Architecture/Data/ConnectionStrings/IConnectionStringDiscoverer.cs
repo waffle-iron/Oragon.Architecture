@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Oragon.Architecture.Data.ConnectionStrings
 {
 	public interface IConnectionStringDiscoverer
 	{
+		#region Public Methods
+
 		ConnectionStringSettings GetConnectionString();
+
+		#endregion Public Methods
 	}
 }
-

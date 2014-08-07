@@ -1,12 +1,9 @@
-﻿using Oragon.Architecture.Services.WcfServices;
+﻿using Oragon.Architecture.Extensions;
+using Oragon.Architecture.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.Networking;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
@@ -14,11 +11,23 @@ namespace Oragon.Architecture.Services.WcfServices
 		where ServiceType : class,  ServiceInterface, new()
 	//where ServiceInterface : Object
 	{
-		private ServiceHost host;
-
-		public string Name { get; set; }
+		#region Private Fields
 
 		private Uri[] _baseAddresses;
+		private ServiceHost host;
+
+		#endregion Private Fields
+
+		#region Public Constructors
+
+		public WcfHost()
+		{
+		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
 		public Uri[] BaseAddresses
 		{
 			get
@@ -32,13 +41,16 @@ namespace Oragon.Architecture.Services.WcfServices
 		}
 
 		public ConcurrencyMode ConcurrencyMode { get; set; }
+
 		public InstanceContextMode InstanceContextMode { get; set; }
+
+		public string Name { get; set; }
 
 		public ServiceInterface ServiceInstance { get; set; }
 
-		public WcfHost()
-		{
-		}
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public void Start()
 		{
@@ -48,7 +60,7 @@ namespace Oragon.Architecture.Services.WcfServices
 				ConcurrencyMode = this.ConcurrencyMode,
 				InstanceContextMode = this.InstanceContextMode,
 				BaseAddresses = this.BaseAddresses,
-				Behaviors = new List<System.ServiceModel.Description.IServiceBehavior>() { 
+				Behaviors = new List<System.ServiceModel.Description.IServiceBehavior>() {
 					new System.ServiceModel.Description.ServiceMetadataBehavior(){ HttpGetEnabled = true},
 				},
 				ServiceEndpoints = new List<ServiceEndpointConfiguration>()
@@ -64,6 +76,19 @@ namespace Oragon.Architecture.Services.WcfServices
 				this.host = wcfServiceHostFactory.BuildHost(this.ServiceInstance);
 			host.Open();
 		}
+
+		public void Stop()
+		{
+			if (this.host != null)
+			{
+				this.host.Close();
+				this.host = null;
+			}
+		}
+
+		#endregion Public Methods
+
+		#region Private Methods
 
 		private Uri[] AnalyseDynamicPorts(Uri[] baseAddresses)
 		{
@@ -82,13 +107,6 @@ namespace Oragon.Architecture.Services.WcfServices
 			return reurnValue;
 		}
 
-		public void Stop()
-		{
-			if (this.host != null)
-			{
-				this.host.Close();
-				this.host = null;
-			}
-		}
+		#endregion Private Methods
 	}
 }

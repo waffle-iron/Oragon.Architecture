@@ -1,53 +1,41 @@
-﻿using System;
+﻿using Microsoft.Owin;
+using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Microsoft.Owin;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public static class EmbeddedResourceResultExtensions
 	{
+		#region Public Methods
+
 		public static EmbeddedResourceResult EmbeddedResource(this OMvcController @this, IEnumerable<Oragon.Architecture.Web.Owin.OMvc.Results.EmbeddedResourceResult.AssemblyMapping> mappings)
 		{
 			return new EmbeddedResourceResult(mappings);
 		}
 
+		#endregion Public Methods
 	}
-
-
 
 	public class EmbeddedResourceResult : MvcResult
 	{
-		public class AssemblyMapping
-		{
-			public string VirtualFolder { get; private set; }
+		#region Private Fields
 
-			public string AssemblyName { get; private set; }
+		private List<AssemblyMapping> mappings;
 
-			public System.Reflection.Assembly Assembly { get; private set; }
+		#endregion Private Fields
 
-			public Action<IOwinContext> AfterResultExecution { get; set; }
-			public Func<IOwinContext, bool> BeforeResultExecution { get; set; }
-
-			public AssemblyMapping(string virtualFolder, string assemblyName, Func<IOwinContext, bool> beforeResultExecution = null, Action<IOwinContext> afterResultExecution = null)
-			{
-				this.Assembly = System.Reflection.Assembly.Load(assemblyName);
-				this.VirtualFolder = virtualFolder;
-				this.AssemblyName = assemblyName;
-				this.BeforeResultExecution = beforeResultExecution;
-				this.AfterResultExecution = afterResultExecution;
-			}
-		}
-
-		List<AssemblyMapping> mappings;
+		#region Public Constructors
 
 		public EmbeddedResourceResult(IEnumerable<AssemblyMapping> mappings)
 		{
 			this.mappings = mappings.ToList();
 		}
+
+		#endregion Public Constructors
+
+		#region Public Methods
 
 		public override void Execute(IOwinContext context)
 		{
@@ -93,6 +81,40 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			throw new System.IO.FileNotFoundException("Resource binded with '{0}' could not be found.".FormatWith(pathAndQuery));
 		}
 
+		#endregion Public Methods
 
+		#region Public Classes
+
+		public class AssemblyMapping
+		{
+			#region Public Constructors
+
+			public AssemblyMapping(string virtualFolder, string assemblyName, Func<IOwinContext, bool> beforeResultExecution = null, Action<IOwinContext> afterResultExecution = null)
+			{
+				this.Assembly = System.Reflection.Assembly.Load(assemblyName);
+				this.VirtualFolder = virtualFolder;
+				this.AssemblyName = assemblyName;
+				this.BeforeResultExecution = beforeResultExecution;
+				this.AfterResultExecution = afterResultExecution;
+			}
+
+			#endregion Public Constructors
+
+			#region Public Properties
+
+			public Action<IOwinContext> AfterResultExecution { get; set; }
+
+			public System.Reflection.Assembly Assembly { get; private set; }
+
+			public string AssemblyName { get; private set; }
+
+			public Func<IOwinContext, bool> BeforeResultExecution { get; set; }
+
+			public string VirtualFolder { get; private set; }
+
+			#endregion Public Properties
+		}
+
+		#endregion Public Classes
 	}
 }

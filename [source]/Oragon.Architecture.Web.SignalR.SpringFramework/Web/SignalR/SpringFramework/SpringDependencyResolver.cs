@@ -3,14 +3,18 @@ using Spring.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.SignalR.SpringFramework
 {
 	public class SpringDependencyResolver : DefaultDependencyResolver, IApplicationContextAware
 	{
+		#region Public Properties
+
 		public IApplicationContext ApplicationContext { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public override object GetService(Type serviceType)
 		{
@@ -28,8 +32,6 @@ namespace Oragon.Architecture.Web.SignalR.SpringFramework
 				return localResult;
 		}
 
-
-
-
+		#endregion Public Methods
 	}
 }

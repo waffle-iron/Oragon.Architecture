@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Text.RegularExpressions;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>A4B1426C-E86C-4D2A-9509-68BC55958B03</id>
 		/// <summary>
 		///     A string extension method that query if '@this' satisfy the specified pattern.
@@ -31,5 +30,7 @@ namespace Oragon.Architecture.Extensions
 
 			return Regex.IsMatch(@this, regexPattern);
 		}
+
+		#endregion Public Methods
 	}
 }

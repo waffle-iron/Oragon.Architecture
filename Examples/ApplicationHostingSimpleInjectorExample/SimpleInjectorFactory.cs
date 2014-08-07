@@ -1,15 +1,12 @@
 ﻿using Oragon.Architecture.ApplicationHosting.SimpleInjector;
 using SimpleInjector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApplicationHostingSimpleInjectorExample
 {
 	public class SimpleInjectorFactory : ISimpleInjectorFactory
 	{
+		#region Public Methods
+
 		public Container CreateContainer()
 		{
 			Container container = new Container();
@@ -18,5 +15,7 @@ namespace ApplicationHostingSimpleInjectorExample
 
 			return container;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,17 +1,13 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
 
 		///<summary>
 		///Produces the set of elements, union of this <paramref name="hashset"/> and <paramref name="seq"/>. This method is an optimized version of <i>Enumerable.Union&lt;T&gt;</i>.
@@ -29,7 +25,6 @@ namespace Oragon.Architecture.Extensions
 			return UnionIterator(hashset, seq);
 		}
 
-
 		///<summary>
 		///Produces the set of elements, union of this <paramref name="thisHashset"/> and <paramref name="otherHashset"/>. This method is an optimized version of <i>Enumerable.Union&lt;T&gt;</i>.
 		///</summary>
@@ -46,5 +41,6 @@ namespace Oragon.Architecture.Extensions
 			return UnionIterator(thisHashset, otherHashset);
 		}
 
+		#endregion Public Methods
 	}
 }

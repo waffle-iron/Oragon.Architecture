@@ -15,6 +15,29 @@ namespace Oragon.Architecture.IO.Path
 	///</summary>
 	public static class ExtensionMethodsOnPathsCollection
 	{
+		#region Public Methods
+
+		///<summary>
+		///Returns <i>true</i> if <paramref name="seq"/> contains <paramref name="path"/>.
+		///</summary>
+		///<remarks>
+		///The method IPath.Equals(), overridden from System.Object, is used to test path equality.
+		///</remarks>
+		///<param name="seq">The sequence to search in.</param>
+		///<param name="path">The path to search for.</param>
+		public static bool ContainsPath<T, K>(this IEnumerable<T> seq, K path)
+			where T : class, IPath
+			where K : class, IPath
+		{
+			Contract.Requires(seq != null, "seq must not be null");
+			Contract.Requires(path != null, "path must not be null");
+			foreach (var pathTmp in seq)
+			{
+				if (path.Equals(pathTmp)) { return true; }
+			}
+			return false;
+		}
+
 		///<summary>
 		///Determine if this collection1 and collection2 contain the same set of paths.
 		///</summary>
@@ -46,27 +69,6 @@ namespace Oragon.Architecture.IO.Path
 				hashet2.Remove(path1);
 			}
 			return true;
-		}
-
-		///<summary>
-		///Returns <i>true</i> if <paramref name="seq"/> contains <paramref name="path"/>.
-		///</summary>
-		///<remarks>
-		///The method IPath.Equals(), overridden from System.Object, is used to test path equality.
-		///</remarks>
-		///<param name="seq">The sequence to search in.</param>
-		///<param name="path">The path to search for.</param>
-		public static bool ContainsPath<T, K>(this IEnumerable<T> seq, K path)
-			where T : class, IPath
-			where K : class, IPath
-		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Requires(path != null, "path must not be null");
-			foreach (var pathTmp in seq)
-			{
-				if (path.Equals(pathTmp)) { return true; }
-			}
-			return false;
 		}
 
 		///<summary>
@@ -102,6 +104,10 @@ namespace Oragon.Architecture.IO.Path
 			return true;
 		}
 
+		#endregion Public Methods
+
+		#region Internal Methods
+
 		internal static bool TryFindCommonPrefix(IEnumerable<string> collection, bool ignoreCase, char separatorChar, out string commonPrefix)
 		{
 			Debug.Assert(collection != null);
@@ -124,8 +130,7 @@ namespace Oragon.Architecture.IO.Path
 			var firstStr = array[0];
 
 			//
-			//  Case where all paths are identical
-			//  or where only one path
+			// Case where all paths are identical or where only one path
 			//
 			bool allStringsAreIdentical = true;
 			foreach (var str in array)
@@ -143,7 +148,7 @@ namespace Oragon.Architecture.IO.Path
 			}
 
 			//
-			//  Build listOfSplittedPaths
+			// Build listOfSplittedPaths
 			//
 			var listOfSplittedStrings = new List<string[]>();
 			int maxDeep = int.MaxValue;
@@ -185,5 +190,7 @@ namespace Oragon.Architecture.IO.Path
 			commonPrefix = prefixSb.ToString();
 			return true;
 		}
+
+		#endregion Internal Methods
 	}
 }

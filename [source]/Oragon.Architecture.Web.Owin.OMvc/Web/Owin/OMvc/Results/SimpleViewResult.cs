@@ -1,27 +1,30 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Routing;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public static class SimpleViewResultExtensions
 	{
+		#region Public Methods
+
 		public static SimpleViewResult SimpleView(this OMvcController @this)
 		{
 			return new SimpleViewResult(@this.CreateUrlHelper());
 		}
-	}
 
+		#endregion Public Methods
+	}
 
 	public class SimpleViewResult : MvcResult
 	{
-		private System.IO.StringWriter HTML { get; set; }
+		#region Private Fields
+
 		private int IdentSize;
-		private UrlHelper UrlHelper { get; set; }
+
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public SimpleViewResult(UrlHelper urlHelper)
 		{
@@ -30,10 +33,58 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			this.IdentSize = 0;
 		}
 
-		public SimpleViewResult IdentUp()
+		#endregion Public Constructors
+
+		#region Private Properties
+
+		private System.IO.StringWriter HTML { get; set; }
+
+		private UrlHelper UrlHelper { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
+
+		public SimpleViewResult CloseBody()
 		{
-			this.IdentSize++;
+			return this.CloseTag("body");
+		}
+
+		public SimpleViewResult CloseHead()
+		{
+			return this.CloseTag("head");
+		}
+
+		public SimpleViewResult CloseHtml()
+		{
+			return this.CloseTag("html");
+		}
+
+		public SimpleViewResult CloseScript()
+		{
+			this.IdentDown();
+			this.WriteLine("</script>");
 			return this;
+		}
+
+		public SimpleViewResult CloseTag(string tagName)
+		{
+			this.IdentDown();
+			this.WriteLine("</{0}>", tagName);
+			return this;
+		}
+
+		public SimpleViewResult DefineDoctype()
+		{
+			this.HTML.WriteLine("<!DOCTYPE html>");
+			return this;
+		}
+
+		public override void Execute(Microsoft.Owin.IOwinContext context)
+		{
+			string output = this.ToString();
+			context.Response.ContentType = System.Net.Mime.MediaTypeNames.Text.Html;
+			context.Response.Write(output);
 		}
 
 		public SimpleViewResult IdentDown()
@@ -42,14 +93,53 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			return this;
 		}
 
-		private string Ident(string text)
+		public SimpleViewResult IdentUp()
 		{
-			string returnValue = string.Empty;
-			for (int i = 0; i < this.IdentSize; i++)
-				returnValue += "\t";
-			return returnValue + text;
+			this.IdentSize++;
+			return this;
 		}
 
+		public SimpleViewResult Meta(string key1, string value1)
+		{
+			return this.Meta(new string[] { key1, value1 });
+		}
+
+		public SimpleViewResult Meta(string key1, string value1, string key2, string value2)
+		{
+			return this.Meta(new string[] { key1, value1, key2, value2 });
+		}
+
+		public SimpleViewResult Meta(string key1, string value1, string key2, string value2, string key3, string value3)
+		{
+			return this.Meta(new string[] { key1, value1, key2, value2, key3, value3 });
+		}
+
+		public SimpleViewResult Meta(string key1, string value1, string key2, string value2, string key3, string value3, string key4, string value4)
+		{
+			return this.Meta(new string[] { key1, value1, key2, value2, key3, value3, key4, value4 });
+		}
+
+		public SimpleViewResult OpenBody()
+		{
+			return this.OpenTag("body");
+		}
+
+		public SimpleViewResult OpenHead()
+		{
+			return this.OpenTag("head");
+		}
+
+		public SimpleViewResult OpenHtml()
+		{
+			return this.OpenTag("html");
+		}
+
+		public SimpleViewResult OpenScript()
+		{
+			this.WriteLine("<script type='text/javascript'>");
+			this.IdentUp();
+			return this;
+		}
 
 		public SimpleViewResult OpenTag(string tagName, object attrs = null)
 		{
@@ -67,49 +157,6 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 				this.WriteLine("<{0}>", tagName);
 			this.IdentUp();
 			return this;
-		}
-
-		public SimpleViewResult CloseTag(string tagName)
-		{
-			this.IdentDown();
-			this.WriteLine("</{0}>", tagName);
-			return this;
-		}
-
-		public SimpleViewResult DefineDoctype()
-		{
-			this.HTML.WriteLine("<!DOCTYPE html>");
-			return this;
-		}
-
-		public SimpleViewResult OpenHtml()
-		{
-			return this.OpenTag("html");
-		}
-
-		public SimpleViewResult CloseHtml()
-		{
-			return this.CloseTag("html");
-		}
-
-		public SimpleViewResult OpenHead()
-		{
-			return this.OpenTag("head");
-		}
-
-		public SimpleViewResult CloseHead()
-		{
-			return this.CloseTag("head");
-		}
-
-		public SimpleViewResult OpenBody()
-		{
-			return this.OpenTag("body");
-		}
-
-		public SimpleViewResult CloseBody()
-		{
-			return this.CloseTag("body");
 		}
 
 		public SimpleViewResult Script(string scriptName, params object[] args)
@@ -136,18 +183,9 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			return this;
 		}
 
-		public SimpleViewResult OpenScript()
+		public override string ToString()
 		{
-			this.WriteLine("<script type='text/javascript'>");
-			this.IdentUp();
-			return this;
-		}
-
-		public SimpleViewResult CloseScript()
-		{
-			this.IdentDown();
-			this.WriteLine("</script>");
-			return this;
+			return this.HTML.ToString();
 		}
 
 		public SimpleViewResult WriteLine(string text)
@@ -162,9 +200,16 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			return this;
 		}
 
-		public override string ToString()
+		#endregion Public Methods
+
+		#region Private Methods
+
+		private string Ident(string text)
 		{
-			return this.HTML.ToString();
+			string returnValue = string.Empty;
+			for (int i = 0; i < this.IdentSize; i++)
+				returnValue += "\t";
+			return returnValue + text;
 		}
 
 		private SimpleViewResult Meta(params string[] parameters)
@@ -181,32 +226,6 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			return this;
 		}
 
-		public SimpleViewResult Meta(string key1, string value1)
-		{
-			return this.Meta(new string[] { key1, value1 });
-		}
-
-		public SimpleViewResult Meta(string key1, string value1, string key2, string value2)
-		{
-			return this.Meta(new string[] { key1, value1, key2, value2 });
-		}
-
-		public SimpleViewResult Meta(string key1, string value1, string key2, string value2, string key3, string value3)
-		{
-			return this.Meta(new string[] { key1, value1, key2, value2, key3, value3 });
-		}
-
-		public SimpleViewResult Meta(string key1, string value1, string key2, string value2, string key3, string value3, string key4, string value4)
-		{
-			return this.Meta(new string[] { key1, value1, key2, value2, key3, value3, key4, value4 });
-		}
-
-
-		public override void Execute(Microsoft.Owin.IOwinContext context)
-		{
-			string output = this.ToString();
-			context.Response.ContentType = System.Net.Mime.MediaTypeNames.Text.Html;
-			context.Response.Write(output);
-		}
+		#endregion Private Methods
 	}
 }

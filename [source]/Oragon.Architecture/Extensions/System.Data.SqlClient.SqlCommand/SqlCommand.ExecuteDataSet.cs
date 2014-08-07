@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Data;
 using System.Data.SqlClient;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>169EFAF3-CEDD-4598-9682-DFF96A04CB6F</id>
 		/// <summary>
 		///     Executes the query, and returns the result set as DataSet.
@@ -26,5 +25,7 @@ namespace Oragon.Architecture.Extensions
 
 			return ds;
 		}
+
+		#endregion Public Methods
 	}
 }

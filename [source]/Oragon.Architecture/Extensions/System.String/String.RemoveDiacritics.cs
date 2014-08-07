@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Globalization;
 using System.Text;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>19D78243-923C-43EE-AF24-BE7B6490DEDB</id>
 		/// <summary>
 		///     A string extension method that removes the diacritics character from the strings.
@@ -32,5 +31,7 @@ namespace Oragon.Architecture.Extensions
 
 			return sb.ToString().Normalize(NormalizationForm.FormC);
 		}
+
+		#endregion Public Methods
 	}
 }

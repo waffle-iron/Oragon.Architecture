@@ -1,23 +1,25 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Oragon.Architecture.Serialization
 {
 	/// <summary>
-	/// Implementa um serializador Json
+	///     Implementa um serializador Json
 	/// </summary>
 	public static class JsonHelper
 	{
+		#region Public Enums
+
 		public enum ConverterType
 		{
 			Serialization,
 			Deserialization
 		}
+
+		#endregion Public Enums
+
+		#region Public Methods
 
 		public static T ConvertUsingSerialization<T>(object objectToSerialize)
 		{
@@ -48,6 +50,17 @@ namespace Oragon.Architecture.Serialization
 			return returnValue;
 		}
 
+		public static JsonConverter[] GetConverters(ConverterType type)
+		{
+			if (type == ConverterType.Serialization)
+				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
+
+			if (type == ConverterType.Deserialization)
+				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
+
+			return null;
+		}
+
 		public static string Serialize(object objectToSerialize)
 		{
 			JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -59,15 +72,6 @@ namespace Oragon.Architecture.Serialization
 			return returnValue;
 		}
 
-		public static JsonConverter[] GetConverters(ConverterType type)
-		{
-			if (type == ConverterType.Serialization)
-				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }.ToArray();
-
-			if (type == ConverterType.Deserialization)
-				return new List<JsonConverter>() { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }.ToArray();
-
-			return null;
-		}
+		#endregion Public Methods
 	}
 }

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using AopAlliance.Intercept;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using AopAlliance.Intercept;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		public static IEnumerable<T> GetAttibutes<T>(this IMethodInvocation invocation, Func<T, bool> predicate = null)
 			where T : Attribute
 		{
@@ -21,5 +22,6 @@ namespace Oragon.Architecture.Extensions
 			return returnValue;
 		}
 
+		#endregion Public Methods
 	}
 }

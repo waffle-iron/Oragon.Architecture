@@ -3,7 +3,6 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.Reflection = {
-
 	init: function () { },
 
 	getValue: function (dataObject, expression) {
@@ -34,7 +33,6 @@ Oragon.Architecture.Scripting.Reflection = {
 		var evalExpression = Ext.String.format("dataObject.{0} = valueToSet", expression);
 		eval(evalExpression);
 	}
-
 };
 
 Oragon.Architecture.Scripting.Reflection.init();

@@ -5,28 +5,19 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class FileNameHelpers
 		{
+			#region Internal Methods
+
 			//
-			//  FileName and extension
+			// FileName and extension
 			//
 			internal static string GetFileName(string path)
 			{
 				Debug.Assert(path != null);
 				return MiscHelpers.GetLastName(path);
-			}
-
-			internal static string GetFileNameWithoutExtension(string path)
-			{
-				Debug.Assert(path != null);
-				string fileName = GetFileName(path);
-				string extension = GetFileNameExtension(path);
-				if (extension == null || extension.Length == 0)
-				{
-					return fileName;
-				}
-				Debug.Assert(fileName.Length - extension.Length >= 0);
-				return fileName.Substring(0, fileName.Length - extension.Length);
 			}
 
 			internal static string GetFileNameExtension(string path)
@@ -45,6 +36,19 @@ namespace Oragon.Architecture.IO.Path
 				return fileName.Substring(index, fileName.Length - index);
 			}
 
+			internal static string GetFileNameWithoutExtension(string path)
+			{
+				Debug.Assert(path != null);
+				string fileName = GetFileName(path);
+				string extension = GetFileNameExtension(path);
+				if (extension == null || extension.Length == 0)
+				{
+					return fileName;
+				}
+				Debug.Assert(fileName.Length - extension.Length >= 0);
+				return fileName.Substring(0, fileName.Length - extension.Length);
+			}
+
 			internal static bool HasExtension(string path, string extension)
 			{
 				Debug.Assert(path != null);
@@ -56,6 +60,10 @@ namespace Oragon.Architecture.IO.Path
 				var pathExtension = GetFileNameExtension(path);
 				return (String.Compare(pathExtension, extension, true /*ignoreCase*/) == 0);
 			}
+
+			#endregion Internal Methods
 		}
+
+		#endregion Private Classes
 	}
 }

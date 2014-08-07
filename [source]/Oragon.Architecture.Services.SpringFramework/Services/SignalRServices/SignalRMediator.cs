@@ -1,19 +1,15 @@
 ﻿using AopAlliance.Intercept;
+using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNet.SignalR.Client.Hubs;
+using Oragon.Architecture.Extensions;
+using Oragon.Architecture.Text;
 using Spring.Aop.Framework;
-using Spring.Objects.Factory;
-using Spring.Objects.Factory.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.Text;
-using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Hubs;
-using System.Reflection;
 using System.Linq.Expressions;
-
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.SignalRServices
 {
@@ -21,39 +17,57 @@ namespace Oragon.Architecture.Services.SignalRServices
 	{
 		#region Members
 
+		private TClientInterfaceType clientProxy;
 		private HubConnection connection;
 
+		private FormatStrategy hubMethodFormatStrategy;
+		private FormatStrategy hubNameFormatStrategy;
+		private IHubProxy hubProxy;
 		private TServerInterfaceType serverProxy;
 
-		private TClientInterfaceType clientProxy;
-
-		private IHubProxy hubProxy;
-
-		private FormatStrategy hubNameFormatStrategy;
-
-		private FormatStrategy hubMethodFormatStrategy;
-
-		#endregion
+		#endregion Members
 
 		#region Properties
 
 		public TServerInterfaceType Server { get { return this.serverProxy; } }
 
-		#endregion
+		#endregion Properties
 
 		#region Interceptors
 
+		private class ClientMethodInterceptor : IMethodInterceptor
+		{
+			#region Public Methods
+
+			public object Invoke(IMethodInvocation invocation)
+			{
+				object returnFromExecution = invocation.Proceed();
+				return returnFromExecution;
+			}
+
+			#endregion Public Methods
+		}
+
 		private class ServerMethodInterceptor : IMethodInterceptor
 		{
-			private Microsoft.AspNet.SignalR.Client.IHubProxy hubProxy;
+			#region Private Fields
 
 			private FormatStrategy hubMethodFormatStrategy;
+			private Microsoft.AspNet.SignalR.Client.IHubProxy hubProxy;
+
+			#endregion Private Fields
+
+			#region Public Constructors
 
 			public ServerMethodInterceptor(Microsoft.AspNet.SignalR.Client.IHubProxy hubProxy, FormatStrategy hubMethodFormatStrategy)
 			{
 				this.hubProxy = hubProxy;
 				this.hubMethodFormatStrategy = hubMethodFormatStrategy;
 			}
+
+			#endregion Public Constructors
+
+			#region Public Methods
 
 			public object Invoke(IMethodInvocation invocation)
 			{
@@ -68,19 +82,11 @@ namespace Oragon.Architecture.Services.SignalRServices
 				}
 				return returnValue;
 			}
+
+			#endregion Public Methods
 		}
 
-		private class ClientMethodInterceptor : IMethodInterceptor
-		{
-			public object Invoke(IMethodInvocation invocation)
-			{
-				object returnFromExecution = invocation.Proceed();
-				return returnFromExecution;
-			}
-		}
-
-
-		#endregion
+		#endregion Interceptors
 
 		#region Constructor
 
@@ -103,8 +109,6 @@ namespace Oragon.Architecture.Services.SignalRServices
 			if (hubMethodFormatStrategy.IsNull())
 				throw new ArgumentNullException("hubMethodFormatStrategy cannot be null");
 
-
-
 			this.connection = connection;
 			this.hubNameFormatStrategy = hubNameFormatStrategy;
 			this.hubMethodFormatStrategy = hubMethodFormatStrategy;
@@ -125,37 +129,11 @@ namespace Oragon.Architecture.Services.SignalRServices
 			this.BindClientMethodsAsServerEvents(clientInterfaceType);
 		}
 
-		private void BindClientMethodsAsServerEvents(Type clientInterface)
-		{
-			foreach (var method in clientInterface.GetMethods())
-			{
-				Delegate delegateOfMethod = this.CreateDelegate(method);
-				this.Bind(delegateOfMethod);
-			}
-		}
-		Delegate CreateDelegate(MethodInfo method)
-		{
-			List<Type> args = method.GetParameters().Select(p => p.ParameterType).ToList();
-			Type delegateType;
-			if (method.ReturnType == typeof(void))
-			{
-				delegateType = Expression.GetActionType(args.ToArray());
-			}
-			else
-			{
-				args.Add(method.ReturnType);
-				delegateType = Expression.GetFuncType(args.ToArray());
-			}
-			Delegate delegateToReturn = Delegate.CreateDelegate(delegateType, null, method);
-			return delegateToReturn;
-		}
-
 		public void Bind(Delegate method)
 		{
 			MethodInfo methodInfo = method.GetMethodInfo();
 			this.Bind(methodInfo.Name, method, methodInfo);
 		}
-
 
 		public void Bind(string name, Delegate method)
 		{
@@ -183,8 +161,32 @@ namespace Oragon.Architecture.Services.SignalRServices
 			};
 		}
 
+		private void BindClientMethodsAsServerEvents(Type clientInterface)
+		{
+			foreach (var method in clientInterface.GetMethods())
+			{
+				Delegate delegateOfMethod = this.CreateDelegate(method);
+				this.Bind(delegateOfMethod);
+			}
+		}
 
-		#endregion
+		private Delegate CreateDelegate(MethodInfo method)
+		{
+			List<Type> args = method.GetParameters().Select(p => p.ParameterType).ToList();
+			Type delegateType;
+			if (method.ReturnType == typeof(void))
+			{
+				delegateType = Expression.GetActionType(args.ToArray());
+			}
+			else
+			{
+				args.Add(method.ReturnType);
+				delegateType = Expression.GetFuncType(args.ToArray());
+			}
+			Delegate delegateToReturn = Delegate.CreateDelegate(delegateType, null, method);
+			return delegateToReturn;
+		}
 
+		#endregion Constructor
 	}
 }

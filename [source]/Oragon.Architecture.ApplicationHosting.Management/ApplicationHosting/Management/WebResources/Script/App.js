@@ -7,7 +7,7 @@
 
 	appFolder: '/dynRes/ApplicationHosting/Management/WebResources/Script',
 
-	launch: function() {		
+	launch: function () {
 		Ext.create('Ext.container.Viewport', {
 			layout: {
 				type: 'border',
@@ -20,17 +20,15 @@
 				Ext.create('OragonAppServerManagement.view.HomeNorthRegion', {}),
 				Ext.create('OragonAppServerManagement.view.HomeCenterRegion', {}),
 				Ext.create('OragonAppServerManagement.view.ServerExplorerTree', { id: 'ServerExplorerTree' }),
-				Ext.create('OragonAppServerManagement.view.HomeSouthRegion', { id: 'NotificationCenter'})
+				Ext.create('OragonAppServerManagement.view.HomeSouthRegion', { id: 'NotificationCenter' })
 			]
 		});
-
 
 		$.connection.hub.url = (hostUrl + "signalr");
 
 		var NotificationHub = $.connection.NotificationHub;
 
 		NotificationHub.client.receiveMessages = function (messages) {
-
 			var notificationCenterTextArea = Ext.getCmp("NotificationCenterTextArea");
 			Enumerable.from(messages).forEach(function (itemOfData) {
 				notificationCenterTextArea.setValue(
@@ -43,14 +41,11 @@
 
 				radio(itemOfData.MessageType).broadcast({ sender: null, record: itemOfData });
 			});
-
 		};
 
 		$.connection.hub.start().done(function () {
 			NotificationHub.server.RegisterWebManagement(clientID);
 		});
-
-
 
 		//Oragon.Architecture.Scripting.TimerManager.run({
 		//	intervalInSeconds: 0,
@@ -87,14 +82,8 @@
 		//		});
 		//	}
 		//});
-
 	}
 });
 
-
 $(function () {
-	
-	
-
-
 });

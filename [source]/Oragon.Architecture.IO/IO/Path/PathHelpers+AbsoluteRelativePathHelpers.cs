@@ -7,34 +7,22 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class AbsoluteRelativePathHelpers
 		{
+			#region Internal Fields
+
 			internal const string CURRENT_DIR_SINGLEDOT = ".";
 			internal const string PARENT_DIR_DOUBLEDOT = "..";
 
+			#endregion Internal Fields
+
 			//
-			//  Relative/absolute computation
+			// Relative/absolute computation
 			//
 
-			internal static bool TryGetRelativePath(IAbsoluteDirectoryPath pathFrom, IAbsolutePath pathTo, out string pathResult, out string failurereason)
-			{
-				Debug.Assert(pathFrom != null);
-				Debug.Assert(pathTo != null);
-
-				if (!pathFrom.OnSameVolumeThan(pathTo))
-				{
-					failurereason = @"Cannot compute relative path from 2 paths that are not on the same volume
-   PathFrom = """ + pathFrom.ToString() + @"""
-   PathTo   = """ + pathTo.ToString() + @"""";
-					pathResult = null;
-					return false;
-				}
-				// Only work with Directory
-				if (pathTo.IsFilePath) { pathTo = pathTo.ParentDirectoryPath; }
-				pathResult = GetPathRelativeTo(pathFrom.ToString(), pathTo.ToString());
-				failurereason = null;
-				return true;
-			}
+			#region Internal Methods
 
 			internal static bool TryGetAbsolutePathFrom(IAbsoluteDirectoryPath pathFrom, IPath pathTo, out string pathResult, out string failureReason)
 			{
@@ -50,9 +38,9 @@ namespace Oragon.Architecture.IO.Path
 				}
 
 				//
-				// Special case when a relative path is asked from a UNC path like ".." from "\\Server\Share".
-				// In such case we cannot return "\\Server" that is not a valis UNC path
-				// To address this we create a temporary drive letter absolute path and do the TryGetAbsolutePathFrom() on it!
+				// Special case when a relative path is asked from a UNC path like ".." from "\\Server\Share". In such case we cannot return
+				// "\\Server" that is not a valis UNC path To address this we create a temporary drive letter absolute path and do the
+				// TryGetAbsolutePathFrom() on it!
 				//
 				Debug.Assert(pathFrom.Kind == AbsolutePathKind.UNC);
 				var pathFromString = pathFrom.ToString();
@@ -78,11 +66,33 @@ namespace Oragon.Architecture.IO.Path
 				return true;
 			}
 
+			internal static bool TryGetRelativePath(IAbsoluteDirectoryPath pathFrom, IAbsolutePath pathTo, out string pathResult, out string failurereason)
+			{
+				Debug.Assert(pathFrom != null);
+				Debug.Assert(pathTo != null);
+
+				if (!pathFrom.OnSameVolumeThan(pathTo))
+				{
+					failurereason = @"Cannot compute relative path from 2 paths that are not on the same volume
+   PathFrom = """ + pathFrom.ToString() + @"""
+   PathTo   = """ + pathTo.ToString() + @"""";
+					pathResult = null;
+					return false;
+				}
+				// Only work with Directory
+				if (pathTo.IsFilePath) { pathTo = pathTo.ParentDirectoryPath; }
+				pathResult = GetPathRelativeTo(pathFrom.ToString(), pathTo.ToString());
+				failurereason = null;
+				return true;
+			}
+
+			#endregion Internal Methods
+
 			#region GetPathRelativeTo()  /  TryGetAbsolutePath()
 
 			//--------------------------------------
 			//
-			//  GetPathRelativeTo()  /  TryGetAbsolutePath()
+			// GetPathRelativeTo() / TryGetAbsolutePath()
 			//
 			//--------------------------------------
 			private static string GetPathRelativeTo(string pathFrom, string pathTo)
@@ -143,7 +153,7 @@ namespace Oragon.Architecture.IO.Path
 			}
 
 			//
-			//  TryGetAbsolutePath
+			// TryGetAbsolutePath
 			//
 			private static bool TryGetAbsolutePath(string pathFrom, string pathTo, out string pathResult, out string failureReason)
 			{
@@ -213,18 +223,6 @@ namespace Oragon.Architecture.IO.Path
 
 			#region Is an Absolute/Relative path
 
-			//-----------------------------------------------------
-			//
-			//  Is an Absolute/Relative path
-			//
-			//-----------------------------------------------------
-			private static bool IsAnAbsolutePath(string pathStringNormalized)
-			{
-				Debug.Assert(pathStringNormalized != null);
-				Debug.Assert(pathStringNormalized.IsNormalized());
-				return IsAnAbsoluteDriveLetterPath(pathStringNormalized) || UNCPathHelper.IsAnAbsoluteUNCPath(pathStringNormalized);
-			}
-
 			internal static bool IsAnAbsoluteDriveLetterPath(string pathStringNormalized)
 			{
 				Debug.Assert(pathStringNormalized != null);
@@ -271,33 +269,26 @@ namespace Oragon.Architecture.IO.Path
 				return thirdChar == MiscHelpers.DIR_SEPARATOR_CHAR;
 			}
 
+			//-----------------------------------------------------
+			//
+			// Is an Absolute/Relative path
+			//
+			//-----------------------------------------------------
+			private static bool IsAnAbsolutePath(string pathStringNormalized)
+			{
+				Debug.Assert(pathStringNormalized != null);
+				Debug.Assert(pathStringNormalized.IsNormalized());
+				return IsAnAbsoluteDriveLetterPath(pathStringNormalized) || UNCPathHelper.IsAnAbsoluteUNCPath(pathStringNormalized);
+			}
+
 			#endregion Is an Absolute/Relative path
 
 			#region Inner Special dir handling
 
-			//------------------------------------------------
-			//
-			//  Inner Special dir handling
-			//  What we call InnerSpecialDir is when at least one '.' or '..' directory is after a valid directory
-			//  For example these paths all contains inner special dir
-			//  C:\..
-			//  .\..\Dir2\.\Dir3
-			//  .\..\..\Dir2\..\Dir3
-			//
-			//------------------------------------------------
-			internal static string NormalizeAndResolveInnerSpecialDir(string pathString)
+			private enum TryResolveInnerSpecialDirResult
 			{
-				Debug.Assert(pathString != null);
-				Debug.Assert(pathString.Length > 0);
-				var pathStringNormalized = MiscHelpers.NormalizePath(pathString);
-				if (!ContainsInnerSpecialDir(pathStringNormalized))
-				{
-					return pathStringNormalized;
-				}
-				string pathStringNormalizedResolved, failureReasonUnused;
-				var b = TryResolveInnerSpecialDir(pathStringNormalized, out pathStringNormalizedResolved, out failureReasonUnused);
-				Debug.Assert(b); // Coz already verified in a IsValidPath !
-				return pathStringNormalizedResolved;
+				Success,
+				ErrorParentOfRootDirResolved
 			}
 
 			internal static bool ContainsInnerSpecialDir(string path)
@@ -340,6 +331,28 @@ namespace Oragon.Architecture.IO.Path
 				return false;
 			}
 
+			//------------------------------------------------
+			//
+			// Inner Special dir handling What we call InnerSpecialDir is when at least one '.' or '..' directory is after a valid directory For
+			// example these paths all contains inner special dir
+			// C: \.. .\..\Dir2\.\Dir3 .\..\..\Dir2\..\Dir3
+			//
+			//------------------------------------------------
+			internal static string NormalizeAndResolveInnerSpecialDir(string pathString)
+			{
+				Debug.Assert(pathString != null);
+				Debug.Assert(pathString.Length > 0);
+				var pathStringNormalized = MiscHelpers.NormalizePath(pathString);
+				if (!ContainsInnerSpecialDir(pathStringNormalized))
+				{
+					return pathStringNormalized;
+				}
+				string pathStringNormalizedResolved, failureReasonUnused;
+				var b = TryResolveInnerSpecialDir(pathStringNormalized, out pathStringNormalizedResolved, out failureReasonUnused);
+				Debug.Assert(b); // Coz already verified in a IsValidPath !
+				return pathStringNormalizedResolved;
+			}
+
 			internal static bool TryResolveInnerSpecialDir(string pathStringNormalized, out string pathResolved, out string failureReason)
 			{
 				// These cases should have been handled by the calling method and cannot be handled
@@ -358,7 +371,7 @@ namespace Oragon.Architecture.IO.Path
 				bool bPathIsRelative = IsARelativePath(pathStringNormalized);
 
 				//
-				// Special case of UNC path:  Replace "\\server\share" with "C:" and will do the opposite replacement at the end!
+				// Special case of UNC path: Replace "\\server\share" with "C:" and will do the opposite replacement at the end!
 				//
 				var originalPathStringNormalized = pathStringNormalized;
 				var bIsUNCPath = UNCPathHelper.StartLikeUNCPath(pathStringNormalized);
@@ -413,12 +426,6 @@ namespace Oragon.Architecture.IO.Path
 				return true;
 			}
 
-			private enum TryResolveInnerSpecialDirResult
-			{
-				Success,
-				ErrorParentOfRootDirResolved
-			}
-
 			private static TryResolveInnerSpecialDirResult TryResolveInnerSpecialDirAlgo(
 				  string[] pathDirs,
 				  bool bPathIsRelative,
@@ -464,7 +471,8 @@ namespace Oragon.Architecture.IO.Path
 
 							if (!bPathIsRelative && dirStack.Count == 1)
 							{
-								// Here we reached a problem coz we are trying to get parent dir, of first dir (that can be "C:\"  "%EnvVar%"   "$(SolutionDir)"  )
+								// Here we reached a problem coz we are trying to get parent dir, of first dir (that can be "C:\" "%EnvVar%"
+								// "$(SolutionDir)" )
 								pathResolved = null;
 								return TryResolveInnerSpecialDirResult.ErrorParentOfRootDirResolved;
 							}
@@ -484,8 +492,7 @@ namespace Oragon.Architecture.IO.Path
 									dirStack.Push(PARENT_DIR_DOUBLEDOT);
 									continue;
 								default:
-									// dirToRemove is a normal named dir, it is not ".\" nor "..\"
-									// just pop it!
+									// dirToRemove is a normal named dir, it is not ".\" nor "..\" just pop it!
 									dirStack.Pop();
 									continue;
 							}
@@ -518,5 +525,7 @@ namespace Oragon.Architecture.IO.Path
 
 			#endregion Inner Special dir handling
 		}
+
+		#endregion Private Classes
 	}
 }

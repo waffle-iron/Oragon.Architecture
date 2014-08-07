@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.IO;
@@ -12,6 +9,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>54317AC2-378B-4108-B96B-55364F1AE69C</id>
 		/// <summary>
 		///     A string extension method that converts the @this to a XDocument.
@@ -26,5 +25,7 @@ namespace Oragon.Architecture.Extensions
 				return XDocument.Load(ms);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

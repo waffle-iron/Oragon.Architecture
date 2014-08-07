@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>0FC3B318-F73B-449E-81DB-21DEB5DF948A</id>
 		/// <summary>
 		///     An object extension method that converts the @this to a DateTime.
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return Convert.ToDateTime(@this);
 		}
+
+		#endregion Public Methods
 	}
 }

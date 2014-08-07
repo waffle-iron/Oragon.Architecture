@@ -1,17 +1,14 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Creates an hashset from a <i>IEnumerable&lt;T&gt;</i>.
 		///</summary>
@@ -25,6 +22,6 @@ namespace Oragon.Architecture.Extensions
 			return new HashSet<T>(seq);
 		}
 
-
+		#endregion Public Methods
 	}
 }

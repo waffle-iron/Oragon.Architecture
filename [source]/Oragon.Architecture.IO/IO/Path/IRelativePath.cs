@@ -9,22 +9,17 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IRelativePathContract))]
 	public interface IRelativePath : IPath
 	{
+		#region Public Properties
+
 		///<summary>
-		///A new absolute path representing this relative path resolved from <paramref name="pivotDirectory"/>.
+		///Returns a new relative directory path representing the parent directory of this relative path.
 		///</summary>
-		///<remarks>
-		///If this path is "..\Dir2\File.txt" and <paramref name="pivotDirectory"/> is "C:\Dir1\Dir3", the returned relative file is "C:\Dir1\Dir2\File.txt".
-		///If this path is "..\Dir2" and <paramref name="pivotDirectory"/> is "C:\Dir1\Dir3", the returned relative file is "C:\Dir1\Dir2".
-		///This method is hidden in <see cref="T:Oragon.Architecture.IO.Path.IAbsoluteFilePath"/> and <see cref="T:Oragon.Architecture.IO.Path.IAbsoluteDirectoryPath"/> to get a typed result.
-		///The returned file or directory path nor <paramref name="pivotDirectory"/> need to exist for this operation to complete properly.
-		///</remarks>
-		///<param name="pivotDirectory">The pivot directory from which the absolute path is computed.</param>
-		///<exception cref="ArgumentException">
-		///An absolute path cannot be resolved from <paramref name="pivotDirectory"/>.
-		///This can happen for example if <paramref name="pivotDirectory"/> is "C:\Dir1" and this relative path is "..\..\Dir2".
-		///</exception>
-		///<returns>A new absolute file path representing this relative file resolved from <paramref name="pivotDirectory"/>.</returns>
-		IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory);
+		///<exception cref="InvalidOperationException">This relative path has no parent directory.</exception>
+		new IRelativeDirectoryPath ParentDirectoryPath { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		///<summary>
 		///Gets a value indicating whether this relative path can be resolved from <paramref name="pivotDirectory"/>.
@@ -48,20 +43,60 @@ namespace Oragon.Architecture.IO.Path
 		bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason);
 
 		///<summary>
-		///Returns a new relative directory path representing the parent directory of this relative path.
+		///A new absolute path representing this relative path resolved from <paramref name="pivotDirectory"/>.
 		///</summary>
-		///<exception cref="InvalidOperationException">This relative path has no parent directory.</exception>
-		new IRelativeDirectoryPath ParentDirectoryPath { get; }
+		///<remarks>
+		///If this path is "..\Dir2\File.txt" and <paramref name="pivotDirectory"/> is "C:\Dir1\Dir3", the returned relative file is "C:\Dir1\Dir2\File.txt".
+		///If this path is "..\Dir2" and <paramref name="pivotDirectory"/> is "C:\Dir1\Dir3", the returned relative file is "C:\Dir1\Dir2".
+		///This method is hidden in <see cref="T:Oragon.Architecture.IO.Path.IAbsoluteFilePath"/> and <see cref="T:Oragon.Architecture.IO.Path.IAbsoluteDirectoryPath"/> to get a typed result.
+		///The returned file or directory path nor <paramref name="pivotDirectory"/> need to exist for this operation to complete properly.
+		///</remarks>
+		///<param name="pivotDirectory">The pivot directory from which the absolute path is computed.</param>
+		///<exception cref="ArgumentException">
+		///An absolute path cannot be resolved from <paramref name="pivotDirectory"/>.
+		///This can happen for example if <paramref name="pivotDirectory"/> is "C:\Dir1" and this relative path is "..\..\Dir2".
+		///</exception>
+		///<returns>A new absolute file path representing this relative file resolved from <paramref name="pivotDirectory"/>.</returns>
+		IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory);
+
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IRelativePath))]
 	internal abstract class IRelativePathContract : IRelativePath
 	{
-		public IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
+		#region Public Properties
+
+		public abstract bool HasParentDirectory { get; }
+
+		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath
 		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
+			get
+			{
+				Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned path is not null");
+				throw new NotImplementedException();
+			}
 		}
+
+		public abstract bool IsAbsolutePath { get; }
+
+		public abstract bool IsDirectoryPath { get; }
+
+		public abstract bool IsEnvVarPath { get; }
+
+		public abstract bool IsFilePath { get; }
+
+		public abstract bool IsRelativePath { get; }
+
+		public abstract bool IsVariablePath { get; }
+
+		public abstract IDirectoryPath ParentDirectoryPath { get; }
+
+		public abstract PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
 		{
@@ -75,35 +110,16 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath
+		public IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
 		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned path is not null");
-				throw new NotImplementedException();
-			}
+			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
+			throw new NotImplementedException();
 		}
 
 		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
 
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
 		public abstract bool NotEquals(object obj);
+
+		#endregion Public Methods
 	}
 }

@@ -3,9 +3,7 @@
 	alias: 'controller.MenuController',
 
 	init: function () {
-
 		radio('MainMenu|Action|Click').subscribe(this.onMainMenuActionClick);
-		
 	},
 
 	onLaunch: function (application) { },
@@ -31,5 +29,4 @@
 			}
 		}
 	}
-
 });

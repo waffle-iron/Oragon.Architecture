@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 using System.Xml.Serialization;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>78C0CF79-8510-47A2-803D-232626C985CA</id>
 		/// <summary>
 		///     An object extension method that serialize a string to XML.
@@ -29,5 +28,7 @@ namespace Oragon.Architecture.Extensions
 				}
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

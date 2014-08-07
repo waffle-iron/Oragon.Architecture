@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Logging.Loggers
 {
 	public class SafeLogger : AbstractLogger
 	{
+		#region Public Properties
+
 		public ILogger PrimaryLogger { get; set; }
 
 		public ILogger SecondaryLogger { get; set; }
+
+		#endregion Public Properties
+
+		#region Protected Methods
 
 		protected override void SendLog(LogEntry logEntry)
 		{
@@ -25,5 +28,7 @@ namespace Oragon.Architecture.Logging.Loggers
 				this.SecondaryLogger.Log(logEntry.Context, logEntry.Content, logEntry.LogLevel, logEntry.Tags);
 			}
 		}
+
+		#endregion Protected Methods
 	}
 }

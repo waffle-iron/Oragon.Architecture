@@ -1,12 +1,7 @@
-﻿using Oragon.Architecture.ApplicationHosting.Management.Middleware;
+﻿using Oragon.Architecture.Web.Owin.OMvc;
+using Oragon.Architecture.Web.Owin.OMvc.Results;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.Web.Owin.OMvc.Results;
-using Oragon.Architecture.Web.Owin.OMvc;
 using AssemblyMapping = Oragon.Architecture.Web.Owin.OMvc.Results.EmbeddedResourceResult.AssemblyMapping;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
@@ -17,7 +12,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 		//{
 		//	public string Folder { get; set; }
 
-		//	public System.Reflection.Assembly Assembly { get; set; }
+		// public System.Reflection.Assembly Assembly { get; set; }
 
 		//	public string ResourceRootPath { get; set; }
 		//}
@@ -32,16 +27,28 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 		//	this.resourceAssemblies.Add(new AssemblyMapping() { Folder = @"icons", Assembly = System.Reflection.Assembly.LoadFrom("Oragon.Architecture.Icons.dll"), ResourceRootPath = "Oragon.Architecture.Icons" });
 		//}
 
+		#region Private Fields
+
 		private List<AssemblyMapping> resourceAssemblies;
+
+		#endregion Private Fields
+
+		#region Public Constructors
+
 		public ResourceController()
 		{
 		}
+
+		#endregion Public Constructors
+
+		#region Public Methods
 
 		public override void Initialize()
 		{
 			base.Initialize();
 			string startTime = DateTime.Today.ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'", System.Globalization.CultureInfo.InvariantCulture);
-			Func<Microsoft.Owin.IOwinContext, bool> setCache = (context) => {
+			Func<Microsoft.Owin.IOwinContext, bool> setCache = (context) =>
+			{
 				context.Response.Expires = DateTime.Today.AddDays(365);
 				context.Response.ETag = startTime;
 				context.Response.Headers.Append("Cache-Control", "max-age=" + ((long)TimeSpan.FromDays(365).TotalSeconds).ToString(System.Globalization.CultureInfo.InvariantCulture));
@@ -64,27 +71,11 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			this.resourceAssemblies.Add(new AssemblyMapping(virtualFolder: @"/dynRes/bootstrap/", assemblyName: "Oragon.Architecture.Bootstrap", beforeResultExecution: setCache));
 		}
 
-//		public MvcResult LoadFrom(string resourceName)
-//		{
-
-//			foreach (AssemblyMapping assemblyMapping in this.resourceAssemblies)
-//			{
-//				if (parts[0].ToLower() == assemblyMapping.Folder.ToLower())
-//				{
-//					string fullName = assemblyMapping.ResourceRootPath;
-//					for (int i = 1; i < parts.Length; i++)
-//					{
-//						if (i < parts.Length - 1)
-//							fullName += "." + parts[i].Replace(@"/", ".").Replace(@"-", "_");
-//						else
-//							fullName += "." + parts[i];
-//					}
-//					System.IO.Stream stream = assemblyMapping.Assembly.GetManifestResourceStream(fullName);
-//					return new StreamResult() { Stream = stream, ContentType = contentType };
-//				}
-//			}
-//			throw new DllNotFoundException("Could not be found assembly binded with this resource");
-//		}
+		// public MvcResult LoadFrom(string resourceName) { foreach (AssemblyMapping assemblyMapping in this.resourceAssemblies) { if
+		// (parts[0].ToLower() == assemblyMapping.Folder.ToLower()) { string fullName = assemblyMapping.ResourceRootPath; for (int i = 1; i <
+		// parts.Length; i++) { if (i < parts.Length - 1) fullName += "." + parts[i].Replace(@"/", ".").Replace(@"-", "_"); else fullName += "." +
+		// parts[i]; } System.IO.Stream stream = assemblyMapping.Assembly.GetManifestResourceStream(fullName); return new StreamResult() { Stream =
+		// stream, ContentType = contentType }; } } throw new DllNotFoundException("Could not be found assembly binded with this resource"); }
 		public MvcResult LoadFrom(string resourceName)
 		{
 #if DEBUG
@@ -98,5 +89,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 #endif
 			return new EmbeddedResourceResult(this.resourceAssemblies);
 		}
+
+		#endregion Public Methods
 	}
 }

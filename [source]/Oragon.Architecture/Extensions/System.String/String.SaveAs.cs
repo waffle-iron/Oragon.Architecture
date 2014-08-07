@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>00195CBF-C786-4433-AA59-6DA43DC97BFA</id>
 		/// <summary>
 		///     A string extension method that save the string into a file.
@@ -38,5 +37,7 @@ namespace Oragon.Architecture.Extensions
 				tw.Write(@this);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

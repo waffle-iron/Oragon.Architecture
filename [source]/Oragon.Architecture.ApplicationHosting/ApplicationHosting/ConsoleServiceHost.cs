@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Topshelf;
+﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using Oragon.Architecture.Extensions;
 using Oragon.Architecture.IO.Path;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+using System.Linq;
+using System.Threading.Tasks;
+using Topshelf;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
 	public class ConsoleServiceHost : IHostProcessService
 	{
+		#region Private Fields
+
 		private Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
 
+		private Microsoft.AspNet.SignalR.Client.IHubProxy hostHubProxy;
+		private Microsoft.AspNet.SignalR.Client.HubConnection hubConnection;
 		private Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
 
 		private Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
@@ -23,11 +26,13 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
 
-		private Microsoft.AspNet.SignalR.Client.HubConnection hubConnection;
+		#endregion Private Fields
 
-		private Microsoft.AspNet.SignalR.Client.IHubProxy hostHubProxy;
+		#region Public Properties
 
 		public List<ApplicationHost> Applications { get; set; }
+
+		public Uri ApplicationServerEndPoint { get; set; }
 
 		public Guid ClientID { get; set; }
 
@@ -37,9 +42,12 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public string FriendlyName { get; set; }
 
-		public Uri ApplicationServerEndPoint { get; set; }
-
 		public string Name { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
 		public TopshelfExitCode RunConsoleMode(List<string> arguments, string configurationFileName)
 		{
 			IFilePath filePath = null;
@@ -101,7 +109,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 		}
 
-		
+		#endregion Public Methods
 
 		#region Application Server Integration
 
@@ -130,7 +138,6 @@ namespace Oragon.Architecture.ApplicationHosting
 
 			RegisterHostResponseMessage responseMessage = await this.hostHubProxy.Invoke<RegisterHostResponseMessage>("RegisterHost", requestMessage);
 			this.ClientID = responseMessage.ClientID;
-
 		}
 
 		private async Task DisconnectFromApplicationServer()
@@ -139,11 +146,11 @@ namespace Oragon.Architecture.ApplicationHosting
 			{
 				ClientID = this.ClientID
 			};
-			UnregisterHostResponseMessage responseMessage = await  this.hostHubProxy.Invoke<UnregisterHostResponseMessage>("UnregisterHost", requestMessage);
+			UnregisterHostResponseMessage responseMessage = await this.hostHubProxy.Invoke<UnregisterHostResponseMessage>("UnregisterHost", requestMessage);
 			this.hubConnection.Stop();
 		}
 
-		#endregion
+		#endregion Application Server Integration
 
 		#region Console Management
 
@@ -264,9 +271,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			for (int i = 0; i < Console.WindowWidth; i++)
 				Console.Write(" ");
 
-
-
-
 			Console.ResetColor();
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.SetCursorPosition(1, 1); Red("Version: "); Green(this.GetType().Assembly.GetAssemblyInformationalVersion());
@@ -279,7 +283,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			SetLeft(headerSize + 2);
 		}
 
-		#endregion
+		#endregion Console Management
+
+		#region Private Methods
 
 		private List<string> GetAllIPAddresses()
 		{
@@ -288,7 +294,14 @@ namespace Oragon.Architecture.ApplicationHosting
 			return iplist.ToList();
 		}
 
+		#endregion Private Methods
+
 		#region IHostProcessService Methods
+
+		public virtual void AddApplication()
+		{
+			throw new NotImplementedException();
+		}
 
 		public HostStatistic CollectStatistics()
 		{
@@ -310,9 +323,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			return returnValue;
 		}
 
-		public virtual void AddApplication()
+		public virtual void HeartBeat()
 		{
-			throw new NotImplementedException();
+			System.Diagnostics.Debug.WriteLine("{0} receive heartbeat ping.".FormatWith(this.Name));
 		}
 
 		public virtual void StartApplication()
@@ -325,11 +338,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			throw new NotImplementedException();
 		}
 
-		public virtual void HeartBeat()
-		{
-			System.Diagnostics.Debug.WriteLine("{0} receive heartbeat ping.".FormatWith(this.Name));
-		}
-
-		#endregion
+		#endregion IHostProcessService Methods
 	}
 }

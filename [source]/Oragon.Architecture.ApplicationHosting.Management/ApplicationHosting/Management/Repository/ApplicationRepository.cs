@@ -1,24 +1,40 @@
-﻿using System;
+﻿using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
+using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.ApplicationHosting.Services.Contracts;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 {
 	public class ApplicationRepository
 	{
-		object syncLock = new Object();
+		#region Private Fields
 
-		public List<Machine> Machines { get; private set; }
+		private object syncLock = new Object();
 
-		public string ApplicationRepositoryPath { get; set; }
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public ApplicationRepository()
 		{
+		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public string ApplicationRepositoryPath { get; set; }
+
+		public List<Machine> Machines { get; private set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public static Guid CreateNewTempApplication()
+		{
+			throw new NotImplementedException();
 		}
 
 		public Host Register(RegisterHostRequestMessage registerMessage)
@@ -45,7 +61,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 			}
 		}
 
-
 		public Host Unregister(UnregisterHostRequestMessage unregisterMessage)
 		{
 			lock (syncLock)
@@ -65,12 +80,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 				}
 				return returnValue;
 			}
-
 		}
 
-		public static Guid CreateNewTempApplication()
-		{
-			throw new NotImplementedException();
-		}
+		#endregion Public Methods
 	}
 }

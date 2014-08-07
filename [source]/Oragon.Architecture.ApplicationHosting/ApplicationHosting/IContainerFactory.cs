@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Oragon.Architecture.ApplicationHosting
+﻿namespace Oragon.Architecture.ApplicationHosting
 {
 	public interface IContainerFactory<T>
 	{
+		#region Public Methods
+
 		T CreateContainer();
+
+		#endregion Public Methods
 	}
 }

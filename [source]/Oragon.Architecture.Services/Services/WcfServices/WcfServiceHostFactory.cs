@@ -1,24 +1,28 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
 	public class WcfServiceHostFactory
 	{
-		public ConcurrencyMode ConcurrencyMode { get; set; }
-		public InstanceContextMode InstanceContextMode { get; set; }
+		#region Public Properties
 
 		public Uri[] BaseAddresses { get; set; }
 
 		public List<IServiceBehavior> Behaviors { get; set; }
 
+		public ConcurrencyMode ConcurrencyMode { get; set; }
+
+		public InstanceContextMode InstanceContextMode { get; set; }
+
 		public List<ServiceEndpointConfiguration> ServiceEndpoints { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
 		public virtual ServiceHost BuildHost(object instance)
 		{
 			ServiceHost serviceHost = new ServiceHost(instance, this.BaseAddresses);
@@ -33,12 +37,9 @@ namespace Oragon.Architecture.Services.WcfServices
 			return serviceHost;
 		}
 
-		protected virtual void ConfigureHost(ServiceHost serviceHost)
-		{
-			this.AddBehaviors(serviceHost);
-			this.AddServiceEndpoints(serviceHost);
-			this.ConfigureServiceBehaviorAttribute(serviceHost);
-		}
+		#endregion Public Methods
+
+		#region Protected Methods
 
 		protected virtual void AddBehaviors(ServiceHost serviceHost)
 		{
@@ -62,12 +63,20 @@ namespace Oragon.Architecture.Services.WcfServices
 			}
 		}
 
+		protected virtual void ConfigureHost(ServiceHost serviceHost)
+		{
+			this.AddBehaviors(serviceHost);
+			this.AddServiceEndpoints(serviceHost);
+			this.ConfigureServiceBehaviorAttribute(serviceHost);
+		}
+
 		protected virtual void ConfigureServiceBehaviorAttribute(ServiceHost serviceHost)
 		{
 			var attr = serviceHost.Description.Behaviors.Find<ServiceBehaviorAttribute>();
 			attr.ConcurrencyMode = this.ConcurrencyMode;
 			attr.InstanceContextMode = this.InstanceContextMode;
 		}
-		
+
+		#endregion Protected Methods
 	}
 }

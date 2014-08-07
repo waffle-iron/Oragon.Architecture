@@ -1,18 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using NH = NHibernate;
 using NHibernate.Linq;
-using Spring.Objects.Factory.Attributes;
+using NH = NHibernate;
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
-
 	public abstract class NHDataProcess : Oragon.Architecture.Aop.Data.Abstractions.AbstractDataProcess<Oragon.Architecture.Aop.Data.NHibernate.NHContext, Oragon.Architecture.Aop.Data.NHibernate.NHContextAttribute>
 	{
+		#region Public Methods
 
 		/// <summary>
-		/// Obtém um IQueryOver pronto para realizar consultas usando lambda expressions 
+		///     Reanexa um objeto
+		/// </summary>
+		/// <param name="itemToAttach"></param>
+		public virtual void Attach(Oragon.Architecture.Business.Entity itemToAttach)
+		{
+			this.ObjectContext.Session.Refresh(itemToAttach, NH.LockMode.None);
+		}
+
+		public virtual void Flush()
+		{
+			this.ObjectContext.Session.Flush();
+		}
+
+		public virtual bool IsAttached(object itemToAttach)
+		{
+			bool returnValue = this.ObjectContext.Session.Contains(itemToAttach);
+			return returnValue;
+		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
+
+		/// <summary>
+		///     Obtém um IQueryOver pronto para realizar consultas usando lambda expressions
 		/// </summary>
 		/// <returns></returns>
 		protected virtual System.Linq.IQueryable<T> Query<T>()
@@ -23,7 +43,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		}
 
 		/// <summary>
-		/// Obtém um IQueryOver (ICriteria API) para que possa ser utilizado em consultas com lambda expressions
+		///     Obtém um IQueryOver (ICriteria API) para que possa ser utilizado em consultas com lambda expressions
 		/// </summary>
 		/// <returns></returns>
 		protected virtual NH.IQueryOver<T, T> QueryOver<T>()
@@ -33,27 +53,6 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return query;
 		}
 
-		/// <summary>
-		/// Reanexa um objeto 
-		/// </summary>
-		/// <param name="itemToAttach"></param>
-		public virtual void Attach(Oragon.Architecture.Business.Entity itemToAttach)
-		{
-			this.ObjectContext.Session.Refresh(itemToAttach, NH.LockMode.None);
-		}
-
-		public virtual bool IsAttached(object itemToAttach)
-		{
-			bool returnValue = this.ObjectContext.Session.Contains(itemToAttach);
-			return returnValue;
-		}
-
-		public virtual void Flush()
-		{
-			this.ObjectContext.Session.Flush();
-		}
-
+		#endregion Protected Methods
 	}
-
-	
 }

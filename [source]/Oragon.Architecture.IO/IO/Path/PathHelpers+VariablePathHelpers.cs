@@ -1,16 +1,25 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class VariablePathHelpers
 		{
 			#region Determine if a string is a variable path and extract variables!
+
+			private enum TryGetNextVariableResult
+			{
+				VariableFound,
+				VariableNotFound,
+				ErrorSyntaxFound
+			}
 
 			//-------------------------------------------------------------------------
 			//
@@ -69,8 +78,8 @@ namespace Oragon.Architecture.IO.Path
 							Debug.Assert(variableName != null);
 							Debug.Assert(variableName.Length > 0);
 
-							// Add the variable name only if it has not already been added (string insensitive)
-							// don't use a hashset coz: 1) we don't expect plenty of variables 2) it would disturb the order of variable!
+							// Add the variable name only if it has not already been added (string insensitive) don't use a hashset coz: 1) we don't
+							// expect plenty of variables 2) it would disturb the order of variable!
 							var bAlreadyAdded = false;
 							foreach (var variableNameAlreadyAdded in variablesList)
 							{
@@ -104,13 +113,6 @@ namespace Oragon.Architecture.IO.Path
 				failureReason = @"Variable syntax error : " + failureReasonTmp;
 				variables = null;
 				return false;
-			}
-
-			private enum TryGetNextVariableResult
-			{
-				VariableFound,
-				VariableNotFound,
-				ErrorSyntaxFound
 			}
 
 			// Search for a variable with name $(variableName) from indexIn in pathStringNormalized
@@ -203,9 +205,8 @@ namespace Oragon.Architecture.IO.Path
 						break;
 					}
 					pathStringTmp1 = pathStringTmp2;
-					// Do increase index with variableValue.Length.
-					// Because we don't want to support recursive scenarios that can end up in infinite loop!
-					// like when "$(variableName)" get replaced with "$(variableName)" or even "XYZ$(variableName)XYZ"
+					// Do increase index with variableValue.Length. Because we don't want to support recursive scenarios that can end up in infinite
+					// loop! like when "$(variableName)" get replaced with "$(variableName)" or even "XYZ$(variableName)XYZ"
 					index += variableValue.Length;
 				}
 				return pathStringTmp1;
@@ -239,16 +240,7 @@ namespace Oragon.Architecture.IO.Path
 
 			#endregion ReplaceVariableWithValue used at resolving time
 
-			// Special HasParentDirectory impl for VariablePaths
-			internal static bool HasParentDirectory(string path)
-			{
-				Debug.Assert(path != null);
-
-				if (!MiscHelpers.HasParentDirectory(path)) { return false; }
-				var lastName = MiscHelpers.GetLastName(path);
-				// Here, we ensure that there is no variable defined into the last fileName or directoryName!
-				return !DoesFileNameContainVariable(lastName);
-			}
+			#region Internal Methods
 
 			internal static bool DoesFileNameContainVariable(string fileName)
 			{
@@ -264,8 +256,8 @@ namespace Oragon.Architecture.IO.Path
 				   out variableNameUnused,
 				   out indexOutUnused,
 				   out failureReasonUnused);
-				// Don't allow fileName to contains "$(" even if in theory it'd be possible
-				// But user shouldn't mess up with variable path containing the string "$(".
+				// Don't allow fileName to contains "$(" even if in theory it'd be possible But user shouldn't mess up with variable path containing
+				// the string "$(".
 				return result != TryGetNextVariableResult.VariableNotFound;
 			}
 
@@ -304,6 +296,21 @@ namespace Oragon.Architecture.IO.Path
 				}
 				return sb.ToString();
 			}
+
+			// Special HasParentDirectory impl for VariablePaths
+			internal static bool HasParentDirectory(string path)
+			{
+				Debug.Assert(path != null);
+
+				if (!MiscHelpers.HasParentDirectory(path)) { return false; }
+				var lastName = MiscHelpers.GetLastName(path);
+				// Here, we ensure that there is no variable defined into the last fileName or directoryName!
+				return !DoesFileNameContainVariable(lastName);
+			}
+
+			#endregion Internal Methods
 		}
+
+		#endregion Private Classes
 	}
 }

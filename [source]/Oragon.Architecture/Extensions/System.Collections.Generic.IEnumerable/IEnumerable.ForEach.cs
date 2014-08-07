@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections;
@@ -11,8 +8,10 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <summary>
-		/// Perform ForEach in enumerable Itens
+		///     Perform ForEach in enumerable Itens
 		/// </summary>
 		/// <typeparam name="T">Generic type parameter</typeparam>
 		/// <param name="this">An IEnumerable that contains the elements to concatenate.</param>
@@ -27,7 +26,7 @@ namespace Oragon.Architecture.Extensions
 		}
 
 		/// <summary>
-		/// Perform ForEach in enumerable Itens
+		///     Perform ForEach in enumerable Itens
 		/// </summary>
 		/// <param name="this">An IEnumerable that contains the elements to concatenate.</param>
 		/// <param name="predicate">Expression to execute</param>
@@ -39,5 +38,7 @@ namespace Oragon.Architecture.Extensions
 
 			return @this;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture
 {
 	public static class RetryHelper
 	{
+		#region Public Methods
+
 		public static List<Exception> Try(Action actionToExecute, int tryCount, bool throwException = true, int waitToRetry = 0)
 		{
 			List<Exception> exceptionList = new List<Exception>();
@@ -56,5 +55,7 @@ namespace Oragon.Architecture
 			}
 			return exception;
 		}
+
+		#endregion Public Methods
 	}
 }

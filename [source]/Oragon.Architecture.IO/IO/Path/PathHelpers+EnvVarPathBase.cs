@@ -5,8 +5,21 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private abstract class EnvVarPathBase : PathBase, IEnvVarPath
 		{
+			#region Private Fields
+
+			//
+			// EnvVar (env var name with percent like "%TEMP%" )
+			//
+			private readonly string m_EnvVarWith2PercentsChar;
+
+			#endregion Private Fields
+
+			#region Protected Constructors
+
 			protected EnvVarPathBase(string pathString) :
 				base(pathString)
 			{
@@ -20,15 +33,69 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(m_EnvVarWith2PercentsChar[m_EnvVarWith2PercentsChar.Length - 1] == MiscHelpers.ENVVAR_PERCENT);
 			}
 
-			public override bool IsAbsolutePath { get { return false; } }
+			#endregion Protected Constructors
 
-			public override bool IsRelativePath { get { return false; } }
+			#region Public Properties
+
+			public string EnvVar { get { return m_EnvVarWith2PercentsChar; } }
+
+			//
+			// ParentDirectoryPath
+			//
+			IEnvVarDirectoryPath IEnvVarPath.ParentDirectoryPath
+			{
+				get
+				{
+					string parentPath = MiscHelpers.GetParentDirectory(m_PathString);
+					return parentPath.ToEnvVarDirectoryPath();
+				}
+			}
+
+			public override bool IsAbsolutePath { get { return false; } }
 
 			public override bool IsEnvVarPath { get { return true; } }
 
+			public override bool IsRelativePath { get { return false; } }
+
 			public override bool IsVariablePath { get { return false; } }
 
+			public override IDirectoryPath ParentDirectoryPath
+			{
+				get
+				{
+					string parentPath = MiscHelpers.GetParentDirectory(m_PathString);
+					return parentPath.ToEnvVarDirectoryPath();
+				}
+			}
+
 			public override PathMode PathMode { get { return PathMode.EnvVar; } }
+
+			#endregion Public Properties
+
+			#region Public Methods
+
+			// This methods are implemented in EnvVarFilePath and EnvVarDirectoryPath.
+			public abstract EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved);
+
+			public abstract bool TryResolve(out IAbsolutePath pathResolved, out string failureReason);
+
+			#endregion Public Methods
+
+			#region Protected Methods
+
+			protected string GetErrorEnvVarResolvedButCannotConvertToAbsolutePathFailureReason()
+			{
+				string envVarValue;
+				var b = TryExpandMyEnvironmentVariables(out envVarValue);
+				Debug.Assert(b); // If the error EnvVarResolvedButCanConvertToAbsolutePath occurs
+				// it means envVar can be resolved!
+				return "The environment variable " + m_EnvVarWith2PercentsChar + " is resolved into the value {" + envVarValue + "} but this value cannot be the prefix of an absolute path.";
+			}
+
+			protected string GetErrorUnresolvedEnvVarFailureReason()
+			{
+				return "Can't resolve the environment variable " + m_EnvVarWith2PercentsChar + ".";
+			}
 
 			//
 			// EnvVar resolving!
@@ -53,39 +120,9 @@ namespace Oragon.Architecture.IO.Path
 				return true;
 			}
 
-			private bool TryExpandMyEnvironmentVariables(out string envVarValue)
-			{
-				envVarValue = Environment.ExpandEnvironmentVariables(m_EnvVarWith2PercentsChar);
-				return // envVarValue != null &&   <--  Resharper tells that this is always true!
-					   envVarValue.Length > 0 &&
-					   envVarValue != m_EnvVarWith2PercentsChar; // Replacement only occurs for environment variables that are set.
-			}
+			#endregion Protected Methods
 
-			protected string GetErrorUnresolvedEnvVarFailureReason()
-			{
-				return "Can't resolve the environment variable " + m_EnvVarWith2PercentsChar + ".";
-			}
-
-			protected string GetErrorEnvVarResolvedButCannotConvertToAbsolutePathFailureReason()
-			{
-				string envVarValue;
-				var b = TryExpandMyEnvironmentVariables(out envVarValue);
-				Debug.Assert(b); // If the error EnvVarResolvedButCanConvertToAbsolutePath occurs
-				// it means envVar can be resolved!
-				return "The environment variable " + m_EnvVarWith2PercentsChar + " is resolved into the value {" + envVarValue + "} but this value cannot be the prefix of an absolute path.";
-			}
-
-			// This methods are implemented in EnvVarFilePath and EnvVarDirectoryPath.
-			public abstract EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved);
-
-			public abstract bool TryResolve(out IAbsolutePath pathResolved, out string failureReason);
-
-			//
-			// EnvVar   (env var name with percent like "%TEMP%" )
-			//
-			private readonly string m_EnvVarWith2PercentsChar;
-
-			public string EnvVar { get { return m_EnvVarWith2PercentsChar; } }
+			#region Private Methods
 
 			private string ComputeEnvVar()
 			{
@@ -96,26 +133,17 @@ namespace Oragon.Architecture.IO.Path
 				return m_PathString.Substring(0, indexClose + 1);
 			}
 
-			//
-			// ParentDirectoryPath
-			//
-			IEnvVarDirectoryPath IEnvVarPath.ParentDirectoryPath
+			private bool TryExpandMyEnvironmentVariables(out string envVarValue)
 			{
-				get
-				{
-					string parentPath = MiscHelpers.GetParentDirectory(m_PathString);
-					return parentPath.ToEnvVarDirectoryPath();
-				}
+				envVarValue = Environment.ExpandEnvironmentVariables(m_EnvVarWith2PercentsChar);
+				return // envVarValue != null &&   <--  Resharper tells that this is always true!
+					   envVarValue.Length > 0 &&
+					   envVarValue != m_EnvVarWith2PercentsChar; // Replacement only occurs for environment variables that are set.
 			}
 
-			public override IDirectoryPath ParentDirectoryPath
-			{
-				get
-				{
-					string parentPath = MiscHelpers.GetParentDirectory(m_PathString);
-					return parentPath.ToEnvVarDirectoryPath();
-				}
-			}
+			#endregion Private Methods
 		}
+
+		#endregion Private Classes
 	}
 }

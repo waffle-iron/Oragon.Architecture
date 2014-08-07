@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Web.UI;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>F04DDC17-7827-4684-82F2-06CA6ED182C6</id>
 		/// <summary>
 		///     Searches the current naming container for a server control with the specified id parameter.
@@ -21,5 +20,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return (@this.FindControl(id) as T);
 		}
+
+		#endregion Public Methods
 	}
 }

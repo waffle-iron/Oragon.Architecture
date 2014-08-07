@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Web.UI;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>2D165574-6416-44FB-990E-CEABB6D0059A</id>
 		/// <summary>
 		///     Searches recursively in the container and child container for a server control with the specified id parameter.
@@ -38,8 +37,7 @@ namespace Oragon.Architecture.Extensions
 
 		/// <id>FAC21F43-0B83-4437-8187-65888AE16187</id>
 		/// <summary>
-		///     Searches recursively in the container and child container for a server control with the specified id
-		///     parameter.
+		///     Searches recursively in the container and child container for a server control with the specified id parameter.
 		/// </summary>
 		/// <param name="this">The @this to act on.</param>
 		/// <param name="id">The identifier for the control to be found.</param>
@@ -62,5 +60,7 @@ namespace Oragon.Architecture.Extensions
 
 			return rControl;
 		}
+
+		#endregion Public Methods
 	}
 }

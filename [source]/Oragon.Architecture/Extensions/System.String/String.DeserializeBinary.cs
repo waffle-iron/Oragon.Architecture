@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.IO;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>5B08F5E4-76DA-496A-85F2-3933AAF0AF97</id>
 		/// <summary>
 		///     A string extension method that deserialize a string binary as &lt;T&gt;.
@@ -23,8 +22,10 @@ namespace Oragon.Architecture.Extensions
 			using (var stream = new MemoryStream(Convert.FromBase64String(@this)))
 			{
 				var binaryRead = new BinaryFormatter();
-				return (T) binaryRead.Deserialize(stream);
+				return (T)binaryRead.Deserialize(stream);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

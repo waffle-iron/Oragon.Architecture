@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 using System.Runtime.Serialization;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>5C2EF3D3-2457-4861-88CB-A825A0F722F6</id>
 		/// <summary>
 		///     A T extension method that makes a deep copy of this object.
@@ -25,8 +24,10 @@ namespace Oragon.Architecture.Extensions
 			{
 				formatter.Serialize(stream, @this);
 				stream.Seek(0, SeekOrigin.Begin);
-				return (T) formatter.Deserialize(stream);
+				return (T)formatter.Deserialize(stream);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

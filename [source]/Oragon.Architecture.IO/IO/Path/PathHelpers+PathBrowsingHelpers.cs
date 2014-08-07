@@ -4,15 +4,11 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class PathBrowsingHelpers
 		{
-			internal static IFilePath GetBrotherFileWithName(IPath path, string fileName)
-			{
-				Debug.Assert(path != null);
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				return path.ParentDirectoryPath.GetChildFileWithName(fileName);
-			}
+			#region Internal Methods
 
 			internal static IDirectoryPath GetBrotherDirectoryWithName(IPath path, string directoryName)
 			{
@@ -22,12 +18,12 @@ namespace Oragon.Architecture.IO.Path
 				return path.ParentDirectoryPath.GetChildDirectoryWithName(directoryName);
 			}
 
-			internal static string GetChildFileWithName(IDirectoryPath directoryPath, string fileName)
+			internal static IFilePath GetBrotherFileWithName(IPath path, string fileName)
 			{
-				Debug.Assert(directoryPath != null);
+				Debug.Assert(path != null);
 				Debug.Assert(fileName != null); // Enforced by contract
 				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				return directoryPath.ToString() + MiscHelpers.DIR_SEPARATOR_CHAR + fileName;
+				return path.ParentDirectoryPath.GetChildFileWithName(fileName);
 			}
 
 			internal static string GetChildDirectoryWithName(IDirectoryPath directoryPath, string directoryName)
@@ -36,6 +32,14 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(directoryName != null); // Enforced by contract
 				Debug.Assert(directoryName.Length > 0); // Enforced by contract
 				return directoryPath.ToString() + MiscHelpers.DIR_SEPARATOR_CHAR + directoryName;
+			}
+
+			internal static string GetChildFileWithName(IDirectoryPath directoryPath, string fileName)
+			{
+				Debug.Assert(directoryPath != null);
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				return directoryPath.ToString() + MiscHelpers.DIR_SEPARATOR_CHAR + fileName;
 			}
 
 			internal static string UpdateExtension(IFilePath filePath, string newExtension)
@@ -54,6 +58,10 @@ namespace Oragon.Architecture.IO.Path
 				var filePathStringWithFileNameAfter = filePathStringWithoutFileName + fileNameAfter;
 				return filePathStringWithFileNameAfter;
 			}
+
+			#endregion Internal Methods
 		}
+
+		#endregion Private Classes
 	}
 }

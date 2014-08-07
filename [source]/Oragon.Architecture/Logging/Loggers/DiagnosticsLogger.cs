@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Oragon.Architecture.Logging.Loggers
 {
 	public class DiagnosticsLogger : AbstractLogger
 	{
+		#region Protected Methods
+
 		protected override void SendLog(LogEntry logEntry)
 		{
 			System.Diagnostics.Debug.WriteLine("Log-----{0}", new object[] { logEntry.LogLevel.ToString() });
@@ -21,5 +19,7 @@ namespace Oragon.Architecture.Logging.Loggers
 			}
 			System.Diagnostics.Debug.WriteLine("---------------------------------");
 		}
+
+		#endregion Protected Methods
 	}
 }

@@ -9,18 +9,16 @@ namespace Oragon.Architecture.Caching.Redis
 {
 	public class RedisClientForSpring : RedisProviderBase, Spring.Caching.ICache
 	{
+		#region Public Constructors
 
 		public RedisClientForSpring(IRedisClient redisClient, string isolationKey)
 			: base(redisClient, isolationKey)
 		{
 		}
 
-		public void Clear()
-		{
-			string formattedKey = base.GetKey();
-			List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
-			this.RemoveAll(keys);
-		}
+		#endregion Public Constructors
+
+		#region Public Properties
 
 		public int Count
 		{
@@ -29,6 +27,27 @@ namespace Oragon.Architecture.Caching.Redis
 				string formattedKey = base.GetKey();
 				return this.NativeClient.SearchKeys(formattedKey + "*").Count;
 			}
+		}
+
+		public System.Collections.ICollection Keys
+		{
+			get
+			{
+				string formattedKey = base.GetKey();
+				List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
+				return keys;
+			}
+		}
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public void Clear()
+		{
+			string formattedKey = base.GetKey();
+			List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
+			this.RemoveAll(keys);
 		}
 
 		public object Get(object key)
@@ -58,16 +77,6 @@ namespace Oragon.Architecture.Caching.Redis
 			this.NativeClient.Set(formattedKey, jsonSerialized);
 		}
 
-		public System.Collections.ICollection Keys
-		{
-			get
-			{
-				string formattedKey = base.GetKey();
-				List<string> keys = this.NativeClient.SearchKeys(formattedKey + "*");
-				return keys;
-			}
-		}
-
 		public void Remove(object key)
 		{
 			string stringKey = (string)key;
@@ -79,5 +88,7 @@ namespace Oragon.Architecture.Caching.Redis
 		{
 			this.NativeClient.RemoveAll(keys.Cast<string>());
 		}
+
+		#endregion Public Methods
 	}
 }

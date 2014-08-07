@@ -3,8 +3,7 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.AjaxManager = {
-
-	init: function () { 
+	init: function () {
 		Ext.Ajax.timeout = 9 * 60 * 1000; //miliseconds
 		Ext.Ajax.limit = 9999999; //miliseconds
 	},
@@ -27,9 +26,9 @@ Oragon.Architecture.Scripting.AjaxManager = {
 					success: function(data){  },
 					failure: function(resultInfo){  }
 				}
-			};			
+			};
 		*/
-		
+
 		Ext.applyIf(configObject, configObject, {
 			timeout : Ext.Ajax.timeout,
 		});
@@ -40,28 +39,26 @@ Oragon.Architecture.Scripting.AjaxManager = {
 		});
 
 		Ext.applyIf(configObject.params, {
-
 		});
 
-		Ext.applyIf(configObject.listeners, { 
+		Ext.applyIf(configObject.listeners, {
 			success: null,
 			failure: null
 		});
-
 
 		radio('AjaxManager:StartRequest').broadcast(configObject);
 
 		var handlerRequestResult = function(response, configObject)
 		{
-			var endExecution = new Date();			
-			var objectFromServer = Ext.JSON.decode(response.responseText, true);				
+			var endExecution = new Date();
+			var objectFromServer = Ext.JSON.decode(response.responseText, true);
 			objectFromServer = objectFromServer || { };
 
 			var resultInfo = {
 				data : objectFromServer,
 				requestTime : (endExecution.getTime() - startExecution.getTime()),
 				httpStatusCode : response.status,
-				configObject: configObject, 
+				configObject: configObject,
 				response : response,
 				isSuccess : (response.status >= 200 && response.status < 400)
 			};
@@ -73,7 +70,7 @@ Oragon.Architecture.Scripting.AjaxManager = {
 				if(Ext.isEmpty(resultInfo.configObject.listeners.success) == false)
 				{
 					resultInfo.configObject.listeners.success(resultInfo.data);
-				}				
+				}
 			}
 			else
 			{

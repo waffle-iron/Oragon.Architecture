@@ -1,37 +1,67 @@
-﻿using Oragon.Architecture.IO.Path;
-using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+using Oragon.Architecture.IO.Path;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
-
 	public abstract class ApplicationHost
 	{
-		public string Name { get; set; }
-		public string FriendlyName { get; set; }
-		public string Description { get; set; }
-		public string FactoryType { get; set; }
-		public string ApplicationConfigurationFile { get; set; }
-		public string ApplicationBaseDirectory { get; set; }
-		public bool EnableShadowCopy { get; set; }
-
-
-		public abstract void Start(IAbsoluteDirectoryPath baseDirectory);
-		public abstract void Stop();
-		public abstract AppDomainStatistic GetAppDomainStatistics();
+		#region Public Constructors
 
 		public ApplicationHost()
 		{
 		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public string ApplicationBaseDirectory { get; set; }
+
+		public string ApplicationConfigurationFile { get; set; }
+
+		public string Description { get; set; }
+
+		public bool EnableShadowCopy { get; set; }
+
+		public string FactoryType { get; set; }
+
+		public string FriendlyName { get; set; }
+
+		public string Name { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public abstract AppDomainStatistic GetAppDomainStatistics();
+
+		public abstract void Start(IAbsoluteDirectoryPath baseDirectory);
+
+		public abstract void Stop();
+
+		public virtual ApplicationDescriptor ToDescriptor()
+		{
+			return new ApplicationDescriptor()
+			{
+				Name = this.Name,
+				FriendlyName = this.FriendlyName,
+				Description = this.Description,
+				FactoryType = this.FactoryType,
+				ApplicationConfigurationFile = this.ApplicationConfigurationFile,
+				ApplicationBaseDirectory = this.ApplicationBaseDirectory,
+				TypeName = this.GetType().FullName
+			};
+		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
 
 		protected AppDomain CreateDomain(string appDomainName, IAbsoluteDirectoryPath absoluteApplicationBaseDirectory, IAbsoluteFilePath absoluteApplicationConfigurationFile)
 		{
@@ -58,11 +88,9 @@ namespace Oragon.Architecture.ApplicationHosting
 				ShadowCopyFiles = this.EnableShadowCopy.ToString()
 			};
 
-			AppDomain appDomain = AppDomain.CreateDomain(appDomainName, domainEvidence, domainSetup, permissions);			
+			AppDomain appDomain = AppDomain.CreateDomain(appDomainName, domainEvidence, domainSetup, permissions);
 			return appDomain;
 		}
-
-		
 
 		protected IAbsoluteDirectoryPath GetAbsoluteDirectoryPath(IAbsoluteDirectoryPath baseDirectory)
 		{
@@ -83,32 +111,28 @@ namespace Oragon.Architecture.ApplicationHosting
 			return absoluteApplicationConfigurationFile;
 		}
 
-		public virtual ApplicationDescriptor ToDescriptor()
-		{
-			return new ApplicationDescriptor()
-			{
-				Name = this.Name,
-				FriendlyName = this.FriendlyName,
-				Description = this.Description,
-				FactoryType = this.FactoryType,
-				ApplicationConfigurationFile = this.ApplicationConfigurationFile,
-				ApplicationBaseDirectory = this.ApplicationBaseDirectory,
-				TypeName = this.GetType().FullName
-			};
-		}
-
-
+		#endregion Protected Methods
 	}
 
 	public abstract class ApplicationHost<ApplicationHostControllerType, FactoryType, ContainerType> : ApplicationHost
 		where ApplicationHostControllerType : ApplicationHostController<FactoryType, ContainerType>
 		where FactoryType : IContainerFactory<ContainerType>
 	{
+		#region Private Fields
+
 		private volatile ApplicationHostControllerType applicationHostController;
 
+		private System.Timers.Timer heartBeatTimer;
 		private AppDomain privateAppDomain;
 
-		private System.Timers.Timer heartBeatTimer;
+		#endregion Private Fields
+
+		#region Public Methods
+
+		public override AppDomainStatistic GetAppDomainStatistics()
+		{
+			return this.applicationHostController.GetAppDomainStatistics();
+		}
 
 		public override void Start(IAbsoluteDirectoryPath baseDirectory)
 		{
@@ -132,11 +156,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.heartBeatTimer.Start();
 		}
 
-		public override AppDomainStatistic GetAppDomainStatistics()
-		{
-			return this.applicationHostController.GetAppDomainStatistics();
-		}
-
 		public override void Stop()
 		{
 			this.heartBeatTimer.Stop();
@@ -149,5 +168,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.privateAppDomain = null;
 		}
 
+		#endregion Public Methods
 	}
 }

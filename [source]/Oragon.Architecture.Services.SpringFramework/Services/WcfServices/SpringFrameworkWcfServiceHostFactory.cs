@@ -1,24 +1,23 @@
 ﻿using Oragon.Architecture.Extensions;
 using Spring.Objects.Factory;
-using Spring.ServiceModel;
 using Spring.ServiceModel.Support;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
 	public class SpringFrameworkWcfServiceHostFactory : WcfServiceHostFactory, IFactoryObject, IInitializingObject, IObjectFactoryAware
 	{
+		#region Public Constructors
 
 		public SpringFrameworkWcfServiceHostFactory()
 		{
 			this.UseServiceProxyTypeCache = true;
 		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
 
 		public virtual bool IsSingleton { get { return false; } }
 
@@ -32,16 +31,9 @@ namespace Oragon.Architecture.Services.WcfServices
 
 		public bool UseServiceProxyTypeCache { get; set; }
 
-		public virtual void AfterPropertiesSet()
-		{
-			Type type = CreateServiceType(this.TargetName, this.ObjectFactory, this.UseServiceProxyTypeCache);
-			this.ServiceHost = this.BuildHost(type);
-		}
+		#endregion Public Properties
 
-		public virtual object GetObject()
-		{
-			return this.ServiceHost;
-		}
+		#region Public Methods
 
 		public static System.Type CreateServiceType(string serviceName, IObjectFactory objectFactory, bool useServiceProxyTypeCache)
 		{
@@ -55,5 +47,18 @@ namespace Oragon.Architecture.Services.WcfServices
 			}
 			return new ServiceProxyTypeBuilder(serviceName, objectFactory, useServiceProxyTypeCache).BuildProxyType();
 		}
+
+		public virtual void AfterPropertiesSet()
+		{
+			Type type = CreateServiceType(this.TargetName, this.ObjectFactory, this.UseServiceProxyTypeCache);
+			this.ServiceHost = this.BuildHost(type);
+		}
+
+		public virtual object GetObject()
+		{
+			return this.ServiceHost;
+		}
+
+		#endregion Public Methods
 	}
 }

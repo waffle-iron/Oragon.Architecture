@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Drawing;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>15F029B4-36FB-49E7-A7DC-EA063AC4C6A3</id>
 		/// <summary>
 		///     An Image extension method that cuts an image.
@@ -32,5 +31,7 @@ namespace Oragon.Architecture.Extensions
 
 			return r;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,18 +1,35 @@
 ﻿using Oragon.Architecture.Web.Owin.OMvc.Results;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc
 {
 	public abstract class OMvcController
 	{
+		#region Public Properties
+
 		public IEnumerable<MethodInfo> Actions { get; private set; }
+
+		#endregion Public Properties
+
+		#region Protected Properties
+
+		protected Microsoft.Owin.IOwinContext Context { get { return (Microsoft.Owin.IOwinContext)Spring.Threading.LogicalThreadContext.GetData("ControllerContext"); } }
+
+		protected Microsoft.Owin.IOwinRequest Request { get { return this.Context.Request; } }
+
+		protected Microsoft.Owin.IOwinResponse Response { get { return this.Context.Response; } }
+
+		#endregion Protected Properties
+
+		#region Public Methods
+
+		public System.Web.Http.Routing.UrlHelper CreateUrlHelper()
+		{
+			return new System.Web.Http.Routing.UrlHelper(this.RequestMessage());
+		}
 
 		public virtual void Initialize()
 		{
@@ -22,11 +39,9 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			this.Actions = new List<MethodInfo>(methods);
 		}
 
-		protected Microsoft.Owin.IOwinContext Context { get { return (Microsoft.Owin.IOwinContext)Spring.Threading.LogicalThreadContext.GetData("ControllerContext"); } }
+		#endregion Public Methods
 
-		protected Microsoft.Owin.IOwinRequest Request { get { return this.Context.Request; } }
-
-		protected Microsoft.Owin.IOwinResponse Response { get { return this.Context.Response; } }
+		#region Protected Methods
 
 		protected System.Net.Http.HttpRequestMessage RequestMessage()
 		{
@@ -34,11 +49,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			System.Net.Http.HttpRequestMessage httpRequestMessage = new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod(request.Method), request.Uri);
 			return httpRequestMessage;
 		}
-		public System.Web.Http.Routing.UrlHelper CreateUrlHelper()
-		{
-			return new System.Web.Http.Routing.UrlHelper(this.RequestMessage());
-		}
-		
 
+		#endregion Protected Methods
 	}
 }

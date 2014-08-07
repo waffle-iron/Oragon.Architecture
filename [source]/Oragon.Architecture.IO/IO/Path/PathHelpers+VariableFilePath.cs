@@ -5,8 +5,12 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private sealed class VariableFilePath : VariablePathBase, IVariableFilePath
 		{
+			#region Internal Constructors
+
 			internal VariableFilePath(string pathString)
 				: base(pathString)
 			{
@@ -15,18 +19,49 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(pathString.IsValidVariableFilePath());
 			}
 
-			public override bool IsDirectoryPath { get { return false; } }
+			#endregion Internal Constructors
 
-			public override bool IsFilePath { get { return true; } }
+			#region Public Properties
+
+			public string FileExtension { get { return FileNameHelpers.GetFileNameExtension(m_PathString); } }
 
 			//
-			//  File Name and File Name Extension
+			// File Name and File Name Extension
 			//
 			public string FileName { get { return FileNameHelpers.GetFileName(m_PathString); } }
 
 			public string FileNameWithoutExtension { get { return FileNameHelpers.GetFileNameWithoutExtension(m_PathString); } }
 
-			public string FileExtension { get { return FileNameHelpers.GetFileNameExtension(m_PathString); } }
+			public override bool IsDirectoryPath { get { return false; } }
+
+			public override bool IsFilePath { get { return true; } }
+
+			#endregion Public Properties
+
+			#region Public Methods
+
+			public IVariableDirectoryPath GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
+				var pathTyped = path as IVariableDirectoryPath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
+
+			//
+			// Path Browsing facilities
+			//
+			public IVariableFilePath GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
+				var pathTyped = path as IVariableFilePath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
 
 			public bool HasExtension(string extension)
 			{
@@ -35,6 +70,30 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(extension.Length >= 2);
 				Debug.Assert(extension[0] == '.');
 				return FileNameHelpers.HasExtension(m_PathString, extension);
+			}
+
+			IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				return this.GetBrotherDirectoryWithName(directoryName);
+			}
+
+			// Explicit Impl methods
+			IFilePath IFilePath.GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				return this.GetBrotherFileWithName(fileName);
+			}
+
+			IFilePath IFilePath.UpdateExtension(string newExtension)
+			{
+				// All these 3 assertions have been checked by contract!
+				Debug.Assert(newExtension != null);
+				Debug.Assert(newExtension.Length >= 2);
+				Debug.Assert(newExtension[0] == '.');
+				return this.UpdateExtension(newExtension);
 			}
 
 			//
@@ -113,29 +172,6 @@ namespace Oragon.Architecture.IO.Path
 				return b;
 			}
 
-			//
-			//  Path Browsing facilities
-			//
-			public IVariableFilePath GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
-				var pathTyped = path as IVariableFilePath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
-			public IVariableDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
-				var pathTyped = path as IVariableDirectoryPath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
 			public IVariableFilePath UpdateExtension(string newExtension)
 			{
 				// All these 3 assertions have been checked by contract!
@@ -147,29 +183,9 @@ namespace Oragon.Architecture.IO.Path
 				return new VariableFilePath(pathString);
 			}
 
-			// Explicit Impl methods
-			IFilePath IFilePath.GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				return this.GetBrotherFileWithName(fileName);
-			}
-
-			IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				return this.GetBrotherDirectoryWithName(directoryName);
-			}
-
-			IFilePath IFilePath.UpdateExtension(string newExtension)
-			{
-				// All these 3 assertions have been checked by contract!
-				Debug.Assert(newExtension != null);
-				Debug.Assert(newExtension.Length >= 2);
-				Debug.Assert(newExtension[0] == '.');
-				return this.UpdateExtension(newExtension);
-			}
+			#endregion Public Methods
 		}
+
+		#endregion Private Classes
 	}
 }

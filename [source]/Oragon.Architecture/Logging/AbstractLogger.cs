@@ -1,29 +1,27 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Logging
 {
 	public abstract class AbstractLogger : ILogger
 	{
+		#region Protected Properties
+
 		protected Dictionary<string, string> AdditionalMetadata { get; set; }
+
+		#endregion Protected Properties
+
+		#region Public Methods
+
+		public void Audit(string context, string content, params string[] tags)
+		{
+			this.Log(context, content, LogLevel.Audit, tags);
+		}
 
 		public void Debug(string context, string content, params string[] tags)
 		{
 			this.Log(context, content, LogLevel.Debug, tags);
-		}
-
-		public void Trace(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Trace, tags);
-		}
-
-		public void Warn(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Warn, tags);
 		}
 
 		public void Error(string context, string content, params string[] tags)
@@ -34,11 +32,6 @@ namespace Oragon.Architecture.Logging
 		public void Fatal(string context, string content, params string[] tags)
 		{
 			this.Log(context, content, LogLevel.Fatal, tags);
-		}
-
-		public void Audit(string context, string content, params string[] tags)
-		{
-			this.Log(context, content, LogLevel.Audit, tags);
 		}
 
 		public void Log(string context, string content, LogLevel logLevel, params string[] tags)
@@ -67,6 +60,22 @@ namespace Oragon.Architecture.Logging
 			this.SendLog(logEntry);
 		}
 
+		public void Trace(string context, string content, params string[] tags)
+		{
+			this.Log(context, content, LogLevel.Trace, tags);
+		}
+
+		public void Warn(string context, string content, params string[] tags)
+		{
+			this.Log(context, content, LogLevel.Warn, tags);
+		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
+
 		protected abstract void SendLog(LogEntry logEntry);
+
+		#endregion Protected Methods
 	}
 }

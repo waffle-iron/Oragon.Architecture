@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Data;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>42ACF5FE-402B-4B66-9F97-CFFF04CBF09C</id>
 		/// <summary>
 		///     A DataColumnCollection extension method that adds a range of columns with the specified values.
@@ -22,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 				@this.Add(value);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

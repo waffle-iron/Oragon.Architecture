@@ -1,15 +1,12 @@
-﻿using Spring.Context;
-using Spring.Objects.Factory;
+﻿using Spring.Objects.Factory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApplicationHostingSpringNetExample
 {
 	public class AutoStartAppExample : IInitializingObject, IDisposable
 	{
+		#region Public Methods
+
 		public void AfterPropertiesSet()
 		{
 			Console.WriteLine("AutoStartAppExample Start");
@@ -20,11 +17,16 @@ namespace ApplicationHostingSpringNetExample
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
+
 		protected virtual void Dispose(bool disposing)
 		{
 			Console.WriteLine("AutoStartAppExample Stop");
 		}
 
-
+		#endregion Protected Methods
 	}
 }

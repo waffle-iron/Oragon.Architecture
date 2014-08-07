@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>0F8B7690-B992-4278-A104-DC05AF97191D</id>
 		/// <summary>
 		///     A DataTableCollection extension method that converts the @this to an IEnumerable.
@@ -21,5 +20,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.Cast<DataTable>();
 		}
+
+		#endregion Public Methods
 	}
 }

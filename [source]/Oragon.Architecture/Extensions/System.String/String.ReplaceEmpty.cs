@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>C89C7A5D-7419-433A-8998-910D011A6D86</id>
 		/// <summary>
 		///     A string extension method that replace all values specified by an empty string.
@@ -42,5 +41,7 @@ namespace Oragon.Architecture.Extensions
 
 			return @this;
 		}
+
+		#endregion Public Methods
 	}
 }

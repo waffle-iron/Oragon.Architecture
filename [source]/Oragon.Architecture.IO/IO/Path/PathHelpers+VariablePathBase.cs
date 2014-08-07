@@ -1,15 +1,25 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private abstract class VariablePathBase : PathBase, IVariablePath
 		{
+			#region Private Fields
+
+			private readonly IReadOnlyList<string> m_Variables;
+
+			#endregion Private Fields
+
+			#region Protected Constructors
+
 			protected VariablePathBase(string pathString) :
 				base(pathString)
 			{
@@ -21,9 +31,8 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(m_PathString.Length > 0);
 				Debug.Assert(m_PathString.IsNormalized());
 
-				// It is important to use m_PathString and not pathString in IsAVariablePath() !
-				// Indeed, since InnerSpecialDir have been resolved, some variable might have disappeared
-				// like if pathString was "$(v1)\$(v2)\.." and m_PathString became "$(v1)"
+				// It is important to use m_PathString and not pathString in IsAVariablePath() ! Indeed, since InnerSpecialDir have been resolved,
+				// some variable might have disappeared like if pathString was "$(v1)\$(v2)\.." and m_PathString became "$(v1)"
 				IReadOnlyList<string> variables;
 				string failureReasonUnused;
 				var b = VariablePathHelpers.IsAVariablePath(m_PathString, out variables, out failureReasonUnused);
@@ -35,13 +44,48 @@ namespace Oragon.Architecture.IO.Path
 				m_Variables = variables;
 			}
 
-			public override bool IsAbsolutePath { get { return false; } }
+			#endregion Protected Constructors
 
-			public override bool IsRelativePath { get { return false; } }
+			#region Public Properties
+
+			public IReadOnlyList<string> AllVariables { get { return m_Variables; } }
+
+			public override bool HasParentDirectory
+			{
+				get
+				{
+					return VariablePathHelpers.HasParentDirectory(m_PathString);
+				}
+			}
+
+			public override bool IsAbsolutePath { get { return false; } }
 
 			public override bool IsEnvVarPath { get { return false; } }
 
+			public override bool IsRelativePath { get { return false; } }
+
 			public override bool IsVariablePath { get { return true; } }
+
+			//
+			// ParentDirectoryPath Special impls in VariablePathHelpers !
+			//
+			IVariableDirectoryPath IVariablePath.ParentDirectoryPath
+			{
+				get
+				{
+					string parentPath = VariablePathHelpers.GetParentDirectory(m_PathString);
+					return parentPath.ToVariableDirectoryPath();
+				}
+			}
+
+			public override IDirectoryPath ParentDirectoryPath
+			{
+				get
+				{
+					string parentPath = VariablePathHelpers.GetParentDirectory(m_PathString);
+					return parentPath.ToVariableDirectoryPath();
+				}
+			}
 
 			public override PathMode PathMode { get { return PathMode.Variable; } }
 
@@ -50,9 +94,9 @@ namespace Oragon.Architecture.IO.Path
 			//
 			public string PrefixVariable { get { return m_Variables[0]; } }
 
-			private readonly IReadOnlyList<string> m_Variables;
+			#endregion Public Properties
 
-			public IReadOnlyList<string> AllVariables { get { return m_Variables; } }
+			#region Public Methods
 
 			// This methods are implemented in VariableFilePath and VariableDirectoryPath.
 			public abstract VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved);
@@ -60,6 +104,24 @@ namespace Oragon.Architecture.IO.Path
 			public abstract VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out IReadOnlyList<string> unresolvedVariables);
 
 			public abstract bool TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out string failureReason);
+
+			#endregion Public Methods
+
+			#region Protected Methods
+
+			protected string GetVariableResolvedButCannotConvertToAbsolutePathFailureReason(IEnumerable<KeyValuePair<string, string>> variablesValues, string fileOrDirectory)
+			{
+				Debug.Assert(variablesValues != null);
+				Debug.Assert(fileOrDirectory != null);
+				Debug.Assert(fileOrDirectory.Length > 0);
+
+				// Need to obtain again pathStringResolved to include it into the failureReason!
+				string pathStringResolved;
+				IReadOnlyList<string> unresolvedVariablesUnused;
+				var b = TryResolve(variablesValues, out pathStringResolved, out unresolvedVariablesUnused);
+				Debug.Assert(b);
+				return @"All variable(s) have been resolved, but the resulting string {" + pathStringResolved + "} cannot be converted to an absolute " + fileOrDirectory + " path.";
+			}
 
 			protected bool TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out string pathStringResolved, out IReadOnlyList<string> unresolvedVariables)
 			{
@@ -110,49 +172,9 @@ namespace Oragon.Architecture.IO.Path
 				return true;
 			}
 
-			protected string GetVariableResolvedButCannotConvertToAbsolutePathFailureReason(IEnumerable<KeyValuePair<string, string>> variablesValues, string fileOrDirectory)
-			{
-				Debug.Assert(variablesValues != null);
-				Debug.Assert(fileOrDirectory != null);
-				Debug.Assert(fileOrDirectory.Length > 0);
-
-				// Need to obtain again pathStringResolved to include it into the failureReason!
-				string pathStringResolved;
-				IReadOnlyList<string> unresolvedVariablesUnused;
-				var b = TryResolve(variablesValues, out pathStringResolved, out unresolvedVariablesUnused);
-				Debug.Assert(b);
-				return @"All variable(s) have been resolved, but the resulting string {" + pathStringResolved + "} cannot be converted to an absolute " + fileOrDirectory + " path.";
-			}
-
-			//
-			// ParentDirectoryPath
-			// Special impls in VariablePathHelpers !
-			//
-			IVariableDirectoryPath IVariablePath.ParentDirectoryPath
-			{
-				get
-				{
-					string parentPath = VariablePathHelpers.GetParentDirectory(m_PathString);
-					return parentPath.ToVariableDirectoryPath();
-				}
-			}
-
-			public override IDirectoryPath ParentDirectoryPath
-			{
-				get
-				{
-					string parentPath = VariablePathHelpers.GetParentDirectory(m_PathString);
-					return parentPath.ToVariableDirectoryPath();
-				}
-			}
-
-			public override bool HasParentDirectory
-			{
-				get
-				{
-					return VariablePathHelpers.HasParentDirectory(m_PathString);
-				}
-			}
+			#endregion Protected Methods
 		}
+
+		#endregion Private Classes
 	}
 }

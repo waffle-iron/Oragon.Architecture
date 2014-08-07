@@ -5,8 +5,18 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private abstract class AbsolutePathBase : PathBase, IAbsolutePath
 		{
+			#region Private Fields
+
+			private readonly AbsolutePathKind m_Kind;
+
+			#endregion Private Fields
+
+			#region Protected Constructors
+
 			protected AbsolutePathBase(string pathString)
 				: base(pathString)
 			{
@@ -24,15 +34,30 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
-			public override bool IsAbsolutePath { get { return true; } }
+			#endregion Protected Constructors
 
-			public override bool IsRelativePath { get { return false; } }
+			#region Public Properties
 
-			public override bool IsEnvVarPath { get { return false; } }
+			//
+			// DriveLetter
+			//
+			public IDriveLetter DriveLetter
+			{
+				get
+				{
+					Debug.Assert(this.IsAbsolutePath);
+					Debug.Assert(m_PathString.Length > 0);
+					if (m_Kind != AbsolutePathKind.DriveLetter)
+					{
+						throw new InvalidOperationException("The property getter DriveLetter must be called on a pathString of kind DriveLetter.");
+					}
+					var driveName = this.m_PathString[0].ToString();
+					Debug.Assert(PathHelpers.DriveLetter.IsValidDriveName(driveName));
+					return new DriveLetter(driveName);
+				}
+			}
 
-			public override bool IsVariablePath { get { return false; } }
-
-			public override PathMode PathMode { get { return PathMode.Absolute; } }
+			public abstract bool Exists { get; }
 
 			public override bool HasParentDirectory
 			{
@@ -57,6 +82,16 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
+			public override bool IsAbsolutePath { get { return true; } }
+
+			public override bool IsEnvVarPath { get { return false; } }
+
+			public override bool IsRelativePath { get { return false; } }
+
+			public override bool IsVariablePath { get { return false; } }
+
+			public AbsolutePathKind Kind { get { return m_Kind; } }
+
 			public override IDirectoryPath ParentDirectoryPath
 			{
 				get
@@ -66,32 +101,11 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
-			private readonly AbsolutePathKind m_Kind;
-
-			public AbsolutePathKind Kind { get { return m_Kind; } }
+			public override PathMode PathMode { get { return PathMode.Absolute; } }
 
 			//
-			//  DriveLetter
-			//
-			public IDriveLetter DriveLetter
-			{
-				get
-				{
-					Debug.Assert(this.IsAbsolutePath);
-					Debug.Assert(m_PathString.Length > 0);
-					if (m_Kind != AbsolutePathKind.DriveLetter)
-					{
-						throw new InvalidOperationException("The property getter DriveLetter must be called on a pathString of kind DriveLetter.");
-					}
-					var driveName = this.m_PathString[0].ToString();
-					Debug.Assert(PathHelpers.DriveLetter.IsValidDriveName(driveName));
-					return new DriveLetter(driveName);
-				}
-			}
-
-			//
-			// UNC  Universal Naming Convention  http://compnetworking.about.com/od/windowsnetworking/g/unc-name.htm
-			// \\server\share\file_path   (share seems mandatory)
+			// UNC Universal Naming Convention http://compnetworking.about.com/od/windowsnetworking/g/unc-name.htm \\server\share\file_path (share
+			// seems mandatory)
 			//
 			public string UNCServer
 			{
@@ -135,6 +149,19 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
+			#endregion Public Properties
+
+			#region Public Methods
+
+			public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
+
+			public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason);
+
+			//
+			// These methods are abstract at this level and are implemented at File and Directory level!
+			//
+			public abstract IRelativePath GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
+
 			public bool OnSameVolumeThan(IAbsolutePath pathAbsoluteOther)
 			{
 				Debug.Assert(pathAbsoluteOther != null); // Enforced by contract
@@ -152,16 +179,9 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
-			//
-			// These methods are abstract at this level and are implemented at File and Directory level!
-			//
-			public abstract IRelativePath GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-			public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-			public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason);
-
-			public abstract bool Exists { get; }
+			#endregion Public Methods
 		}
+
+		#endregion Private Classes
 	}
 }

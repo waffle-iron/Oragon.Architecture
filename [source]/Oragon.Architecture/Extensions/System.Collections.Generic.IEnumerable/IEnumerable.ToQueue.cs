@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		public static Queue<T> ToQueue<T>(this IEnumerable<T> @this)
 		{
 			Queue<T> returnValue = new Queue<T>(@this);
@@ -26,5 +25,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.OrderBy(keySelector).ToQueue();
 		}
+
+		#endregion Public Methods
 	}
 }

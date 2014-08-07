@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ServiceModel;
 using System.Runtime.Serialization;
 
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
@@ -14,39 +9,50 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	[DataContract(IsReference = true)]
 	public class RegisterHostRequestMessage
 	{
+		#region Public Properties
+
 		[DataMember]
 		public HostDescriptor HostDescriptor { get; set; }
 
 		[DataMember]
 		public MachineDescriptor MachineDescriptor { get; set; }
 
-
+		#endregion Public Properties
 	}
-
 
 	[Serializable]
 	[DataContract(IsReference = true)]
 	public class RegisterHostResponseMessage
 	{
+		#region Public Properties
+
 		[DataMember]
 		public Guid ClientID { get; set; }
+
+		#endregion Public Properties
 	}
-	#endregion
+
+	#endregion Register RegisterHost
 
 	#region UnregisterHost
+
 	[Serializable]
 	[DataContract(IsReference = true)]
 	public class UnregisterHostRequestMessage
 	{
+		#region Public Properties
+
 		[DataMember]
 		public Guid ClientID { get; set; }
+
+		#endregion Public Properties
 	}
 
 	[Serializable]
 	[DataContract(IsReference = true)]
 	public class UnregisterHostResponseMessage
 	{
-
 	}
-	#endregion
+
+	#endregion UnregisterHost
 }

@@ -9,6 +9,23 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IEnvVarPathContract))]
 	public interface IEnvVarPath : IPath
 	{
+		#region Public Properties
+
+		///<summary>
+		///Gets the environment variable string, prefixed and suffixed with two percents char.
+		///</summary>
+		string EnvVar { get; }
+
+		///<summary>
+		///Returns a new directory path prefixed with an environment variable, representing the parent directory of this path prefixed with an environment variable.
+		///</summary>
+		///<exception cref="InvalidOperationException">This path prefixed with an environment variable has no parent directory.</exception>
+		new IEnvVarDirectoryPath ParentDirectoryPath { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
 		///<summary>
 		///Returns <see cref="EnvVarPathResolvingStatus"/>.<see cref="EnvVarPathResolvingStatus.Success"/> if this path is prefixed with an environment variable that can be resolved into a drive letter or a UNC absolute path.
 		///</summary>
@@ -22,30 +39,13 @@ namespace Oragon.Architecture.IO.Path
 		///<param name="failureReason">If <i>false</i> is returned, <paramref name="failureReason"/> contains the plain english description of the failure.</param>
 		bool TryResolve(out IAbsolutePath pathResolved, out string failureReason);
 
-		///<summary>
-		///Gets the environment variable string, prefixed and suffixed with two percents char.
-		///</summary>
-		string EnvVar { get; }
-
-		///<summary>
-		///Returns a new directory path prefixed with an environment variable, representing the parent directory of this path prefixed with an environment variable.
-		///</summary>
-		///<exception cref="InvalidOperationException">This path prefixed with an environment variable has no parent directory.</exception>
-		new IEnvVarDirectoryPath ParentDirectoryPath { get; }
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IEnvVarPath))]
 	internal abstract class IEnvVarPathContract : IEnvVarPath
 	{
-		public EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool TryResolve(out IAbsolutePath pathResolved, out string failureReason)
-		{
-			throw new NotImplementedException();
-		}
+		#region Public Properties
 
 		public string EnvVar
 		{
@@ -57,6 +57,8 @@ namespace Oragon.Architecture.IO.Path
 			}
 		}
 
+		public abstract bool HasParentDirectory { get; }
+
 		IEnvVarDirectoryPath IEnvVarPath.ParentDirectoryPath
 		{
 			get
@@ -66,26 +68,40 @@ namespace Oragon.Architecture.IO.Path
 			}
 		}
 
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
 		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
 
 		public abstract bool IsDirectoryPath { get; }
 
+		public abstract bool IsEnvVarPath { get; }
+
 		public abstract bool IsFilePath { get; }
 
-		public abstract PathMode PathMode { get; }
+		public abstract bool IsRelativePath { get; }
+
+		public abstract bool IsVariablePath { get; }
 
 		public abstract IDirectoryPath ParentDirectoryPath { get; }
 
-		public abstract bool HasParentDirectory { get; }
+		public abstract PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
 
 		public abstract bool NotEquals(object obj);
+
+		public EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool TryResolve(out IAbsolutePath pathResolved, out string failureReason)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion Public Methods
 	}
 }

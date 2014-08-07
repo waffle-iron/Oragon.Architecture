@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>95E58958-F3FE-4F2E-ABE4-786788FF5DB8</id>
 		/// <summary>
 		///     A Random extension method that return at random one of the value.
@@ -35,5 +34,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return values[@this.Next(values.Count)];
 		}
+
+		#endregion Public Methods
 	}
 }

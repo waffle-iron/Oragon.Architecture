@@ -1,15 +1,14 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
 	public abstract class ApplicationHostController<FactoryType, ContainerType> : MarshalByRefObject
 		where FactoryType : IContainerFactory<ContainerType>
 	{
+		#region Public Constructors
+
 		public ApplicationHostController()
 		{
 			//AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
@@ -26,20 +25,24 @@ namespace Oragon.Architecture.ApplicationHosting
 			//{
 			//	Console.WriteLine(args.Name);
 			//	return null;
-			//}; 
-
-			
+			//};
 		}
 
+		#endregion Public Constructors
 
-		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
-		public virtual void Start() { }
+		#region Protected Properties
 
-		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
-		public virtual void Stop() { }
+		protected ContainerType Container { get; set; }
 
-		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
-		public virtual void HeartBeat() { }
+		#endregion Protected Properties
+
+		#region Private Properties
+
+		private FactoryType Factory { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
 		public virtual AppDomainStatistic GetAppDomainStatistics()
@@ -53,15 +56,19 @@ namespace Oragon.Architecture.ApplicationHosting
 			};
 		}
 
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
+		public virtual void HeartBeat() { }
+
+		public void InitializeContainer()
+		{
+			this.Container = this.Factory.CreateContainer();
+		}
+
 		public override object InitializeLifetimeService()
 		{
 			// This ensures the object lasts for as long as the client wants it
 			return null;
 		}
-
-		private FactoryType Factory { get; set; }
-
-		protected ContainerType Container { get; set; }
 
 		public void SetFactoryType(string factoryType)
 		{
@@ -76,9 +83,12 @@ namespace Oragon.Architecture.ApplicationHosting
 				throw new System.InvalidOperationException(string.Format("Bootstrap '{0}' could not be found", factoryType));
 		}
 
-		public void InitializeContainer()
-		{
-			this.Container = this.Factory.CreateContainer();
-		}
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
+		public virtual void Start() { }
+
+		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]
+		public virtual void Stop() { }
+
+		#endregion Public Methods
 	}
 }

@@ -1,17 +1,14 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Produces the set of elements, intersection of this <paramref name="seq"/> and <paramref name="hashset"/>. This method is an optimized version of <i>Enumerable.Intersect&lt;T&gt;</i>.
 		///</summary>
@@ -28,6 +25,6 @@ namespace Oragon.Architecture.Extensions
 			return IntersectIterator(hashset, seq);
 		}
 
-
+		#endregion Public Methods
 	}
 }

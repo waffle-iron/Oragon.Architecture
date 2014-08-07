@@ -1,12 +1,11 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>B753CACE-44FB-4367-BB41-F7BC2450663F</id>
 		/// <summary>
 		///     A string extension method that queries if '@this' is null or is empty.
@@ -16,7 +15,7 @@ namespace Oragon.Architecture.Extensions
 		/// <example>
 		///     <code>
 		///         var test = "";
-		///     
+		///
 		///         if(test.IsNullOrEmpty())
 		///         {
 		///             // ... Code ...
@@ -27,5 +26,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return string.IsNullOrEmpty(@this);
 		}
+
+		#endregion Public Methods
 	}
 }

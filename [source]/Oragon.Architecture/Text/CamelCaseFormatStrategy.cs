@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Text
 {
 	public class CamelCaseFormatStrategy : FormatStrategy
 	{
+		#region Public Methods
+
 		public override string Format(string original)
 		{
 			if (string.IsNullOrWhiteSpace(original))
@@ -28,5 +27,7 @@ namespace Oragon.Architecture.Text
 				return returnValue;
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Oragon.Architecture.IO.Path;
 using Topshelf;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.IO.Path;
-using System.Diagnostics.Contracts;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
 	public class WindowsServiceHost : ConsoleServiceHost, ServiceControl
 	{
+		#region Public Properties
+
 		public WindowsServiceConfiguration WindowsServiceConfiguration { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public void Configure(Topshelf.HostConfigurators.HostConfigurator hostConfig, string configurationFileName)
 		{
@@ -22,7 +21,6 @@ namespace Oragon.Architecture.ApplicationHosting
 				serviceConfigurator.WhenStarted((serviceManagerInstance, hostControl) => serviceManagerInstance.Start(hostControl));
 				serviceConfigurator.WhenStopped((serviceManagerInstance, hostControl) => serviceManagerInstance.Stop(hostControl));
 				serviceConfigurator.WhenShutdown((serviceManagerInstance, hostControl) => serviceManagerInstance.Shutdown(hostControl));
-
 			});
 
 			hostConfig.EnableShutdown();
@@ -58,6 +56,12 @@ namespace Oragon.Architecture.ApplicationHosting
 			this.ConfigurationFilePath = configurationFileName.ToAbsoluteFilePath();
 		}
 
+		public void Shutdown(HostControl hostControl)
+		{
+			this.Stop();
+			return;
+		}
+
 		public bool Start(HostControl hostControl)
 		{
 			this.Start();
@@ -70,12 +74,6 @@ namespace Oragon.Architecture.ApplicationHosting
 			return true;
 		}
 
-		public void Shutdown(HostControl hostControl)
-		{
-			this.Stop();
-			return;
-		}
-
-		
+		#endregion Public Methods
 	}
 }

@@ -14,6 +14,16 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IFilePathContract))]
 	public interface IFilePath : IPath
 	{
+		#region Public Properties
+
+		///<summary>
+		///Gets a string representing the file name extension.
+		///</summary>
+		///<returns>
+		///Returns the file name extension if any, else returns an empty string.
+		///</returns>
+		string FileExtension { get; }
+
 		///<summary>
 		///Gets a string representing the file name with its extension if any.
 		///</summary>
@@ -30,27 +40,9 @@ namespace Oragon.Architecture.IO.Path
 		///</returns>
 		string FileNameWithoutExtension { get; }
 
-		///<summary>
-		///Gets a string representing the file name extension.
-		///</summary>
-		///<returns>
-		///Returns the file name extension if any, else returns an empty string.
-		///</returns>
-		string FileExtension { get; }
+		#endregion Public Properties
 
-		///<summary>
-		///Gets a value indicating whether this file name has the extension, <paramref name="extension"/>.
-		///</summary>
-		///<param name="extension">The file extension. It must begin with a dot followed by one or many characters.</param>
-		///<returns>true if this file name has the extension, <paramref name="extension"/>.</returns>
-		bool HasExtension(string extension);
-
-		///<summary>
-		///Returns a new file path refering to a file with name <paramref name="fileName"/>, located in the same directory as this file.
-		///</summary>
-		///<remarks>This file nor the returned file need to exist for this operation to complete properly.</remarks>
-		///<param name="fileName">The brother file name</param>
-		IFilePath GetBrotherFileWithName(string fileName);
+		#region Public Methods
 
 		///<summary>
 		///Returns a new directory path representing a directory with name <paramref name="directoryName"/>, located in the same directory as this file.
@@ -60,6 +52,20 @@ namespace Oragon.Architecture.IO.Path
 		IDirectoryPath GetBrotherDirectoryWithName(string directoryName);
 
 		///<summary>
+		///Returns a new file path refering to a file with name <paramref name="fileName"/>, located in the same directory as this file.
+		///</summary>
+		///<remarks>This file nor the returned file need to exist for this operation to complete properly.</remarks>
+		///<param name="fileName">The brother file name</param>
+		IFilePath GetBrotherFileWithName(string fileName);
+
+		///<summary>
+		///Gets a value indicating whether this file name has the extension, <paramref name="extension"/>.
+		///</summary>
+		///<param name="extension">The file extension. It must begin with a dot followed by one or many characters.</param>
+		///<returns>true if this file name has the extension, <paramref name="extension"/>.</returns>
+		bool HasExtension(string extension);
+
+		///<summary>
 		///Returns a new file path representing this file with its file name extension updated to <paramref name="newExtension"/>.
 		///</summary>
 		///<remarks>
@@ -67,20 +73,14 @@ namespace Oragon.Architecture.IO.Path
 		///</remarks>
 		///<param name="newExtension">The new file extension. It must begin with a dot followed by one or many characters.</param>
 		IFilePath UpdateExtension(string newExtension);
+
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IFilePath))]
 	internal abstract class IFilePathContract : IFilePath
 	{
-		public string FileName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public string FileNameWithoutExtension
-		{
-			get { throw new NotImplementedException(); }
-		}
+		#region Public Properties
 
 		public string FileExtension
 		{
@@ -91,11 +91,42 @@ namespace Oragon.Architecture.IO.Path
 			}
 		}
 
-		public bool HasExtension(string extension)
+		public string FileName
 		{
-			Contract.Requires(extension != null, "extension must not be null");
-			Contract.Requires(extension.Length >= 2, "extension must have at least two characters");
-			Contract.Requires(extension[0] == '.', "extension first character must be a dot");
+			get { throw new NotImplementedException(); }
+		}
+
+		public string FileNameWithoutExtension
+		{
+			get { throw new NotImplementedException(); }
+		}
+
+		public abstract bool HasParentDirectory { get; }
+
+		public abstract bool IsAbsolutePath { get; }
+
+		public abstract bool IsDirectoryPath { get; }
+
+		public abstract bool IsEnvVarPath { get; }
+
+		public abstract bool IsFilePath { get; }
+
+		public abstract bool IsRelativePath { get; }
+
+		public abstract bool IsVariablePath { get; }
+
+		public abstract IDirectoryPath ParentDirectoryPath { get; }
+
+		public abstract PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public IDirectoryPath GetBrotherDirectoryWithName(string directoryName)
+		{
+			Contract.Requires(directoryName != null, "directoryName must not be null");
+			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
 			throw new NotImplementedException();
 		}
 
@@ -106,12 +137,17 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		public IDirectoryPath GetBrotherDirectoryWithName(string directoryName)
+		public bool HasExtension(string extension)
 		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
+			Contract.Requires(extension != null, "extension must not be null");
+			Contract.Requires(extension.Length >= 2, "extension must have at least two characters");
+			Contract.Requires(extension[0] == '.', "extension first character must be a dot");
 			throw new NotImplementedException();
 		}
+
+		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
+
+		public abstract bool NotEquals(object obj);
 
 		public IFilePath UpdateExtension(string newExtension)
 		{
@@ -121,26 +157,6 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
-		public abstract bool NotEquals(object obj);
+		#endregion Public Methods
 	}
 }

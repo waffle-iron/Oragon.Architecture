@@ -1,17 +1,12 @@
 using Oragon.Architecture.Aop.Data.Abstractions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NH = NHibernate;
-
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
-	public class NHContext : AbstractContext<NHContextAttribute> 
+	public class NHContext : AbstractContext<NHContextAttribute>
 	{
-		public NH.ISession Session { get; private set; }
-		private NH.ITransaction Transaction { get; set; }
+		#region Public Constructors
 
 		public NHContext(NHContextAttribute contextAttribute, NH.IInterceptor interceptor, Stack<AbstractContext<NHContextAttribute>> contextStack)
 			: base(contextAttribute, contextStack)
@@ -20,7 +15,16 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			this.Transaction = this.BuildTransaction();
 		}
 
-		
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public NH.ISession Session { get; private set; }
+
+		#endregion Public Properties
+
+		#region Protected Properties
+
 		protected bool IsTransactional
 		{
 			get
@@ -29,9 +33,30 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			}
 		}
 
+		#endregion Protected Properties
+
+		#region Private Properties
+
+		private NH.ITransaction Transaction { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
+
+		public bool Complete()
+		{
+			bool returnValue = (this.IsTransactional && this.Transaction != null);
+			if (returnValue)
+				this.Transaction.Commit();
+			return returnValue;
+		}
+
+		#endregion Public Methods
+
+		#region Private Methods
 
 		/// <summary>
-		/// Constrói uma sessão NHibernate injetando interceptadores na sessão de acordo com o estado definido na própria configuração do ObjectcontextAroundAdvice
+		///     Constrói uma sessão NHibernate injetando interceptadores na sessão de acordo com o estado definido na própria configuração do ObjectcontextAroundAdvice
 		/// </summary>
 		/// <param name="sessionFactory"></param>
 		/// <returns></returns>
@@ -61,21 +86,14 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return returnValue;
 		}
 
-
-		public bool Complete()
-		{
-			bool returnValue = (this.IsTransactional && this.Transaction != null);
-			if (returnValue)
-				this.Transaction.Commit();
-			return returnValue;
-		}
+		#endregion Private Methods
 
 		#region Dispose Methods
 
 		protected override void DisposeContext()
 		{
 			//TODO: Adicionado tratamento para a transaction. Na versão anterior não havia sido codificado, no entanto também não há nenhum bug conhecido a respeito da falta desse código.
-			if(this.Transaction != null)
+			if (this.Transaction != null)
 				this.Transaction.Dispose();
 
 			if (this.Session != null)
@@ -83,7 +101,6 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 
 			base.DisposeContext();
 		}
-		
 
 		protected override void DisposeFields()
 		{
@@ -92,6 +109,6 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			base.DisposeFields();
 		}
 
-		#endregion
+		#endregion Dispose Methods
 	}
 }

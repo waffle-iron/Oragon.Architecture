@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApplicationHostingNinjectExample
 {
-
 	public interface IAutoStartAppExample
 	{
+		#region Public Methods
+
 		void Start();
 
 		void Stop();
-	}
 
+		#endregion Public Methods
+	}
 
 	public class AutoStartAppExample : IAutoStartAppExample
 	{
+		#region Public Methods
+
 		public void Start()
 		{
 			Console.WriteLine("AutoStartAppExample Start");
@@ -27,6 +27,6 @@ namespace ApplicationHostingNinjectExample
 			Console.WriteLine("AutoStartAppExample Stop");
 		}
 
-
+		#endregion Public Methods
 	}
 }

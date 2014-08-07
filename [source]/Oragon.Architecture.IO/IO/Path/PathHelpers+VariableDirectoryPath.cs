@@ -5,8 +5,12 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private sealed class VariableDirectoryPath : VariablePathBase, IVariableDirectoryPath
 		{
+			#region Internal Constructors
+
 			internal VariableDirectoryPath(string pathString)
 				: base(pathString)
 			{
@@ -15,14 +19,92 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(pathString.IsValidVariableDirectoryPath());
 			}
 
+			#endregion Internal Constructors
+
+			#region Public Properties
+
 			//
-			//  DirectoryName
+			// DirectoryName
 			//
 			public string DirectoryName { get { return MiscHelpers.GetLastName(m_PathString); } }
 
 			public override bool IsDirectoryPath { get { return true; } }
 
 			public override bool IsFilePath { get { return false; } }
+
+			#endregion Public Properties
+
+			#region Public Methods
+
+			public IVariableDirectoryPath GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
+				var pathTyped = path as IVariableDirectoryPath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
+
+			//
+			// Path Browsing facilities
+			//
+			public IVariableFilePath GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
+				var pathTyped = path as IVariableFilePath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
+
+			public IVariableDirectoryPath GetChildDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				string pathString = PathBrowsingHelpers.GetChildDirectoryWithName(this, directoryName);
+				Debug.Assert(pathString.IsValidVariableDirectoryPath());
+				return new VariableDirectoryPath(pathString);
+			}
+
+			public IVariableFilePath GetChildFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				string pathString = PathBrowsingHelpers.GetChildFileWithName(this, fileName);
+				Debug.Assert(pathString.IsValidVariableFilePath());
+				return new VariableFilePath(pathString);
+			}
+
+			IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contracts
+				Debug.Assert(directoryName.Length > 0); // Enforced by contracts
+				return this.GetBrotherDirectoryWithName(directoryName);
+			}
+
+			// explicit impl from IDirectoryPath
+			IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contracts
+				Debug.Assert(fileName.Length > 0); // Enforced by contracts
+				return this.GetBrotherFileWithName(fileName);
+			}
+
+			IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contracts
+				Debug.Assert(directoryName.Length > 0); // Enforced by contracts
+				return this.GetChildDirectoryWithName(directoryName);
+			}
+
+			IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contracts
+				Debug.Assert(fileName.Length > 0); // Enforced by contracts
+				return this.GetChildFileWithName(fileName);
+			}
 
 			//
 			// Path resolving
@@ -100,75 +182,9 @@ namespace Oragon.Architecture.IO.Path
 				return b;
 			}
 
-			//
-			//  Path Browsing facilities
-			//
-			public IVariableFilePath GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
-				var pathTyped = path as IVariableFilePath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
-			public IVariableDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
-				var pathTyped = path as IVariableDirectoryPath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
-			public IVariableFilePath GetChildFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				string pathString = PathBrowsingHelpers.GetChildFileWithName(this, fileName);
-				Debug.Assert(pathString.IsValidVariableFilePath());
-				return new VariableFilePath(pathString);
-			}
-
-			public IVariableDirectoryPath GetChildDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				string pathString = PathBrowsingHelpers.GetChildDirectoryWithName(this, directoryName);
-				Debug.Assert(pathString.IsValidVariableDirectoryPath());
-				return new VariableDirectoryPath(pathString);
-			}
-
-			// explicit impl from IDirectoryPath
-			IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contracts
-				Debug.Assert(fileName.Length > 0); // Enforced by contracts
-				return this.GetBrotherFileWithName(fileName);
-			}
-
-			IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contracts
-				Debug.Assert(directoryName.Length > 0); // Enforced by contracts
-				return this.GetBrotherDirectoryWithName(directoryName);
-			}
-
-			IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contracts
-				Debug.Assert(fileName.Length > 0); // Enforced by contracts
-				return this.GetChildFileWithName(fileName);
-			}
-
-			IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contracts
-				Debug.Assert(directoryName.Length > 0); // Enforced by contracts
-				return this.GetChildDirectoryWithName(directoryName);
-			}
+			#endregion Public Methods
 		}
+
+		#endregion Private Classes
 	}
 }

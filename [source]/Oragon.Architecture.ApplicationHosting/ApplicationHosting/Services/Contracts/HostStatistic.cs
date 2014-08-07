@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
@@ -11,8 +8,11 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 	[DataContract(IsReference = true)]
 	public class HostStatistic
 	{
+		#region Public Properties
+
 		[DataMember]
 		public List<ApplicationStatistic> ApplicationStatistics { get; set; }
 
+		#endregion Public Properties
 	}
 }

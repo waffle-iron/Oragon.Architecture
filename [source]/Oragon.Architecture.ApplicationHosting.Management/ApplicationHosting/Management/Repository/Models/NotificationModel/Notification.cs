@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel
 {
@@ -11,27 +8,34 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository.Models.No
 	[DataContract(IsReference = true)]
 	public class Notification
 	{
-		[DataMember]
-		public Guid ID { get; set; }
-
-		[DataMember]
-		public string ContentID { get; set; }
-
-		[DataMember]
-		public string Message { get; set; }
-
-		[DataMember]
-		public DateTime Date { get; set; }
-
-		[DataMember]
-		public string MessageType { get; set; }
-
-
-		public List<Guid> DeliveredToClients { get; set; }
+		#region Public Constructors
 
 		public Notification()
 		{
 			this.DeliveredToClients = new List<Guid>();
 		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		[DataMember]
+		public string ContentID { get; set; }
+
+		[DataMember]
+		public DateTime Date { get; set; }
+
+		public List<Guid> DeliveredToClients { get; set; }
+
+		[DataMember]
+		public Guid ID { get; set; }
+
+		[DataMember]
+		public string Message { get; set; }
+
+		[DataMember]
+		public string MessageType { get; set; }
+
+		#endregion Public Properties
 	}
 }

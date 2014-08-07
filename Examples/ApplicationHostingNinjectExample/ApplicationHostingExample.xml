@@ -4,8 +4,7 @@
 	xmlns:wcf="http://www.springframework.net/wcf"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.net/aop"
-	xmlns:nv="http://www.springframework.net/nvelocity"
-	>
+	xmlns:nv="http://www.springframework.net/nvelocity">
 
 	<object name="WindowsServiceHost" type="Oragon.Architecture.ApplicationHosting.WindowsServiceHost, Oragon.Architecture.ApplicationHosting">
 		<property name="Name" value="Hosting Ninject Example" />
@@ -21,8 +20,8 @@
 					<list element-type="String">
 					</list>
 				</property>
-				<property name="StartTimeOut" value="01:00:00"/>
-				<property name="StopTimeOut"  value="01:00:00"/>
+				<property name="StartTimeOut" value="01:00:00" />
+				<property name="StopTimeOut"  value="01:00:00" />
 			</object>
 		</property>
 
@@ -39,5 +38,4 @@
 			</list>
 		</property>
 	</object>
-
 </objects>

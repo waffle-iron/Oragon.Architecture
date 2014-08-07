@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>E3F7A75F-F5A9-47C2-BC2C-BF2562BBAC9D</id>
 		/// <summary>
 		///     A DataColumnCollection extension method that enumerables the given object.
@@ -21,5 +20,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return @this.Cast<DataColumn>();
 		}
+
+		#endregion Public Methods
 	}
 }

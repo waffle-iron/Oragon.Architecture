@@ -1,21 +1,27 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
 using System.Diagnostics.Contracts;
 
 namespace Oragon.Architecture.Networking.Commom
 {
 	public class Message
 	{
+		#region Private Fields
+
 		private List<MessageProperty> properties;
+
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public Message()
 		{
 			this.properties = new List<MessageProperty>();
 		}
+
+		#endregion Public Constructors
+
+		#region Public Methods
 
 		public void AddProperty(MessageProperty property)
 		{
@@ -31,5 +37,7 @@ namespace Oragon.Architecture.Networking.Commom
 			Contract.Ensures(this.properties.NotContains(it => it.Name.ToLower() == name.ToLower()));
 			this.properties.Add(new MessageProperty<T>() { Data = data });
 		}
+
+		#endregion Public Methods
 	}
 }

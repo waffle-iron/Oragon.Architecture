@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Networking
 {
 	public static class DynamicPort
 	{
+		#region Public Methods
+
 		public static int GetFreePort()
 		{
 			TcpListener listener = new TcpListener(IPAddress.Loopback, 0);
@@ -18,5 +15,7 @@ namespace Oragon.Architecture.Networking
 			listener.Stop();
 			return port;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,22 +1,21 @@
-﻿using Oragon.Architecture.ApplicationHosting.Management.ViewModel;
-using Oragon.Architecture.ApplicationHosting.Management.Repository;
+﻿using Oragon.Architecture.ApplicationHosting.Management.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
-
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
 	[RoutePrefix("api/OragonAppStore")]
 	public class OragonAppStoreController : ApiController
 	{
-		ApplicationRepository ApplicationRepository { get; set; }
-		NotificationRepository NotificationRepository { get; set; }
+		#region Private Properties
+
+		private ApplicationRepository ApplicationRepository { get; set; }
+
+		private NotificationRepository NotificationRepository { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		[HttpGet]
 		[Route("CreateNewTempApplication/{clientID:guid}/")]
@@ -24,5 +23,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 		{
 			return ApplicationRepository.CreateNewTempApplication();
 		}
+
+		#endregion Public Methods
 	}
 }

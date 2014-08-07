@@ -1,25 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using AopAlliance.Intercept;
-using Oragon.Architecture.Aop;
+﻿using AopAlliance.Intercept;
 using Oragon.Architecture.Business;
 using Oragon.Architecture.Extensions;
+using System;
+using System.Linq;
+using System.ServiceModel;
 
 namespace Oragon.Architecture.Aop.ExceptionHandling
 {
 	public class ExceptionHandlerAroundAdvice : IMethodInterceptor
 	{
+		#region Private Properties
+
 		private Type BusinessExceptionType { get; set; }
 
-		private Oragon.Architecture.Logging.ILogger Logger { get; set; }
+		private bool EnableDebug { get; set; }
 
 		private string GenericErrorMessage { get; set; }
 
-		private bool EnableDebug { get; set; }
+		private Oragon.Architecture.Logging.ILogger Logger { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		public object Invoke(IMethodInvocation invocation)
 		{
@@ -42,7 +44,6 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 
 					if (this.EnableDebug)
 						this.Logger.Log(targetTypeFullName, string.Concat("End ", targetMethod), Oragon.Architecture.Logging.LogLevel.Debug, logContext.GetDictionary());
-
 				}
 				catch (UndefinedException)
 				{
@@ -90,6 +91,10 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 			return returnValue;
 		}
 
+		#endregion Public Methods
+
+		#region Private Methods
+
 		private ExceptionHandlingAttribute GetAttribute(IMethodInvocation invocation)
 		{
 			ExceptionHandlingAttribute attribute = invocation.GetAttibutes<ExceptionHandlingAttribute>().FirstOrDefault();
@@ -105,5 +110,6 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 			return attribute;
 		}
 
+		#endregion Private Methods
 	}
 }

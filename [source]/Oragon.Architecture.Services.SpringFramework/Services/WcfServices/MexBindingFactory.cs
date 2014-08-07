@@ -1,21 +1,11 @@
 ﻿using Spring.Objects.Factory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
 	public class MexBindingFactory : IFactoryObject
 	{
-		public MexBindingProtocol Protocol { get; set; }
-
-		public object GetObject()
-		{
-			System.ServiceModel.Channels.Binding returnValue = MexBindingResolver.Resolve(this.Protocol);
-			return returnValue;
-		}
+		#region Public Properties
 
 		public bool IsSingleton
 		{
@@ -26,5 +16,19 @@ namespace Oragon.Architecture.Services.WcfServices
 		{
 			get { return typeof(System.ServiceModel.Channels.Binding); }
 		}
+
+		public MexBindingProtocol Protocol { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public object GetObject()
+		{
+			System.ServiceModel.Channels.Binding returnValue = MexBindingResolver.Resolve(this.Protocol);
+			return returnValue;
+		}
+
+		#endregion Public Methods
 	}
 }

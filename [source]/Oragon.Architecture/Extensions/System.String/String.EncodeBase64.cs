@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Text;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>1F429948-DF8C-420D-94C1-508A53F3E51E</id>
 		/// <summary>
 		///     A string extension method that encode the string to Base64.
@@ -20,5 +19,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return Convert.ToBase64String(Activator.CreateInstance<ASCIIEncoding>().GetBytes(@this));
 		}
+
+		#endregion Public Methods
 	}
 }

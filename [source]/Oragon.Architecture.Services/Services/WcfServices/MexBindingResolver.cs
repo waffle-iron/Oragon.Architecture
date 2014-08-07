@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
-	
-
 	public static class MexBindingResolver
 	{
+		#region Public Methods
 
 		public static Binding Resolve(MexBindingProtocol protocol)
 		{
@@ -30,8 +25,6 @@ namespace Oragon.Architecture.Services.WcfServices
 			return returnValue;
 		}
 
+		#endregion Public Methods
 	}
-
-
-	
 }

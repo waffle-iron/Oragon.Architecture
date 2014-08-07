@@ -1,33 +1,42 @@
 ﻿using AopAlliance.Intercept;
 using Oragon.Architecture.Aop.Data.Abstractions;
-using Oragon.Architecture.Data;
 using Oragon.Architecture.Data.ConnectionStrings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Oragon.Architecture.Aop.Data.MongoDB
 {
 	public class MongoDBContextAroundAdvice : AbstractContextAroundAdvice<MongoDBContextAttribute, MongoDBContext>
 	{
+		#region Public Properties
+
 		public List<MongoDBConnectionString> ConnectionStrings { get; set; }
+
+		#endregion Public Properties
+
+		#region Protected Properties
+
+		protected override Func<MongoDBContextAttribute, bool> AttributeQueryFilter
+		{
+			get
+			{
+				return (it =>
+				{
+					it.MongoDBConnectionString = this.ConnectionStrings.Where(localConnecions => localConnecions.Key == it.ContextKey).FirstOrDefault();
+					return (it.MongoDBConnectionString != null);
+				});
+			}
+		}
 
 		protected override string ContextStackListKey
 		{
 			get { return "Oragon.Architecture.Aop.Data.MongoDBContextAroundAdvice.Contexts"; }
 		}
 
-		protected override Func<MongoDBContextAttribute, bool> AttributeQueryFilter
-		{
-			get
-			{
-				return (it => {
-					it.MongoDBConnectionString = this.ConnectionStrings.Where(localConnecions => localConnecions.Key == it.ContextKey).FirstOrDefault();
-					return (it.MongoDBConnectionString != null);
-				});
-			}
-		}
+		#endregion Protected Properties
+
+		#region Protected Methods
 
 		protected override object Invoke(AopAlliance.Intercept.IMethodInvocation invocation, IEnumerable<MongoDBContextAttribute> contextAttributes)
 		{
@@ -36,9 +45,13 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			return returnValue;
 		}
 
+		#endregion Protected Methods
+
+		#region Private Methods
+
 		private object InvokeUsingContext(IMethodInvocation invocation, Stack<MongoDBContextAttribute> contextAttributesStack)
 		{
-			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente 
+			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente
 			//manda executar a chamada ao método de destino.
 			//Esse controle é necessário pois as os "Usings" de Contexto, Sessão e Transação precisam ser encadeados
 			object returnValue = null;
@@ -48,7 +61,7 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			}
 			else
 			{
-				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o. 
+				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o.
 				MongoDBContextAttribute currentContextAttribute = contextAttributesStack.Pop();
 				//Criando o contexto
 				using (MongoDBContext currentContext = new MongoDBContext(currentContextAttribute, this.ContextStack))
@@ -59,7 +72,6 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			return returnValue;
 		}
 
-
+		#endregion Private Methods
 	}
-
 }

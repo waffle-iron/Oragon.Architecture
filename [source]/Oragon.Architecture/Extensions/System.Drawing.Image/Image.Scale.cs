@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Drawing;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>6EFD4348-77DF-49D9-AB9B-A838F9921B18</id>
 		/// <summary>
 		///     An Image extension method that scales an image to the specific ratio.
@@ -20,8 +19,8 @@ namespace Oragon.Architecture.Extensions
 		/// <returns>The scaled image to the specific ratio.</returns>
 		public static Image Scale(this Image @this, double ratio)
 		{
-			int width = Convert.ToInt32(@this.Width*ratio);
-			int height = Convert.ToInt32(@this.Height*ratio);
+			int width = Convert.ToInt32(@this.Width * ratio);
+			int height = Convert.ToInt32(@this.Height * ratio);
 
 			var r = new Bitmap(width, height);
 
@@ -60,5 +59,7 @@ namespace Oragon.Architecture.Extensions
 
 			return r;
 		}
+
+		#endregion Public Methods
 	}
 }

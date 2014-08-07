@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.Aop.ExceptionHandling
 {
 	public class LogContext : IDisposable
 	{
-		protected Dictionary<string, string> LogTags { get; private set; }
+		#region Private Fields
 
-		public LogContext Parent { get; private set; }
+		private bool isDisposed;
 
-		public bool IsFake { get; private set; }
+		#endregion Private Fields
+
+		#region Public Constructors
 
 		public LogContext(bool isFake = false)
 		{
@@ -25,14 +25,42 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 			}
 		}
 
-		public void SetValue(string key, string value)
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public static LogContext Current
 		{
-			this.LogTags.AddOrUpdate(key, value);
+			get
+			{
+				LogContext logContext = Spring.Threading.LogicalThreadContext.GetData("LogContext") as LogContext;
+				if (logContext == null)
+					logContext = new LogContext(true);
+				return logContext;
+			}
 		}
 
-		public void Remove(string key)
+		public bool IsFake { get; private set; }
+
+		public LogContext Parent { get; private set; }
+
+		#endregion Public Properties
+
+		#region Protected Properties
+
+		protected Dictionary<string, string> LogTags { get; private set; }
+
+		#endregion Protected Properties
+
+		#region Public Methods
+
+		public void Dispose()
 		{
-			this.LogTags.Remove(key);
+			if (this.isDisposed == false)
+			{
+				this.isDisposed = true;
+				this.Dispose(true);
+			}
 		}
 
 		public Dictionary<string, string> GetDictionary()
@@ -43,17 +71,19 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 			return returnValue;
 		}
 
-		private bool isDisposed;
-		public void Dispose()
+		public void Remove(string key)
 		{
-			if (this.isDisposed == false)
-			{
-				this.isDisposed = true;
-				this.Dispose(true);
-			}
-
-
+			this.LogTags.Remove(key);
 		}
+
+		public void SetValue(string key, string value)
+		{
+			this.LogTags.AddOrUpdate(key, value);
+		}
+
+		#endregion Public Methods
+
+		#region Private Methods
 
 		private void Dispose(bool dispose)
 		{
@@ -66,15 +96,6 @@ namespace Oragon.Architecture.Aop.ExceptionHandling
 				GC.SuppressFinalize(this);
 		}
 
-		public static LogContext Current
-		{
-			get
-			{
-				LogContext logContext = Spring.Threading.LogicalThreadContext.GetData("LogContext") as LogContext;
-				if (logContext == null)
-					logContext = new LogContext(true);
-				return logContext;
-			}
-		}
+		#endregion Private Methods
 	}
 }

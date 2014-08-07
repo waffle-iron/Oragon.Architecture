@@ -1,88 +1,89 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using Spring.Threading;
-using NH = NHibernate;
 using Oragon.Architecture.Data.ConnectionStrings;
 using Spring.Objects.Factory.Attributes;
+using Spring.Threading;
+using System;
+using System.Collections.Generic;
+using NH = NHibernate;
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
 	/// <summary>
-	/// Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
+	///     Responsável por inicializar a configuraçãio do NHibernate e disponibilizar um SessionFactory pra a aplicação
 	/// </summary>
 	public abstract class AbstractSessionFactoryBuilder : ISessionFactoryBuilder
 	{
 		#region Injeção de Dependência
 
 		/// <summary>
-		/// Identifica qual a chave da conexão
-		/// </summary>
-		[Required]
-		public IConnectionStringDiscoverer ConnectionStringDiscoverer { get; set; }
-
-		/// <summary>
-		/// Identifica tipos contidos em 
-		/// </summary>
-		[Required]
-		public List<string> TypeNames { get; set; }
-
-		/// <summary>
-		/// Define a profundidade máxima para o preenchimento automático do mecanismo de persistência.
-		/// </summary>
-		[Required]
-		public int MaxFetchDepth { get; set; }
-
-		/// <summary>
-		/// Define o nivel de isolamento da sessão
-		/// </summary>
-		[Required]
-		public System.Data.IsolationLevel DefaultIsolationLevel { get; private set; }
-
-		[Required]
-		public System.Data.IsolationLevel TransactionIsolationLevel { get; private set; }
-
-		[Required]
-		public NH.FlushMode DefaultFlushMode { get; private set; }
-
-		[Required]
-		public NH.FlushMode TransactionFlushMode { get; private set; }
-
-
-		/// <summary>
-		/// Define o timeout padrão para a execução de comandos
-		/// </summary>
-		[Required]
-		public int CommandTimeout { get; set; }
-
-		/// <summary>
-		/// Define o default Batch Size
+		///     Define o default Batch Size
 		/// </summary>
 		[Required]
 		public int BatchSize { get; set; }
 
 		/// <summary>
-		/// Define uma chave para acesso ao banco
+		///     Define o timeout padrão para a execução de comandos
+		/// </summary>
+		[Required]
+		public int CommandTimeout { get; set; }
+
+		/// <summary>
+		///     Identifica qual a chave da conexão
+		/// </summary>
+		[Required]
+		public IConnectionStringDiscoverer ConnectionStringDiscoverer { get; set; }
+
+		[Required]
+		public NH.FlushMode DefaultFlushMode { get; private set; }
+
+		/// <summary>
+		///     Define o nivel de isolamento da sessão
+		/// </summary>
+		[Required]
+		public System.Data.IsolationLevel DefaultIsolationLevel { get; private set; }
+
+		[Required]
+		public bool EnabledDiagnostics { get; set; }
+
+		/// <summary>
+		///     Define a profundidade máxima para o preenchimento automático do mecanismo de persistência.
+		/// </summary>
+		[Required]
+		public int MaxFetchDepth { get; set; }
+
+		/// <summary>
+		///     Define uma chave para acesso ao banco
 		/// </summary>
 		[Required]
 		public string ObjectContextKey { get; private set; }
 
 		[Required]
-		public bool EnabledDiagnostics { get; set; }
+		public NH.FlushMode TransactionFlushMode { get; private set; }
 
-		#endregion
+		[Required]
+		public System.Data.IsolationLevel TransactionIsolationLevel { get; private set; }
+
+		/// <summary>
+		///     Identifica tipos contidos em
+		/// </summary>
+		[Required]
+		public List<string> TypeNames { get; set; }
+
+		#endregion Injeção de Dependência
 
 		#region Instance State
 
+		private Semaphore semaphore = new Semaphore(1);
 		private volatile NH.ISessionFactory sessionFactory;
 
-		private Semaphore semaphore = new Semaphore(1);
+		#endregion Instance State
 
-		#endregion
+		#region Public Constructors
 
 		public AbstractSessionFactoryBuilder()
 		{
 		}
+
+		#endregion Public Constructors
 
 		#region Métodos Públicos
 
@@ -112,17 +113,16 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return this.sessionFactory;
 		}
 
-		#endregion
+		#endregion Métodos Públicos
 
 		#region Métodos Privados
 
 		/// <summary>
-		/// Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
+		///     Principal método privado, realiza a criação do SessionFactory e este não deve ser criado novamente até que o domínio de aplicação seja finalizado.
 		/// </summary>
 		/// <returns></returns>
 		protected abstract NH.ISessionFactory BuildSessionFactoryInternal();
-	
 
-		#endregion
+		#endregion Métodos Privados
 	}
 }

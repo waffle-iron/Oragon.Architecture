@@ -1,5 +1,4 @@
-﻿
-Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
+﻿Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
 	extend: 'Ext.tree.Panel',
 	alias: 'view.ServerExplorerTree',
 	region: 'west',
@@ -20,13 +19,11 @@ Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
 				{
 					type: 'refresh',
 					callback: function () {
-
 					}
 				},
 				{
 					type: 'search',
 					callback: function () {
-
 					}
 				}
 
@@ -56,10 +53,7 @@ Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
 		}
 	},
 
-
 	initComponent: function () {
-
-
 		//var eventoMenuContexto = "itemcontextmenu";
 		//this.on(eventoMenuContexto, function (sender, record, element, index, eventInfo, options) {
 		//	eventInfo.stopEvent();
@@ -70,7 +64,6 @@ Ext.define('OragonAppServerManagement.view.ServerExplorerTree', {
 
 		//	var contextMenu = Ext.create('Ext.menu.Menu', {
 		//		items: Enumerable.from(record.data.menuItems).select(function (menuItem) {
-
 		//			if (menuItem.actionConfirmation == null) {
 		//				menuItem.handler = function (widget, event) {
 		//					Oragon.Architecture.Scripting.TreeViewManager.defaultMenuItemHandlers.handlerWithoutConfirmation(record.data, menuItem);

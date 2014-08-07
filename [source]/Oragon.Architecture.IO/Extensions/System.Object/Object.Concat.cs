@@ -1,12 +1,6 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
@@ -14,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Gets an enumerable object that contains first <paramref name="element"/> and then elements of <paramref name="elements"/>, in this order.
 		///</summary>
@@ -25,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 			Contract.Ensures(Contract.Result<IEnumerable<TElement>>() != null, "returned enumerable object is not null");
 			return new[] { element }.Concat(elements);
 		}
+
+		#endregion Public Methods
 	}
 }

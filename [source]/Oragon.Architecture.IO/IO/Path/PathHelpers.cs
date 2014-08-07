@@ -10,6 +10,22 @@ namespace Oragon.Architecture.IO.Path
 	///</summary>
 	public static partial class PathHelpers
 	{
+		#region Private Fields
+
+		private const string FAILURE_PATHSTRING_IS_EMPTY = "The parameter pathString is empty.";
+
+		private const string FAILURE_PATHSTRING_IS_NULL = "The parameter pathString is null.";
+
+		private const string FAILURE_PATHSTRING_NORMALIZED_IS_EMPTY = "The parameter pathString normalized is empty.";
+
+		private const string PATH_STRING = "pathString";
+
+		private readonly static char[] s_ForbiddenCharInPath = new[] { '*', '|', '?', '<', '>', '"' };
+
+		#endregion Private Fields
+
+		#region Public Properties
+
 		///<summary>
 		///An array of char forbidden in string representing path.
 		///</summary>
@@ -25,8 +41,6 @@ namespace Oragon.Architecture.IO.Path
 			}
 		}
 
-		private readonly static char[] s_ForbiddenCharInPath = new[] { '*', '|', '?', '<', '>', '"' };
-
 		///<summary>
 		///Path variables are formatted this way $(VariableName). Hence this getter returns the string "$(".
 		///</summary>
@@ -36,6 +50,32 @@ namespace Oragon.Architecture.IO.Path
 		///Path variables are formatted this way $(VariableName). Hence this getter returns the string ")".
 		///</summary>
 		public static string PathVariableEnd { get { return @")"; } }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		///<summary>
+		///Returns <i>true</i> if <paramref name="path"/> and <paramref name="pathOther"/> are both <i>null</i>, or if <paramref name="path"/>.Equals(<paramref name="pathOther"/>).
+		///</summary>
+		///<param name="path">The first path.</param>
+		///<param name="pathOther">The scond path.</param>
+		public static bool EqualsNullSupported(this IPath path, IPath pathOther)
+		{
+			if (path == null) { return pathOther == null; }
+			if (pathOther == null) { return false; }
+			return path.Equals(pathOther);
+		}
+
+		///<summary>
+		///Returns <i>true</i> if <paramref name="path"/> is not null, and <paramref name="path"/>.<see cref="IAbsolutePath.Exists"/> equals <i>true</i>.
+		///</summary>
+		///<param name="path">The path reference.</param>
+		public static bool IsNotNullAndExists(this IAbsolutePath path)
+		{
+			if (path == null) { return false; }
+			return path.Exists;
+		}
 
 		///<summary>
 		///Returns <i>true</i> if <paramref name="pathVariableName"/> contains only upper/lower case letters, digits and underscore and has less than 1024 characters. In such case <paramref name="pathVariableName"/> is a valid path variable name.
@@ -85,32 +125,9 @@ namespace Oragon.Architecture.IO.Path
 			return path.ToString();
 		}
 
-		///<summary>
-		///Returns <i>true</i> if <paramref name="path"/> is not null, and <paramref name="path"/>.<see cref="IAbsolutePath.Exists"/> equals <i>true</i>.
-		///</summary>
-		///<param name="path">The path reference.</param>
-		public static bool IsNotNullAndExists(this IAbsolutePath path)
-		{
-			if (path == null) { return false; }
-			return path.Exists;
-		}
+		#endregion Public Methods
 
-		///<summary>
-		///Returns <i>true</i> if <paramref name="path"/> and <paramref name="pathOther"/> are both <i>null</i>, or if <paramref name="path"/>.Equals(<paramref name="pathOther"/>).
-		///</summary>
-		///<param name="path">The first path.</param>
-		///<param name="pathOther">The scond path.</param>
-		public static bool EqualsNullSupported(this IPath path, IPath pathOther)
-		{
-			if (path == null) { return pathOther == null; }
-			if (pathOther == null) { return false; }
-			return path.Equals(pathOther);
-		}
-
-		private const string PATH_STRING = "pathString";
-		private const string FAILURE_PATHSTRING_IS_NULL = "The parameter pathString is null.";
-		private const string FAILURE_PATHSTRING_IS_EMPTY = "The parameter pathString is empty.";
-		private const string FAILURE_PATHSTRING_NORMALIZED_IS_EMPTY = "The parameter pathString normalized is empty.";
+		#region Private Methods
 
 		private static void EventuallyThrowExOnPathStringNullOrEmpty(this string pathString)
 		{
@@ -131,6 +148,8 @@ namespace Oragon.Architecture.IO.Path
 			return true;
 		}
 
+		#endregion Private Methods
+
 		#region string to IPath extension methods
 
 		//---------------------------------------------------
@@ -138,103 +157,6 @@ namespace Oragon.Architecture.IO.Path
 		// string to IPath extension methods
 		//
 		//---------------------------------------------------
-
-		///<summary>
-		///Returns a new <see cref="IAbsoluteFilePath"/> object from this string.
-		///</summary>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidAbsoluteFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid absolute file path.</exception>
-		public static IAbsoluteFilePath ToAbsoluteFilePath(this string pathString)
-		{
-			Contract.Ensures(Contract.Result<IAbsoluteFilePath>() != null, "returned reference is not null");
-			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
-			string failureReason;
-			IAbsoluteFilePath absoluteFilePath;
-			if (!pathString.TryGetAbsoluteFilePath(out absoluteFilePath, out failureReason))
-			{
-				throw new ArgumentException(failureReason, PATH_STRING);
-			}
-			Debug.Assert(absoluteFilePath != null);
-			return absoluteFilePath;
-		}
-
-		///<summary>
-		///Returns a new <see cref="IRelativeFilePath"/> object from this string.
-		///</summary>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidRelativeFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative file path.</exception>
-		public static IRelativeFilePath ToRelativeFilePath(this string pathString)
-		{
-			Contract.Ensures(Contract.Result<IRelativeFilePath>() != null, "returned reference is not null");
-			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
-			string failureReason;
-			IRelativeFilePath relativeFilePath;
-			if (!pathString.TryGetRelativeFilePath(out relativeFilePath, out failureReason))
-			{
-				throw new ArgumentException(failureReason, PATH_STRING);
-			}
-			Debug.Assert(relativeFilePath != null);
-			return relativeFilePath;
-		}
-
-		///<summary>
-		///Returns a new <see cref="IEnvVarFilePath"/> object from this string.
-		///</summary>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidEnvVarFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path prefixed with an environment variable.</exception>
-		public static IEnvVarFilePath ToEnvVarFilePath(this string pathString)
-		{
-			Contract.Ensures(Contract.Result<IEnvVarFilePath>() != null, "returned reference is not null");
-			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
-			string failureReason;
-			IEnvVarFilePath envVarFilePath;
-			if (!pathString.TryGetEnvVarFilePath(out envVarFilePath, out failureReason))
-			{
-				throw new ArgumentException(failureReason, PATH_STRING);
-			}
-			Debug.Assert(envVarFilePath != null);
-			return envVarFilePath;
-		}
-
-		///<summary>
-		///Returns a new <see cref="IVariableFilePath"/> object from this string.
-		///</summary>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidVariableFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path that contains variables.</exception>
-		public static IVariableFilePath ToVariableFilePath(this string pathString)
-		{
-			Contract.Ensures(Contract.Result<IVariableFilePath>() != null, "returned reference is not null");
-			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
-			string failureReason;
-			IVariableFilePath variableFilePath;
-			if (!pathString.TryGetVariableFilePath(out variableFilePath, out failureReason))
-			{
-				throw new ArgumentException(failureReason, PATH_STRING);
-			}
-			Debug.Assert(variableFilePath != null);
-			return variableFilePath;
-		}
 
 		///<summary>
 		///Returns a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
@@ -261,27 +183,51 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Returns a new <see cref="IRelativeDirectoryPath"/> object from this string.
+		///Returns a new <see cref="IAbsoluteFilePath"/> object from this string.
 		///</summary>
 		///<remarks>
 		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidRelativeDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///The method <see cref="IsValidAbsoluteFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
 		///</remarks>
 		///<param name="pathString">Represents the path.</param>
 		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative directory path.</exception>
-		public static IRelativeDirectoryPath ToRelativeDirectoryPath(this string pathString)
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid absolute file path.</exception>
+		public static IAbsoluteFilePath ToAbsoluteFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned reference is not null");
+			Contract.Ensures(Contract.Result<IAbsoluteFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
-			IRelativeDirectoryPath relativeDirectoryPath;
-			if (!pathString.TryGetRelativeDirectoryPath(out relativeDirectoryPath, out failureReason))
+			IAbsoluteFilePath absoluteFilePath;
+			if (!pathString.TryGetAbsoluteFilePath(out absoluteFilePath, out failureReason))
 			{
 				throw new ArgumentException(failureReason, PATH_STRING);
 			}
-			Debug.Assert(relativeDirectoryPath != null);
-			return relativeDirectoryPath;
+			Debug.Assert(absoluteFilePath != null);
+			return absoluteFilePath;
+		}
+
+		///<summary>
+		///Returns a new <see cref="IDirectoryPath"/> object from this string.
+		///</summary>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative or absolute directory path or a valid directory path prefixed with an environment variable.</exception>
+		public static IDirectoryPath ToDirectoryPath(this string pathString)
+		{
+			Contract.Ensures(Contract.Result<IDirectoryPath>() != null, "returned reference is not null");
+			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
+			string failureReason;
+			IDirectoryPath directoryPath;
+			if (!pathString.TryGetDirectoryPath(out directoryPath, out failureReason))
+			{
+				throw new ArgumentException(failureReason, PATH_STRING);
+			}
+			Debug.Assert(directoryPath != null);
+			return directoryPath;
 		}
 
 		///<summary>
@@ -310,51 +256,28 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Returns a new <see cref="IVariableDirectoryPath"/> object from this string.
+		///Returns a new <see cref="IEnvVarFilePath"/> object from this string.
 		///</summary>
 		///<remarks>
 		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidVariableDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidEnvVarFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
 		///</remarks>
 		///<param name="pathString">Represents the path.</param>
 		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid directory path that contains variables.</exception>
-		public static IVariableDirectoryPath ToVariableDirectoryPath(this string pathString)
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path prefixed with an environment variable.</exception>
+		public static IEnvVarFilePath ToEnvVarFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IVariableDirectoryPath>() != null, "returned reference is not null");
+			Contract.Ensures(Contract.Result<IEnvVarFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
-			IVariableDirectoryPath variableDirectoryPath;
-			if (!pathString.TryGetVariableDirectoryPath(out variableDirectoryPath, out failureReason))
+			IEnvVarFilePath envVarFilePath;
+			if (!pathString.TryGetEnvVarFilePath(out envVarFilePath, out failureReason))
 			{
 				throw new ArgumentException(failureReason, PATH_STRING);
 			}
-			Debug.Assert(variableDirectoryPath != null);
-			return variableDirectoryPath;
-		}
-
-		///<summary>
-		///Returns a new <see cref="IDirectoryPath"/> object from this string.
-		///</summary>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The method <see cref="IsValidDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
-		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative or absolute directory path or a valid directory path prefixed with an environment variable.</exception>
-		public static IDirectoryPath ToDirectoryPath(this string pathString)
-		{
-			Contract.Ensures(Contract.Result<IDirectoryPath>() != null, "returned reference is not null");
-			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
-			string failureReason;
-			IDirectoryPath directoryPath;
-			if (!pathString.TryGetDirectoryPath(out directoryPath, out failureReason))
-			{
-				throw new ArgumentException(failureReason, PATH_STRING);
-			}
-			Debug.Assert(directoryPath != null);
-			return directoryPath;
+			Debug.Assert(envVarFilePath != null);
+			return envVarFilePath;
 		}
 
 		///<summary>
@@ -381,6 +304,102 @@ namespace Oragon.Architecture.IO.Path
 			return filePath;
 		}
 
+		///<summary>
+		///Returns a new <see cref="IRelativeDirectoryPath"/> object from this string.
+		///</summary>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidRelativeDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative directory path.</exception>
+		public static IRelativeDirectoryPath ToRelativeDirectoryPath(this string pathString)
+		{
+			Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned reference is not null");
+			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
+			string failureReason;
+			IRelativeDirectoryPath relativeDirectoryPath;
+			if (!pathString.TryGetRelativeDirectoryPath(out relativeDirectoryPath, out failureReason))
+			{
+				throw new ArgumentException(failureReason, PATH_STRING);
+			}
+			Debug.Assert(relativeDirectoryPath != null);
+			return relativeDirectoryPath;
+		}
+
+		///<summary>
+		///Returns a new <see cref="IRelativeFilePath"/> object from this string.
+		///</summary>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidRelativeFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative file path.</exception>
+		public static IRelativeFilePath ToRelativeFilePath(this string pathString)
+		{
+			Contract.Ensures(Contract.Result<IRelativeFilePath>() != null, "returned reference is not null");
+			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
+			string failureReason;
+			IRelativeFilePath relativeFilePath;
+			if (!pathString.TryGetRelativeFilePath(out relativeFilePath, out failureReason))
+			{
+				throw new ArgumentException(failureReason, PATH_STRING);
+			}
+			Debug.Assert(relativeFilePath != null);
+			return relativeFilePath;
+		}
+
+		///<summary>
+		///Returns a new <see cref="IVariableDirectoryPath"/> object from this string.
+		///</summary>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidVariableDirectoryPath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid directory path that contains variables.</exception>
+		public static IVariableDirectoryPath ToVariableDirectoryPath(this string pathString)
+		{
+			Contract.Ensures(Contract.Result<IVariableDirectoryPath>() != null, "returned reference is not null");
+			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
+			string failureReason;
+			IVariableDirectoryPath variableDirectoryPath;
+			if (!pathString.TryGetVariableDirectoryPath(out variableDirectoryPath, out failureReason))
+			{
+				throw new ArgumentException(failureReason, PATH_STRING);
+			}
+			Debug.Assert(variableDirectoryPath != null);
+			return variableDirectoryPath;
+		}
+
+		///<summary>
+		///Returns a new <see cref="IVariableFilePath"/> object from this string.
+		///</summary>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The method <see cref="IsValidVariableFilePath(string)"/> can be called to enfore <paramref name="pathString"/> validity before calling this method, and avoid any exception.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<exception cref="ArgumentNullException"><paramref name="pathString"/> is null.</exception>
+		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path that contains variables.</exception>
+		public static IVariableFilePath ToVariableFilePath(this string pathString)
+		{
+			Contract.Ensures(Contract.Result<IVariableFilePath>() != null, "returned reference is not null");
+			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
+			string failureReason;
+			IVariableFilePath variableFilePath;
+			if (!pathString.TryGetVariableFilePath(out variableFilePath, out failureReason))
+			{
+				throw new ArgumentException(failureReason, PATH_STRING);
+			}
+			Debug.Assert(variableFilePath != null);
+			return variableFilePath;
+		}
+
 		#endregion string to IPath extension methods
 
 		#region string to IPath TryGet...Path extension methods, with failureReason
@@ -390,85 +409,6 @@ namespace Oragon.Architecture.IO.Path
 		// string to IPath TryGet...Path extension methods, with failureReason
 		//
 		//---------------------------------------------------
-
-		private static bool IsPathStringNullOrEmpty(this string pathString, out string failureReason)
-		{
-			if (pathString == null) { failureReason = FAILURE_PATHSTRING_IS_NULL; return true; }
-			if (pathString.Length == 0) { failureReason = FAILURE_PATHSTRING_IS_EMPTY; return true; }
-			failureReason = null;
-			return false;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IAbsoluteFilePath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid absolute file path and as a consequence, the returned <paramref name="absoluteFilePath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path string.</param>
-		///<param name="absoluteFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetAbsoluteFilePath(this string pathString, out IAbsoluteFilePath absoluteFilePath, out string failureReason)
-		{
-			absoluteFilePath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidAbsoluteFilePath(out failureReason)) { return false; }
-			absoluteFilePath = new AbsoluteFilePath(pathString);
-			return true;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IRelativeFilePath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative file path and as a consequence, the returned <paramref name="relativeFilePath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="relativeFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetRelativeFilePath(this string pathString, out IRelativeFilePath relativeFilePath, out string failureReason)
-		{
-			relativeFilePath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidRelativeFilePath(out failureReason)) { return false; }
-			relativeFilePath = new RelativeFilePath(pathString);
-			return true;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IEnvVarFilePath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarFilePath"/> is not null.</returns>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="envVarFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetEnvVarFilePath(this string pathString, out IEnvVarFilePath envVarFilePath, out string failureReason)
-		{
-			envVarFilePath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidEnvVarFilePath(out failureReason)) { return false; }
-			envVarFilePath = new EnvVarFilePath(pathString);
-			return true;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IVariableFilePath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path that contains variables and as a consequence, the returned <paramref name="variableFilePath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="variableFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetVariableFilePath(this string pathString, out IVariableFilePath variableFilePath, out string failureReason)
-		{
-			variableFilePath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidVariableFilePath(out failureReason)) { return false; }
-			variableFilePath = new VariableFilePath(pathString);
-			return true;
-		}
 
 		///<summary>
 		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
@@ -488,56 +428,19 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
+		///Try get a new <see cref="IAbsoluteFilePath"/> object from this string.
 		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative directory path and as a consequence, the returned <paramref name="relativeDirectoryPath"/> is not null.</returns>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid absolute file path and as a consequence, the returned <paramref name="absoluteFilePath"/> is not null.</returns>
 		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="relativeDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		///<param name="pathString">Represents the path string.</param>
+		///<param name="absoluteFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
 		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetRelativeDirectoryPath(this string pathString, out IRelativeDirectoryPath relativeDirectoryPath, out string failureReason)
+		public static bool TryGetAbsoluteFilePath(this string pathString, out IAbsoluteFilePath absoluteFilePath, out string failureReason)
 		{
-			relativeDirectoryPath = null;
+			absoluteFilePath = null;
 			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidRelativeDirectoryPath(out failureReason)) { return false; }
-			relativeDirectoryPath = new RelativeDirectoryPath(pathString);
-			return true;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IEnvVarDirectoryPath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarDirectoryPath"/> is not null.</returns>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
-		///</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="envVarDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetEnvVarDirectoryPath(this string pathString, out IEnvVarDirectoryPath envVarDirectoryPath, out string failureReason)
-		{
-			envVarDirectoryPath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidEnvVarDirectoryPath(out failureReason)) { return false; }
-			envVarDirectoryPath = new EnvVarDirectoryPath(pathString);
-			return true;
-		}
-
-		///<summary>
-		///Try get a new <see cref="IVariableDirectoryPath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path that contains variables and as a consequence, the returned <paramref name="variableDirectoryPath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="variableDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
-		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
-		public static bool TryGetVariableDirectoryPath(this string pathString, out IVariableDirectoryPath variableDirectoryPath, out string failureReason)
-		{
-			variableDirectoryPath = null;
-			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
-			if (!pathString.IsValidVariableDirectoryPath(out failureReason)) { return false; }
-			variableDirectoryPath = new VariableDirectoryPath(pathString);
+			if (!pathString.IsValidAbsoluteFilePath(out failureReason)) { return false; }
+			absoluteFilePath = new AbsoluteFilePath(pathString);
 			return true;
 		}
 
@@ -583,6 +486,46 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
+		///Try get a new <see cref="IEnvVarDirectoryPath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarDirectoryPath"/> is not null.</returns>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="envVarDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetEnvVarDirectoryPath(this string pathString, out IEnvVarDirectoryPath envVarDirectoryPath, out string failureReason)
+		{
+			envVarDirectoryPath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidEnvVarDirectoryPath(out failureReason)) { return false; }
+			envVarDirectoryPath = new EnvVarDirectoryPath(pathString);
+			return true;
+		}
+
+		///<summary>
+		///Try get a new <see cref="IEnvVarFilePath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarFilePath"/> is not null.</returns>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
+		///</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="envVarFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetEnvVarFilePath(this string pathString, out IEnvVarFilePath envVarFilePath, out string failureReason)
+		{
+			envVarFilePath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidEnvVarFilePath(out failureReason)) { return false; }
+			envVarFilePath = new EnvVarFilePath(pathString);
+			return true;
+		}
+
+		///<summary>
 		///Try get a new <see cref="IFilePath"/> object object from this string.
 		///</summary>
 		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path and as a consequence, the returned <paramref name="filePath"/> is not null.</returns>
@@ -623,27 +566,21 @@ namespace Oragon.Architecture.IO.Path
 			return false;
 		}
 
-		#endregion string to IPath TryGet...Path extension methods, with failureReason
-
-		#region string to IPath TryGet...Path extension methods, withOUT failureReason
-
-		//---------------------------------------------------
-		//
-		// string to IPath TryGet...Path extension methods, withOUT failureReason
-		//
-		//---------------------------------------------------
-
 		///<summary>
-		///Try get a new <see cref="IAbsoluteFilePath"/> object from this string.
+		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
 		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid absolute file path and as a consequence, the returned <paramref name="absoluteFilePath"/> is not null.</returns>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative directory path and as a consequence, the returned <paramref name="relativeDirectoryPath"/> is not null.</returns>
 		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path string.</param>
-		///<param name="absoluteFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetAbsoluteFilePath(this string pathString, out IAbsoluteFilePath absoluteFilePath)
+		///<param name="pathString">Represents the path.</param>
+		///<param name="relativeDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetRelativeDirectoryPath(this string pathString, out IRelativeDirectoryPath relativeDirectoryPath, out string failureReason)
 		{
-			string failureReasonUnused;
-			return pathString.TryGetAbsoluteFilePath(out absoluteFilePath, out failureReasonUnused);
+			relativeDirectoryPath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidRelativeDirectoryPath(out failureReason)) { return false; }
+			relativeDirectoryPath = new RelativeDirectoryPath(pathString);
+			return true;
 		}
 
 		///<summary>
@@ -653,26 +590,31 @@ namespace Oragon.Architecture.IO.Path
 		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
 		///<param name="pathString">Represents the path.</param>
 		///<param name="relativeFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetRelativeFilePath(this string pathString, out IRelativeFilePath relativeFilePath)
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetRelativeFilePath(this string pathString, out IRelativeFilePath relativeFilePath, out string failureReason)
 		{
-			string failureReasonUnused;
-			return pathString.TryGetRelativeFilePath(out relativeFilePath, out failureReasonUnused);
+			relativeFilePath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidRelativeFilePath(out failureReason)) { return false; }
+			relativeFilePath = new RelativeFilePath(pathString);
+			return true;
 		}
 
 		///<summary>
-		///Try get a new <see cref="IEnvVarFilePath"/> object from this string.
+		///Try get a new <see cref="IVariableDirectoryPath"/> object from this string.
 		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarFilePath"/> is not null.</returns>
-		///<remarks>
-		///The path represented by this string doesn't need to exist for this operation to complete properly.
-		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
-		///</remarks>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path that contains variables and as a consequence, the returned <paramref name="variableDirectoryPath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
 		///<param name="pathString">Represents the path.</param>
-		///<param name="envVarFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetEnvVarFilePath(this string pathString, out IEnvVarFilePath envVarFilePath)
+		///<param name="variableDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetVariableDirectoryPath(this string pathString, out IVariableDirectoryPath variableDirectoryPath, out string failureReason)
 		{
-			string failureReasonUnused;
-			return pathString.TryGetEnvVarFilePath(out envVarFilePath, out failureReasonUnused);
+			variableDirectoryPath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidVariableDirectoryPath(out failureReason)) { return false; }
+			variableDirectoryPath = new VariableDirectoryPath(pathString);
+			return true;
 		}
 
 		///<summary>
@@ -682,11 +624,33 @@ namespace Oragon.Architecture.IO.Path
 		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
 		///<param name="pathString">Represents the path.</param>
 		///<param name="variableFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetVariableFilePath(this string pathString, out IVariableFilePath variableFilePath)
+		///<param name="failureReason">If this method returns <i>false</i>, this is the plain english description of the failure.</param>
+		public static bool TryGetVariableFilePath(this string pathString, out IVariableFilePath variableFilePath, out string failureReason)
 		{
-			string failureReasonUnused;
-			return pathString.TryGetVariableFilePath(out variableFilePath, out failureReasonUnused);
+			variableFilePath = null;
+			if (pathString.IsPathStringNullOrEmpty(out failureReason)) { return false; }
+			if (!pathString.IsValidVariableFilePath(out failureReason)) { return false; }
+			variableFilePath = new VariableFilePath(pathString);
+			return true;
 		}
+
+		private static bool IsPathStringNullOrEmpty(this string pathString, out string failureReason)
+		{
+			if (pathString == null) { failureReason = FAILURE_PATHSTRING_IS_NULL; return true; }
+			if (pathString.Length == 0) { failureReason = FAILURE_PATHSTRING_IS_EMPTY; return true; }
+			failureReason = null;
+			return false;
+		}
+
+		#endregion string to IPath TryGet...Path extension methods, with failureReason
+
+		#region string to IPath TryGet...Path extension methods, withOUT failureReason
+
+		//---------------------------------------------------
+		//
+		// string to IPath TryGet...Path extension methods, withOUT failureReason
+		//
+		//---------------------------------------------------
 
 		///<summary>
 		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
@@ -702,16 +666,29 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
+		///Try get a new <see cref="IAbsoluteFilePath"/> object from this string.
 		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative directory path and as a consequence, the returned <paramref name="relativeDirectoryPath"/> is not null.</returns>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid absolute file path and as a consequence, the returned <paramref name="absoluteFilePath"/> is not null.</returns>
 		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="relativeDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetRelativeDirectoryPath(this string pathString, out IRelativeDirectoryPath relativeDirectoryPath)
+		///<param name="pathString">Represents the path string.</param>
+		///<param name="absoluteFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetAbsoluteFilePath(this string pathString, out IAbsoluteFilePath absoluteFilePath)
 		{
 			string failureReasonUnused;
-			return pathString.TryGetRelativeDirectoryPath(out relativeDirectoryPath, out failureReasonUnused);
+			return pathString.TryGetAbsoluteFilePath(out absoluteFilePath, out failureReasonUnused);
+		}
+
+		///<summary>
+		///Try get a new <see cref="IDirectoryPath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path and as a consequence, the returned <paramref name="directoryPath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="directoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetDirectoryPath(this string pathString, out IDirectoryPath directoryPath)
+		{
+			string failureReasonUnused;
+			return pathString.TryGetDirectoryPath(out directoryPath, out failureReasonUnused);
 		}
 
 		///<summary>
@@ -731,29 +708,19 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Try get a new <see cref="IVariableDirectoryPath"/> object from this string.
+		///Try get a new <see cref="IEnvVarFilePath"/> object from this string.
 		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path that contains variables and as a consequence, the returned <paramref name="variableDirectoryPath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path prefixed with an environment variable and as a consequence, the returned <paramref name="envVarFilePath"/> is not null.</returns>
+		///<remarks>
+		///The path represented by this string doesn't need to exist for this operation to complete properly.
+		///The environment variable prefixing the path doesn't need to exist for this operation to complete properly.
+		///</remarks>
 		///<param name="pathString">Represents the path.</param>
-		///<param name="variableDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetVariableDirectoryPath(this string pathString, out IVariableDirectoryPath variableDirectoryPath)
+		///<param name="envVarFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetEnvVarFilePath(this string pathString, out IEnvVarFilePath envVarFilePath)
 		{
 			string failureReasonUnused;
-			return pathString.TryGetVariableDirectoryPath(out variableDirectoryPath, out failureReasonUnused);
-		}
-
-		///<summary>
-		///Try get a new <see cref="IDirectoryPath"/> object from this string.
-		///</summary>
-		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path and as a consequence, the returned <paramref name="directoryPath"/> is not null.</returns>
-		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
-		///<param name="pathString">Represents the path.</param>
-		///<param name="directoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
-		public static bool TryGetDirectoryPath(this string pathString, out IDirectoryPath directoryPath)
-		{
-			string failureReasonUnused;
-			return pathString.TryGetDirectoryPath(out directoryPath, out failureReasonUnused);
+			return pathString.TryGetEnvVarFilePath(out envVarFilePath, out failureReasonUnused);
 		}
 
 		///<summary>
@@ -769,61 +736,67 @@ namespace Oragon.Architecture.IO.Path
 			return pathString.TryGetFilePath(out filePath, out failureReasonUnused);
 		}
 
+		///<summary>
+		///Try get a new <see cref="IAbsoluteDirectoryPath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative directory path and as a consequence, the returned <paramref name="relativeDirectoryPath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="relativeDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetRelativeDirectoryPath(this string pathString, out IRelativeDirectoryPath relativeDirectoryPath)
+		{
+			string failureReasonUnused;
+			return pathString.TryGetRelativeDirectoryPath(out relativeDirectoryPath, out failureReasonUnused);
+		}
+
+		///<summary>
+		///Try get a new <see cref="IRelativeFilePath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid relative file path and as a consequence, the returned <paramref name="relativeFilePath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="relativeFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetRelativeFilePath(this string pathString, out IRelativeFilePath relativeFilePath)
+		{
+			string failureReasonUnused;
+			return pathString.TryGetRelativeFilePath(out relativeFilePath, out failureReasonUnused);
+		}
+
+		///<summary>
+		///Try get a new <see cref="IVariableDirectoryPath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid directory path that contains variables and as a consequence, the returned <paramref name="variableDirectoryPath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="variableDirectoryPath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetVariableDirectoryPath(this string pathString, out IVariableDirectoryPath variableDirectoryPath)
+		{
+			string failureReasonUnused;
+			return pathString.TryGetVariableDirectoryPath(out variableDirectoryPath, out failureReasonUnused);
+		}
+
+		///<summary>
+		///Try get a new <see cref="IVariableFilePath"/> object from this string.
+		///</summary>
+		///<returns><i>true</i> if <paramref name="pathString"/> is a valid file path that contains variables and as a consequence, the returned <paramref name="variableFilePath"/> is not null.</returns>
+		///<remarks>The path represented by this string doesn't need to exist for this operation to complete properly.</remarks>
+		///<param name="pathString">Represents the path.</param>
+		///<param name="variableFilePath">If this method returns <i>true</i>, this is the returned path object.</param>
+		public static bool TryGetVariableFilePath(this string pathString, out IVariableFilePath variableFilePath)
+		{
+			string failureReasonUnused;
+			return pathString.TryGetVariableFilePath(out variableFilePath, out failureReasonUnused);
+		}
+
 		#endregion string to IPath TryGet...Path extension methods, withOUT failureReason
 
 		#region IsValidFile / IsValidDirectory   don't ask for the kind (Absolute/Relative/EnvVar)
 
 		//----------------------------------------
 		//
-		// IsValidFile / IsValidDirectory   don't ask for the kind (Absolute/Relative/EnvVar)
+		// IsValidFile / IsValidDirectory don't ask for the kind (Absolute/Relative/EnvVar)
 		//
 		//----------------------------------------
-
-		///<summary>
-		///Determine whether this string is a valid file path or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true, the extension method <see cref="ToFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IFilePath"/>.
-		///Notice that this method can return true even if the path represented by this string doesn't exist.
-		///</remarks>
-		///<param name="pathString">This string from which is determined the path validity.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid relative or absolute file path, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidFilePath(this string pathString)
-		{
-			string reasonUnused;
-			return IsValidFilePath(pathString, out reasonUnused);
-		}
-
-		///<summary>
-		///Determine whether this string is a valid file path or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true, the extension method <see cref="ToFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IFilePath"/>.
-		///Notice that this method can return true even if the path represented by this string doesn't exist.
-		///</remarks>
-		///<param name="pathString">This string from which is determined the path validity.</param>
-		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid relative or absolute file path, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidFilePath(this string pathString, out string failureReason)
-		{
-			string pathStringNormalized;
-			if (!pathString.TryGetNotNullNormalizedPath(out pathStringNormalized, out failureReason))
-			{
-				return false;
-			}
-
-			if (pathStringNormalized.IsValidRelativeFilePath()) { return true; }
-			if (pathStringNormalized.IsValidAbsoluteFilePath()) { return true; }
-			if (pathStringNormalized.IsValidEnvVarFilePath()) { return true; }
-			if (pathStringNormalized.IsValidVariableFilePath()) { return true; }
-
-			failureReason = @"The string """ + pathString + @""" is not a valid file path.";
-			return false;
-		}
 
 		///<summary>
 		///Determine whether this string is a valid directory path or not.
@@ -868,6 +841,52 @@ namespace Oragon.Architecture.IO.Path
 			if (pathStringNormalized.IsValidVariableDirectoryPath()) { return true; }
 
 			failureReason = @"The string """ + pathString + @""" is not a valid directory path.";
+			return false;
+		}
+
+		///<summary>
+		///Determine whether this string is a valid file path or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true, the extension method <see cref="ToFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IFilePath"/>.
+		///Notice that this method can return true even if the path represented by this string doesn't exist.
+		///</remarks>
+		///<param name="pathString">This string from which is determined the path validity.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid relative or absolute file path, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidFilePath(this string pathString)
+		{
+			string reasonUnused;
+			return IsValidFilePath(pathString, out reasonUnused);
+		}
+
+		///<summary>
+		///Determine whether this string is a valid file path or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true, the extension method <see cref="ToFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IFilePath"/>.
+		///Notice that this method can return true even if the path represented by this string doesn't exist.
+		///</remarks>
+		///<param name="pathString">This string from which is determined the path validity.</param>
+		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid relative or absolute file path, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidFilePath(this string pathString, out string failureReason)
+		{
+			string pathStringNormalized;
+			if (!pathString.TryGetNotNullNormalizedPath(out pathStringNormalized, out failureReason))
+			{
+				return false;
+			}
+
+			if (pathStringNormalized.IsValidRelativeFilePath()) { return true; }
+			if (pathStringNormalized.IsValidAbsoluteFilePath()) { return true; }
+			if (pathStringNormalized.IsValidEnvVarFilePath()) { return true; }
+			if (pathStringNormalized.IsValidVariableFilePath()) { return true; }
+
+			failureReason = @"The string """ + pathString + @""" is not a valid file path.";
 			return false;
 		}
 
@@ -946,6 +965,59 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
+		///Determine whether this string is a valid directory path prefixed with an environment variable or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true, the extension method <see cref="ToEnvVarDirectoryPath(string)"/> can be safely invoked on this string to obtain a <see cref="IEnvVarDirectoryPath"/>.
+		///</remarks>
+		///<param name="pathString">This string from which is determined the path validity.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid path prefixed with an environment variable, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidEnvVarDirectoryPath(this string pathString)
+		{
+			string reasonUnused;
+			return IsValidEnvVarDirectoryPath(pathString, out reasonUnused);
+		}
+
+		///<summary>
+		///Determine whether this string is a valid directory path prefixed with an environment variable or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true, the extension method <see cref="ToEnvVarDirectoryPath(string)"/> can be safely invoked on this string to obtain a <see cref="IEnvVarDirectoryPath"/>.
+		///</remarks>
+		///<param name="pathString">This string from which is determined the path validity.</param>
+		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid path prefixed with an environment variable, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidEnvVarDirectoryPath(this string pathString, out string failureReason)
+		{
+			string pathStringNormalized;
+			if (!pathString.TryGetNotNullNormalizedPath(out pathStringNormalized, out failureReason))
+			{
+				return false;
+			}
+
+			if (!MiscHelpers.IsAnEnvVarPath(pathStringNormalized))
+			{
+				failureReason = @"The parameter pathString is not prefixed with an environment variable (like ""%USERPROFILE%"")";
+				return false;
+			}
+
+			if (AbsoluteRelativePathHelpers.ContainsInnerSpecialDir(pathStringNormalized))
+			{
+				string unusedPath;
+				if (!AbsoluteRelativePathHelpers.TryResolveInnerSpecialDir(pathStringNormalized, out unusedPath, out failureReason))
+				{
+					return false;
+				}
+			}
+			failureReason = null;
+			return true;
+		}
+
+		///<summary>
 		///Determine whether this string is a valid relative directory path or not.
 		///</summary>
 		///<remarks>
@@ -995,59 +1067,6 @@ namespace Oragon.Architecture.IO.Path
 			}
 #endif
 
-			failureReason = null;
-			return true;
-		}
-
-		///<summary>
-		///Determine whether this string is a valid directory path prefixed with an environment variable or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true, the extension method <see cref="ToEnvVarDirectoryPath(string)"/> can be safely invoked on this string to obtain a <see cref="IEnvVarDirectoryPath"/>.
-		///</remarks>
-		///<param name="pathString">This string from which is determined the path validity.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid path prefixed with an environment variable, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidEnvVarDirectoryPath(this string pathString)
-		{
-			string reasonUnused;
-			return IsValidEnvVarDirectoryPath(pathString, out reasonUnused);
-		}
-
-		///<summary>
-		///Determine whether this string is a valid directory path prefixed with an environment variable or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true, the extension method <see cref="ToEnvVarDirectoryPath(string)"/> can be safely invoked on this string to obtain a <see cref="IEnvVarDirectoryPath"/>.
-		///</remarks>
-		///<param name="pathString">This string from which is determined the path validity.</param>
-		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid path prefixed with an environment variable, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidEnvVarDirectoryPath(this string pathString, out string failureReason)
-		{
-			string pathStringNormalized;
-			if (!pathString.TryGetNotNullNormalizedPath(out pathStringNormalized, out failureReason))
-			{
-				return false;
-			}
-
-			if (!MiscHelpers.IsAnEnvVarPath(pathStringNormalized))
-			{
-				failureReason = @"The parameter pathString is not prefixed with an environment variable (like ""%USERPROFILE%"")";
-				return false;
-			}
-
-			if (AbsoluteRelativePathHelpers.ContainsInnerSpecialDir(pathStringNormalized))
-			{
-				string unusedPath;
-				if (!AbsoluteRelativePathHelpers.TryResolveInnerSpecialDir(pathStringNormalized, out unusedPath, out failureReason))
-				{
-					return false;
-				}
-			}
 			failureReason = null;
 			return true;
 		}
@@ -1109,66 +1128,14 @@ namespace Oragon.Architecture.IO.Path
 
 		#region IsValidFile  Absolute/Relative/EnvVar/Variable
 
+		private const string INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME = "The parameter pathString is not a file path because it doesn't have a valid file name.";
+
 		//-------------------------------------------------------------------------------------------
 		//
-		// IsValidFile path check is made on a pattern
-		// First pathString must be a valid directory path, and then it must have a parent dir
+		// IsValidFile path check is made on a pattern First pathString must be a valid directory path, and then it must have a parent dir
 		//
 		//-------------------------------------------------------------------------------------------
 		private const string INVALID_FILE_PATH_STRING_COZ_NO_PARENT_DIR = "The parameter pathString is not a file path because it doesn't have at least one parent directory.";
-
-		private const string INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME = "The parameter pathString is not a file path because it doesn't have a valid file name.";
-
-		private static bool IsThisValidDirectoryPathAValidFilePath(this string pathString, out string fileName, out string failureReason)
-		{
-			Debug.Assert(pathString != null);
-			Debug.Assert(pathString.Length > 0);
-			Debug.Assert(pathString.IsValidDirectoryPath());
-
-			var pathStringNormalized = MiscHelpers.NormalizePath(pathString);
-
-			//
-			// Special Invalid PathName!
-			//
-			if (pathStringNormalized.EndsWith(@"\."))
-			{
-				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME;
-				fileName = null;
-				return false;
-			}
-			if (pathStringNormalized.EndsWith(@"\.."))
-			{
-				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME;
-				fileName = null;
-				return false;
-			}
-
-			//
-			// Reolve InnerSpecialDir and check the file HasParentDirectory !
-			//
-			if (AbsoluteRelativePathHelpers.ContainsInnerSpecialDir(pathStringNormalized))
-			{
-				string pathStringNormalizedResolved, failureReasonUnused;
-				var b = AbsoluteRelativePathHelpers.TryResolveInnerSpecialDir(pathStringNormalized, out pathStringNormalizedResolved, out failureReasonUnused);
-				Debug.Assert(b); // Coz already verified in a IsValidPath !
-				pathStringNormalized = pathStringNormalizedResolved;
-			}
-
-			if (!MiscHelpers.HasParentDirectory(pathStringNormalized))
-			{
-				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_PARENT_DIR;
-				fileName = null;
-				return false;
-			}
-
-			fileName = MiscHelpers.GetLastName(pathStringNormalized);
-			Debug.Assert(fileName != null);
-			Debug.Assert(fileName.Length > 0);
-			Debug.Assert(fileName != AbsoluteRelativePathHelpers.PARENT_DIR_DOUBLEDOT);
-			Debug.Assert(fileName != AbsoluteRelativePathHelpers.CURRENT_DIR_SINGLEDOT);
-			failureReason = null;
-			return true;
-		}
 
 		///<summary>
 		///Determine whether this string is a valid file absolute path or not.
@@ -1221,43 +1188,6 @@ namespace Oragon.Architecture.IO.Path
 		}
 
 		///<summary>
-		///Determine whether this string is a valid relative file path or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true, the extension method <see cref="ToRelativeFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IRelativeFilePath"/>.
-		///</remarks>
-		///<param name="pathString">This string from which is determined the path validity.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid relative file path, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidRelativeFilePath(this string pathString)
-		{
-			string reasonUnused;
-			return pathString.IsValidRelativeFilePath(out reasonUnused);
-		}
-
-		///<summary>
-		///Determine whether this string is a valid relative file path or not.
-		///</summary>
-		///<remarks>
-		///If this method returns true <see cref="ToRelativeFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IRelativeFilePath"/>.
-		///</remarks>
-		///<param name="pathString">this string</param>
-		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
-		///<returns>
-		///<i>true</i> if this string represents a valid relative file path, otherwise <i>false</i>.
-		///</returns>
-		public static bool IsValidRelativeFilePath(this string pathString, out string failureReason)
-		{
-			if (!pathString.IsValidRelativeDirectoryPath(out failureReason))
-			{
-				return false;
-			}
-			string fileNameUnused;
-			return IsThisValidDirectoryPathAValidFilePath(pathString, out fileNameUnused, out failureReason);
-		}
-
-		///<summary>
 		///Determine whether this string is a valid file path prefixed with an environment variable or not.
 		///</summary>
 		///<remarks>
@@ -1291,6 +1221,43 @@ namespace Oragon.Architecture.IO.Path
 				return false;
 			}
 
+			string fileNameUnused;
+			return IsThisValidDirectoryPathAValidFilePath(pathString, out fileNameUnused, out failureReason);
+		}
+
+		///<summary>
+		///Determine whether this string is a valid relative file path or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true, the extension method <see cref="ToRelativeFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IRelativeFilePath"/>.
+		///</remarks>
+		///<param name="pathString">This string from which is determined the path validity.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid relative file path, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidRelativeFilePath(this string pathString)
+		{
+			string reasonUnused;
+			return pathString.IsValidRelativeFilePath(out reasonUnused);
+		}
+
+		///<summary>
+		///Determine whether this string is a valid relative file path or not.
+		///</summary>
+		///<remarks>
+		///If this method returns true <see cref="ToRelativeFilePath(string)"/> can be safely invoked on this string to obtain a <see cref="IRelativeFilePath"/>.
+		///</remarks>
+		///<param name="pathString">this string</param>
+		///<param name="failureReason">If false is returned, failureReason contains the plain english description of the failure.</param>
+		///<returns>
+		///<i>true</i> if this string represents a valid relative file path, otherwise <i>false</i>.
+		///</returns>
+		public static bool IsValidRelativeFilePath(this string pathString, out string failureReason)
+		{
+			if (!pathString.IsValidRelativeDirectoryPath(out failureReason))
+			{
+				return false;
+			}
 			string fileNameUnused;
 			return IsThisValidDirectoryPathAValidFilePath(pathString, out fileNameUnused, out failureReason);
 		}
@@ -1340,6 +1307,57 @@ namespace Oragon.Architecture.IO.Path
 				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_PARENT_DIR;
 				return false;
 			}
+			return true;
+		}
+
+		private static bool IsThisValidDirectoryPathAValidFilePath(this string pathString, out string fileName, out string failureReason)
+		{
+			Debug.Assert(pathString != null);
+			Debug.Assert(pathString.Length > 0);
+			Debug.Assert(pathString.IsValidDirectoryPath());
+
+			var pathStringNormalized = MiscHelpers.NormalizePath(pathString);
+
+			//
+			// Special Invalid PathName!
+			//
+			if (pathStringNormalized.EndsWith(@"\."))
+			{
+				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME;
+				fileName = null;
+				return false;
+			}
+			if (pathStringNormalized.EndsWith(@"\.."))
+			{
+				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_FILE_NAME;
+				fileName = null;
+				return false;
+			}
+
+			//
+			// Reolve InnerSpecialDir and check the file HasParentDirectory !
+			//
+			if (AbsoluteRelativePathHelpers.ContainsInnerSpecialDir(pathStringNormalized))
+			{
+				string pathStringNormalizedResolved, failureReasonUnused;
+				var b = AbsoluteRelativePathHelpers.TryResolveInnerSpecialDir(pathStringNormalized, out pathStringNormalizedResolved, out failureReasonUnused);
+				Debug.Assert(b); // Coz already verified in a IsValidPath !
+				pathStringNormalized = pathStringNormalizedResolved;
+			}
+
+			if (!MiscHelpers.HasParentDirectory(pathStringNormalized))
+			{
+				failureReason = INVALID_FILE_PATH_STRING_COZ_NO_PARENT_DIR;
+				fileName = null;
+				return false;
+			}
+
+			fileName = MiscHelpers.GetLastName(pathStringNormalized);
+			Debug.Assert(fileName != null);
+			Debug.Assert(fileName.Length > 0);
+			Debug.Assert(fileName != AbsoluteRelativePathHelpers.PARENT_DIR_DOUBLEDOT);
+			Debug.Assert(fileName != AbsoluteRelativePathHelpers.CURRENT_DIR_SINGLEDOT);
+			failureReason = null;
 			return true;
 		}
 

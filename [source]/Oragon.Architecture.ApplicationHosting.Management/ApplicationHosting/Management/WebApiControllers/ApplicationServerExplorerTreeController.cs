@@ -1,22 +1,25 @@
-﻿using Oragon.Architecture.ApplicationHosting.Management.ViewModel;
-using Oragon.Architecture.ApplicationHosting.Management.Repository;
+﻿using Oragon.Architecture.ApplicationHosting.Management.Repository;
+using Oragon.Architecture.ApplicationHosting.Management.ViewModel;
+using Oragon.Architecture.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using Oragon.Architecture.Extensions;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 {
 	[RoutePrefix("api/ApplicationServerExplorerTree")]
 	public class ApplicationServerExplorerTreeController : ApiController
 	{
-		ApplicationRepository ApplicationRepository { get; set; }
-		NotificationRepository NotificationRepository { get; set; }
+		#region Private Properties
 
+		private ApplicationRepository ApplicationRepository { get; set; }
+
+		private NotificationRepository NotificationRepository { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		[HttpGet]
 		[Route("GetNodes")]
@@ -30,45 +33,42 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 				actionConfirmation = null
 			};
 
-
-
 			if (node == "root")
 			{
-				return new TreeItem[] 
-				{ 
+				return new TreeItem[]
+				{
 					new TreeItem()
-					{ 
-						id="/Servers/", 
-						text = "Servers", 
-						iconCls= "AppIcons-folder-brick", 
-						leaf=false, 
-						expanded = false, 
+					{
+						id="/Servers/",
+						text = "Servers",
+						iconCls= "AppIcons-folder-brick",
+						leaf=false,
+						expanded = false,
 						children = null,
 						menuItems = new MenuItem[]
 						{
-							nodeRefresh 
+							nodeRefresh
 						}
 					},
 					new TreeItem()
-					{ 
+					{
 						id="/Repository",
-						text = "Repository", 
-						iconCls= "AppIcons-information", 
-						leaf=false, 
-						expanded = false, 
+						text = "Repository",
+						iconCls= "AppIcons-information",
+						leaf=false,
+						expanded = false,
 						children = null,
 						menuItems = new MenuItem[]
 						{
 							nodeRefresh,
 							new MenuItem()
-							{ 
-								text="Add New Application", 
-								iconCls="AppIcons-application-add", 
+							{
+								text="Add New Application",
+								iconCls="AppIcons-application-add",
 								actionRoute="Repository|Add",
 								actionConfirmation = null
 							}
 						}
-						
 					}
 				};
 			}
@@ -85,7 +85,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								children = null,
 								menuItems = new MenuItem[]
 								{
-									nodeRefresh 
+									nodeRefresh
 								}
 							};
 
@@ -110,12 +110,12 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								{
 									nodeRefresh,
 									new MenuItem()
-									{ 
-										text="Add Application", 
-										iconCls="AppIcons-application-add", 
+									{
+										text="Add Application",
+										iconCls="AppIcons-application-add",
 										actionRoute="Host|AddApplication",
 										actionConfirmation = null,
-									} 
+									}
 								}
 							};
 
@@ -142,35 +142,35 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 								{
 									nodeRefresh,
 									new MenuItem()
-									{ 
-										text="Start Application", 
-										iconCls="AppIcons-control-play-blue", 
+									{
+										text="Start Application",
+										iconCls="AppIcons-control-play-blue",
 										actionRoute="Application|Start",
 										actionConfirmation = new ActionConfirmation("Start Application", MessageBoxButtons.YESNO, MessageBoxIcon.QUESTION, "Please confirm start operation this application on server '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
 									} ,
 									new MenuItem()
-									{ 
-										text="Stop Application", 
-										iconCls="AppIcons-control-stop-blue", 
+									{
+										text="Stop Application",
+										iconCls="AppIcons-control-stop-blue",
 										actionRoute="Application|Stop",
 										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.QUESTION, "Are you shure? This operation will stop this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
 									} ,
 									new MenuItem()
-									{ 
-										text="Remove Application", 
-										iconCls="AppIcons-application-delete", 
+									{
+										text="Remove Application",
+										iconCls="AppIcons-application-delete",
 										actionRoute="Application|Remove",
 										actionConfirmation = new ActionConfirmation("Remove Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.WARNING, "Realy? Are you shure? This operation will REMOVE this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
-									} 
+									}
 								}
 							};
 
 				return query.ToList();
 			}
-			
 
 			return new TreeItem[] { };
-
 		}
+
+		#endregion Public Methods
 	}
 }

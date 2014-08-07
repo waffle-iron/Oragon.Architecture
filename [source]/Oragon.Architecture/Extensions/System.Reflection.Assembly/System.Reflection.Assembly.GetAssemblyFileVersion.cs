@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
 
 		public static string GetAssemblyFileVersion(this System.Reflection.Assembly @this)
 		{
@@ -20,5 +14,7 @@ namespace Oragon.Architecture.Extensions
 				returnValue = attr.Version;
 			return returnValue;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -5,8 +5,12 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private sealed class RelativeFilePath : RelativePathBase, IRelativeFilePath
 		{
+			#region Internal Constructors
+
 			internal RelativeFilePath(string pathString)
 				: base(pathString)
 			{
@@ -15,14 +19,54 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(pathString.IsValidRelativeFilePath());
 			}
 
+			#endregion Internal Constructors
+
+			#region Public Properties
+
+			public string FileExtension { get { return FileNameHelpers.GetFileNameExtension(m_PathString); } }
+
 			//
-			//  File Name and File Name Extension
+			// File Name and File Name Extension
 			//
 			public string FileName { get { return FileNameHelpers.GetFileName(m_PathString); } }
 
 			public string FileNameWithoutExtension { get { return FileNameHelpers.GetFileNameWithoutExtension(m_PathString); } }
 
-			public string FileExtension { get { return FileNameHelpers.GetFileNameExtension(m_PathString); } }
+			//
+			// IsFilePath ; IsDirectoryPath
+			//
+			public override bool IsDirectoryPath { get { return false; } }
+
+			public override bool IsFilePath { get { return true; } }
+
+			#endregion Public Properties
+
+			#region Public Methods
+
+			public override IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath path)
+			{
+				return (this as IRelativeFilePath).GetAbsolutePathFrom(path);
+			}
+
+			public IRelativeDirectoryPath GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
+				var pathTyped = path as IRelativeDirectoryPath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
+
+			public IRelativeFilePath GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
+				var pathTyped = path as IRelativeFilePath;
+				Debug.Assert(pathTyped != null);
+				return pathTyped;
+			}
 
 			public bool HasExtension(string extension)
 			{
@@ -33,15 +77,32 @@ namespace Oragon.Architecture.IO.Path
 				return FileNameHelpers.HasExtension(m_PathString, extension);
 			}
 
-			//
-			//  IsFilePath ; IsDirectoryPath
-			//
-			public override bool IsDirectoryPath { get { return false; } }
+			IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
+			{
+				Debug.Assert(directoryName != null); // Enforced by contract
+				Debug.Assert(directoryName.Length > 0); // Enforced by contract
+				return this.GetBrotherDirectoryWithName(directoryName);
+			}
 
-			public override bool IsFilePath { get { return true; } }
+			// Explicit Impl methods
+			IFilePath IFilePath.GetBrotherFileWithName(string fileName)
+			{
+				Debug.Assert(fileName != null); // Enforced by contract
+				Debug.Assert(fileName.Length > 0); // Enforced by contract
+				return this.GetBrotherFileWithName(fileName);
+			}
+
+			IFilePath IFilePath.UpdateExtension(string newExtension)
+			{
+				// All these 3 assertions have been checked by contract!
+				Debug.Assert(newExtension != null);
+				Debug.Assert(newExtension.Length >= 2);
+				Debug.Assert(newExtension[0] == '.');
+				return this.UpdateExtension(newExtension);
+			}
 
 			//
-			//  Absolute/Relative pathString conversion
+			// Absolute/Relative pathString conversion
 			//
 			IAbsoluteFilePath IRelativeFilePath.GetAbsolutePathFrom(IAbsoluteDirectoryPath path)
 			{
@@ -56,35 +117,9 @@ namespace Oragon.Architecture.IO.Path
 				return (pathAbsolute + MiscHelpers.DIR_SEPARATOR_CHAR + this.FileName).ToAbsoluteFilePath();
 			}
 
-			public override IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath path)
-			{
-				return (this as IRelativeFilePath).GetAbsolutePathFrom(path);
-			}
-
 			//
-			//  Path Browsing facilities
+			// Path Browsing facilities
 			//
-
-			public IRelativeFilePath GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				IFilePath path = PathBrowsingHelpers.GetBrotherFileWithName(this, fileName);
-				var pathTyped = path as IRelativeFilePath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
-			public IRelativeDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				IDirectoryPath path = PathBrowsingHelpers.GetBrotherDirectoryWithName(this, directoryName);
-				var pathTyped = path as IRelativeDirectoryPath;
-				Debug.Assert(pathTyped != null);
-				return pathTyped;
-			}
-
 			public IRelativeFilePath UpdateExtension(string newExtension)
 			{
 				// All these 3 assertions have been checked by contract!
@@ -96,29 +131,9 @@ namespace Oragon.Architecture.IO.Path
 				return new RelativeFilePath(pathString);
 			}
 
-			// Explicit Impl methods
-			IFilePath IFilePath.GetBrotherFileWithName(string fileName)
-			{
-				Debug.Assert(fileName != null); // Enforced by contract
-				Debug.Assert(fileName.Length > 0); // Enforced by contract
-				return this.GetBrotherFileWithName(fileName);
-			}
-
-			IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
-			{
-				Debug.Assert(directoryName != null); // Enforced by contract
-				Debug.Assert(directoryName.Length > 0); // Enforced by contract
-				return this.GetBrotherDirectoryWithName(directoryName);
-			}
-
-			IFilePath IFilePath.UpdateExtension(string newExtension)
-			{
-				// All these 3 assertions have been checked by contract!
-				Debug.Assert(newExtension != null);
-				Debug.Assert(newExtension.Length >= 2);
-				Debug.Assert(newExtension[0] == '.');
-				return this.UpdateExtension(newExtension);
-			}
+			#endregion Public Methods
 		}
+
+		#endregion Private Classes
 	}
 }

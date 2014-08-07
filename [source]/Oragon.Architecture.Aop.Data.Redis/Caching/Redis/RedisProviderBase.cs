@@ -1,26 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
-using ServiceStack.Redis;
+﻿using Newtonsoft.Json;
 using Oragon.Architecture.Extensions;
 using Oragon.Architecture.Serialization;
+using ServiceStack.Redis;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Oragon.Architecture.Caching.Redis
 {
 	public class RedisProviderBase : IDisposable
 	{
-		public IRedisClient NativeClient { get; private set; }
-
-		protected string IsolationKey { get; set; }
-
+		#region Public Constructors
 
 		public RedisProviderBase(IRedisClient redisClient, string isolationKey)
 		{
 			this.NativeClient = redisClient;
 			this.IsolationKey = isolationKey;
 		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public IRedisClient NativeClient { get; private set; }
+
+		#endregion Public Properties
+
+		#region Protected Properties
+
+		protected string IsolationKey { get; set; }
+
+		#endregion Protected Properties
 
 		#region Serialization
 
@@ -53,9 +63,7 @@ namespace Oragon.Architecture.Caching.Redis
 			return settings;
 		}
 
-
-
-		#endregion
+		#endregion Serialization
 
 		#region "Key Management"
 
@@ -100,14 +108,20 @@ namespace Oragon.Architecture.Caching.Redis
 			return allKeysList;
 		}
 
-		#endregion
+		#endregion "Key Management"
 
+		#region Public Methods
 
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -121,6 +135,6 @@ namespace Oragon.Architecture.Caching.Redis
 			}
 		}
 
-		
+		#endregion Protected Methods
 	}
 }

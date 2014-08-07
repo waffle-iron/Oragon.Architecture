@@ -1,46 +1,37 @@
 ﻿using Microsoft.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Oragon.Architecture.Extensions;
-using System.Net.Mime;
+using System;
 using System.IO;
+using System.Net.Mime;
+using System.Text;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public static class StreamResultExtensions
 	{
+		#region Public Methods
+
 		public static StreamResult Stream(this OMvcController @this, Stream stream, string contentType)
 		{
 			return new StreamResult() { Stream = stream, ContentType = contentType };
 		}
+
+		#endregion Public Methods
 	}
 
 	public class StreamResult : MvcResult
 	{
-		public string ContentType { get; set; }
+		#region Public Properties
 
-		public System.IO.Stream Stream { get; set; }
+		public string ContentType { get; set; }
 
 		public string DownloadFileName { get; set; }
 
-		public override void Execute(IOwinContext context)
-		{
-			if (context == null)
-			{
-				throw new ArgumentNullException("context");
-			}
-			context.Response.ContentType = this.ContentType;
+		public System.IO.Stream Stream { get; set; }
 
-			if (this.DownloadFileName.IsNotNullOrWhiteSpace())
-			{
-				string headerValue = GetHeaderValue(this.DownloadFileName);
-				context.Response.Headers.Set("Content-Disposition", headerValue);
-			}
-			this.Stream.CopyTo(context.Response.Body);
-		}
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public static string GetHeaderValue(string fileName)
 		{
@@ -58,6 +49,39 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			};
 			return contentDisposition.ToString();
 		}
+
+		public override void Execute(IOwinContext context)
+		{
+			if (context == null)
+			{
+				throw new ArgumentNullException("context");
+			}
+			context.Response.ContentType = this.ContentType;
+
+			if (this.DownloadFileName.IsNotNullOrWhiteSpace())
+			{
+				string headerValue = GetHeaderValue(this.DownloadFileName);
+				context.Response.Headers.Set("Content-Disposition", headerValue);
+			}
+			this.Stream.CopyTo(context.Response.Body);
+		}
+
+		#endregion Public Methods
+
+		#region Private Methods
+
+		private static void AddByteToStringBuilder(byte b, StringBuilder builder)
+		{
+			builder.Append('%');
+			AddHexDigitToStringBuilder(b >> 4, builder);
+			AddHexDigitToStringBuilder((int)(b % 16), builder);
+		}
+
+		private static void AddHexDigitToStringBuilder(int digit, StringBuilder builder)
+		{
+			builder.Append("0123456789ABCDEF"[digit]);
+		}
+
 		private static string CreateRfc2231HeaderValue(string filename)
 		{
 			StringBuilder stringBuilder = new StringBuilder("attachment; filename*=UTF-8''");
@@ -77,6 +101,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			}
 			return stringBuilder.ToString();
 		}
+
 		private static bool IsByteValidHeaderValueCharacter(byte b)
 		{
 			if (48 <= b && b <= 57)
@@ -100,8 +125,10 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 						case 36:
 						case 38:
 							break;
+
 						case 37:
 							return false;
+
 						default:
 							switch (b)
 							{
@@ -109,8 +136,10 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 								case 45:
 								case 46:
 									break;
+
 								case 44:
 									return false;
+
 								default:
 									return false;
 							}
@@ -127,15 +156,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			}
 			return true;
 		}
-		private static void AddByteToStringBuilder(byte b, StringBuilder builder)
-		{
-			builder.Append('%');
-			AddHexDigitToStringBuilder(b >> 4, builder);
-			AddHexDigitToStringBuilder((int)(b % 16), builder);
-		}
-		private static void AddHexDigitToStringBuilder(int digit, StringBuilder builder)
-		{
-			builder.Append("0123456789ABCDEF"[digit]);
-		}
+
+		#endregion Private Methods
 	}
 }

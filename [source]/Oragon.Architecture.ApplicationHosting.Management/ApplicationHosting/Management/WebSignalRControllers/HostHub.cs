@@ -2,15 +2,8 @@
 using Microsoft.AspNet.SignalR.Hubs;
 using Oragon.Architecture.ApplicationHosting.Management.Repository;
 using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.ApplicationModel;
-using Oragon.Architecture.ApplicationHosting.Management.Repository.Models.NotificationModel;
 using Oragon.Architecture.ApplicationHosting.Services.Contracts;
-using Oragon.Architecture.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers
 {
@@ -18,9 +11,15 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 	[HubName("HostHub")]
 	public class HostHub : Hub, Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHub
 	{
-		ApplicationRepository ApplicationRepository { get; set; }
-		NotificationRepository NotificationRepository { get; set; }
+		#region Private Properties
 
+		private ApplicationRepository ApplicationRepository { get; set; }
+
+		private NotificationRepository NotificationRepository { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		public RegisterHostResponseMessage RegisterHost(RegisterHostRequestMessage request)
 		{
@@ -30,15 +29,6 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.ApplicationRegistered, "Application Regitered", host.ID.ToString("D"));
 			return new RegisterHostResponseMessage() { ClientID = host.ID };
 		}
-
-		public UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request)
-		{
-			Host host = this.ApplicationRepository.Unregister(request);
-			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.ApplicationUnregistered, "Application Unregitered", request.ClientID.ToString("D"));
-			return new UnregisterHostResponseMessage();
-		}
-
-
 
 		public void Teste1(string argument)
 		{
@@ -50,5 +40,14 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebSignalRController
 		{
 			return argument.Length;
 		}
+
+		public UnregisterHostResponseMessage UnregisterHost(UnregisterHostRequestMessage request)
+		{
+			Host host = this.ApplicationRepository.Unregister(request);
+			this.NotificationRepository.AddMessage(NotificationRepository.NotificationTypes.ApplicationUnregistered, "Application Unregitered", request.ClientID.ToString("D"));
+			return new UnregisterHostResponseMessage();
+		}
+
+		#endregion Public Methods
 	}
 }

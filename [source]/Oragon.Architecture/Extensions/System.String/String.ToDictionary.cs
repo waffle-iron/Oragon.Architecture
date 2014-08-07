@@ -1,16 +1,14 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		public static Dictionary<string, string> ToDictionary(this string[] stringArray)
 		{
 			Dictionary<string, string> returnDic = new Dictionary<string, string>();
@@ -31,5 +29,6 @@ namespace Oragon.Architecture.Extensions
 			return returnDic;
 		}
 
+		#endregion Public Methods
 	}
 }

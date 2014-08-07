@@ -4,8 +4,12 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private abstract class RelativePathBase : PathBase, IRelativePath
 		{
+			#region Protected Constructors
+
 			protected RelativePathBase(string pathString) :
 				base(pathString)
 			{
@@ -13,15 +17,9 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(pathString.Length > 0);
 			}
 
-			public override bool IsAbsolutePath { get { return false; } }
+			#endregion Protected Constructors
 
-			public override bool IsRelativePath { get { return true; } }
-
-			public override bool IsEnvVarPath { get { return false; } }
-
-			public override bool IsVariablePath { get { return false; } }
-
-			public override PathMode PathMode { get { return PathMode.Relative; } }
+			#region Public Properties
 
 			IRelativeDirectoryPath IRelativePath.ParentDirectoryPath
 			{
@@ -32,6 +30,14 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
+			public override bool IsAbsolutePath { get { return false; } }
+
+			public override bool IsEnvVarPath { get { return false; } }
+
+			public override bool IsRelativePath { get { return true; } }
+
+			public override bool IsVariablePath { get { return false; } }
+
 			public override IDirectoryPath ParentDirectoryPath
 			{
 				get
@@ -41,10 +47,11 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
-			//
-			//  Absolute/Relative pathString conversion
-			//
-			public abstract IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath path);
+			public override PathMode PathMode { get { return PathMode.Relative; } }
+
+			#endregion Public Properties
+
+			#region Public Methods
 
 			public bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path)
 			{
@@ -59,6 +66,15 @@ namespace Oragon.Architecture.IO.Path
 				string pathAbsoluteUnused;
 				return AbsoluteRelativePathHelpers.TryGetAbsolutePathFrom(path, this, out pathAbsoluteUnused, out failureReason);
 			}
+
+			//
+			// Absolute/Relative pathString conversion
+			//
+			public abstract IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath path);
+
+			#endregion Public Methods
 		}
+
+		#endregion Private Classes
 	}
 }

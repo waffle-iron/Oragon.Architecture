@@ -13,6 +13,17 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IPathContract))]
 	public interface IPath
 	{
+		#region Public Properties
+
+		///<summary>Gets a value indicating whether this path has a parent directory path</summary>
+		///<remarks>
+		///Root directories representing a drive, like C: or D: don't have a parent directory path.
+		///Relative path like ".\" or "..\" don't have a parent directory path.
+		///Notice that a file path necessarily has a parent directory path.
+		///</remarks>
+		///<returns>true if this path has a parent directory path, else returns false.</returns>
+		bool HasParentDirectory { get; }
+
 		///<summary>Gets a value indicating whether this path is an absolute path.</summary>
 		///<remarks>
 		///An absolute path can be down-casted to <see cref="IAbsolutePath"/>.
@@ -20,30 +31,6 @@ namespace Oragon.Architecture.IO.Path
 		///</remarks>
 		///<returns><i>true</i> if this path is an absolute path, else returns false.</returns>
 		bool IsAbsolutePath { get; }
-
-		///<summary>Gets a value indicating whether this path is a relative path.</summary>
-		///<remarks>
-		///A relative path can be down-casted to <see cref="IRelativePath"/>.
-		///A <see cref="IRelativePath"/> can be down-casted to a <see cref="IRelativeFilePath"/> or (exclusive) a <see cref="IRelativeDirectoryPath"/>.
-		///</remarks>
-		///<returns><i>true</i> if this path is a relative path, else returns false.</returns>
-		bool IsRelativePath { get; }
-
-		///<summary>Gets a value indicating whether this path is prefixed with an environment variable.</summary>
-		///<remarks>
-		///A path prefixed with an environment variable can be down-casted to <see cref="IEnvVarPath"/>.
-		///A <see cref="IEnvVarPath"/> can be down-casted to a <see cref="IEnvVarFilePath"/> or (exclusive) a <see cref="IEnvVarDirectoryPath"/>.
-		///</remarks>
-		///<returns><i>true</i> if this path is prefixed with an environment variable, else returns <i>false</i>.</returns>
-		bool IsEnvVarPath { get; }
-
-		///<summary>Gets a value indicating whether this path contains variable(s).</summary>
-		///<remarks>
-		///A path contains variable(s) can be down-casted to <see cref="IVariablePath"/>.
-		///A <see cref="IVariablePath"/> can be down-casted to a <see cref="IVariableFilePath"/> or (exclusive) a <see cref="IVariableDirectoryPath"/>.
-		///</remarks>
-		///<returns><i>true</i> if this path contains variable(s), else returns <i>false</i>.</returns>
-		bool IsVariablePath { get; }
 
 		///<summary>Gets a value indicating whether this path is a directory path.</summary>
 		///<remarks>
@@ -53,6 +40,14 @@ namespace Oragon.Architecture.IO.Path
 		///<returns><i>true</i> if this path is a directory path, else returns <i>false</i>.</returns>
 		bool IsDirectoryPath { get; }
 
+		///<summary>Gets a value indicating whether this path is prefixed with an environment variable.</summary>
+		///<remarks>
+		///A path prefixed with an environment variable can be down-casted to <see cref="IEnvVarPath"/>.
+		///A <see cref="IEnvVarPath"/> can be down-casted to a <see cref="IEnvVarFilePath"/> or (exclusive) a <see cref="IEnvVarDirectoryPath"/>.
+		///</remarks>
+		///<returns><i>true</i> if this path is prefixed with an environment variable, else returns <i>false</i>.</returns>
+		bool IsEnvVarPath { get; }
+
 		///<summary>Gets a value indicating whether this path is a file path.</summary>
 		///<remarks>
 		///A relative path can be down-casted to <see cref="IFilePath"/>.
@@ -61,10 +56,21 @@ namespace Oragon.Architecture.IO.Path
 		///<returns><i>true</i> if this path is a file path, else returns <i>false</i>.</returns>
 		bool IsFilePath { get; }
 
-		///<summary>
-		///Gets a value indicating this path mode as defined in the enumeration <see cref="PathMode"/>.
-		///</summary>
-		PathMode PathMode { get; }
+		///<summary>Gets a value indicating whether this path is a relative path.</summary>
+		///<remarks>
+		///A relative path can be down-casted to <see cref="IRelativePath"/>.
+		///A <see cref="IRelativePath"/> can be down-casted to a <see cref="IRelativeFilePath"/> or (exclusive) a <see cref="IRelativeDirectoryPath"/>.
+		///</remarks>
+		///<returns><i>true</i> if this path is a relative path, else returns false.</returns>
+		bool IsRelativePath { get; }
+
+		///<summary>Gets a value indicating whether this path contains variable(s).</summary>
+		///<remarks>
+		///A path contains variable(s) can be down-casted to <see cref="IVariablePath"/>.
+		///A <see cref="IVariablePath"/> can be down-casted to a <see cref="IVariableFilePath"/> or (exclusive) a <see cref="IVariableDirectoryPath"/>.
+		///</remarks>
+		///<returns><i>true</i> if this path contains variable(s), else returns <i>false</i>.</returns>
+		bool IsVariablePath { get; }
 
 		///<summary>Returns the parent directory path.</summary>
 		///<exception cref="System.InvalidOperationException">
@@ -76,6 +82,15 @@ namespace Oragon.Architecture.IO.Path
 		IDirectoryPath ParentDirectoryPath { get; }
 
 		///<summary>
+		///Gets a value indicating this path mode as defined in the enumeration <see cref="PathMode"/>.
+		///</summary>
+		PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		///<summary>
 		///Gets a value indicating whether this path is a child path of <paramref name="parentDirectory"/>.
 		///</summary>
 		///<remarks>This path resource nor <paramref name="parentDirectory"/> need to exist for this operation to complete properly.</remarks>
@@ -83,32 +98,27 @@ namespace Oragon.Architecture.IO.Path
 		///<returns>true of this directory is a child directory of <paramref name="parentDirectory"/>, else false.</returns>
 		bool IsChildOf(IDirectoryPath parentDirectory);
 
-		///<summary>Gets a value indicating whether this path has a parent directory path</summary>
-		///<remarks>
-		///Root directories representing a drive, like C: or D: don't have a parent directory path.
-		///Relative path like ".\" or "..\" don't have a parent directory path.
-		///Notice that a file path necessarily has a parent directory path.
-		///</remarks>
-		///<returns>true if this path has a parent directory path, else returns false.</returns>
-		bool HasParentDirectory { get; }
-
 		///<summary>Returns true if obj is null, is not an IPath, or is an IPath representing a different path than this path (case insensitive).</summary>
 		///<remarks>
 		///This method is the opposite of the IPath.Equals() method, overridden from System.Object.
 		///It can be used to make the negation in !Equals more obvious.
 		///</remarks>
 		bool NotEquals(object obj);
+
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IPath))]
 	internal abstract class IPathContract : IPath
 	{
-		public bool IsAbsolutePath
+		#region Public Properties
+
+		public bool HasParentDirectory
 		{
 			get { throw new NotImplementedException(); }
 		}
 
-		public bool IsRelativePath
+		public bool IsAbsolutePath
 		{
 			get { throw new NotImplementedException(); }
 		}
@@ -118,15 +128,19 @@ namespace Oragon.Architecture.IO.Path
 			get { throw new NotImplementedException(); }
 		}
 
+		public abstract bool IsEnvVarPath { get; }
+
 		public bool IsFilePath
 		{
 			get { throw new NotImplementedException(); }
 		}
 
-		public PathMode PathMode
+		public bool IsRelativePath
 		{
 			get { throw new NotImplementedException(); }
 		}
+
+		public abstract bool IsVariablePath { get; }
 
 		public IDirectoryPath ParentDirectoryPath
 		{
@@ -137,9 +151,19 @@ namespace Oragon.Architecture.IO.Path
 			}
 		}
 
-		public bool HasParentDirectory
+		public PathMode PathMode
 		{
 			get { throw new NotImplementedException(); }
+		}
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public bool IsChildOf(IDirectoryPath parentDir)
+		{
+			Contract.Requires(parentDir != null, "parentDir must not be null");
+			throw new NotImplementedException();
 		}
 
 		public bool NotEquals(object obj)
@@ -147,14 +171,6 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public bool IsChildOf(IDirectoryPath parentDir)
-		{
-			Contract.Requires(parentDir != null, "parentDir must not be null");
-			throw new NotImplementedException();
-		}
+		#endregion Public Methods
 	}
 }

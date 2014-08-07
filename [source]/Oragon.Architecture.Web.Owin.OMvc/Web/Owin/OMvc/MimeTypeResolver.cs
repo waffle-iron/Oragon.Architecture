@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc
 {
 	public static class MimeTypeResolver
 	{
+		#region Public Fields
+
 		public static Dictionary<string, string> MimeTypes = new Dictionary<string, string>
 		{
 			#region MimeType Definition
+
 			{ ".123", "application/vnd.lotus-1-2-3" },
 			{ ".3dml", "text/vnd.in3d.3dml" },
 			{ ".3g2", "video/3gpp2" },
@@ -894,8 +894,12 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 			{ ".zir", "application/vnd.zul" },
 			{ ".zirz", "application/vnd.zul" },
 			{ ".zmm", "application/vnd.handheld-entertainment+xml" }
-			#endregion
+			#endregion MimeType Definition
 		};
+
+		#endregion Public Fields
+
+		#region Public Methods
 
 		public static string ResolveMimeType(string path)
 		{
@@ -913,5 +917,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 				return MimeTypeResolver.MimeTypes[extension];
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

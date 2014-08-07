@@ -1,15 +1,15 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>10D077CC-724F-4B46-949B-D5A3430567BD</id>
 		/// <summary>
 		///     An ICollection&lt;T&gt; extension method that try remove the value.
@@ -29,5 +29,7 @@ namespace Oragon.Architecture.Extensions
 			});
 			return qtd;
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.IO;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>98EFF073-5103-4E91-B52F-7273EDA7B560</id>
 		/// <summary>
 		///     A string extension method that converts the @this to a MemoryStream.
@@ -22,5 +21,7 @@ namespace Oragon.Architecture.Extensions
 			Encoding encoding = Activator.CreateInstance<ASCIIEncoding>();
 			return new MemoryStream(encoding.GetBytes(@this));
 		}
+
+		#endregion Public Methods
 	}
 }

@@ -1,18 +1,13 @@
-﻿using Oragon.Architecture.ApplicationHosting.Management.Middleware;
-using Oragon.Architecture.Web.Owin.OMvc;
+﻿using Oragon.Architecture.Web.Owin.OMvc;
 using Oragon.Architecture.Web.Owin.OMvc.Results;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 {
 	public class HomeController : OMvcController
 	{
+		#region Public Methods
+
 		public MvcResult Index(string style = "classic")
 		{
 			Func<SimpleViewResult, SimpleViewResult> crisp = (it =>
@@ -43,7 +38,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 					classic(view); break;
 				case "gray":
 					gray(view); break;
-				case "crisp": 
+				case "crisp":
 					crisp(view); break;
 			}
 			view.Stylesheet("/dynRes/icons/style.css")
@@ -66,20 +61,20 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 			.Script("/dynRes/ApplicationHosting/Management/WebResources/Script/App.js")
 			.CloseHead()
 			.OpenBody()
-			//.OpenTag("div", new { @class = "headerContainer" })
-			//	.OpenTag("div", new { @class = "headerContainer" })
-			//.CloseTag("div")
+				//.OpenTag("div", new { @class = "headerContainer" })
+				//	.OpenTag("div", new { @class = "headerContainer" })
+				//.CloseTag("div")
 			.CloseBody()
 			.CloseHtml();
 
 			return view;
 		}
 
-
-
 		public MvcResult Test()
 		{
 			return this.Json(new { number = 1, value = 2 });
 		}
+
+		#endregion Public Methods
 	}
 }

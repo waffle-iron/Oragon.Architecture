@@ -1,9 +1,5 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -12,8 +8,10 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <summary>
-		/// Creates a <see cref="IReadOnlyCollection{T}"/> cloned collection around <paramref name="list"/>.
+		///     Creates a <see cref="IReadOnlyCollection{T}" /> cloned collection around <paramref name="list" />.
 		/// </summary>
 		/// <typeparam name="T">The type parameter of the items in the list.</typeparam>
 		/// <param name="list">A list object.</param>
@@ -25,6 +23,6 @@ namespace Oragon.Architecture.Extensions
 			return new ListReadOnlyWrapper<T>(list.ToArray());
 		}
 
-
+		#endregion Public Methods
 	}
 }

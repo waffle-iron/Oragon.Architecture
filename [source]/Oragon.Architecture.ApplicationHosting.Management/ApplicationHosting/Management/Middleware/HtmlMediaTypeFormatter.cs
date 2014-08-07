@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Oragon.Architecture.Extensions;
+using System;
 using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
-using Oragon.Architecture.Extensions;
 
 namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 {
 	public class HtmlMediaTypeFormatter : MediaTypeFormatter
 	{
+		#region Public Constructors
+
 		public HtmlMediaTypeFormatter()
 		{
 			SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
 		}
+
+		#endregion Public Constructors
+
+		#region Public Methods
 
 		public override bool CanReadType(Type type)
 		{
@@ -38,5 +42,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Middleware
 				writeStream.Write(htmlText, Encoding.UTF8);
 			});
 		}
+
+		#endregion Public Methods
 	}
 }

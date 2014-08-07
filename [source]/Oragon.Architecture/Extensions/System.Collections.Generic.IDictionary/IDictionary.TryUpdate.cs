@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>B5F64F21-3ADC-4955-B5C8-DE53D06F81F8</id>
 		/// <summary>
 		///     Attempts to update the specified key and value to the IDictionary&lt;TKey, TValue&gt;.
@@ -52,5 +51,7 @@ namespace Oragon.Architecture.Extensions
 
 			return false;
 		}
+
+		#endregion Public Methods
 	}
 }

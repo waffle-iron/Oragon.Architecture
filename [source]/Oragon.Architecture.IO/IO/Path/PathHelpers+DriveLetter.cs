@@ -6,20 +6,17 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private sealed class DriveLetter : IDriveLetter
 		{
-			internal static bool IsValidDriveName(string driveName)
-			{
-				Debug.Assert(driveName != null);
+			#region Private Fields
 
-				// We have confirmation that the drive is just the first letter
-				// of the absolute path in the documentation of the:
-				// System.IO.DriveInfo..ctor(driveName)
-				// This ctor sends System.ArgumentException if:
-				//     The first letter of driveName is not an uppercase or lowercase letter from
-				//     'a' to 'z'.
-				return driveName.Length == 1 && Char.IsLetter(driveName[0]);
-			}
+			private readonly char m_Letter;
+
+			#endregion Private Fields
+
+			#region Internal Constructors
 
 			internal DriveLetter(string driveName)
 			{
@@ -28,17 +25,14 @@ namespace Oragon.Architecture.IO.Path
 				Debug.Assert(Char.IsLetter(m_Letter));
 			}
 
-			private readonly char m_Letter;
+			#endregion Internal Constructors
 
-			public char Letter
-			{
-				get { return m_Letter; }
-			}
+			#region Public Properties
 
 			public DriveInfo DriveInfo
 			{
-				// Documentation of DriveInfo ctor:
-				// A valid drive path or drive letter. This can be either uppercase or lowercase, 'a' to 'z'. A null value is not valid.
+				// Documentation of DriveInfo ctor: A valid drive path or drive letter. This can be either uppercase or lowercase, 'a' to 'z'. A null
+				// value is not valid.
 				get
 				{
 					try
@@ -58,10 +52,14 @@ namespace Oragon.Architecture.IO.Path
 				}
 			}
 
-			public override string ToString()
+			public char Letter
 			{
-				return m_Letter.ToString();
+				get { return m_Letter; }
 			}
+
+			#endregion Public Properties
+
+			#region Public Methods
 
 			public override bool Equals(object obj)
 			{
@@ -80,6 +78,29 @@ namespace Oragon.Architecture.IO.Path
 			{
 				return !this.Equals(obj);
 			}
+
+			public override string ToString()
+			{
+				return m_Letter.ToString();
+			}
+
+			#endregion Public Methods
+
+			#region Internal Methods
+
+			internal static bool IsValidDriveName(string driveName)
+			{
+				Debug.Assert(driveName != null);
+
+				// We have confirmation that the drive is just the first letter of the absolute path in the documentation of the:
+				// System.IO.DriveInfo..ctor(driveName) This ctor sends System.ArgumentException if: The first letter of driveName is not an uppercase
+				// or lowercase letter from 'a' to 'z'.
+				return driveName.Length == 1 && Char.IsLetter(driveName[0]);
+			}
+
+			#endregion Internal Methods
 		}
+
+		#endregion Private Classes
 	}
 }

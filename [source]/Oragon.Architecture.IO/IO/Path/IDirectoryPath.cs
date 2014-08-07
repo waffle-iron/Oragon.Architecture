@@ -13,6 +13,8 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IDirectoryPathContract))]
 	public interface IDirectoryPath : IPath
 	{
+		#region Public Properties
+
 		///<summary>
 		///Gets a string representing the directory name.
 		///</summary>
@@ -24,13 +26,9 @@ namespace Oragon.Architecture.IO.Path
 		///</returns>
 		string DirectoryName { get; }
 
-		///<summary>
-		///Returns a new file path representing a file with name <paramref name="fileName"/>, located in the parent's directory of this directory.
-		///</summary>
-		///<remarks>This directory nor the returned file need to exist for this operation to complete properly.</remarks>
-		///<param name="fileName">The brother file name.</param>
-		///<exception cref="InvalidOperationException">This directory path doesn't have a parent directory.</exception>
-		IFilePath GetBrotherFileWithName(string fileName);
+		#endregion Public Properties
+
+		#region Public Methods
 
 		///<summary>
 		///Returns a new directory path representing a directory with name <paramref name="directoryName"/>, located in the parent's directory of this directory.
@@ -41,11 +39,12 @@ namespace Oragon.Architecture.IO.Path
 		IDirectoryPath GetBrotherDirectoryWithName(string directoryName);
 
 		///<summary>
-		///Returns a new file path representing a file with name <paramref name="fileName"/>, located in this directory.
+		///Returns a new file path representing a file with name <paramref name="fileName"/>, located in the parent's directory of this directory.
 		///</summary>
 		///<remarks>This directory nor the returned file need to exist for this operation to complete properly.</remarks>
-		///<param name="fileName">The child file name.</param>
-		IFilePath GetChildFileWithName(string fileName);
+		///<param name="fileName">The brother file name.</param>
+		///<exception cref="InvalidOperationException">This directory path doesn't have a parent directory.</exception>
+		IFilePath GetBrotherFileWithName(string fileName);
 
 		///<summary>
 		///Returns a new directory path representing a directory with name <paramref name="directoryName"/>, located in this directory.
@@ -54,22 +53,48 @@ namespace Oragon.Architecture.IO.Path
 		///<param name="directoryName">The child directory name.</param>
 		///<exception cref="InvalidOperationException">This directory path doesn't have a parent directory.</exception>
 		IDirectoryPath GetChildDirectoryWithName(string directoryName);
+
+		///<summary>
+		///Returns a new file path representing a file with name <paramref name="fileName"/>, located in this directory.
+		///</summary>
+		///<remarks>This directory nor the returned file need to exist for this operation to complete properly.</remarks>
+		///<param name="fileName">The child file name.</param>
+		IFilePath GetChildFileWithName(string fileName);
+
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IDirectoryPath))]
 	internal abstract class IDirectoryPathContract : IDirectoryPath
 	{
+		#region Public Properties
+
 		public string DirectoryName
 		{
 			get { throw new NotImplementedException(); }
 		}
 
-		public IFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
+		public abstract bool HasParentDirectory { get; }
+
+		public abstract bool IsAbsolutePath { get; }
+
+		public abstract bool IsDirectoryPath { get; }
+
+		public abstract bool IsEnvVarPath { get; }
+
+		public abstract bool IsFilePath { get; }
+
+		public abstract bool IsRelativePath { get; }
+
+		public abstract bool IsVariablePath { get; }
+
+		public abstract IDirectoryPath ParentDirectoryPath { get; }
+
+		public abstract PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public IDirectoryPath GetBrotherDirectoryWithName(string directoryName)
 		{
@@ -78,7 +103,7 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		public IFilePath GetChildFileWithName(string fileName)
+		public IFilePath GetBrotherFileWithName(string fileName)
 		{
 			Contract.Requires(fileName != null, "fileName must not be null");
 			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
@@ -92,26 +117,17 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
+		public IFilePath GetChildFileWithName(string fileName)
+		{
+			Contract.Requires(fileName != null, "fileName must not be null");
+			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
+			throw new NotImplementedException();
+		}
+
 		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
 
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
 		public abstract bool NotEquals(object obj);
+
+		#endregion Public Methods
 	}
 }

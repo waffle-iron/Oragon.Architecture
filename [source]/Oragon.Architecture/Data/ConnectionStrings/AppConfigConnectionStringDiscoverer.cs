@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace Oragon.Architecture.Data.ConnectionStrings
 {
 	public class AppConfigConnectionStringDiscoverer : IConnectionStringDiscoverer
 	{
+		#region Private Properties
+
 		private string ConnectionStringKey { get; set; }
+
+		#endregion Private Properties
+
+		#region Public Methods
 
 		public System.Configuration.ConnectionStringSettings GetConnectionString()
 		{
@@ -20,5 +21,7 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 
 			return returnValue;
 		}
+
+		#endregion Public Methods
 	}
 }

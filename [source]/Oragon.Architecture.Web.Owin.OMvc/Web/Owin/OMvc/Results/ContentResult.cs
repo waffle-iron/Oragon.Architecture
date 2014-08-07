@@ -1,26 +1,31 @@
 ﻿using Microsoft.Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public static class ContentResultExtensions
 	{
+		#region Public Methods
+
 		public static ContentResult Content(this OMvcController @this, string content)
 		{
 			return new ContentResult() { Content = content };
 		}
-	
+
+		#endregion Public Methods
 	}
 
 	public class ContentResult : MvcResult
 	{
+		#region Public Properties
+
 		public string Content { get; set; }
 
 		public string ContentType { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
 
 		public override void Execute(IOwinContext context)
 		{
@@ -39,5 +44,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 				context.Response.Write(this.Content);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

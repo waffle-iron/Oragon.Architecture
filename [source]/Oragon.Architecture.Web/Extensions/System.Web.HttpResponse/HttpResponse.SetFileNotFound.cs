@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Web;
 
@@ -9,6 +6,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>1671D1DB-35BD-410B-9CAC-AC02F06810F7</id>
 		/// <summary>
 		///     A HttpResponse extension method that sets the response to status code 404 (Not Found).
@@ -19,5 +18,7 @@ namespace Oragon.Architecture.Extensions
 			@this.StatusCode = 404;
 			@this.StatusDescription = "Not Found";
 		}
+
+		#endregion Public Methods
 	}
 }

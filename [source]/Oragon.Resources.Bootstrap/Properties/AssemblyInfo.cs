@@ -1,10 +1,8 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the
+// information associated with an assembly.
 [assembly: AssemblyTitle("Oragon.Resources.Bootstrap")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("Resources")]
@@ -18,4 +16,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("7.0.0044")]
 [assembly: AssemblyFileVersion("7.0.0044")]
 [assembly: AssemblyInformationalVersion("7.0.0044-LocalBuild")]
-

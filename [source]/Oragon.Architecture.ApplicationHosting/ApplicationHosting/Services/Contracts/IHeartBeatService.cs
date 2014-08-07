@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceModel;
 
 namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 {
 	[ServiceContract]
 	public interface IHeartBeatService
 	{
+		#region Public Methods
+
 		[OperationContract]
 		void HeartBeat();
+
+		#endregion Public Methods
 	}
 }

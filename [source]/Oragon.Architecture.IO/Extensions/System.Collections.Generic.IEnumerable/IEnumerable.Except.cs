@@ -1,17 +1,14 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		///<summary>
 		///Produces the set <paramref name="seq"/> excluding <paramref name="elementExcluded"/>. The equality test relies on the <i>Equals()</i> method.
 		///</summary>
@@ -31,7 +28,6 @@ namespace Oragon.Architecture.Extensions
 				yield return element;
 			}
 		}
-
 
 		///<summary>
 		///Produces the set difference of this <paramref name="seq"/> and <paramref name="hashset"/>. This method is an optimized version of <i>Enumerable.Except&lt;T&gt;</i>.
@@ -53,6 +49,6 @@ namespace Oragon.Architecture.Extensions
 			}
 		}
 
-
+		#endregion Public Methods
 	}
 }

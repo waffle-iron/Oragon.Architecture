@@ -1,13 +1,10 @@
 using AopAlliance.Intercept;
 using Oragon.Architecture.Aop.Data.Abstractions;
-using Oragon.Architecture.Data;
 using Spring.Objects.Factory.Attributes;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NH = NHibernate;
-
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
@@ -15,19 +12,37 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 	{
 		#region Dependence Injection
 
-		[Required]
-		private List<ISessionFactoryBuilder> SessionFactoryBuilders { get; set; }
+		private bool ElevateToSystemTransactionsIfRequired { get; set; }
 
 		private NH.IInterceptor Interceptor { get; set; }
 
-		private bool ElevateToSystemTransactionsIfRequired { get; set; }
+		[Required]
+		private List<ISessionFactoryBuilder> SessionFactoryBuilders { get; set; }
 
-		#endregion
+		#endregion Dependence Injection
+
+		#region Protected Properties
+
+		protected override Func<NHContextAttribute, bool> AttributeQueryFilter
+		{
+			get
+			{
+				return (it =>
+				{
+					it.SessionFactoryBuilder = this.SessionFactoryBuilders.Where(sfb => sfb.ObjectContextKey == it.ContextKey).FirstOrDefault();
+					return (it.SessionFactoryBuilder != null);
+				});
+			}
+		}
 
 		protected override string ContextStackListKey
 		{
 			get { return "Oragon.Architecture.Aop.Data.NHContextAroundAdvice.Contexts"; }
 		}
+
+		#endregion Protected Properties
+
+		#region Protected Methods
 
 		protected override object Invoke(IMethodInvocation invocation, IEnumerable<NHContextAttribute> contextAttributes)
 		{
@@ -48,10 +63,13 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return returnValue;
 		}
 
+		#endregion Protected Methods
+
+		#region Private Methods
 
 		private object InvokeUsingContext(IMethodInvocation invocation, Stack<NHContextAttribute> contextAttributesStack)
 		{
-			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente 
+			//Este método é chamado recursivamente, removendo o item do Stack sempre que houver um. Até que não haja nenhum. Quando não houver nenhum item mais, ele efetivamente
 			//manda executar a chamada ao método de destino.
 			//Esse controle é necessário pois as os "Usings" de Contexto, Sessão e Transação precisam ser encadeados
 			object returnValue = null;
@@ -61,7 +79,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			}
 			else
 			{
-				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o. 
+				//Obtendo o primeiro primeiro último RequiredPersistenceContextAttribute da stack, removendo-o.
 				NHContextAttribute currentContextAttribute = contextAttributesStack.Pop();
 				//Criando o contexto
 				using (NHContext currentContext = new NHContext(currentContextAttribute, this.Interceptor, this.ContextStack))
@@ -73,18 +91,6 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			return returnValue;
 		}
 
-		protected override Func<NHContextAttribute, bool> AttributeQueryFilter
-		{
-			get
-			{
-				return (it =>
-				{
-					it.SessionFactoryBuilder = this.SessionFactoryBuilders.Where(sfb => sfb.ObjectContextKey == it.ContextKey).FirstOrDefault();
-					return (it.SessionFactoryBuilder != null);
-				});
-
-			}
-		}
-
+		#endregion Private Methods
 	}
 }

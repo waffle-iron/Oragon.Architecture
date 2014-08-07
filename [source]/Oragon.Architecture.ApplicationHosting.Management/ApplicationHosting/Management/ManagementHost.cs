@@ -1,7 +1,5 @@
 ﻿using Microsoft.Owin.Hosting;
-using Oragon.Architecture;
 using Oragon.Architecture.Extensions;
-using Owin;
 using Spring.Context;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Attributes;
@@ -9,27 +7,89 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.ApplicationHosting.Management
 {
 	public class ManagementHost : IInitializingObject, IDisposable, IApplicationContextAware
 	{
-		public static ManagementHost Current { get; private set; }
+		#region Private Fields
+
+		private bool disposed = false;
 
 		private IDisposable webServer;
 
-		[Required]
-		public ManagementHostConfiguration Configuration { get; set; }
+		#endregion Private Fields
 
-
-		public IApplicationContext ApplicationContext { get; set; }
-
+		#region Public Constructors
 
 		public ManagementHost()
 		{
 			ManagementHost.Current = this;
+		}
+
+		#endregion Public Constructors
+
+		#region Public Properties
+
+		public static ManagementHost Current { get; private set; }
+
+		public IApplicationContext ApplicationContext { get; set; }
+
+		[Required]
+		public ManagementHostConfiguration Configuration { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public void AfterPropertiesSet()
+		{
+			Oragon.Architecture.Threading.ThreadRunner.RunTask(delegate()
+			{//Teste
+				IEnumerable<string> IPList = this.GetExternalsIps();
+				var options = BuildWebAppOptions(IPList);
+				this.webServer = WebApp.Start<ManagementHostStartup>(options);
+			});
+		}
+
+		public void Dispose()
+		{
+			if (this.disposed)
+				return;
+			this.DisposeChild();
+			this.disposed = true;
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion Public Methods
+
+		#region Protected Methods
+
+		protected virtual void DisposeChild()
+		{
+			this.webServer.Dispose();
+			this.webServer = null;
+		}
+
+		#endregion Protected Methods
+
+		#region Private Methods
+
+		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
+		{
+			var options = new StartOptions();
+			options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
+			options.Urls.Add("http://localhost:{0}".FormatWith(this.Configuration.ManagementPort));
+			options.Urls.Add("http://127.0.0.1:{0}".FormatWith(this.Configuration.ManagementPort));
+			options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
+			if (this.Configuration.AllowRemoteMonitoring)
+			{
+				foreach (string ipAddress in IPList)
+				{
+					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.ManagementPort));
+				}
+			}
+			return options;
 		}
 
 		private IEnumerable<string> GetExternalsIps()
@@ -50,69 +110,25 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 						 select
 							 ipAddress.ToString();
 
-
 			return iplist.ToArray(); //Only IPV4 IP`s
 		}
 
+		#endregion Private Methods
 
-		public void AfterPropertiesSet()
-		{
-			Oragon.Architecture.Threading.ThreadRunner.RunTask(delegate()
-			{//Teste
-				IEnumerable<string> IPList = this.GetExternalsIps();
-				var options = BuildWebAppOptions(IPList);
-				this.webServer = WebApp.Start<ManagementHostStartup>(options);
-			});			
-		}
+		#region Public Classes
 
 		public class TesteClass : Oragon.Architecture.ApplicationHosting.Management.WebSignalRControllers.IHostHubClient
 		{
+			#region Public Methods
+
 			public void Teste(string texto, int nome)
 			{
 				Console.WriteLine(texto);
 			}
+
+			#endregion Public Methods
 		}
 
-
-
-
-		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
-		{
-			var options = new StartOptions();
-			options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
-			options.Urls.Add("http://localhost:{0}".FormatWith(this.Configuration.ManagementPort));
-			options.Urls.Add("http://127.0.0.1:{0}".FormatWith(this.Configuration.ManagementPort));
-			options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
-			if (this.Configuration.AllowRemoteMonitoring)
-			{
-				foreach (string ipAddress in IPList)
-				{
-					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.ManagementPort));
-				}
-			}
-			return options;
-		}
-
-
-
-		bool disposed = false;
-		public void Dispose()
-		{
-			if (this.disposed)
-				return;
-			this.DisposeChild();
-			this.disposed = true;
-			GC.SuppressFinalize(this);
-		}
-
-
-		protected virtual void DisposeChild()
-		{
-			this.webServer.Dispose();
-			this.webServer = null;
-		}
-
-
-
+		#endregion Public Classes
 	}
 }

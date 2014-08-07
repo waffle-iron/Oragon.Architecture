@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
 using System.Collections.Generic;
@@ -10,6 +7,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>8B405D63-F5B5-4193-992D-5B2E703E2D15</id>
 		/// <summary>
 		///     A T extension method to determines whether the object is equal to any of the provided values.
@@ -21,7 +20,7 @@ namespace Oragon.Architecture.Extensions
 		/// <example>
 		///     <code>
 		///         var item = 1;
-		///     
+		///
 		///         if(item.In(1, 2, 3))
 		///         {
 		///             // ...Code...
@@ -45,7 +44,7 @@ namespace Oragon.Architecture.Extensions
 		///     <code>
 		///         var list = new List&lt;int&gt;() { 1, 2, 3 };
 		///         var item = 1;
-		///     
+		///
 		///         if(item.In(list))
 		///         {
 		///             // ...Code...
@@ -56,5 +55,7 @@ namespace Oragon.Architecture.Extensions
 		{
 			return values.IndexOf(@this) != -1;
 		}
+
+		#endregion Public Methods
 	}
 }

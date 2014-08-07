@@ -12,23 +12,7 @@ namespace Oragon.Architecture.IO.Path
 	[ContractClass(typeof(IRelativeFilePathContract))]
 	public interface IRelativeFilePath : IFilePath, IRelativePath
 	{
-		///<summary>
-		///Returns a new relative file path refering to a file with name <paramref name="fileName"/>, located in the same directory as this file.
-		///</summary>
-		///<param name="fileName">The brother file name</param>
-		new IRelativeFilePath GetBrotherFileWithName(string fileName);
-
-		///<summary>
-		///Returns a new relative directory path representing a directory with name <paramref name="directoryName"/>, located in the same directory as this file.
-		///</summary>
-		///<param name="directoryName">The brother directory name.</param>
-		new IRelativeDirectoryPath GetBrotherDirectoryWithName(string directoryName);
-
-		///<summary>
-		///Returns a new relative file path representing this file with its file name extension updated to <paramref name="newExtension"/>.
-		///</summary>
-		///<param name="newExtension">The new file extension. It must begin with a dot followed by one or many characters.</param>
-		new IRelativeFilePath UpdateExtension(string newExtension);
+		#region Public Methods
 
 		///<summary>
 		///Resolve this relative file from <paramref name="pivotDirectory"/>. If this file is "..\Dir2\File.txt" and <paramref name="pivotDirectory"/> is "C:\Dir1\Dir3", the returned absolute file is "C:\Dir1\Dir2\File.txt".
@@ -43,15 +27,70 @@ namespace Oragon.Architecture.IO.Path
 		///</exception>
 		///<returns>A new absolute file path representing this relative file resolved from <paramref name="pivotDirectory"/>.</returns>
 		new IAbsoluteFilePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory);
+
+		///<summary>
+		///Returns a new relative directory path representing a directory with name <paramref name="directoryName"/>, located in the same directory as this file.
+		///</summary>
+		///<param name="directoryName">The brother directory name.</param>
+		new IRelativeDirectoryPath GetBrotherDirectoryWithName(string directoryName);
+
+		///<summary>
+		///Returns a new relative file path refering to a file with name <paramref name="fileName"/>, located in the same directory as this file.
+		///</summary>
+		///<param name="fileName">The brother file name</param>
+		new IRelativeFilePath GetBrotherFileWithName(string fileName);
+
+		///<summary>
+		///Returns a new relative file path representing this file with its file name extension updated to <paramref name="newExtension"/>.
+		///</summary>
+		///<param name="newExtension">The new file extension. It must begin with a dot followed by one or many characters.</param>
+		new IRelativeFilePath UpdateExtension(string newExtension);
+
+		#endregion Public Methods
 	}
 
 	[ContractClassFor(typeof(IRelativeFilePath))]
 	internal abstract class IRelativeFilePathContract : IRelativeFilePath
 	{
-		public IRelativeFilePath GetBrotherFileWithName(string fileName)
+		#region Public Properties
+
+		public abstract string FileExtension { get; }
+
+		public abstract string FileName { get; }
+
+		public abstract string FileNameWithoutExtension { get; }
+
+		public abstract bool HasParentDirectory { get; }
+
+		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath { get { throw new NotImplementedException(); } }
+
+		public abstract bool IsAbsolutePath { get; }
+
+		public abstract bool IsDirectoryPath { get; }
+
+		public abstract bool IsEnvVarPath { get; }
+
+		public abstract bool IsFilePath { get; }
+
+		public abstract bool IsRelativePath { get; }
+
+		public abstract bool IsVariablePath { get; }
+
+		public abstract IDirectoryPath ParentDirectoryPath { get; }
+
+		public abstract PathMode PathMode { get; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
+		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path);
+
+		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path, out string failureReason);
+
+		public IAbsoluteFilePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
 		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
+			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
 			throw new NotImplementedException();
 		}
 
@@ -62,21 +101,16 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		public IRelativeFilePath UpdateExtension(string newExtension)
+		public IRelativeFilePath GetBrotherFileWithName(string fileName)
 		{
-			Contract.Requires(newExtension != null, "newExtension must not be null");
-			Contract.Requires(newExtension.Length >= 2, "newExtension must have at least two characters");
-			Contract.Requires(newExtension[0] == '.', "newExtension first character must be a dot");
+			Contract.Requires(fileName != null, "fileName must not be null");
+			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
 			throw new NotImplementedException();
 		}
 
-		public IAbsoluteFilePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
+		public abstract bool HasExtension(string extension);
 
-		IAbsolutePath IRelativePath.GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
+		IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
 		{
 			throw new NotImplementedException();
 		}
@@ -86,50 +120,28 @@ namespace Oragon.Architecture.IO.Path
 			throw new NotImplementedException();
 		}
 
-		IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
 		IFilePath IFilePath.UpdateExtension(string newExtension)
 		{
 			throw new NotImplementedException();
 		}
 
-		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path);
-
-		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path, out string failureReason);
+		IAbsolutePath IRelativePath.GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
+		{
+			throw new NotImplementedException();
+		}
 
 		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
 
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath { get { throw new NotImplementedException(); } }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
 		public abstract bool NotEquals(object obj);
 
-		public abstract string FileName { get; }
+		public IRelativeFilePath UpdateExtension(string newExtension)
+		{
+			Contract.Requires(newExtension != null, "newExtension must not be null");
+			Contract.Requires(newExtension.Length >= 2, "newExtension must have at least two characters");
+			Contract.Requires(newExtension[0] == '.', "newExtension first character must be a dot");
+			throw new NotImplementedException();
+		}
 
-		public abstract string FileNameWithoutExtension { get; }
-
-		public abstract string FileExtension { get; }
-
-		public abstract bool HasExtension(string extension);
+		#endregion Public Methods
 	}
 }

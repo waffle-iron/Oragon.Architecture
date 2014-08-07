@@ -192,7 +192,7 @@
 		};
 	};
 
-	// for dictionary, equals = x:T, y:T => bool, getHashCode = obj:any => string, 
+	// for dictionary, equals = x:T, y:T => bool, getHashCode = obj:any => string,
 	var EqualityComparer = function (equals, getHashCode) {
 		this.equals = equals;
 		this.getHashCode = getHashCode;
@@ -1076,7 +1076,6 @@
 		}
 	};
 
-
 	// Overload:function(selector<element>)
 	// Overload:function(selector<element,index>)
 	Enumerable.prototype.choose = function (selector) {
@@ -1860,7 +1859,6 @@
 	// Overload:function(keySelector,elementSelector,resultSelector)
 	// Overload:function(keySelector,elementSelector,resultSelector,compareSelector)
 	Enumerable.prototype.partitionBy = function (keySelector, elementSelector, resultSelector, compareSelector) {
-
 		var source = this;
 		keySelector = Utils.createLambda(keySelector);
 		elementSelector = Utils.createLambda(elementSelector);
@@ -2189,7 +2187,6 @@
 					return (enumerator.moveNext())
 						? this.yieldReturn(enumerator.current())
 						: false;
-
 				},
 				function () { Utils.dispose(enumerator); });
 		});
@@ -2422,7 +2419,6 @@
 
 		return this.select(selector).toArray().join(separator);
 	};
-
 
 	/* Action Methods */
 
@@ -3048,7 +3044,6 @@
 					entry.next.prev = newEntry;
 					newEntry.next = entry.next;
 				} else this.last = newEntry;
-
 			},
 
 			remove: function (entry) {

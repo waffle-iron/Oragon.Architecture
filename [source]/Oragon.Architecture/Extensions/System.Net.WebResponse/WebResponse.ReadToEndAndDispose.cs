@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com)
-// All rights reserved.
-// Licensed under MIT License (MIT)
-// License can be found here: https://zextensionmethods.codeplex.com/license
+﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.IO;
 using System.Net;
@@ -11,6 +8,8 @@ namespace Oragon.Architecture.Extensions
 {
 	public static partial class OragonExtensions
 	{
+		#region Public Methods
+
 		/// <id>735E9495-5052-415E-8665-17CABEB8A1EB</id>
 		/// <summary>
 		///     A WebRequest extension method that gets the WebRequest response and read the response stream.
@@ -31,5 +30,7 @@ namespace Oragon.Architecture.Extensions
 				}
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

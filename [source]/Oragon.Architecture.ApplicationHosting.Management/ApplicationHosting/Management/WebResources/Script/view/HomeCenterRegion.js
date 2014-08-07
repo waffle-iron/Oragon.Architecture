@@ -3,7 +3,7 @@
 	alias: 'view.HomeCenterRegion',
 	region: 'center',
 
-	id: 'centerRegionTabPanel',	
+	id: 'centerRegionTabPanel',
 	width: 400,
 	height: 400,
 	items: [{
@@ -18,6 +18,4 @@
 			tooltip: 'A button tooltip'
 		}
 	}]
-
-
 });

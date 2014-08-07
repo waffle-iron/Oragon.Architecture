@@ -5,17 +5,54 @@ namespace Oragon.Architecture.IO.Path
 {
 	partial class PathHelpers
 	{
+		#region Private Classes
+
 		private static class MiscHelpers
 		{
+			#region Internal Fields
+
 			internal readonly static char DIR_SEPARATOR_CHAR = System.IO.Path.DirectorySeparatorChar;
 			internal readonly static string DIR_SEPARATOR_STRING = System.IO.Path.DirectorySeparatorChar.ToString();
 			internal readonly static string TWO_DIR_SEPARATOR_STRING = System.IO.Path.DirectorySeparatorChar.ToString() + System.IO.Path.DirectorySeparatorChar.ToString();
 
+			#endregion Internal Fields
+
 			#region Path normalization
+
+			internal static string GetLastName(string path)
+			{
+				Debug.Assert(path != null);
+				if (!HasParentDirectory(path))
+				{
+					// In case of directories like "." or "C:" return an empty string.
+					return "";
+				}
+				int index = path.LastIndexOf(DIR_SEPARATOR_CHAR);
+				Debug.Assert(index != path.Length - 1);
+				return path.Substring(index + 1, path.Length - index - 1);
+			}
+
+			internal static string GetParentDirectory(string path)
+			{
+				Debug.Assert(path != null);
+				if (!HasParentDirectory(path))
+				{
+					throw new InvalidOperationException(@"Can't get the parent dir from the pathString """ + path + @"""");
+				}
+				int index = path.LastIndexOf(DIR_SEPARATOR_CHAR);
+				Debug.Assert(index >= 0);
+				return path.Substring(0, index);
+			}
+
+			internal static bool HasParentDirectory(string path)
+			{
+				Debug.Assert(path != null);
+				return path.Contains(DIR_SEPARATOR_STRING);
+			}
 
 			//------------------------------
 			//
-			//  Path normalization
+			// Path normalization
 			//
 			//------------------------------
 			internal static string NormalizePath(string path)
@@ -29,8 +66,8 @@ namespace Oragon.Architecture.IO.Path
 				if (path.IndexOf(TWO_DIR_SEPARATOR_STRING) == 0)
 				{
 					// ... except if it is at the beginning of the pathStringNormalized, in which case it might be a URN pathStringNormalized!
-					// Subtility, if we begin with 3 or more dir separator, need to keep only two.
-					// Hence we eliminate just one dir separator before applying EventuallyRemoveConsecutiveSeparator().
+					// Subtility, if we begin with 3 or more dir separator, need to keep only two. Hence we eliminate just one dir separator before
+					// applying EventuallyRemoveConsecutiveSeparator().
 					var pathTmp = path.Substring(1, path.Length - 1);
 					pathTmp = EventuallyRemoveConsecutiveSeparator(pathTmp);
 					path = DIR_SEPARATOR_STRING + pathTmp;
@@ -72,37 +109,6 @@ namespace Oragon.Architecture.IO.Path
 					path = path.Replace(TWO_DIR_SEPARATOR_STRING, DIR_SEPARATOR_STRING);
 				}
 				return path;
-			}
-
-			internal static bool HasParentDirectory(string path)
-			{
-				Debug.Assert(path != null);
-				return path.Contains(DIR_SEPARATOR_STRING);
-			}
-
-			internal static string GetParentDirectory(string path)
-			{
-				Debug.Assert(path != null);
-				if (!HasParentDirectory(path))
-				{
-					throw new InvalidOperationException(@"Can't get the parent dir from the pathString """ + path + @"""");
-				}
-				int index = path.LastIndexOf(DIR_SEPARATOR_CHAR);
-				Debug.Assert(index >= 0);
-				return path.Substring(0, index);
-			}
-
-			internal static string GetLastName(string path)
-			{
-				Debug.Assert(path != null);
-				if (!HasParentDirectory(path))
-				{
-					// In case of directories like "." or "C:" return an empty string.
-					return "";
-				}
-				int index = path.LastIndexOf(DIR_SEPARATOR_CHAR);
-				Debug.Assert(index != path.Length - 1);
-				return path.Substring(index + 1, path.Length - index - 1);
 			}
 
 			#endregion Path normalization
@@ -195,5 +201,7 @@ namespace Oragon.Architecture.IO.Path
 
 			#endregion IsAnEnvVarPath
 		}
+
+		#endregion Private Classes
 	}
 }

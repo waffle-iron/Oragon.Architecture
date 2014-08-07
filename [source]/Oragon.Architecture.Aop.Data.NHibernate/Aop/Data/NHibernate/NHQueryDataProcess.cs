@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using NH = NHibernate;
-using NHibernate.Linq;
-using Spring.Objects.Factory.Attributes;
-using System.Linq;
 
 namespace Oragon.Architecture.Aop.Data.NHibernate
 {
 	public class NHQueryDataProcess<T> : NHDataProcess
 		where T : Oragon.Architecture.Business.Entity
 	{
+		#region Public Properties
+
 		public bool UseCacheByDefault { get; set; }
 
+		#endregion Public Properties
+
+		#region Public Methods
 
 		/// <summary>
-		/// Obtém uma única instância de T com base no filtro informado. 
+		///     Obtém uma lista com todas as instâncias de T.
+		/// </summary>
+		/// <returns>Lista com ocorrência de T.</returns>
+		public IList<T> GetAll()
+		{
+			return this.GetListBy();
+		}
+
+		/// <summary>
+		///     Obtém uma única instância de T com base no filtro informado.
 		/// </summary>
 		/// <param name="predicate">Filtro a ser aplicado.</param>
 		/// <returns>Primeira ocorrência de T que atenda ao filtro.</returns>
@@ -25,7 +36,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		}
 
 		/// <summary>
-		/// Obtém uma única instância de T com base no filtro informado. 
+		///     Obtém uma única instância de T com base no filtro informado.
 		/// </summary>
 		/// <param name="predicate">Filtro a ser aplicado.</param>
 		/// <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
@@ -39,21 +50,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		}
 
 		/// <summary>
-		/// Obtém uma única instância de T com base no filtro informado. 
-		/// </summary>
-		/// <param name="predicate">Filtro a ser aplicado.</param>
-		/// <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
-		/// <returns>Primeira ocorrência de T que atenda ao filtro.</returns>
-		public T GetSingleBy(Expression<Func<T, bool>> predicate, bool cacheable)
-		{
-			NH.IQueryOver<T> queryOver = this.ObjectContext.Session.QueryOver<T>().Where(predicate);
-			if (cacheable)
-				queryOver.Cacheable().CacheMode(NH.CacheMode.Normal);
-			return queryOver.SingleOrDefault();
-		}
-
-		/// <summary>
-		/// Obtém uma lista de instâncias de T com base no filtro informado.
+		///     Obtém uma lista de instâncias de T com base no filtro informado.
 		/// </summary>
 		/// <param name="predicate">Filtro a ser aplicado.</param>
 		/// <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
@@ -74,13 +71,19 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		}
 
 		/// <summary>
-		/// Obtém uma lista com todas as instâncias de T.
+		///     Obtém uma única instância de T com base no filtro informado.
 		/// </summary>
-		/// <returns>Lista com ocorrência de T.</returns>
-		public IList<T> GetAll()
+		/// <param name="predicate">Filtro a ser aplicado.</param>
+		/// <param name="cacheable">Informa para a consulta que pode esta pode ser cacheada</param>
+		/// <returns>Primeira ocorrência de T que atenda ao filtro.</returns>
+		public T GetSingleBy(Expression<Func<T, bool>> predicate, bool cacheable)
 		{
-			return this.GetListBy();
+			NH.IQueryOver<T> queryOver = this.ObjectContext.Session.QueryOver<T>().Where(predicate);
+			if (cacheable)
+				queryOver.Cacheable().CacheMode(NH.CacheMode.Normal);
+			return queryOver.SingleOrDefault();
 		}
 
+		#endregion Public Methods
 	}
 }

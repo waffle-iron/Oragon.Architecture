@@ -3,9 +3,7 @@ Oragon.Architecture = Oragon.Architecture || {};
 Oragon.Architecture.Scripting = Oragon.Architecture.Scripting || {};
 
 Oragon.Architecture.Scripting.WaitingManager = {
-
 	init: function(){
-
 		radio('AjaxManager:StartRequest').subscribe(function (configObject) {
 			if (configObject.waiting != 'NoWait')
 				configObject.waitingRef = Oragon.Architecture.Scripting.WaitingManager.showWaiting(configObject.waiting, configObject.timeout);
@@ -15,7 +13,6 @@ Oragon.Architecture.Scripting.WaitingManager = {
 			if (resultInfo.configObject.waiting != 'NoWait')
 				Oragon.Architecture.Scripting.WaitingManager.stopWaiting(resultInfo.configObject.waitingRef);
 		});
-
 	},
 
 	showWaiting: function (waitingMessage, duration) {

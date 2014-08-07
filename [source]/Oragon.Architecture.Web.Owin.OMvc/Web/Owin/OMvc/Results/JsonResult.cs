@@ -1,24 +1,29 @@
 ﻿using Microsoft.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
 {
 	public static class JsonResultExtensions
 	{
+		#region Public Methods
+
 		public static JsonResult Json(this OMvcController @this, object data)
 		{
 			return new JsonResult() { Data = data };
 		}
 
+		#endregion Public Methods
 	}
 
 	public class JsonResult : MvcResult
 	{
+		#region Public Properties
+
 		public object Data { get; set; }
+
+		#endregion Public Properties
+
+		#region Public Methods
+
 		public override void Execute(IOwinContext context)
 		{
 			context.Response.ContentType = "application/json";
@@ -28,5 +33,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 				context.Response.Write(serialized);
 			}
 		}
+
+		#endregion Public Methods
 	}
 }

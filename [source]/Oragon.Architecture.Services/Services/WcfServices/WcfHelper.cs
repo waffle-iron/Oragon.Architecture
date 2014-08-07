@@ -1,21 +1,22 @@
-﻿using Oragon.Architecture.Services.WcfServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
 	internal static class WcfHelper
 	{
+		#region Internal Enums
+
 		internal enum EndpointType
 		{
 			NetTcp,
 			Http,
 			Mex
 		}
+
+		#endregion Internal Enums
+
+		#region Internal Methods
 
 		internal static System.ServiceModel.BasicHttpBinding BuildBasicHttpBinding()
 		{
@@ -25,6 +26,41 @@ namespace Oragon.Architecture.Services.WcfServices
 				MaxBufferSize = 2147483647,
 				MaxBufferPoolSize = 2147483647
 			};
+		}
+
+		internal static ServiceEndpointConfiguration BuildEndpoint(EndpointType type, string name, Type serviceInterfaceType)
+		{
+			ServiceEndpointConfiguration returnValue = null;
+			switch (type)
+			{
+				case EndpointType.Http:
+					returnValue = new ServiceEndpointConfiguration()
+					{
+						ServiceInterface = serviceInterfaceType,
+						Name = name,
+						Binding = BuildBasicHttpBinding()
+					};
+					break;
+
+				case EndpointType.NetTcp:
+					returnValue = new ServiceEndpointConfiguration()
+					{
+						ServiceInterface = serviceInterfaceType,
+						Name = name,
+						Binding = BuildNetTcpBinding()
+					};
+					break;
+
+				case EndpointType.Mex:
+					returnValue = new ServiceEndpointConfiguration()
+					{
+						ServiceInterface = typeof(System.ServiceModel.Description.IMetadataExchange),
+						Name = "mex",
+						Binding = MexBindingResolver.Resolve(MexBindingProtocol.Http)
+					};
+					break;
+			}
+			return returnValue;
 		}
 
 		internal static System.ServiceModel.NetTcpBinding BuildNetTcpBinding()
@@ -50,37 +86,6 @@ namespace Oragon.Architecture.Services.WcfServices
 			};
 		}
 
-		internal static ServiceEndpointConfiguration BuildEndpoint(EndpointType type, string name, Type serviceInterfaceType)
-		{
-			ServiceEndpointConfiguration returnValue = null;
-			switch (type)
-			{
-				case EndpointType.Http:
-					returnValue = new ServiceEndpointConfiguration()
-					{
-						ServiceInterface = serviceInterfaceType,
-						Name = name,
-						Binding = BuildBasicHttpBinding()
-					};
-					break;
-				case EndpointType.NetTcp:
-					returnValue = new ServiceEndpointConfiguration()
-					{
-						ServiceInterface = serviceInterfaceType,
-						Name = name,
-						Binding = BuildNetTcpBinding()
-					};
-					break;
-				case EndpointType.Mex:
-					returnValue = new ServiceEndpointConfiguration()
-					{
-						ServiceInterface = typeof(System.ServiceModel.Description.IMetadataExchange),
-						Name = "mex",
-						Binding = MexBindingResolver.Resolve(MexBindingProtocol.Http)
-					};
-					break;
-			}
-			return returnValue;
-		}
+		#endregion Internal Methods
 	}
 }
