@@ -57,10 +57,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture.Networking\Oragon.Architecture.Networking.csproj">
-      <Project>{075fd45d-0c60-4433-9e8f-c7ef51aaecaa}</Project>
-      <Name>Oragon.Architecture.Networking</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
       <Name>Oragon.Architecture</Name>

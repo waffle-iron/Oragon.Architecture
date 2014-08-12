@@ -214,10 +214,6 @@
       <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
       <Name>Oragon.Architecture.ApplicationHosting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
-      <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
-      <Name>Oragon.Architecture.Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.Services.SpringFramework\Oragon.Architecture.Services.SpringFramework.csproj">
       <Project>{53e63625-7f2c-4204-9682-edd2eb76f4b1}</Project>
       <Name>Oragon.Architecture.Services.SpringFramework</Name>
