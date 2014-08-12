@@ -10,14 +10,14 @@ namespace Oragon.Architecture.Extensions
 
 		/// <id>F669FCDB-0DE9-4E32-9F21-F81ECEE546B3</id>
 		/// <summary>
-		///     An ICollection&lt;T&gt; extension method that queries if the collection is not (null or is empty).
+		///     An ICollection&lt;T&gt; extension method that queries if the collection is not (null null is empty).
 		/// </summary>
 		/// <typeparam name="T">Generic type parameter.</typeparam>
 		/// <param name="this">The @this to act on.</param>
 		/// <returns>true if the collection is not (null or empty), false if not.</returns>
-		public static bool IsNotNullOrEmpty<T>(this ICollection<T> @this)
+		public static bool IsNotNullAndIsNotEmpty<T>(this ICollection<T> @this)
 		{
-			return @this != null || @this.Count > 0;
+			return @this != null && @this.Count > 0;
 		}
 
 		#endregion Public Methods
