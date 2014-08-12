@@ -6,7 +6,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 	{
 		#region Private Fields
 
-		private Microsoft.Owin.IOwinContext owinContext;
+		private const string ControllerContextKey = "ControllerContext";
 
 		#endregion Private Fields
 
@@ -14,7 +14,16 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 
 		public OMvcControllerContext(Microsoft.Owin.IOwinContext owinContext)
 		{
-			Spring.Threading.LogicalThreadContext.SetData("ControllerContext", owinContext);
+			Spring.Threading.LogicalThreadContext.SetData(ControllerContextKey, owinContext);
+		}
+
+		public static Microsoft.Owin.IOwinContext Current
+		{
+			get
+			{
+				return Spring.Threading.LogicalThreadContext.GetData(ControllerContextKey) as Microsoft.Owin.IOwinContext;
+			}
+
 		}
 
 		#endregion Public Constructors
@@ -23,7 +32,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 
 		public void Dispose()
 		{
-			Spring.Threading.LogicalThreadContext.FreeNamedDataSlot("ControllerContext");
+			Spring.Threading.LogicalThreadContext.FreeNamedDataSlot(ControllerContextKey);
 		}
 
 		#endregion Public Methods
