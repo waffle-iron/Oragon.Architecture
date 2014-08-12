@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Oragon.Architecture
 {
@@ -30,7 +31,7 @@ namespace Oragon.Architecture
 			}
 			if (executionIsDone == false && throwException)
 			{
-				throw new AggregateException(string.Format("After {0} times trying execute this operation, this operation was aborted by exceed the limit of executions", exceptionList.Count), exceptionList.ToArray());
+				throw new AggregateException(string.Format(CultureInfo.InvariantCulture, "After {0} times trying execute this operation, this operation was aborted by exceed the limit of executions", exceptionList.Count), exceptionList.ToArray());
 			}
 			return exceptionList;
 		}

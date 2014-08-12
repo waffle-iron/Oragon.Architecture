@@ -1,5 +1,6 @@
 ﻿using Oragon.Architecture.Extensions;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Http.Routing;
 
 namespace Oragon.Architecture.Web.Owin.OMvc.Results
@@ -161,7 +162,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 
 		public SimpleViewResult Script(string scriptName, params object[] args)
 		{
-			return this.Script(string.Format(scriptName, args));
+			return this.Script(string.Format(CultureInfo.InvariantCulture, scriptName, args));
 		}
 
 		public SimpleViewResult Script(string scriptName)
@@ -173,7 +174,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 
 		public SimpleViewResult Stylesheet(string stylesheet, params object[] args)
 		{
-			return this.Stylesheet(string.Format(stylesheet, args));
+			return this.Stylesheet(string.Format(CultureInfo.InvariantCulture, stylesheet, args));
 		}
 
 		public SimpleViewResult Stylesheet(string stylesheet)
@@ -219,7 +220,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc.Results
 			{
 				var key = parameters[i];
 				var value = parameters[i + 1];
-				propertiesList.Add(string.Format("{0}='{1}'", key, value));
+				propertiesList.Add(string.Format(CultureInfo.InvariantCulture, "{0}='{1}'", key, value));
 			}
 			string propInline = string.Join(" ", propertiesList.ToArray());
 			this.HTML.WriteLine("<meta {0} />", propInline);

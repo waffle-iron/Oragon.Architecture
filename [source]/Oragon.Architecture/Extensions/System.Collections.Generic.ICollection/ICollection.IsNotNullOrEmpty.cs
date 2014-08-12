@@ -17,7 +17,7 @@ namespace Oragon.Architecture.Extensions
 		/// <returns>true if the collection is not (null or empty), false if not.</returns>
 		public static bool IsNotNullOrEmpty<T>(this ICollection<T> @this)
 		{
-			return @this != null && @this.Count != 0;
+			return @this != null || @this.Count > 0;
 		}
 
 		#endregion Public Methods

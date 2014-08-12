@@ -2,6 +2,7 @@
 
 using System;
 using System.Data.Common;
+using System.Globalization;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -26,7 +27,7 @@ namespace Oragon.Architecture.Extensions
 			{
 				return null;
 			}
-			return Convert.ToBoolean(result);
+			return Convert.ToBoolean(result, CultureInfo.InvariantCulture);
 		}
 
 		#endregion Public Methods

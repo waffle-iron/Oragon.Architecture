@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Oragon.Architecture.Text
@@ -23,7 +24,7 @@ namespace Oragon.Architecture.Text
 			}
 			else
 			{
-				string returnValue = original.Substring(0, 1).ToUpper() + original.Substring(1, original.Length - 1);
+				string returnValue = original.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + original.Substring(1, original.Length - 1);
 				return returnValue;
 			}
 		}

@@ -50,7 +50,7 @@ namespace Oragon.Architecture.Logging
 			}
 			LogEntry logEntry = new LogEntry()
 			{
-				LogEntryID = 0,
+				LogEntryId = 0,
 				Context = context,
 				Content = content,
 				Date = DateTime.Now,

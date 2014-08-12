@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Globalization;
 using FluentNH = FluentNHibernate;
 using NH = NHibernate;
 
@@ -49,7 +50,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			{
 				Type typeInfo = Type.GetType(typeName);
 				if (typeInfo == null)
-					throw new ConfigurationErrorsException(string.Format("Cannot load the Type '{0}', defined in TypeNames property of FluentNHibernateSessionFactoryBuilder", typeName));
+					throw new ConfigurationErrorsException(string.Format(CultureInfo.InvariantCulture, "Cannot load the Type '{0}', defined in TypeNames property of FluentNHibernateSessionFactoryBuilder", typeName));
 				configuration.Mappings(it =>
 				{
 					it.FluentMappings.AddFromAssembly(typeInfo.Assembly);
@@ -137,7 +138,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			ConnectionStringSettings connStrSettings = null;
 
 			if (this.ConnectionStringDiscoverer == null)
-				throw new ConfigurationErrorsException(string.Format("ConnectionStringDiscoverer is not set"));
+				throw new ConfigurationErrorsException("ConnectionStringDiscoverer is not set");
 
 			connStrSettings = this.ConnectionStringDiscoverer.GetConnectionString();
 

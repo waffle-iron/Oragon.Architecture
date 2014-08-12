@@ -74,6 +74,11 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual TopshelfExitCode Run()
 		{
+			if (this.IsDebug)
+			{
+				System.Diagnostics.Debugger.Launch();
+			}
+
 			AppDomain.MonitoringIsEnabled = true;
 			using (IApplicationContext descriptorsApplicationContext = this.BuildDescriptorsApplicationContext())
 			{
@@ -81,10 +86,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			}
 
 			TopshelfExitCode exitCode = TopshelfExitCode.Ok;
-			if (this.IsDebug)
-			{
-				System.Diagnostics.Debugger.Launch();
-			}
+
 
 			if (this.IsConsole)
 			{

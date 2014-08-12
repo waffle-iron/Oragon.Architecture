@@ -4,7 +4,7 @@
 	{
 		#region Public Properties
 
-		public string ConnectionString { get; set; }
+		public string Value { get; set; }
 
 		public string Name { get; set; }
 
@@ -16,7 +16,7 @@
 
 		public System.Configuration.ConnectionStringSettings GetConnectionString()
 		{
-			return new System.Configuration.ConnectionStringSettings(this.Name, this.ConnectionString, this.ProviderName);
+			return new System.Configuration.ConnectionStringSettings(this.Name, this.Value, this.ProviderName);
 		}
 
 		#endregion Public Methods

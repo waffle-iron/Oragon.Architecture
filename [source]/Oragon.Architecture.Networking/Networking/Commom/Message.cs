@@ -25,16 +25,16 @@ namespace Oragon.Architecture.Networking.Commom
 
 		public void AddProperty(MessageProperty property)
 		{
-			Contract.Ensures(property.IsNotNull());
-			Contract.Ensures(property.Name.IsNotNullOrWhiteSpace());
-			Contract.Ensures(this.properties.NotContains(it => it.Name.ToLower() == property.Name.ToLower()));
+			Contract.Requires(property.IsNotNull());
+			Contract.Requires(property.Name.IsNotNullOrWhiteSpace());
+			Contract.Requires(this.properties.NotContains(it => it.Name.ToLower() == property.Name.ToLower()));
 			this.properties.Add(property);
 		}
 
 		public void AddProperty<T>(string name, T data)
 		{
-			Contract.Ensures(name.IsNotNullOrWhiteSpace());
-			Contract.Ensures(this.properties.NotContains(it => it.Name.ToLower() == name.ToLower()));
+			Contract.Requires(name.IsNotNullOrWhiteSpace());
+			Contract.Requires(this.properties.NotContains(it => it.Name.ToLower() == name.ToLower()));
 			this.properties.Add(new MessageProperty<T>() { Data = data });
 		}
 
