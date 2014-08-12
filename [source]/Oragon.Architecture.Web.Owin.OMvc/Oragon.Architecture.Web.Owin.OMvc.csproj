@@ -97,10 +97,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture.Serialization\Oragon.Architecture.Serialization.csproj">
-      <Project>{006be62c-99fa-41f9-b390-0e8c82017566}</Project>
-      <Name>Oragon.Architecture.Serialization</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture\Oragon.Architecture.csproj">
       <Project>{b9cb8ba0-3389-4203-a02d-fa3a6091f31c}</Project>
       <Name>Oragon.Architecture</Name>

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Oragon.Architecture.Services.SignalRServices
 {
+	[CLSCompliant(false)]
 	public class SignalRMediator<TServerInterfaceType, TClientInterfaceType>
 	{
 		#region Members
