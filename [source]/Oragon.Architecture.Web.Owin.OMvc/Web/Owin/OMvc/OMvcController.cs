@@ -16,7 +16,7 @@ namespace Oragon.Architecture.Web.Owin.OMvc
 
 		#region Protected Properties
 
-		protected Microsoft.Owin.IOwinContext Context { get { return (Microsoft.Owin.IOwinContext)Spring.Threading.LogicalThreadContext.GetData("ControllerContext"); } }
+		protected Microsoft.Owin.IOwinContext Context { get { return OMvcControllerContext.Current; } }
 
 		protected Microsoft.Owin.IOwinRequest Request { get { return this.Context.Request; } }
 
