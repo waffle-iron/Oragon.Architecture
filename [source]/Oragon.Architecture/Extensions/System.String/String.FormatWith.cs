@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System;
+using System.Globalization;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,7 +20,7 @@ namespace Oragon.Architecture.Extensions
 		/// </returns>
 		public static string FormatWith(this string @this, params object[] values)
 		{
-			return String.Format(@this, values);
+			return String.Format(CultureInfo.InvariantCulture, @this, values);
 		}
 
 		#endregion Public Methods

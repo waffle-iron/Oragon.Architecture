@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Oragon.Architecture.Extensions
 {
-	public static partial class ExtensionMethods
+	public static partial class OragonExtensions
 	{
 		#region Public Methods
 

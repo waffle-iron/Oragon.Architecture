@@ -1,5 +1,6 @@
 ﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Oragon.Architecture.ApplicationHosting
@@ -74,13 +75,13 @@ namespace Oragon.Architecture.ApplicationHosting
 		{
 			Type type = System.Type.GetType(factoryType, true, false);
 			if (type == null)
-				throw new System.InvalidOperationException(string.Format("Type '{0}' could not be found", factoryType));
+				throw new System.InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Type '{0}' could not be found", factoryType));
 
 			if (typeof(FactoryType).IsAssignableFrom(type))
 				this.Factory = (FactoryType)Activator.CreateInstance(type);
 
 			if (this.Factory == null)
-				throw new System.InvalidOperationException(string.Format("Bootstrap '{0}' could not be found", factoryType));
+				throw new System.InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Bootstrap '{0}' could not be found", factoryType));
 		}
 
 		[LoaderOptimization(LoaderOptimization.MultiDomainHost)]

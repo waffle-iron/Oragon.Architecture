@@ -3,6 +3,7 @@ using Oragon.Architecture.IO.Path;
 using System;
 using System.Configuration;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
@@ -97,7 +98,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			IRelativeDirectoryPath relativeApplicationBaseDirectory = this.ApplicationBaseDirectory.ToRelativeDirectoryPath();
 			IAbsoluteDirectoryPath absoluteApplicationBaseDirectory = relativeApplicationBaseDirectory.GetAbsolutePathFrom(baseDirectory);
 			if (absoluteApplicationBaseDirectory.Exists == false)
-				throw new InvalidOperationException(string.Format("ApplicationBaseDirectory could not be resolved '{0}'", this.ApplicationBaseDirectory));
+				throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "ApplicationBaseDirectory could not be resolved '{0}'", this.ApplicationBaseDirectory));
 
 			return absoluteApplicationBaseDirectory;
 		}
@@ -107,7 +108,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			IRelativeFilePath relativeApplicationConfigurationFile = this.ApplicationConfigurationFile.ToRelativeFilePath();
 			IAbsoluteFilePath absoluteApplicationConfigurationFile = relativeApplicationConfigurationFile.GetAbsolutePathFrom(baseDirectory);
 			if (absoluteApplicationConfigurationFile.Exists == false)
-				throw new InvalidOperationException(string.Format("ApplicationConfigurationFile could not be resolved using '{0}'", this.ApplicationConfigurationFile));
+				throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "ApplicationConfigurationFile could not be resolved using '{0}'", this.ApplicationConfigurationFile));
 			return absoluteApplicationConfigurationFile;
 		}
 

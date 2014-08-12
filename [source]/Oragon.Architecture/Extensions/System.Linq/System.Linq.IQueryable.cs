@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -284,7 +285,7 @@ namespace Oragon.Architecture.Extensions.DynamicLinq
 
 		public override string ToString()
 		{
-			return string.Format(Res.ParseExceptionFormat, Message, position);
+			return string.Format(CultureInfo.InvariantCulture, Res.ParseExceptionFormat, Message, position);
 		}
 
 		#endregion Public Methods
@@ -2013,7 +2014,7 @@ namespace Oragon.Architecture.Extensions.DynamicLinq
 
 		private Exception ParseError(int pos, string format, params object[] args)
 		{
-			return new ParseException(string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args), pos);
+			return new ParseException(string.Format(CultureInfo.CurrentCulture, format, args), pos);
 		}
 
 		// ?: operator

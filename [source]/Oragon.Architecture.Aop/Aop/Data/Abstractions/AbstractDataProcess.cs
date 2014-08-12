@@ -1,5 +1,6 @@
 ﻿using Spring.Objects.Factory.Attributes;
 using System;
+using System.Globalization;
 
 namespace Oragon.Architecture.Aop.Data.Abstractions
 {
@@ -15,7 +16,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 			{
 				ContextType returnValue = Spring.Threading.LogicalThreadContext.GetData(this.ObjectContextKey) as ContextType;
 				if (returnValue == null)
-					throw new InvalidOperationException(string.Format("AbstractDataProcess cannot find context with key '{0}'", this.ObjectContextKey));
+					throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "AbstractDataProcess cannot find context with key '{0}'", this.ObjectContextKey));
 				return returnValue;
 			}
 		}

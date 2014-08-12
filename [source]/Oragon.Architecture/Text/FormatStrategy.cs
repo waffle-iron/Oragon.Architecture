@@ -4,7 +4,7 @@
 	{
 		#region Public Fields
 
-		public static FormatStrategy None;
+		public static FormatStrategy None = new NoneFormatStrategy();
 
 		#endregion Public Fields
 
@@ -14,18 +14,11 @@
 
 		#endregion Protected Fields
 
-		#region Public Constructors
 
-		static FormatStrategy()
-		{
-			FormatStrategy.None = new NoneFormatStrategy();
-		}
-
-		#endregion Public Constructors
 
 		#region Public Methods
 
-		public abstract string Format(string originalFormat);
+		public abstract string Format(string original);
 
 		#endregion Public Methods
 	}

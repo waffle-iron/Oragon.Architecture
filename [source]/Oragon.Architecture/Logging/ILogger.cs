@@ -14,7 +14,7 @@ namespace Oragon.Architecture.Logging
 
 		void Fatal(string context, string content, params string[] tags);
 
-		void Log(string context, string content, LogLevel nivelLog, Dictionary<string, string> tags);
+		void Log(string context, string content, LogLevel logLevel, Dictionary<string, string> tags);
 
 		void Trace(string context, string content, params string[] tags);
 

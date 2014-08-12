@@ -8,6 +8,7 @@ using System.Text;
 
 namespace Oragon.Architecture.Caching.Redis
 {
+	[CLSCompliant(false)]
 	public class RedisProviderBase : IDisposable
 	{
 		#region Public Constructors
