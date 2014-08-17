@@ -1,4 +1,5 @@
-﻿using Oragon.Architecture.ApplicationHosting.Services.Contracts;
+﻿using System.Timers;
+using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using Oragon.Architecture.IO.Path;
 using System;
 using System.Configuration;
@@ -14,7 +15,7 @@ namespace Oragon.Architecture.ApplicationHosting
 	{
 		#region Public Constructors
 
-		public ApplicationHost()
+		protected ApplicationHost()
 		{
 		}
 
@@ -48,7 +49,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual ApplicationDescriptor ToDescriptor()
 		{
-			return new ApplicationDescriptor()
+			return new ApplicationDescriptor
 			{
 				Name = this.Name,
 				FriendlyName = this.FriendlyName,
@@ -66,11 +67,11 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		protected AppDomain CreateDomain(string appDomainName, IAbsoluteDirectoryPath absoluteApplicationBaseDirectory, IAbsoluteFilePath absoluteApplicationConfigurationFile)
 		{
-			Evidence domainEvidence = new Evidence();
+			var domainEvidence = new Evidence();
 			domainEvidence.AddHostEvidence(new Zone(SecurityZone.Trusted));
 
 			//PermissionSet permissions = SecurityManager.GetStandardSandbox(domainEvidence);
-			PermissionSet permissions = new PermissionSet(PermissionState.Unrestricted);
+			var permissions = new PermissionSet(PermissionState.Unrestricted);
 			permissions.AddPermission(new FileIOPermission(PermissionState.Unrestricted));
 			permissions.AddPermission(new ConfigurationPermission(PermissionState.Unrestricted));
 			permissions.AddPermission(new SecurityPermission(PermissionState.Unrestricted));
@@ -82,7 +83,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			// grant permission to perform DNS lookups
 			permissions.AddPermission(new System.Net.DnsPermission(PermissionState.Unrestricted));
 
-			AppDomainSetup domainSetup = new AppDomainSetup()
+			var domainSetup = new AppDomainSetup()
 			{
 				ApplicationBase = absoluteApplicationBaseDirectory.DirectoryInfo.FullName,
 				ConfigurationFile = absoluteApplicationConfigurationFile.FileInfo.FullName,
@@ -115,16 +116,16 @@ namespace Oragon.Architecture.ApplicationHosting
 		#endregion Protected Methods
 	}
 
-	public abstract class ApplicationHost<ApplicationHostControllerType, FactoryType, ContainerType> : ApplicationHost
-		where ApplicationHostControllerType : ApplicationHostController<FactoryType, ContainerType>
-		where FactoryType : IContainerFactory<ContainerType>
+	public abstract class ApplicationHost<TApplicationHostControllerType, TFactoryType, TContainerType> : ApplicationHost
+		where TApplicationHostControllerType : ApplicationHostController<TFactoryType, TContainerType>
+		where TFactoryType : IContainerFactory<TContainerType>
 	{
 		#region Private Fields
 
-		private volatile ApplicationHostControllerType applicationHostController;
+		private volatile TApplicationHostControllerType _applicationHostController;
 
-		private System.Timers.Timer heartBeatTimer;
-		private AppDomain privateAppDomain;
+		private System.Timers.Timer _heartBeatTimer;
+		private AppDomain _privateAppDomain;
 
 		#endregion Private Fields
 
@@ -132,41 +133,38 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public override AppDomainStatistic GetAppDomainStatistics()
 		{
-			return this.applicationHostController.GetAppDomainStatistics();
+			return this._applicationHostController.GetAppDomainStatistics();
 		}
 
 		public override void Start(IAbsoluteDirectoryPath baseDirectory)
 		{
-			this.heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
-			this.heartBeatTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e)
-			{
-				this.applicationHostController.HeartBeat();
-			};
+			this._heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
+			this._heartBeatTimer.Elapsed += (sender, e) => this._applicationHostController.HeartBeat();
 
 			Contract.Requires(baseDirectory != null && baseDirectory.Exists);
 
 			IAbsoluteDirectoryPath absoluteApplicationBaseDirectory = this.GetAbsoluteDirectoryPath(baseDirectory);
 			IAbsoluteFilePath absoluteApplicationConfigurationFile = this.GetAbsoluteFilePath(baseDirectory);
-			this.privateAppDomain = this.CreateDomain(this.Name, absoluteApplicationBaseDirectory, absoluteApplicationConfigurationFile);
+			this._privateAppDomain = this.CreateDomain(this.Name, absoluteApplicationBaseDirectory, absoluteApplicationConfigurationFile);
 
-			Type typeOfApplicationController = typeof(ApplicationHostControllerType);
-			this.applicationHostController = (ApplicationHostControllerType)this.privateAppDomain.CreateInstanceAndUnwrap(typeOfApplicationController.Assembly.FullName, typeOfApplicationController.FullName);
-			this.applicationHostController.SetFactoryType(this.FactoryType);
-			this.applicationHostController.InitializeContainer();
-			this.applicationHostController.Start();
-			this.heartBeatTimer.Start();
+			Type typeOfApplicationController = typeof(TApplicationHostControllerType);
+			this._applicationHostController = (TApplicationHostControllerType)this._privateAppDomain.CreateInstanceAndUnwrap(typeOfApplicationController.Assembly.FullName, typeOfApplicationController.FullName);
+			this._applicationHostController.SetFactoryType(this.FactoryType);
+			this._applicationHostController.InitializeContainer();
+			this._applicationHostController.Start();
+			this._heartBeatTimer.Start();
 		}
 
 		public override void Stop()
 		{
-			this.heartBeatTimer.Stop();
-			this.heartBeatTimer.Dispose();
-			this.heartBeatTimer = null;
+			this._heartBeatTimer.Stop();
+			this._heartBeatTimer.Dispose();
+			this._heartBeatTimer = null;
 
-			this.applicationHostController.Stop();
-			AppDomain.Unload(this.privateAppDomain);
-			this.applicationHostController = null;
-			this.privateAppDomain = null;
+			this._applicationHostController.Stop();
+			AppDomain.Unload(this._privateAppDomain);
+			this._applicationHostController = null;
+			this._privateAppDomain = null;
 		}
 
 		#endregion Public Methods

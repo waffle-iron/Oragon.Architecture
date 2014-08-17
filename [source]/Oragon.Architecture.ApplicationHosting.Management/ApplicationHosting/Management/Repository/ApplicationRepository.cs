@@ -69,7 +69,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 				var query = from machine in this.Machines
 							from host in machine.Hosts
 							where
-							host.ID == unregisterMessage.ClientID
+							host.ID == unregisterMessage.ClientId
 							select new { machine = machine, host = host };
 
 				if (query.Any())

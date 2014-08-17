@@ -27,7 +27,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		#region Public Properties
 
 		[DataMember]
-		public Guid ClientID { get; set; }
+		public Guid ClientId { get; set; }
 
 		#endregion Public Properties
 	}
@@ -43,7 +43,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		#region Public Properties
 
 		[DataMember]
-		public Guid ClientID { get; set; }
+		public Guid ClientId { get; set; }
 
 		#endregion Public Properties
 	}

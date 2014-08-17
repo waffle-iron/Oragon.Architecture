@@ -14,9 +14,9 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 	{
 		#region Private Fields
 
-		private bool disposed = false;
+		private bool _disposed = false;
 
-		private IDisposable webServer;
+		private IDisposable _webServer;
 
 		#endregion Private Fields
 
@@ -46,18 +46,18 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 		{
 			Oragon.Architecture.Threading.ThreadRunner.RunTask(delegate()
 			{//Teste
-				IEnumerable<string> IPList = this.GetExternalsIps();
-				var options = BuildWebAppOptions(IPList);
-				this.webServer = WebApp.Start<ManagementHostStartup>(options);
+				IEnumerable<string> ipList = this.GetExternalsIps();
+				var options = BuildWebAppOptions(ipList);
+				this._webServer = WebApp.Start<ManagementHostStartup>(options);
 			});
 		}
 
 		public void Dispose()
 		{
-			if (this.disposed)
+			if (this._disposed)
 				return;
 			this.DisposeChild();
-			this.disposed = true;
+			this._disposed = true;
 			GC.SuppressFinalize(this);
 		}
 
@@ -67,15 +67,15 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		protected virtual void DisposeChild()
 		{
-			this.webServer.Dispose();
-			this.webServer = null;
+			this._webServer.Dispose();
+			this._webServer = null;
 		}
 
 		#endregion Protected Methods
 
 		#region Private Methods
 
-		private StartOptions BuildWebAppOptions(IEnumerable<string> IPList)
+		private StartOptions BuildWebAppOptions(IEnumerable<string> ipList)
 		{
 			var options = new StartOptions();
 			options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
@@ -84,7 +84,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 			options.Urls.Add("http://{0}:{1}".FormatWith(Environment.MachineName, this.Configuration.ManagementPort));
 			if (this.Configuration.AllowRemoteMonitoring)
 			{
-				foreach (string ipAddress in IPList)
+				foreach (string ipAddress in ipList)
 				{
 					options.Urls.Add("http://{0}:{1}".FormatWith(ipAddress, this.Configuration.ManagementPort));
 				}
