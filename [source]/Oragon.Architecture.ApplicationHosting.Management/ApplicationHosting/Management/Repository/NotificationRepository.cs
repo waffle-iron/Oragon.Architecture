@@ -10,7 +10,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.Repository
 	{
 		#region Private Fields
 
-		private List<Notification> notifications;
+		private readonly List<Notification> notifications;
 		private System.Timers.Timer releaseTimer;
 		private object syncLock = new Object();
 

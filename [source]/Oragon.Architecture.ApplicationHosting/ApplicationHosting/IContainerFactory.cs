@@ -1,6 +1,6 @@
 ﻿namespace Oragon.Architecture.ApplicationHosting
 {
-	public interface IContainerFactory<T>
+	public interface IContainerFactory<out T>
 	{
 		#region Public Methods
 

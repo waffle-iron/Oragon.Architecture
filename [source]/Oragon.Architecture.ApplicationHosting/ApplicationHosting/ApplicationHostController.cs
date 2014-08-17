@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
-	public abstract class ApplicationHostController<FactoryType, ContainerType> : MarshalByRefObject
-		where FactoryType : IContainerFactory<ContainerType>
+	public abstract class ApplicationHostController<TFactoryType, TContainerType> : MarshalByRefObject
+		where TFactoryType : IContainerFactory<TContainerType>
 	{
 		#region Public Constructors
 
-		public ApplicationHostController()
+		protected ApplicationHostController()
 		{
 			//AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
 			//{
@@ -33,13 +33,13 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		#region Protected Properties
 
-		protected ContainerType Container { get; set; }
+		protected TContainerType Container { get; set; }
 
 		#endregion Protected Properties
 
 		#region Private Properties
 
-		private FactoryType Factory { get; set; }
+		private TFactoryType Factory { get; set; }
 
 		#endregion Private Properties
 
@@ -77,10 +77,9 @@ namespace Oragon.Architecture.ApplicationHosting
 			if (type == null)
 				throw new System.InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Type '{0}' could not be found", factoryType));
 
-			if (typeof(FactoryType).IsAssignableFrom(type))
-				this.Factory = (FactoryType)Activator.CreateInstance(type);
-
-			if (this.Factory == null)
+			if (typeof(TFactoryType).IsAssignableFrom(type))
+				this.Factory = (TFactoryType)Activator.CreateInstance(type);
+			else
 				throw new System.InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Bootstrap '{0}' could not be found", factoryType));
 		}
 

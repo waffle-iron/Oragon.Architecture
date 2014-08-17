@@ -11,7 +11,7 @@ namespace Oragon.Architecture.ApplicationHosting
 	{
 		#region Public Constructors
 
-		public HostProcessRunner(string[] arguments)
+		public HostProcessRunner(IEnumerable<string> arguments)
 		{
 			AppDomain.CurrentDomain.FirstChanceException += FirstChanceExceptionHandler;
 			AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;

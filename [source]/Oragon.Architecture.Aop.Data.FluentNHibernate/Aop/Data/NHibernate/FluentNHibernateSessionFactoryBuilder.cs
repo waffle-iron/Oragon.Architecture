@@ -13,7 +13,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 	{
 		#region Public Constructors
 
-		public FluentNHibernateSessionFactoryBuilder()
+		protected FluentNHibernateSessionFactoryBuilder()
 		{
 		}
 
@@ -42,8 +42,8 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 				)
 				.ExposeConfiguration(it =>
 					it
-					.SetProperty("command_timeout", this.CommandTimeout.ToString())
-					.SetProperty("adonet.batch_size", this.BatchSize.ToString())
+					.SetProperty("command_timeout", this.CommandTimeout.ToString(CultureInfo.InvariantCulture))
+					.SetProperty("adonet.batch_size", this.BatchSize.ToString(CultureInfo.InvariantCulture))
 				);
 
 			foreach (string typeName in this.TypeNames)

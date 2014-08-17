@@ -23,7 +23,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		public string Name { get; set; }
 
 		[DataMember]
-		public int PID { get; set; }
+		public int Pid { get; set; }
 
 		#endregion Public Properties
 	}

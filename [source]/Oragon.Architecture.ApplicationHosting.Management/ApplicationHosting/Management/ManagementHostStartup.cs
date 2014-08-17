@@ -37,8 +37,8 @@ namespace Oragon.Architecture.ApplicationHosting.Management
 
 		private void ConfigureSignalR(IAppBuilder app)
 		{
-			var signalR_DependencyResolver = ManagementHost.Current.ApplicationContext.GetObject<Oragon.Architecture.Web.SignalR.SpringFramework.SpringDependencyResolver>();
-			var hubConfiguration = new HubConfiguration() { EnableDetailedErrors = true, EnableJavaScriptProxies = true, EnableJSONP = true, Resolver = signalR_DependencyResolver };
+			var signalRDependencyResolver = ManagementHost.Current.ApplicationContext.GetObject<Oragon.Architecture.Web.SignalR.SpringFramework.SpringDependencyResolver>();
+			var hubConfiguration = new HubConfiguration() { EnableDetailedErrors = true, EnableJavaScriptProxies = true, EnableJSONP = true, Resolver = signalRDependencyResolver };
 
 			//app.MapHubs(hubConfiguration);
 			app.UseCors(CorsOptions.AllowAll);
