@@ -29,7 +29,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 			{
 				return (it =>
 				{
-					it.SessionFactoryBuilder = this.SessionFactoryBuilders.Where(sfb => sfb.ObjectContextKey == it.ContextKey).FirstOrDefault();
+					it.SessionFactoryBuilder = this.SessionFactoryBuilders.FirstOrDefault(sfb => sfb.ObjectContextKey == it.ContextKey);
 					return (it.SessionFactoryBuilder != null);
 				});
 			}
@@ -48,9 +48,9 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		{
 			object returnValue = null;
 
-			if (this.ElevateToSystemTransactionsIfRequired && contextAttributes.Where(it => it.IsTransactional.HasValue && it.IsTransactional.Value).Count() > 1)
+			if (this.ElevateToSystemTransactionsIfRequired && contextAttributes.Count(it => it.IsTransactional.HasValue && it.IsTransactional.Value) > 1)
 			{
-				using (System.Transactions.TransactionScope scope = new System.Transactions.TransactionScope(System.Transactions.TransactionScopeOption.Required))
+				using (var scope = new System.Transactions.TransactionScope(System.Transactions.TransactionScopeOption.Required))
 				{
 					returnValue = this.InvokeUsingContext(invocation, new Stack<NHContextAttribute>(contextAttributes));
 					scope.Complete();
