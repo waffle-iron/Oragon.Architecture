@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture", "Oragon.Architecture\Oragon.Architecture.csproj", "{B9CB8BA0-3389-4203-A02D-FA3A6091F31C}"
 EndProject
@@ -85,8 +85,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oragon.Architecture.Web.SignalR.SpringFramework", "Oragon.Architecture.Web.SignalR.SpringFramework\Oragon.Architecture.Web.SignalR.SpringFramework.csproj", "{73CDE5C0-9791-4783-A8B0-3A18738428FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oragon Aaron Server", "Oragon Aaron Server", "{1069427B-F7EF-4CF7-9D47-111267783127}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{4107FACC-6C82-47A9-85AE-827B565ECF26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B9D901A6-B0A8-4050-B0BF-73C20C1C65DB}"
 	ProjectSection(SolutionItems) = preProject
