@@ -159,8 +159,8 @@
     <Compile Include="IO\Path\PathHelpers.cs" />
     <Compile Include="IO\Path\PathMode.cs" />
     <Compile Include="IO\Path\VariablePathResolvingStatus.cs" />
-    <Compile Include="Networking\Commom\Message.cs" />
-    <Compile Include="Networking\Commom\MessageProperty.cs" />
+    <Compile Include="Networking\Common\Message.cs" />
+    <Compile Include="Networking\Common\MessageProperty.cs" />
     <Compile Include="Networking\DynamicPort.cs" />
     <Compile Include="Serialization\JsonHelper.cs" />
     <Compile Include="TypeConverters\DirectoryInfoConverter.cs" />
