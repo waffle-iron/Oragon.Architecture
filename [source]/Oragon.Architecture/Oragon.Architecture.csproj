@@ -11,15 +11,57 @@
     <AssemblyName>Oragon.Architecture</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CONTRACTS_FULL </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>True</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>True</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>True</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Oragon.Architecture.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +72,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -51,15 +97,84 @@
     <Compile Include="Data\ConnectionStrings\AppConfigConnectionStringDiscoverer.cs" />
     <Compile Include="Data\ConnectionStrings\ConfigurableConnectionStringDiscoverer.cs" />
     <Compile Include="Data\ConnectionStrings\IConnectionStringDiscoverer.cs" />
-    <Compile Include="ExtendedTypes\Converters\DirectoryInfoConverter.cs" />
-    <Compile Include="ExtendedTypes\Converters\ReaderQuotasConverter.cs" />
+    <Compile Include="Extensions\OragonExtensions.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.HashSet\HashSet.Intersect.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.HashSet\HashSet.Union.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.ToReadOnlyClonedCollection.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.ToReadOnlyWrappedCollection.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Append.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Concat.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Except.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Intersect.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToHashSet.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToReadOnlyClonedList.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Union.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IList\IList.ToReadOnlyWrappedList.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IReadOnlyList\IReadOnlyList.IndexOf.cs" />
+    <Compile Include="Extensions\System.Object\Object.Concat.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToEnumerable.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToMultiKeyLookup.cs" />
+    <Compile Include="Extensions\System.String\String.EndsWithAny.cs" />
+    <Compile Include="Extensions\System.String\String.EqualsAny.cs" />
+    <Compile Include="Extensions\System.String\String.StartsWithAny.cs" />
+    <Compile Include="IO\Path\AbsolutePathKind.cs" />
+    <Compile Include="IO\Path\EnvVarPathResolvingStatus.cs" />
+    <Compile Include="IO\Path\ExtensionMethodsOnPathsCollection.cs" />
+    <Compile Include="IO\Path\IAbsoluteDirectoryPath.cs" />
+    <Compile Include="IO\Path\IAbsoluteFilePath.cs" />
+    <Compile Include="IO\Path\IAbsolutePath.cs" />
+    <Compile Include="IO\Path\IDirectoryPath.cs" />
+    <Compile Include="IO\Path\IDriveLetter.cs" />
+    <Compile Include="IO\Path\IEnvVarDirectoryPath.cs" />
+    <Compile Include="IO\Path\IEnvVarFilePath.cs" />
+    <Compile Include="IO\Path\IEnvVarPath.cs" />
+    <Compile Include="IO\Path\IFilePath.cs" />
+    <Compile Include="IO\Path\IPath.cs" />
+    <Compile Include="IO\Path\IRelativeDirectoryPath.cs" />
+    <Compile Include="IO\Path\IRelativeFilePath.cs" />
+    <Compile Include="IO\Path\IRelativePath.cs" />
+    <Compile Include="IO\Path\IVariableDirectoryPath.cs" />
+    <Compile Include="IO\Path\IVariableFilePath.cs" />
+    <Compile Include="IO\Path\IVariablePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsolutePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+AbsoluteRelativePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+DriveLetter.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+EnvVarPathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+FilePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+MiscHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+PathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+PathBrowsingHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativeDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativeFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+RelativePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+UNCPathHelper.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariableDirectoryPath.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariableFilePath.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariablePathBase.cs" />
+    <Compile Include="IO\Path\PathHelpers+VariablePathHelpers.cs" />
+    <Compile Include="IO\Path\PathHelpers.cs" />
+    <Compile Include="IO\Path\PathMode.cs" />
+    <Compile Include="IO\Path\VariablePathResolvingStatus.cs" />
+    <Compile Include="Networking\Common\Message.cs" />
+    <Compile Include="Networking\Common\MessageProperty.cs" />
+    <Compile Include="Networking\DynamicPort.cs" />
+    <Compile Include="Serialization\JsonHelper.cs" />
+    <Compile Include="TypeConverters\DirectoryInfoConverter.cs" />
+    <Compile Include="TypeConverters\ReaderQuotasConverter.cs" />
     <Compile Include="ExtendedTypes\DateRange.cs" />
     <Compile Include="ExtendedTypes\Range.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.Range\Range.IsIn.cs" />
     <Compile Include="Extensions\Oragon.Architecture.ExtendedTypes.DateRange\DateRange.Reduce.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.IfTrue.cs" />
+    <Compile Include="Extensions\System.Boolean\Boolean.Not.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.ToBinary.cs" />
+    <Compile Include="Extensions\System.Int32\Int32.IsOdd.cs" />
+    <Compile Include="Extensions\System.Int32\Int32.IsPair.cs" />
     <Compile Include="Extensions\System.Byte\Byte.ToBase64String.cs" />
     <Compile Include="Extensions\System.Char\Char.Repeat.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddIf.cs" />
@@ -69,6 +184,7 @@
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddRangeIfNotContains.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotNullAndIsNotEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotNullOrEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNullOrEmpty.cs" />
     <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.Remove.cs" />
@@ -211,6 +327,7 @@
     <Compile Include="Extensions\System.Uri\Uri.UserName.cs" />
     <Compile Include="Extensions\System.Uri\Uri.Scheme.cs" />
     <Compile Include="Extensions\System.Uri\Uri.Query.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Logging\AbstractLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Loggers\DiagnosticsLogger.cs" />
@@ -231,9 +348,22 @@
     <Compile Include="Extensions\System.Uri\Uri.Port.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\Oragon.Architecture.nuspec" />
   </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\Oragon.Architecture.xml">
+      <Link>Oragon.Architecture.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

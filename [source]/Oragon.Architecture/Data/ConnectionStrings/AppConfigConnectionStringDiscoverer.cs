@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Globalization;
 
 namespace Oragon.Architecture.Data.ConnectionStrings
 {
@@ -6,7 +7,7 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 	{
 		#region Private Properties
 
-		private string ConnectionStringKey { get; set; }
+		public string ConnectionStringKey { get; set; }
 
 		#endregion Private Properties
 
@@ -17,7 +18,7 @@ namespace Oragon.Architecture.Data.ConnectionStrings
 			System.Configuration.ConnectionStringSettings returnValue = ConfigurationManager.ConnectionStrings[this.ConnectionStringKey];
 
 			if (returnValue == null)
-				throw new ConfigurationErrorsException(string.Format("Cannot find ConnectionString with key '{0}'", this.ConnectionStringKey));
+				throw new ConfigurationErrorsException(string.Format(CultureInfo.InvariantCulture, "Cannot find ConnectionString with key '{0}'", this.ConnectionStringKey));
 
 			return returnValue;
 		}

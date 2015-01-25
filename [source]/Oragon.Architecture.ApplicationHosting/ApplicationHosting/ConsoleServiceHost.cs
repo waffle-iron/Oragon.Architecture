@@ -14,17 +14,19 @@ namespace Oragon.Architecture.ApplicationHosting
 	{
 		#region Private Fields
 
-		private Action<string> Green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
+		private readonly Action<string> _green = (text) => { Console.ForegroundColor = ConsoleColor.Green; Console.Write(text); };
 
-		private Microsoft.AspNet.SignalR.Client.IHubProxy hostHubProxy;
-		private Microsoft.AspNet.SignalR.Client.HubConnection hubConnection;
-		private Action<string> Red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
+		private Microsoft.AspNet.SignalR.Client.IHubProxy _hostHubProxy;
 
-		private Action Set0x0 = () => { Console.SetCursorPosition(0, 0); };
+		private Microsoft.AspNet.SignalR.Client.HubConnection _hubConnection;
+		
+		private readonly Action<string> _red = (text) => { Console.ForegroundColor = ConsoleColor.Red; Console.Write(text); };
 
-		private Action<int> SetLeft = (line) => { Console.SetCursorPosition(0, line); };
+		private readonly Action _set0X0 = () => Console.SetCursorPosition(0, 0);
 
-		private Action<int> SetRight = (line) => { Console.SetCursorPosition(Console.WindowWidth - 1, line); };
+		private readonly Action<int> _setLeft = (line) => Console.SetCursorPosition(0, line);
+
+		private readonly Action<int> _setRight = (line) => Console.SetCursorPosition(Console.WindowWidth - 1, line);
 
 		#endregion Private Fields
 
@@ -34,7 +36,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public Uri ApplicationServerEndPoint { get; set; }
 
-		public Guid ClientID { get; set; }
+		public Guid ClientId { get; set; }
 
 		public IAbsoluteFilePath ConfigurationFilePath { get; protected set; }
 
@@ -87,7 +89,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
 			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
 
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			var tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			foreach (var application in tmpApplicationList)
 			{
 				Oragon.Architecture.Threading.ThreadRunner.RunTask(() =>
@@ -101,7 +103,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		{
 			this.DisconnectFromApplicationServer().Wait();
 
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			var tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			tmpApplicationList.Reverse();
 			foreach (var application in tmpApplicationList)
 			{
@@ -115,20 +117,20 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		private async Task ConnectToApplicationServer()
 		{
-			this.hubConnection = new Microsoft.AspNet.SignalR.Client.HubConnection(this.ApplicationServerEndPoint.ToString());
-			this.hostHubProxy = hubConnection.CreateHubProxy("HostHub");
-			this.hubConnection.Start().Wait();
+			this._hubConnection = new Microsoft.AspNet.SignalR.Client.HubConnection(this.ApplicationServerEndPoint.ToString());
+			this._hostHubProxy = _hubConnection.CreateHubProxy("HostHub");
+			this._hubConnection.Start().Wait();
 
 			var requestMessage = new RegisterHostRequestMessage()
 			{
 				MachineDescriptor = new MachineDescriptor()
 				{
-					IPAddressList = this.GetAllIPAddresses(),
+					IpAddressList = GetAllIpAddresses(),
 					MachineName = Environment.MachineName
 				},
 				HostDescriptor = new HostDescriptor()
 				{
-					PID = System.Diagnostics.Process.GetCurrentProcess().Id,
+					Pid = System.Diagnostics.Process.GetCurrentProcess().Id,
 					Description = this.Description,
 					FriendlyName = this.FriendlyName,
 					Name = this.Name,
@@ -136,18 +138,18 @@ namespace Oragon.Architecture.ApplicationHosting
 				}
 			};
 
-			RegisterHostResponseMessage responseMessage = await this.hostHubProxy.Invoke<RegisterHostResponseMessage>("RegisterHost", requestMessage);
-			this.ClientID = responseMessage.ClientID;
+			RegisterHostResponseMessage responseMessage = await this._hostHubProxy.Invoke<RegisterHostResponseMessage>("RegisterHost", requestMessage);
+			this.ClientId = responseMessage.ClientId;
 		}
 
 		private async Task DisconnectFromApplicationServer()
 		{
-			UnregisterHostRequestMessage requestMessage = new UnregisterHostRequestMessage()
+			var requestMessage = new UnregisterHostRequestMessage()
 			{
-				ClientID = this.ClientID
+				ClientId = this.ClientId
 			};
-			UnregisterHostResponseMessage responseMessage = await this.hostHubProxy.Invoke<UnregisterHostResponseMessage>("UnregisterHost", requestMessage);
-			this.hubConnection.Stop();
+			UnregisterHostResponseMessage responseMessage = await this._hostHubProxy.Invoke<UnregisterHostResponseMessage>("UnregisterHost", requestMessage);
+			this._hubConnection.Stop();
 		}
 
 		#endregion Application Server Integration
@@ -198,7 +200,7 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		protected virtual void WriteHeader()
 		{
-			Queue<string> asciiArt = new Queue<string>();
+			var asciiArt = new Queue<string>();
 
 			for (int i = 0; i < Console.WindowHeight; i++)
 			{
@@ -244,11 +246,11 @@ namespace Oragon.Architecture.ApplicationHosting
 				{
 					Console.WriteLine(array[i].PadRight(Console.WindowWidth - 1, ' '));
 				}
-				Set0x0();
+				_set0X0();
 				System.Threading.Thread.Sleep(new TimeSpan(0, 0, 0, 0, 15));
 			}
-			Set0x0();
-			var headerText = "Oragon Architecture Application Hosting";
+			_set0X0();
+			const string headerText = "Oragon Architecture Application Hosting";
 
 			Console.BackgroundColor = ConsoleColor.DarkGray;
 			Console.ForegroundColor = ConsoleColor.Black;
@@ -259,35 +261,35 @@ namespace Oragon.Architecture.ApplicationHosting
 			Console.SetCursorPosition(position, 0);
 			Console.Write(headerText);
 
-			int headerSize = 5;
+			const int headerSize = 5;
 			for (int i = 1; i < headerSize + 1; i++)
 			{
-				SetLeft(i);
+				_setLeft(i);
 				Console.Write(" ");
-				SetRight(i);
+				_setRight(i);
 				Console.Write(" ");
 			}
-			SetLeft(headerSize + 1);
+			_setLeft(headerSize + 1);
 			for (int i = 0; i < Console.WindowWidth; i++)
 				Console.Write(" ");
 
 			Console.ResetColor();
 			Console.ForegroundColor = ConsoleColor.Red;
-			Console.SetCursorPosition(1, 1); Red("Version: "); Green(this.GetType().Assembly.GetAssemblyInformationalVersion());
-			Console.SetCursorPosition(1, 2); Red("AssemblyFileVersion: "); Green(this.GetType().Assembly.GetAssemblyFileVersion());
-			Console.SetCursorPosition(1, 3); Red("ServiceName: "); Green(this.Name);
-			Console.SetCursorPosition(1, 4); Red("FriendlyName: "); Green(this.FriendlyName);
-			Console.SetCursorPosition(1, 5); Red("Description: "); Green(this.Description);
+			Console.SetCursorPosition(1, 1); _red("Version: "); _green(this.GetType().Assembly.GetAssemblyInformationalVersion());
+			Console.SetCursorPosition(1, 2); _red("AssemblyFileVersion: "); _green(this.GetType().Assembly.GetAssemblyFileVersion());
+			Console.SetCursorPosition(1, 3); _red("ServiceName: "); _green(this.Name);
+			Console.SetCursorPosition(1, 4); _red("FriendlyName: "); _green(this.FriendlyName);
+			Console.SetCursorPosition(1, 5); _red("Description: "); _green(this.Description);
 			Console.ResetColor();
 
-			SetLeft(headerSize + 2);
+			_setLeft(headerSize + 2);
 		}
 
 		#endregion Console Management
 
 		#region Private Methods
 
-		private List<string> GetAllIPAddresses()
+		private static List<string> GetAllIpAddresses()
 		{
 			IEnumerable<string> iplist = System.Net.Dns.GetHostEntry(Environment.MachineName).AddressList.Select(it => it.ToString());
 			iplist = iplist.Where(it => it.Contains(":") == false).ToArray(); //Only IPV4 IP`s
@@ -305,9 +307,9 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public HostStatistic CollectStatistics()
 		{
-			List<ApplicationHost> tmpApplicationList = new List<ApplicationHost>(this.Applications);
+			var tmpApplicationList = new List<ApplicationHost>(this.Applications);
 
-			HostStatistic returnValue = new HostStatistic()
+			var returnValue = new HostStatistic()
 			{
 				ApplicationStatistics = new List<ApplicationStatistic>()
 			};

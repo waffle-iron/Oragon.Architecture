@@ -7,14 +7,14 @@ using System.ServiceModel;
 
 namespace Oragon.Architecture.Services.WcfServices
 {
-	public class WcfHost<ServiceType, ServiceInterface>
-		where ServiceType : class,  ServiceInterface, new()
+	public class WcfHost<TServiceType, TServiceInterface>
+		where TServiceType : class,  TServiceInterface, new()
 	//where ServiceInterface : Object
 	{
 		#region Private Fields
 
 		private Uri[] _baseAddresses;
-		private ServiceHost host;
+		private ServiceHost _host;
 
 		#endregion Private Fields
 
@@ -46,7 +46,7 @@ namespace Oragon.Architecture.Services.WcfServices
 
 		public string Name { get; set; }
 
-		public ServiceInterface ServiceInstance { get; set; }
+		public TServiceInterface ServiceInstance { get; set; }
 
 		#endregion Public Properties
 
@@ -54,7 +54,7 @@ namespace Oragon.Architecture.Services.WcfServices
 
 		public void Start()
 		{
-			var serviceInterfaceType = typeof(ServiceInterface);
+			var serviceInterfaceType = typeof(TServiceInterface);
 			WcfServiceHostFactory wcfServiceHostFactory = new WcfServiceHostFactory()
 			{
 				ConcurrencyMode = this.ConcurrencyMode,
@@ -71,18 +71,18 @@ namespace Oragon.Architecture.Services.WcfServices
 				}
 			};
 			if (this.ServiceInstance == null)
-				this.host = wcfServiceHostFactory.BuildHost(typeof(ServiceType));
+				this._host = wcfServiceHostFactory.BuildHost(typeof(TServiceType));
 			else
-				this.host = wcfServiceHostFactory.BuildHost(this.ServiceInstance);
-			host.Open();
+				this._host = wcfServiceHostFactory.BuildHost(this.ServiceInstance);
+			_host.Open();
 		}
 
 		public void Stop()
 		{
-			if (this.host != null)
+			if (this._host != null)
 			{
-				this.host.Close();
-				this.host = null;
+				this._host.Close();
+				this._host = null;
 			}
 		}
 

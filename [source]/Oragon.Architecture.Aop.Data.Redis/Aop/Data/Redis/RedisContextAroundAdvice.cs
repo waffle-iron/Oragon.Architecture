@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace Oragon.Architecture.Aop.Data.Redis
 {
+	[CLSCompliant(false)]
 	public class RedisContextAroundAdvice : AbstractContextAroundAdvice<RedisContextAttribute, RedisContext>
 	{
 		#region Public Properties

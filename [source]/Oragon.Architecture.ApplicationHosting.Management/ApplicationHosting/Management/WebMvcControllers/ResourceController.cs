@@ -79,7 +79,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebMvcControllers
 		public MvcResult LoadFrom(string resourceName)
 		{
 #if DEBUG
-			string startConst = @"ApplicationHosting/Management/";
+			const string startConst = @"ApplicationHosting/Management/";
 			if (resourceName.ToLower().StartsWith(startConst.ToLower()))
 			{
 				var fileName = @"D:\Projetos\Oragon.Architecture\[source]\Oragon.Architecture.ApplicationHosting.Management\ApplicationHosting\Management\" + resourceName.Substring(startConst.Length);

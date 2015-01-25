@@ -79,7 +79,7 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 
 		#region Public Constructors
 
-		public AbstractSessionFactoryBuilder()
+		protected AbstractSessionFactoryBuilder()
 		{
 		}
 

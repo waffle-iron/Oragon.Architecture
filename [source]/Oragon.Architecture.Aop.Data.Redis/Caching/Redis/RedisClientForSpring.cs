@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace Oragon.Architecture.Caching.Redis
 {
+	[CLSCompliant(false)]
 	public class RedisClientForSpring : RedisProviderBase, Spring.Caching.ICache
 	{
 		#region Public Constructors

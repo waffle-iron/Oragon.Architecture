@@ -1,10 +1,12 @@
 ﻿using Oragon.Architecture.Aop.Data.Abstractions;
 using Oragon.Architecture.Caching.Redis;
 using ServiceStack.Redis;
+using System;
 using System.Collections.Generic;
 
 namespace Oragon.Architecture.Aop.Data.Redis
 {
+	[CLSCompliant(false)]
 	public class RedisContext : AbstractContext<RedisContextAttribute>
 	{
 		#region Public Constructors

@@ -11,7 +11,7 @@ namespace Oragon.Architecture.ApplicationHosting.Services.Contracts
 		#region Public Properties
 
 		[DataMember]
-		public List<string> IPAddressList { get; set; }
+		public List<string> IpAddressList { get; set; }
 
 		[DataMember]
 		public string MachineName { get; set; }

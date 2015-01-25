@@ -35,7 +35,7 @@ namespace Oragon.Architecture.Logging
 		///     Define ou obtém um(a) LogEntryID da LogEntry.
 		/// </summary>
 		[DataMember]
-		public virtual long LogEntryID { get; set; }
+		public virtual long LogEntryId { get; set; }
 
 		/// <summary>
 		///     Define ou obtém um(a) LogLevel da LogEntry.
@@ -75,7 +75,7 @@ namespace Oragon.Architecture.Logging
 
 		public string Name { get; set; }
 
-		public long TagID { get; set; }
+		public long TagId { get; set; }
 
 		#endregion Public Properties
 	}
@@ -84,9 +84,9 @@ namespace Oragon.Architecture.Logging
 	{
 		#region Public Properties
 
-		public long TagID { get; set; }
+		public long TagId { get; set; }
 
-		public long TagValueID { get; set; }
+		public long TagValueId { get; set; }
 
 		public string Value { get; set; }
 

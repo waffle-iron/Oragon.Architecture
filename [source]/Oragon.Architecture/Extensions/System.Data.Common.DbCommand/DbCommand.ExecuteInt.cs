@@ -2,6 +2,7 @@
 
 using System;
 using System.Data.Common;
+using System.Globalization;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -21,7 +22,7 @@ namespace Oragon.Architecture.Extensions
 		/// </returns>
 		public static int ExecuteInt(this DbCommand @this)
 		{
-			return Convert.ToInt32(@this.ExecuteScalar());
+			return Convert.ToInt32(@this.ExecuteScalar(), CultureInfo.InvariantCulture);
 		}
 
 		#endregion Public Methods

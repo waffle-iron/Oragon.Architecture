@@ -101,7 +101,7 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 							select new TreeItem()
 							{
 								id = "/Host/{0}/".FormatWith(host.ID),
-								text = "Host {0} :{1}".FormatWith(host.HostDescriptor.FriendlyName, host.HostDescriptor.PID),
+								text = "Host {0} :{1}".FormatWith(host.HostDescriptor.FriendlyName, host.HostDescriptor.Pid),
 								iconCls = "AppIcons-application-cascade",
 								leaf = false,
 								expanded = false,
@@ -146,21 +146,21 @@ namespace Oragon.Architecture.ApplicationHosting.Management.WebApiControllers
 										text="Start Application",
 										iconCls="AppIcons-control-play-blue",
 										actionRoute="Application|Start",
-										actionConfirmation = new ActionConfirmation("Start Application", MessageBoxButtons.YESNO, MessageBoxIcon.QUESTION, "Please confirm start operation this application on server '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+										actionConfirmation = new ActionConfirmation("Start Application", MessageBoxButtons.YESNO, MessageBoxIcon.QUESTION, "Please confirm start operation this application on server '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.Pid), MessageBoxButton.YES)
 									} ,
 									new MenuItem()
 									{
 										text="Stop Application",
 										iconCls="AppIcons-control-stop-blue",
 										actionRoute="Application|Stop",
-										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.QUESTION, "Are you shure? This operation will stop this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+										actionConfirmation = new ActionConfirmation("Stop Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.QUESTION, "Are you shure? This operation will stop this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.Pid), MessageBoxButton.YES)
 									} ,
 									new MenuItem()
 									{
 										text="Remove Application",
 										iconCls="AppIcons-application-delete",
 										actionRoute="Application|Remove",
-										actionConfirmation = new ActionConfirmation("Remove Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.WARNING, "Realy? Are you shure? This operation will REMOVE this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.PID), MessageBoxButton.YES)
+										actionConfirmation = new ActionConfirmation("Remove Application", MessageBoxButtons.YESNOCANCEL, MessageBoxIcon.WARNING, "Realy? Are you shure? This operation will REMOVE this application on machine '{0}', process PID {1}.".FormatWith(machine.MachineDescriptor.MachineName, host.HostDescriptor.Pid), MessageBoxButton.YES)
 									}
 								}
 							};
