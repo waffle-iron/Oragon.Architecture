@@ -9,7 +9,7 @@ namespace ApplicationHostingSimpleInjectorExample
 
 		public Container CreateContainer()
 		{
-			Container container = new Container();
+			var container = new Container();
 
 			container.Register<IAutoStartAppExample, AutoStartAppExample>();
 

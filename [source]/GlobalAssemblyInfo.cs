@@ -4,7 +4,7 @@ using System.Reflection;
 [assembly: AssemblyCompany("Luiz Carlos Faria")]
 [assembly: AssemblyProduct("Oragon Architecture")]
 [assembly: AssemblyTrademark("Oragon It, Oragon Architecture & Luiz Carlos Faria")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
 #if DEBUG

@@ -115,7 +115,7 @@
 					configurable: true,
 					writable: true,
 					value: value
-				})
+				});
 			}
 			: function (target, methodName, value) {
 				target[methodName] = value;
@@ -196,8 +196,7 @@
 	var EqualityComparer = function (equals, getHashCode) {
 		this.equals = equals;
 		this.getHashCode = getHashCode;
-	}
-
+	};
 	EqualityComparer.Default = new EqualityComparer(
 		function (x, y) {
 			if (x === y) return true;
@@ -261,7 +260,7 @@
 		this.item6 = item6;
 		this.item7 = item7;
 		this.item8 = item8;
-	}
+	};
 	Tuple.prototype.equals = function (other) {
 		if (other == null) return false;
 		if (!(other instanceof Tuple)) return false;
@@ -286,7 +285,7 @@
 		if (!comparer.equals(this.item8, other.item8)) return false;
 
 		return true;
-	}
+	};
 	Tuple.prototype.getHashCode = function () {
 		var sb = []; // sb as StringBuilder
 		sb.push("1:" + EqualityComparer.Default.getHashCode(this.item1));
@@ -307,11 +306,10 @@
 		sb.push("8:" + EqualityComparer.Default.getHashCode(this.item8));
 
 		return sb.join("-");
-	}
-
+	};
 	var TupleArray = function (itemsArray) {
 		this.items = itemsArray;
-	}
+	};
 	TupleArray.prototype.equals = function (other) {
 		if (other == null) return false;
 		if (!(other instanceof TupleArray)) return false;
@@ -324,7 +322,7 @@
 			if (!EqualityComparer.Default.equals(this.items[i], other.items[i])) return false;
 		}
 		return true;
-	}
+	};
 	TupleArray.prototype.getHashCode = function () {
 		var len = this.items.length;
 		var sb = [];
@@ -334,9 +332,7 @@
 			sb.push(i + ":" + code);
 		}
 		return sb.join("-");
-	}
-
-	// Enumerable constuctor
+	}; // Enumerable constuctor
 	var Enumerable = function (getEnumerator) {
 		this.getEnumerator = getEnumerator;
 	};
@@ -1169,14 +1165,14 @@
 				function () {
 					var array = Enumerable.make(source)
 						.concat(Enumerable.from(args).takeExceptLast().select(Enumerable.from))
-						.select(function (x) { return x.getEnumerator() })
+						.select(function (x) { return x.getEnumerator(); })
 						.toArray();
 					enumerators = Enumerable.from(array);
 				},
 				function () {
-					if (enumerators.all(function (x) { return x.moveNext() })) {
+					if (enumerators.all(function (x) { return x.moveNext(); })) {
 						var array = enumerators
-							.select(function (x) { return x.current() })
+							.select(function (x) { return x.current(); })
 							.toArray();
 						array.push(index++);
 						return this.yieldReturn(selector.apply(null, array));
@@ -1205,7 +1201,7 @@
 				function () {
 					enumerators = Enumerable.make(source)
 						.concat(Enumerable.from(args).select(Enumerable.from))
-						.select(function (x) { return x.getEnumerator() })
+						.select(function (x) { return x.getEnumerator(); })
 						.toArray();
 				},
 				function () {
@@ -1384,7 +1380,7 @@
 					function () {
 						enumerators = Enumerable.make(source)
 							.concat(Enumerable.from(args).select(Enumerable.from))
-							.select(function (x) { return x.getEnumerator() })
+							.select(function (x) { return x.getEnumerator(); })
 							.toArray();
 					},
 					function () {

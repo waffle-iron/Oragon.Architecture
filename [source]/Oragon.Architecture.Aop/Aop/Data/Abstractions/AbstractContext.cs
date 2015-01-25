@@ -9,7 +9,7 @@ namespace Oragon.Architecture.Aop.Data.Abstractions
 	{
 		#region Public Constructors
 
-		public AbstractContext(AttributeType contextAttribute, Stack<AbstractContext<AttributeType>> contextStack)
+		protected AbstractContext(AttributeType contextAttribute, Stack<AbstractContext<AttributeType>> contextStack)
 		{
 			this.ContextAttribute = contextAttribute;
 			this.ContextStack = contextStack;

@@ -22,6 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Oragon.Architecture.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,6 +41,9 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\[references]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -66,6 +71,7 @@
     <Compile Include="ApplicationHosting\ApplicationHostController.cs" />
     <Compile Include="ApplicationHosting\ConsoleServiceHost.cs" />
     <Compile Include="ApplicationHosting\Credential.cs" />
+    <Compile Include="ApplicationHosting\HostProcessRunner.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\AppDomainStatistic.cs" />
     <Compile Include="ApplicationHosting\IContainerFactory.cs" />
     <Compile Include="ApplicationHosting\Services\Contracts\AssemblyDescriptor.cs" />

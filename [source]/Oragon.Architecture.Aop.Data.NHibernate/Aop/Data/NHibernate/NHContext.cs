@@ -56,18 +56,14 @@ namespace Oragon.Architecture.Aop.Data.NHibernate
 		#region Private Methods
 
 		/// <summary>
-		///     Constrói uma sessão NHibernate injetando interceptadores na sessão de acordo com o estado definido na própria configuração do ObjectcontextAroundAdvice
+		/// Realiza o Build de um ISession
 		/// </summary>
-		/// <param name="sessionFactory"></param>
+		/// <param name="interceptor"></param>
 		/// <returns></returns>
 		private NH.ISession BuildSession(NH.IInterceptor interceptor)
 		{
 			NH.ISessionFactory sessionFactory = this.ContextAttribute.SessionFactoryBuilder.BuildSessionFactory();
-			NH.ISession session = null;
-			if (interceptor != null)
-				session = sessionFactory.OpenSession(interceptor);
-			else
-				session = sessionFactory.OpenSession();
+			NH.ISession session = interceptor != null ? sessionFactory.OpenSession(interceptor) : sessionFactory.OpenSession();
 
 			if (this.IsTransactional)
 				session.FlushMode = this.ContextAttribute.SessionFactoryBuilder.TransactionFlushMode;
