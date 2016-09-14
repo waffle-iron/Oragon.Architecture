@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Oragon.Architecture.Web.SignalR.SpringFramework
 {
+	[CLSCompliant(false)]
 	public class SpringDependencyResolver : DefaultDependencyResolver, IApplicationContextAware
 	{
 		#region Public Properties

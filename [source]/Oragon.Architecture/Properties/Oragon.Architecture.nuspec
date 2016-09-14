@@ -20,7 +20,9 @@ And much more...</description>
     <copyright>Copyright 2014</copyright>
     <language>en-US</language>
     <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
-    <dependencies />
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.4" />
+    </dependencies>
   </metadata>
   <files>
     <file src="..\bin\$configuration$\Oragon.Architecture.dll" target="lib\Oragon.Architecture.dll" />

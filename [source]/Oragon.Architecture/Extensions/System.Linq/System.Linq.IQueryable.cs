@@ -967,10 +967,13 @@ namespace Oragon.Architecture.Extensions.DynamicLinq
 
 		private static Type FindGenericType(Type generic, Type type)
 		{
-			while (type != null && type != typeof(object))
+            while (type != null && type != typeof(object))
 			{
-				if (type.IsGenericType && type.GetGenericTypeDefinition() == generic) return type;
-				if (generic.IsInterface)
+                TypeInfo genericTypeInfo = generic.GetTypeInfo();
+                TypeInfo typeInfo = type.GetTypeInfo();
+
+                if (typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == generic) return type;
+				if (genericTypeInfo.IsInterface)
 				{
 					foreach (Type intfType in type.GetInterfaces())
 					{
@@ -1179,7 +1182,7 @@ namespace Oragon.Architecture.Extensions.DynamicLinq
 
 		private static bool IsNullableType(Type type)
 		{
-			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+			return type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
 		}
 
 		private static bool IsNumericType(Type type)

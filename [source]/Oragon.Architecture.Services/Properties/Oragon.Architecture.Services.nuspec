@@ -15,7 +15,6 @@
     <language>en-US</language>
     <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
     <dependencies>
-      <dependency id="Oragon.Architecture.Networking" version="$version$" />
       <dependency id="Oragon.Architecture" version="$version$" />
     </dependencies>
   </metadata>
