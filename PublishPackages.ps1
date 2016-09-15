@@ -26,10 +26,6 @@ function myeval($command)
 $packagesToPublish = [System.IO.Directory]::GetFiles($buildDirectory, "*.nupkg", [System.IO.SearchOption]::AllDirectories)
 foreach($packageToPublish in $packagesToPublish)
 {
-    $command = """$NuGet"" push $packageToPublish dd9611e3-899d-4090-a6fe-66ce1196b221" 
+    $command = """$NuGet"" push $packageToPublish -source https://www.nuget.org/api/v2/package/" 
     myeval($command)
 }
-#myeval("""$NuGet"" push  "+  +" dd9611e3-899d-4090-a6fe-66ce1196b221")
-
-
-#nuget push <package path> [API key] [options]
