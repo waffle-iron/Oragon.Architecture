@@ -12,7 +12,7 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 	{
 		#region Protected Properties
 
-		protected virtual MongoDBDriver.MongoCollection<T> Collection
+		protected virtual MongoDBDriver.IMongoCollection<T> Collection
 		{
 			get
 			{
@@ -30,11 +30,11 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 
 		#region Protected Methods
 
-		protected virtual MongoDBDriver.MongoDatabase GetDataBase()
+		protected virtual MongoDBDriver.IMongoDatabase GetDataBase()
 		{
 			return this
 					.ObjectContext
-					.Server
+					.Client
 					.GetDatabase(this.DataBaseName);
 		}
 

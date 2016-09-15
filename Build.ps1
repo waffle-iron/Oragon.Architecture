@@ -41,13 +41,13 @@ function GetNuSpecFiles
 function FormatNuGetBuildCommand
 {
     param ([string]$nuSpecFile)
-    $command = """$NuGet"" pack ""$nuSpecFile"" -Build -Prop Configuration=Release -IncludeReferencedProjects -NoPackageAnalysis -Version 7.0.1-GA -OutputDirectory ""$buildDirectory"""
+    $command = """$NuGet"" pack ""$nuSpecFile"" -Build -Prop Configuration=Release -IncludeReferencedProjects -NoPackageAnalysis -Version 7.1.0 -OutputDirectory ""$buildDirectory"""
     return $command
 }
 
 myeval("""$ResourcePack"" --pack --ProjectGuid=30E4014D-8E36-4E02-AE1A-CD4EB1718683 --RootNamespace=Oragon.Resources.Bootstrap --AssemblyName=Oragon.Resources.Bootstrap --Path=$sourceDirectory\Oragon.Resources.Bootstrap --TargetFrameworkVersion=v4.5.1 --Version=$env:GlobalAssemblyVersion --VersionTag=GA")
 
-myeval("""$AssemblyInfoVersionManager"" --File=""$GlobalAssemblyInfo"" --Version=7.0.1 --VersionTag=GA")
+myeval("""$AssemblyInfoVersionManager"" --File=""$GlobalAssemblyInfo"" --Version=7.1.0")
 
 myeval("""$NugetTools"" --mergenuspec --solution=""$solutionFile"" --createNuspecIfNeed=""$NuGet"" --convertSolutionProjectsInNugetReferences  ")
 

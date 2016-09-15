@@ -12,7 +12,6 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			: base(contextAttribute, contextStack)
 		{
 			this.Client = new MongoDBDriver.MongoClient(contextAttribute.MongoDBConnectionString.ConnectionString);
-			this.Server = this.Client.GetServer();
 		}
 
 		#endregion Public Constructors
@@ -21,7 +20,6 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 
 		public MongoDBDriver.MongoClient Client { get; private set; }
 
-		public MongoDBDriver.MongoServer Server { get; private set; }
 
 		#endregion Public Properties
 
@@ -34,7 +32,6 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 
 		protected override void DisposeFields()
 		{
-			this.Server = null;
 			this.Client = null;
 			base.DisposeFields();
 		}
