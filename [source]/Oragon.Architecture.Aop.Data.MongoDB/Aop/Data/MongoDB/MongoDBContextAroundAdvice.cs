@@ -23,7 +23,7 @@ namespace Oragon.Architecture.Aop.Data.MongoDB
 			{
 				return (it =>
 				{
-					it.MongoDBConnectionString = this.ConnectionStrings.FirstOrDefault(localConnecions => localConnecions.Key == it.ContextKey);
+					it.MongoDBConnectionString = this.ConnectionStrings.SingleOrDefault(localConnecions => localConnecions.Key == it.ContextKey);
 					return (it.MongoDBConnectionString != null);
 				});
 			}

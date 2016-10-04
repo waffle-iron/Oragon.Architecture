@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 
 namespace Oragon.Architecture.Extensions
@@ -17,9 +17,7 @@ namespace Oragon.Architecture.Extensions
 		/// <param name="collection">A collection object.</param>
 		public static IReadOnlyCollection<T> ToReadOnlyClonedCollection<T>(this IEnumerable<T> collection)
 		{
-			Contract.Requires(collection != null, "collection must not be null");
-			Contract.Ensures(Contract.Result<IReadOnlyCollection<T>>() != null, "returned read-only collection is not null");
-			Contract.Ensures(Contract.Result<IReadOnlyCollection<T>>().Count == collection.Count(), "returned read-only collection has the same number of elements as collection");
+			collection.Should().NotBeNull( "collection must not be null");			
 			return new CollectionReadOnlyWrapper<T>(collection.ToArray());
 		}
 

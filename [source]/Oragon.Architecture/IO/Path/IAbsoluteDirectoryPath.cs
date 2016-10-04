@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.IO;
 
 namespace Oragon.Architecture.IO.Path
@@ -12,7 +12,6 @@ namespace Oragon.Architecture.IO.Path
 	///The path represented can exist or not.
 	///The extension method <see cref="PathHelpers.ToAbsoluteDirectoryPath(string)"/> can be called to create a new IAbsoluteDirectoryPath object from a string.
 	///</remarks>
-	[ContractClass(typeof(IAbsoluteDirectoryPathContract))]
 	public interface IAbsoluteDirectoryPath : IDirectoryPath, IAbsolutePath
 	{
 		#region Public Properties
@@ -87,142 +86,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IAbsoluteDirectoryPath))]
-	internal abstract class IAbsoluteDirectoryPathContract : IAbsoluteDirectoryPath
-	{
-		#region Public Properties
-
-		public IReadOnlyList<IAbsoluteDirectoryPath> ChildrenDirectoriesPath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public IReadOnlyList<IAbsoluteFilePath> ChildrenFilesPath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public DirectoryInfo DirectoryInfo
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public string DirectoryName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract IDriveLetter DriveLetter { get; }
-
-		public abstract bool Exists { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
-		IDirectoryPath IPath.ParentDirectoryPath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract AbsolutePathKind Kind { get; }
-
-		public IAbsoluteDirectoryPath ParentDirectoryPath
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract string UNCServer { get; }
-
-		public abstract string UNCShare { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-		public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason);
-
-		public IAbsoluteDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IAbsoluteFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IAbsoluteDirectoryPath GetChildDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IAbsoluteFilePath GetChildFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public abstract IRelativePath GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-		IRelativeDirectoryPath IAbsoluteDirectoryPath.GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public abstract bool OnSameVolumeThan(IAbsolutePath pathAbsoluteOther);
-
-		public abstract bool TryResolveEnvironmentVariable(out IAbsolutePath pathResolved);
-
-		#endregion Public Methods
-	}
+	
 }

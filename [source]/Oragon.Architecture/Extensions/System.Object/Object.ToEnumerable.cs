@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -16,7 +16,6 @@ namespace Oragon.Architecture.Extensions
 		///<param name="element">The single element in the returned enumerable.</param>
 		public static IEnumerable<TElement> ToEnumerable<TElement>(this TElement element)
 		{
-			Contract.Ensures(Contract.Result<IEnumerable<TElement>>() != null, "returned enumerable object is not null");
 			// This implementation is faster in all case than: yield return elem;
 			return new[] { element };
 		}

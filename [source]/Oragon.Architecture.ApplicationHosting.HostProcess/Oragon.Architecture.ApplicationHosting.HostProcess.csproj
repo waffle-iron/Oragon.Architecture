@@ -69,9 +69,6 @@
       <HintPath>..\..\[References]\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oragon.Architecture.Bootstrap">
-      <HintPath>..\..\[References]\Oragon.Architecture.Bootstrap.7.0.0-alpha1\lib\Oragon.Architecture.Bootstrap.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <HintPath>..\..\[References]\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
       <Private>True</Private>
@@ -87,7 +84,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Topshelf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
-      <HintPath>..\..\[References]\Topshelf.4.0.1\lib\net452\Topshelf.dll</HintPath>
+      <HintPath>..\..\[References]\Topshelf.4.0.2\lib\net452\Topshelf.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -106,18 +103,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.Ninject\Oragon.Architecture.ApplicationHosting.Ninject.csproj">
-      <Project>{a38c30a4-62c5-41c4-aea4-96ea1450d0cc}</Project>
-      <Name>Oragon.Architecture.ApplicationHosting.Ninject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SimpleInjector\Oragon.Architecture.ApplicationHosting.SimpleInjector.csproj">
-      <Project>{11a4183d-ccfb-4bb1-b010-5c664cf22d7c}</Project>
-      <Name>Oragon.Architecture.ApplicationHosting.SimpleInjector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
-      <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
-      <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Oragon.Architecture.ApplicationHosting\Oragon.Architecture.ApplicationHosting.csproj">
       <Project>{77959256-0d53-4fd6-a7de-385d032f48b5}</Project>
       <Name>Oragon.Architecture.ApplicationHosting</Name>

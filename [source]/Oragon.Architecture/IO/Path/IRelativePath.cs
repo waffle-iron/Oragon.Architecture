@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
 	///<summary>
 	///Represents a relative path to a file or directory.
 	///</summary>
-	[ContractClass(typeof(IRelativePathContract))]
 	public interface IRelativePath : IPath
 	{
 		#region Public Properties
@@ -62,64 +61,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IRelativePath))]
-	internal abstract class IRelativePathContract : IRelativePath
-	{
-		#region Public Properties
-
-		public abstract bool HasParentDirectory { get; }
-
-		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned path is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public IAbsolutePath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		#endregion Public Methods
-	}
+	
 }

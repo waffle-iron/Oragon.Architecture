@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,9 +19,8 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="seq"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Union<T>(this IEnumerable<T> seq, HashSet<T> hashset)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Requires(hashset != null, "hashset must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
+			seq.Should().NotBeNull("seq must not be null");
+			hashset.Should().NotBeNull("hashset must not be null");			
 			return UnionIterator(hashset, seq);
 		}
 

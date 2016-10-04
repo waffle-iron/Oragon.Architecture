@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
 	///<summary>
 	///Represents a directory path on file system, prefixed with an environment variable.
 	///</summary>
-	[ContractClass(typeof(IEnvVarDirectoryPathContract))]
 	public interface IEnvVarDirectoryPath : IDirectoryPath, IEnvVarPath
 	{
 		#region Public Methods
@@ -53,105 +52,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IEnvVarDirectoryPath))]
-	internal abstract class IEnvVarDirectoryPathContract : IEnvVarDirectoryPath
-	{
-		#region Public Properties
-
-		public abstract string DirectoryName { get; }
-
-		public abstract string EnvVar { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
-		IEnvVarDirectoryPath IEnvVarPath.ParentDirectoryPath { get { throw new NotImplementedException(); } }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public IEnvVarDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IEnvVarFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IEnvVarDirectoryPath GetChildDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IEnvVarFilePath GetChildFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public EnvVarPathResolvingStatus TryResolve(out IAbsoluteDirectoryPath pathDirectoryResolved)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool TryResolve(out IAbsoluteDirectoryPath pathDirectoryResolved, out string failureReason)
-		{
-			throw new NotImplementedException();
-		}
-
-		public abstract EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved);
-
-		public abstract bool TryResolve(out IAbsolutePath pathResolved, out string failureReason);
-
-		#endregion Public Methods
-	}
+	
 }

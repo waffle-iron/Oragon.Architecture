@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 
 namespace Oragon.Architecture.Extensions
@@ -17,8 +17,8 @@ namespace Oragon.Architecture.Extensions
 		/// <returns></returns>
 		public static bool StartsWithAny(this string thisString, params string[] args)
 		{
-			Contract.Requires(thisString != null, "str must not be null");
-			Contract.Requires(args != null, "args must not be null");
+			thisString.Should().NotBeNull("str must not be null");
+			args.Should().NotBeNull("args must not be null");
 			return args.Any(currentArg => thisString.StartsWith(currentArg));
 		}
 

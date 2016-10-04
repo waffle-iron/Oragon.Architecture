@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -16,9 +16,7 @@ namespace Oragon.Architecture.Extensions
 		/// <param name="list">A list object.</param>
 		public static IReadOnlyList<T> ToReadOnlyWrappedList<T>(this IList<T> list)
 		{
-			Contract.Requires(list != null, "collection must not be null");
-			Contract.Ensures(Contract.Result<IReadOnlyList<T>>() != null, "returned read-only list is not null");
-			Contract.Ensures(Contract.Result<IReadOnlyList<T>>().Count == list.Count, "returned read-only list has the same number of elements as list");
+			list.Should().NotBeNull("collection must not be null");
 			return new ListReadOnlyWrapper<T>(list);
 		}
 

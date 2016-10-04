@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.IO;
 
 namespace Oragon.Architecture.IO.Path
@@ -11,7 +11,6 @@ namespace Oragon.Architecture.IO.Path
 	///The path represented can exist or not.
 	///The extension method <see cref="PathHelpers.ToAbsoluteFilePath(string)"/> can be called to create a new IAbsoluteFilePath object from a string.
 	///</remarks>
-	[ContractClass(typeof(IAbsoluteFilePathContract))]
 	public interface IAbsoluteFilePath : IFilePath, IAbsolutePath
 	{
 		#region Public Properties
@@ -64,136 +63,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IAbsoluteFilePath))]
-	internal abstract class IAbsoluteFilePathContract : IAbsoluteFilePath
-	{
-		#region Public Properties
-
-		public abstract IDriveLetter DriveLetter { get; }
-
-		public abstract bool Exists { get; }
-
-		public string FileExtension
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public FileInfo FileInfo
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public string FileName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public string FileNameWithoutExtension
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		IDirectoryPath IPath.ParentDirectoryPath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract AbsolutePathKind Kind { get; }
-
-		public IAbsoluteDirectoryPath ParentDirectoryPath
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract string UNCServer { get; }
-
-		public abstract string UNCShare { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-		public abstract bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason);
-
-		public IAbsoluteDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IAbsoluteFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public abstract IRelativePath GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory);
-
-		public bool HasExtension(string extension)
-		{
-			throw new NotImplementedException();
-		}
-
-		IRelativeFilePath IAbsoluteFilePath.GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IFilePath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IFilePath.GetBrotherFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IFilePath.UpdateExtension(string newExtension)
-		{
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public abstract bool OnSameVolumeThan(IAbsolutePath pathAbsoluteOther);
-
-		public abstract bool TryResolveEnvironmentVariable(out IAbsolutePath pathResolved);
-
-		public IAbsoluteFilePath UpdateExtension(string newExtension)
-		{
-			Contract.Requires(newExtension != null, "newExtension must not be null");
-			Contract.Requires(newExtension.Length >= 2, "newExtension must have at least two characters");
-			Contract.Requires(newExtension[0] == '.', "newExtension first character must be a dot");
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
+	
 }

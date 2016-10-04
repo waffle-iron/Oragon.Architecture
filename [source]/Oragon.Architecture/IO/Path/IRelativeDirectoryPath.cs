@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
@@ -9,7 +9,6 @@ namespace Oragon.Architecture.IO.Path
 	///<remarks>
 	///The extension method <see cref="PathHelpers.ToRelativeDirectoryPath(string)"/> can be called to create a new IRelativeDirectoryPath object from a string.
 	///</remarks>
-	[ContractClass(typeof(IRelativeDirectoryPathContract))]
 	public interface IRelativeDirectoryPath : IDirectoryPath, IRelativePath
 	{
 		#region Public Methods
@@ -57,107 +56,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IRelativeDirectoryPath))]
-	internal abstract class IRelativeDirectoryPathContract : IRelativeDirectoryPath
-	{
-		#region Public Properties
-
-		public string DirectoryName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		IRelativeDirectoryPath IRelativePath.ParentDirectoryPath { get { throw new NotImplementedException(); } }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path);
-
-		public abstract bool CanGetAbsolutePathFrom(IAbsoluteDirectoryPath path, out string failureReason);
-
-		public IAbsoluteDirectoryPath GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory is null");
-			throw new NotImplementedException();
-		}
-
-		public IRelativeDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName is null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IRelativeFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName is null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IRelativeDirectoryPath GetChildDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName is null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IRelativeFilePath GetChildFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName is null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IAbsolutePath IRelativePath.GetAbsolutePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			return GetAbsolutePathFrom(pivotDirectory);
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		#endregion Public Methods
-	}
+	
 }

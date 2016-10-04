@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
@@ -10,7 +10,6 @@ namespace Oragon.Architecture.IO.Path
 	///The path can be relative or absolute.
 	///The extension method <see cref="PathHelpers.ToDirectoryPath(string)"/> can be called to create a new IDirectoryPath object from a string.
 	///</remarks>
-	[ContractClass(typeof(IDirectoryPathContract))]
 	public interface IDirectoryPath : IPath
 	{
 		#region Public Properties
@@ -64,70 +63,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IDirectoryPath))]
-	internal abstract class IDirectoryPathContract : IDirectoryPath
-	{
-		#region Public Properties
-
-		public string DirectoryName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public IDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IDirectoryPath GetChildDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IFilePath GetChildFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		#endregion Public Methods
-	}
+	
 }

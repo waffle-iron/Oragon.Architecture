@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
@@ -36,7 +36,6 @@ namespace Oragon.Architecture.IO.Path
 		{
 			get
 			{
-				Contract.Ensures(Contract.Result<char[]>() != null, "returned array is not null");
 				return s_ForbiddenCharInPath;
 			}
 		}
@@ -81,11 +80,9 @@ namespace Oragon.Architecture.IO.Path
 		///Returns <i>true</i> if <paramref name="pathVariableName"/> contains only upper/lower case letters, digits and underscore and has less than 1024 characters. In such case <paramref name="pathVariableName"/> is a valid path variable name.
 		///</summary>
 		///<param name="pathVariableName">The string on which we test if it is a valid path variable name.</param>
-		[System.Diagnostics.Contracts.Pure]
 		public static bool IsValidPathVariableName(this string pathVariableName)
 		{
-			Contract.Requires(pathVariableName != null, "variable string cannot be null");
-			Contract.Requires(pathVariableName.Length > 0, "variable string cannot be empty");
+			pathVariableName.Should().NotBeNullOrWhiteSpace("pathVariableName string cannot be null, empty or whitespaces");
 			const int MAX_CHARS = 1024;
 			var length = pathVariableName.Length;
 			if (length > MAX_CHARS) { return false; }
@@ -102,10 +99,9 @@ namespace Oragon.Architecture.IO.Path
 		///Returns <i>true</i> if <paramref name="pathVariableValue"/> has less than 1024 characters and has no character in <see cref="ForbiddenCharInPath"/>. In such case <paramref name="pathVariableValue"/> is a valid path variable name.
 		///</summary>
 		///<param name="pathVariableValue">The string on which we test if it is a valid path variable value.</param>
-		[System.Diagnostics.Contracts.Pure]
 		public static bool IsValidPathVariableValue(this string pathVariableValue)
 		{
-			Contract.Requires(pathVariableValue != null, "variable string cannot be null");
+			pathVariableValue.Should().NotBeNullOrWhiteSpace("pathVariableValue string cannot be null, empty or whitespaces");
 			const int MAX_CHARS = 1024;
 			var length = pathVariableValue.Length;
 			if (length > MAX_CHARS) { return false; }
@@ -170,7 +166,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid absolute directory path.</exception>
 		public static IAbsoluteDirectoryPath ToAbsoluteDirectoryPath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IAbsoluteDirectoryPath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IAbsoluteDirectoryPath absoluteDirectoryPath;
@@ -194,7 +189,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid absolute file path.</exception>
 		public static IAbsoluteFilePath ToAbsoluteFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IAbsoluteFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IAbsoluteFilePath absoluteFilePath;
@@ -218,7 +212,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative or absolute directory path or a valid directory path prefixed with an environment variable.</exception>
 		public static IDirectoryPath ToDirectoryPath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IDirectoryPath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IDirectoryPath directoryPath;
@@ -243,7 +236,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid directory path prefixed with an environment variable.</exception>
 		public static IEnvVarDirectoryPath ToEnvVarDirectoryPath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IEnvVarDirectoryPath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IEnvVarDirectoryPath envVarDirectoryPath;
@@ -268,7 +260,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path prefixed with an environment variable.</exception>
 		public static IEnvVarFilePath ToEnvVarFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IEnvVarFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IEnvVarFilePath envVarFilePath;
@@ -292,7 +283,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative or absolute file path or a valid file path prefixed with an environment variable.</exception>
 		public static IFilePath ToFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IFilePath filePath;
@@ -316,7 +306,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative directory path.</exception>
 		public static IRelativeDirectoryPath ToRelativeDirectoryPath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IRelativeDirectoryPath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IRelativeDirectoryPath relativeDirectoryPath;
@@ -340,7 +329,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid relative file path.</exception>
 		public static IRelativeFilePath ToRelativeFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IRelativeFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IRelativeFilePath relativeFilePath;
@@ -364,7 +352,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid directory path that contains variables.</exception>
 		public static IVariableDirectoryPath ToVariableDirectoryPath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IVariableDirectoryPath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IVariableDirectoryPath variableDirectoryPath;
@@ -388,7 +375,6 @@ namespace Oragon.Architecture.IO.Path
 		///<exception cref="ArgumentException"><paramref name="pathString"/> is empty or doesn't represents a valid file path that contains variables.</exception>
 		public static IVariableFilePath ToVariableFilePath(this string pathString)
 		{
-			Contract.Ensures(Contract.Result<IVariableFilePath>() != null, "returned reference is not null");
 			pathString.EventuallyThrowExOnPathStringNullOrEmpty();
 			string failureReason;
 			IVariableFilePath variableFilePath;

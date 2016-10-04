@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,10 +19,10 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="seq"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Union<T>(this HashSet<T> hashSet, IEnumerable<T> seq)
 		{
-			Contract.Requires(hashSet != null, "hashset must not be null");
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			return UnionIterator(hashSet, seq);
+			hashSet.Should().NotBeNull("hashset must not be null");
+			seq.Should().NotBeNull("seq must not be null");
+			var returnValue = UnionIterator(hashSet, seq);
+			return returnValue;
 		}
 
 		///<summary>
@@ -35,10 +35,10 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="otherHashSet"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Union<T>(this HashSet<T> thisHashSet, HashSet<T> otherHashSet)
 		{
-			Contract.Requires(thisHashSet != null, "hashset must not be null");
-			Contract.Requires(otherHashSet != null, "otherHashset must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			return UnionIterator(thisHashSet, otherHashSet);
+			thisHashSet.Should().NotBeNull("hashset must not be null");
+			otherHashSet.Should().NotBeNull("otherHashset must not be null");
+			var returnValue = UnionIterator(thisHashSet, otherHashSet);
+			return returnValue;
 		}
 
 		#endregion Public Methods

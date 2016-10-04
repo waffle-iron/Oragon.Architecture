@@ -17,10 +17,10 @@
     <dependencies>
       <dependency id="Common.Logging" version="3.3.1" />
       <dependency id="Common.Logging.Core" version="3.3.1" />
-      <dependency id="mongocsharpdriver" version="2.2.4" />
-      <dependency id="MongoDB.Bson" version="2.2.4" />
-      <dependency id="MongoDB.Driver" version="2.2.4" />
-      <dependency id="MongoDB.Driver.Core" version="2.2.4" />
+      <dependency id="mongocsharpdriver" version="2.3.0" />
+      <dependency id="MongoDB.Bson" version="2.3.0" />
+      <dependency id="MongoDB.Driver" version="2.3.0" />
+      <dependency id="MongoDB.Driver.Core" version="2.3.0" />
       <dependency id="Spring.Aop" version="2.0.1" />
       <dependency id="Spring.Core" version="2.0.1" />
       <dependency id="Oragon.Architecture.Aop" version="$version$" />

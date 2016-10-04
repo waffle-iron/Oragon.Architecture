@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
@@ -10,7 +10,6 @@ namespace Oragon.Architecture.IO.Path
 	///Equals(), ToString() and GetHashCode() operations are overridden from System.Object and are supported by all paths objects.
 	///Equals() and GetHashCode() are string case insensitive.
 	///</remarks>
-	[ContractClass(typeof(IPathContract))]
 	public interface IPath
 	{
 		#region Public Properties
@@ -108,69 +107,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IPath))]
-	internal abstract class IPathContract : IPath
-	{
-		#region Public Properties
 
-		public bool HasParentDirectory
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public bool IsAbsolutePath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public bool IsDirectoryPath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public bool IsFilePath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public bool IsRelativePath
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool IsVariablePath { get; }
-
-		public IDirectoryPath ParentDirectoryPath
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IDirectoryPath>() != null, "returned path is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public PathMode PathMode
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public bool IsChildOf(IDirectoryPath parentDir)
-		{
-			Contract.Requires(parentDir != null, "parentDir must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool NotEquals(object obj)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
 }

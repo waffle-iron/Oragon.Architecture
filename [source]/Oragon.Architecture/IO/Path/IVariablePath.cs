@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-
+using FluentAssertions;
 namespace Oragon.Architecture.IO.Path
 {
 	///<summary>
 	///Represents a path containing variable(s) defined with the syntax (case-insensitive) <i>$(VariableName)</i>. Such path must be prefixed with a variable and can then contain more variables.
 	///</summary>
-	[ContractClass(typeof(IVariablePathContract))]
 	public interface IVariablePath : IPath
 	{
 		#region Public Properties
@@ -64,84 +62,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IVariablePath))]
-	internal abstract class IVariablePathContract : IVariablePath
-	{
-		#region Public Properties
 
-		public IReadOnlyList<string> AllVariables
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IReadOnlyList<string>>() != null, "returned list is not null");
-				Contract.Ensures(Contract.Result<IReadOnlyList<string>>().Count > 0, "returned list is not empty");
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		IVariableDirectoryPath IVariablePath.ParentDirectoryPath
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IVariableDirectoryPath>() != null, "returned path is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public string PrefixVariable
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<string>() != null, "returned string is not null");
-				Contract.Ensures(Contract.Result<string>().Length > 0, "returned string is not empty");
-				throw new NotImplementedException();
-			}
-		}
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		public VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out IReadOnlyList<string> unresolvedVariables)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out string failureReason)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
 }

@@ -60,6 +60,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.HostProcess\Oragon.Architecture.ApplicationHosting.HostProcess.csproj">
+      <Project>{7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting.HostProcess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.Ninject\Oragon.Architecture.ApplicationHosting.Ninject.csproj">
       <Project>{a38c30a4-62c5-41c4-aea4-96ea1450d0cc}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.Ninject</Name>

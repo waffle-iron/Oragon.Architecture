@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 
 namespace Oragon.Architecture.Extensions
@@ -28,9 +28,8 @@ namespace Oragon.Architecture.Extensions
 		///<seealso cref="Enumerable.ToLookup{TSource,TKey}(System.Collections.Generic.IEnumerable{TSource},System.Func{TSource,TKey})"/>
 		public static ILookup<TKey, T> ToMultiKeyLookup<T, TKey>(this IEnumerable<T> seq, Func<T, IEnumerable<TKey>> func)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Requires(func != null, "func must not be null");
-			Contract.Ensures(Contract.Result<ILookup<TKey, T>>() != null, "returned lookup object is not null");
+			seq.Should().NotBeNull("seq must not be null");
+			func.Should().NotBeNull("func must not be null");
 			Debug.Assert(seq != null);
 			var dicoLookup = new DicoLookup<TKey, T>();
 			foreach (var elem in seq)

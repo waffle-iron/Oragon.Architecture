@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
 	///<summary>
 	///Represents a directory path on file system, prefixed with an environment variable.
 	///</summary>
-	[ContractClass(typeof(IVariableDirectoryPathContract))]
 	public interface IVariableDirectoryPath : IDirectoryPath, IVariablePath
 	{
 		#region Public Methods
@@ -64,121 +63,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IVariableDirectoryPath))]
-	internal abstract class IVariableDirectoryPathContract : IVariableDirectoryPath
-	{
-		#region Public Properties
-
-		public abstract IReadOnlyList<string> AllVariables { get; }
-
-		public abstract string DirectoryName { get; }
-
-		public abstract bool HasParentDirectory { get; }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		IVariableDirectoryPath IVariablePath.ParentDirectoryPath { get { throw new NotImplementedException(); } }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public abstract string PrefixVariable { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public IVariableDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IVariableFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IVariableDirectoryPath GetChildDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IVariableFilePath GetChildFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetBrotherDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetBrotherFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IDirectoryPath IDirectoryPath.GetChildDirectoryWithName(string directoryName)
-		{
-			throw new NotImplementedException();
-		}
-
-		IFilePath IDirectoryPath.GetChildFileWithName(string fileName)
-		{
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsoluteDirectoryPath pathDirectoryResolved)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		public VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsoluteDirectoryPath pathDirectoryResolved, out IReadOnlyList<string> unresolvedVariables)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsoluteDirectoryPath pathDirectoryResolved, out string failureReason)
-		{
-			Contract.Requires(variablesValues != null, "variablesValues must not be null");
-			throw new NotImplementedException();
-		}
-
-		public abstract VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved);
-
-		public abstract VariablePathResolvingStatus TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out IReadOnlyList<string> unresolvedVariables);
-
-		public abstract bool TryResolve(IEnumerable<KeyValuePair<string, string>> variablesValues, out IAbsolutePath pathResolved, out string failureReason);
-
-		public abstract EnvVarPathResolvingStatus TryResolve(out IAbsolutePath pathResolved);
-
-		public abstract bool TryResolve(out IAbsolutePath pathResolved, out string failureReason);
-
-		#endregion Public Methods
-	}
+	
 }

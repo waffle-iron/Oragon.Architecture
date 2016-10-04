@@ -3,11 +3,11 @@ using Oragon.Architecture.ApplicationHosting.Services.Contracts;
 using Oragon.Architecture.IO.Path;
 using System;
 using System.Configuration;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
+using FluentAssertions;
 
 namespace Oragon.Architecture.ApplicationHosting
 {
@@ -141,7 +141,8 @@ namespace Oragon.Architecture.ApplicationHosting
 			this._heartBeatTimer = new System.Timers.Timer(new TimeSpan(0, 0, 10).TotalMilliseconds);
 			this._heartBeatTimer.Elapsed += (sender, e) => this._applicationHostController.HeartBeat();
 
-			Contract.Requires(baseDirectory != null && baseDirectory.Exists);
+			baseDirectory.Should().NotBeNull();
+			baseDirectory.Exists.Should().BeTrue();
 
 			IAbsoluteDirectoryPath absoluteApplicationBaseDirectory = this.GetAbsoluteDirectoryPath(baseDirectory);
 			IAbsoluteFilePath absoluteApplicationConfigurationFile = this.GetAbsoluteFilePath(baseDirectory);

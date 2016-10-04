@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 
 namespace Oragon.Architecture.Extensions
@@ -19,10 +19,8 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> seq, T element)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
+			seq.Should().NotBeNull("seq must not be null");
 			//Contract.Requires(element != null, "element must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>().Any(), "returned sequence contains at least element");
 			foreach (var elem in seq)
 			{
 				yield return elem;
@@ -40,10 +38,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> seq, T element1, T element2)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			//Contract.Requires(element != null, "element must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>().Any(), "returned sequence contains at least element");
+			seq.Should().NotBeNull("seq must not be null");			
 			foreach (var elem in seq)
 			{
 				yield return elem;
@@ -64,10 +59,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> seq, T element1, T element2, T element3)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			//Contract.Requires(element != null, "element must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>().Any(), "returned sequence contains at least element");
+			seq.Should().NotBeNull("seq must not be null");
 			foreach (var elem in seq)
 			{
 				yield return elem;
@@ -90,10 +82,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> seq, T element1, T element2, T element3, T element4)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			//Contract.Requires(element != null, "element must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>().Any(), "returned sequence contains at least element");
+			seq.Should().NotBeNull("seq must not be null");
 			foreach (var elem in seq)
 			{
 				yield return elem;
@@ -118,10 +107,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> seq, T element1, T element2, T element3, T element4, T element5)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			//Contract.Requires(element != null, "element must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>().Any(), "returned sequence contains at least element");
+			seq.Should().NotBeNull("seq must not be null");
 			foreach (var elem in seq)
 			{
 				yield return elem;

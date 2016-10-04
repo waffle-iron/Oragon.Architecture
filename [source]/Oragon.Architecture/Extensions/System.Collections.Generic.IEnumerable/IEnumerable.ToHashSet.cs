@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -17,8 +17,7 @@ namespace Oragon.Architecture.Extensions
 		///<returns>An hashset that contains the elements from the input sequence.</returns>
 		public static HashSet<T> ToHashSet<T>(this IEnumerable<T> seq)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Ensures(Contract.Result<HashSet<T>>() != null, "returned hashset object is not null");
+			seq.Should().NotBeNull("seq must not be null");
 			return new HashSet<T>(seq);
 		}
 

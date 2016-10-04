@@ -17,7 +17,7 @@
     <dependencies>
       <dependency id="Microsoft.AspNet.SignalR.Client" version="2.2.1" />
       <dependency id="Newtonsoft.Json" version="9.0.1" />
-      <dependency id="Topshelf" version="4.0.1" />
+      <dependency id="Topshelf" version="4.0.2" />
       <dependency id="Oragon.Architecture.Services" version="$version$" />
       <dependency id="Oragon.Architecture" version="$version$" />
     </dependencies>

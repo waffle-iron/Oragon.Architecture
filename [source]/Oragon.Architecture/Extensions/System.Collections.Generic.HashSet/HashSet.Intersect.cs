@@ -1,7 +1,6 @@
-﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
-
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+﻿using System.Collections.Generic;
+using FluentAssertions;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,9 +18,8 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="seq"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Intersect<T>(this HashSet<T> hashSet, IEnumerable<T> seq)
 		{
-			Contract.Requires(hashSet != null, "hashset must not be null");
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
+			hashSet.Should().NotBeNull("hashset must not be null");
+			seq.Should().NotBeNull("seq must not be null");
 			return IntersectIterator(hashSet, seq);
 		}
 
@@ -35,9 +33,8 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="otherHashset"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Intersect<T>(this HashSet<T> hashSet, HashSet<T> otherHashset)
 		{
-			Contract.Requires(hashSet != null, "hashset must not be null");
-			Contract.Requires(otherHashset != null, "otherHashset must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
+			hashSet.Should().NotBeNull("hashset must not be null");
+			otherHashset.Should().NotBeNull("otherHashset must not be null");
 			return IntersectIterator(hashSet, otherHashset);
 		}
 

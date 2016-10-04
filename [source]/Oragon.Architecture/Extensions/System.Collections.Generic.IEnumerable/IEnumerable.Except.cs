@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,9 +19,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>constant</i> time complexity.</remarks>
 		public static IEnumerable<T> Except<T>(this IEnumerable<T> seq, T elementExcluded)
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			//Contract.Requires(elementExcluded != null, "elementExcluded must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
+			seq.Should().NotBeNull("seq must not be null");			
 			foreach (var element in seq)
 			{
 				if (elementExcluded.Equals(element)) { continue; }
@@ -39,9 +37,8 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This extension method has a <i>O(<paramref name="seq"/>.Count)</i> time complexity.</remarks>
 		public static IEnumerable<T> Except<T>(this IEnumerable<T> seq, HashSet<T> hashset) where T : class
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Requires(hashset != null, "hashset must not be null");
-			Contract.Ensures(Contract.Result<IEnumerable<T>>() != null, "returned sequence is not null");
+			seq.Should().NotBeNull("seq must not be null");
+			hashset.Should().NotBeNull("hashset must not be null");
 			foreach (var t in seq)
 			{
 				if (hashset.Contains(t)) { continue; }

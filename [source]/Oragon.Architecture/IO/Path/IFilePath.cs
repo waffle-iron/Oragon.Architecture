@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.IO.Path
 {
@@ -11,7 +11,6 @@ namespace Oragon.Architecture.IO.Path
 	///In case of an absolute IFilePath, the path represented can exist or not.
 	///The extension method <see cref="PathHelpers.ToFilePath(string)"/> can be called to create a new IFilePath object from a string.
 	///</remarks>
-	[ContractClass(typeof(IFilePathContract))]
 	public interface IFilePath : IPath
 	{
 		#region Public Properties
@@ -77,86 +76,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IFilePath))]
-	internal abstract class IFilePathContract : IFilePath
-	{
-		#region Public Properties
-
-		public string FileExtension
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<string>() != null, "returned string is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public string FileName
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public string FileNameWithoutExtension
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public IDirectoryPath GetBrotherDirectoryWithName(string directoryName)
-		{
-			Contract.Requires(directoryName != null, "directoryName must not be null");
-			Contract.Requires(directoryName.Length > 0, "directoryName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public IFilePath GetBrotherFileWithName(string fileName)
-		{
-			Contract.Requires(fileName != null, "fileName must not be null");
-			Contract.Requires(fileName.Length > 0, "fileName must not be empty");
-			throw new NotImplementedException();
-		}
-
-		public bool HasExtension(string extension)
-		{
-			Contract.Requires(extension != null, "extension must not be null");
-			Contract.Requires(extension.Length >= 2, "extension must have at least two characters");
-			Contract.Requires(extension[0] == '.', "extension first character must be a dot");
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public IFilePath UpdateExtension(string newExtension)
-		{
-			Contract.Requires(newExtension != null, "newExtension must not be null");
-			Contract.Requires(newExtension.Length >= 2, "newExtension must have at least two characters");
-			Contract.Requires(newExtension[0] == '.', "newExtension first character must be a dot");
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
+	
 }

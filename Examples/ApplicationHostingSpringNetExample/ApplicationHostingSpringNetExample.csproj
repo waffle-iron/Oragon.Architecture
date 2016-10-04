@@ -59,13 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ApplicationHostingExample.config" />
+    <None Include="Oragon.Architecture.ApplicationHosting.HostProcess.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationHostingExample.xml" />
+    <Content Include="ApplicationHostingExample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.HostProcess\Oragon.Architecture.ApplicationHosting.HostProcess.csproj">
+      <Project>{7bc1475e-e5ca-4ed3-a0f5-21f0521b2a53}</Project>
+      <Name>Oragon.Architecture.ApplicationHosting.HostProcess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\[source]\Oragon.Architecture.ApplicationHosting.SpringFramework\Oragon.Architecture.ApplicationHosting.SpringFramework.csproj">
       <Project>{66c927a0-cd78-4bd2-8900-8ccad02e0dfe}</Project>
       <Name>Oragon.Architecture.ApplicationHosting.SpringFramework</Name>

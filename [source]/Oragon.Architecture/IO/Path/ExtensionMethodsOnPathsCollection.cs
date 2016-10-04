@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -29,8 +29,8 @@ namespace Oragon.Architecture.IO.Path
 			where T : class, IPath
 			where K : class, IPath
 		{
-			Contract.Requires(seq != null, "seq must not be null");
-			Contract.Requires(path != null, "path must not be null");
+			seq.Should().NotBeNull("seq must not be null");
+			path.Should().NotBeNull("path must not be null");
 			foreach (var pathTmp in seq)
 			{
 				if (path.Equals(pathTmp)) { return true; }
@@ -86,7 +86,7 @@ namespace Oragon.Architecture.IO.Path
 		///</returns>
 		public static bool TryGetCommonRootDirectory(this ICollection<IAbsoluteDirectoryPath> collection, out IAbsoluteDirectoryPath commonRootDirectory)
 		{
-			Contract.Requires(collection != null, "collection must not be null");
+			collection.Should().NotBeNull("collection must not be null");
 
 			string prefix;
 			if (!TryFindCommonPrefix(

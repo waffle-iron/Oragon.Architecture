@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Extensions
 {
@@ -19,7 +19,7 @@ namespace Oragon.Architecture.Extensions
 		///<remarks>This method uses the EqualityComparer$lt;T&gt;.Default.Equals() method on <paramref name="value"/> to determine whether item exists</remarks>
 		public static int IndexOf<T>(this IReadOnlyList<T> readOnlyList, T value)
 		{
-			Contract.Requires(readOnlyList != null, "readOnlyList must not be null");
+			readOnlyList.Should().NotBeNull("readOnlyList must not be null");
 			var count = readOnlyList.Count;
 			var equalityComparer = EqualityComparer<T>.Default;
 			for (var i = 0; i < count; i++)

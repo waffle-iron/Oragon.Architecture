@@ -3,7 +3,7 @@ using Oragon.Architecture.Extensions;
 using Oragon.Architecture.IO.Path;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 using System.Threading.Tasks;
 using Topshelf;
@@ -86,8 +86,13 @@ namespace Oragon.Architecture.ApplicationHosting
 
 		public virtual void Start()
 		{
-			Contract.Requires(this.Applications != null && this.Applications.Count > 0, "Invalid Application configuration, has no Application defined.");
-			Contract.Requires(this.ConfigurationFilePath.Exists, "Configuration FilePath cannot be found in disk");
+			this.Applications.Should()
+				.NotBeNull("Invalid Application configuration, has no Application defined.")
+				.And
+				.NotBeEmpty("Invalid Application configuration, has no Application defined.");
+
+			this.ConfigurationFilePath.Exists.Should()
+				.BeTrue("Configuration FilePath cannot be found in disk");
 
 			var tmpApplicationList = new List<ApplicationHost>(this.Applications);
 			foreach (var application in tmpApplicationList)

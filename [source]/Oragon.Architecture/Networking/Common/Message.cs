@@ -1,6 +1,6 @@
 ﻿using Oragon.Architecture.Extensions;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 
 namespace Oragon.Architecture.Networking.Common
 {
@@ -25,16 +25,16 @@ namespace Oragon.Architecture.Networking.Common
 
 		public void AddProperty(MessageProperty property)
 		{
-			Contract.Requires(property.IsNotNull());
-			Contract.Requires(property.Name.IsNotNullOrWhiteSpace());
-			Contract.Requires(this.properties.NotContains(it => it.Name.ToLower() == property.Name.ToLower()));
+			property.Should().NotBeNull();
+			property.Name.Should().NotBeNullOrWhiteSpace();
+			this.properties.NotContains(it => it.Name.ToLower() == property.Name.ToLower()).Should().BeTrue();
 			this.properties.Add(property);
 		}
 
 		public void AddProperty<T>(string name, T data)
 		{
-			Contract.Requires(name.IsNotNullOrWhiteSpace());
-			Contract.Requires(this.properties.NotContains(it => it.Name.ToLower() == name.ToLower()));
+			name.Should().NotBeNullOrWhiteSpace();
+			this.properties.NotContains(it => it.Name.ToLower() == name.ToLower()).Should().BeTrue();
 			this.properties.Add(new MessageProperty<T>() { Data = data });
 		}
 

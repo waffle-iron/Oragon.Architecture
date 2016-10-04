@@ -1,6 +1,6 @@
 ﻿// Copyright (c) 2013 Jonathan Magnan (http://zzzportal.com) All rights reserved. Licensed under MIT License (MIT) License can be found here: https://zextensionmethods.codeplex.com/license
 
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.Linq;
 
 namespace Oragon.Architecture.Extensions
@@ -15,7 +15,7 @@ namespace Oragon.Architecture.Extensions
 		///<param name="str1">One of the possible value for <paramref name="thisString"/>.</param>
 		public static bool EqualsAny(this string thisString, params string[] args)
 		{
-			Contract.Requires(thisString != null, "str must not be null");
+			thisString.Should().NotBeNull("str must not be null");
 			return args.Any(currentArg => currentArg == thisString);
 		}
 

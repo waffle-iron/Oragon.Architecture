@@ -91,8 +91,7 @@ namespace Oragon.Architecture.ApplicationHosting
 			if (this.IsConsole)
 			{
 				exitCode = this.ServiceHost.RunConsoleMode(this.Arguments, this.ServiceConfigurationFile);
-			}
-			else
+			} else
 			{
 				Host host = HostFactory.New(hostConfig => this.ServiceHost.Configure(hostConfig, this.ServiceConfigurationFile));
 				exitCode = host.Run();
@@ -107,6 +106,7 @@ namespace Oragon.Architecture.ApplicationHosting
 		protected virtual IApplicationContext BuildDescriptorsApplicationContext()
 		{
 			Queue<string> paths = this.BuildPathQueue();
+
 			IApplicationContext applicationContext = null;
 			RetryHelper.Try(delegate
 			{
@@ -116,11 +116,15 @@ namespace Oragon.Architecture.ApplicationHosting
 			return applicationContext;
 		}
 
-		protected virtual Queue<string> BuildPathQueue()
+		protected virtual Queue<string> BuildPathQueue(bool isRequired = true)
 		{
 			Queue<string> pathQueue = new Queue<string>();
 			if (this.HasServiceConfigurationFile)
 				pathQueue.Enqueue(this.ServiceConfigurationFile);
+
+			if (isRequired && pathQueue.Any() == false)
+				throw new System.Configuration.ConfigurationErrorsException("Any path is configured to run");
+
 			return pathQueue;
 		}
 

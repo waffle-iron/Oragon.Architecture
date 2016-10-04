@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 
 namespace Oragon.Architecture.IO.Path
 {
 	///<summary>
 	///Represents an absolute path to a file or directory on file system.
 	///</summary>
-	[ContractClass(typeof(IAbsolutePathContract))]
 	public interface IAbsolutePath : IPath
 	{
 		#region Public Properties
@@ -100,114 +98,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IAbsolutePath))]
-	internal abstract class IAbsolutePathContract : IAbsolutePath
-	{
-		#region Public Properties
 
-		public IDriveLetter DriveLetter
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IDriveLetter>() != null, "returned object is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public bool Exists
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public abstract bool HasParentDirectory { get; }
-
-		IAbsoluteDirectoryPath IAbsolutePath.ParentDirectoryPath
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<IAbsoluteDirectoryPath>() != null, "returned path is not null");
-				throw new NotImplementedException();
-			}
-		}
-
-		public abstract bool IsAbsolutePath { get; }
-
-		public abstract bool IsDirectoryPath { get; }
-
-		public abstract bool IsEnvVarPath { get; }
-
-		public abstract bool IsFilePath { get; }
-
-		public abstract bool IsRelativePath { get; }
-
-		public abstract bool IsVariablePath { get; }
-
-		public AbsolutePathKind Kind
-		{
-			get { throw new NotImplementedException(); ; }
-		}
-
-		public abstract IDirectoryPath ParentDirectoryPath { get; }
-
-		public abstract PathMode PathMode { get; }
-
-		public string UNCServer
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<string>() != null, "returned string is not null");
-				Contract.Ensures(Contract.Result<string>().Length > 0, "returned string is not empty");
-				throw new NotImplementedException();
-			}
-		}
-
-		public string UNCShare
-		{
-			get
-			{
-				Contract.Ensures(Contract.Result<string>() != null, "returned string is not null");
-				Contract.Ensures(Contract.Result<string>().Length > 0, "returned string is not empty");
-				throw new NotImplementedException();
-			}
-		}
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool CanGetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory, out string failureReason)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public IRelativePath GetRelativePathFrom(IAbsoluteDirectoryPath pivotDirectory)
-		{
-			Contract.Requires(pivotDirectory != null, "pivotDirectory must not be null");
-			throw new NotImplementedException();
-		}
-
-		public abstract bool IsChildOf(IDirectoryPath parentDirectory);
-
-		public abstract bool NotEquals(object obj);
-
-		public bool OnSameVolumeThan(IAbsolutePath pathAbsoluteOther)
-		{
-			Contract.Requires(pathAbsoluteOther != null, "pathAbsoluteOther must not be null");
-			throw new NotImplementedException();
-		}
-
-		public bool TryResolveEnvironmentVariable(out IAbsolutePath pathResolved)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
 }

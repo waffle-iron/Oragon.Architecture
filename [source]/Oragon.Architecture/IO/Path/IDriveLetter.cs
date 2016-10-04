@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using FluentAssertions;
 using System.IO;
 
 namespace Oragon.Architecture.IO.Path
@@ -7,7 +7,6 @@ namespace Oragon.Architecture.IO.Path
 	///<summary>
 	///Represents a drive on file system.
 	///</summary>
-	[ContractClass(typeof(IDriveLetterContract))]
 	public interface IDriveLetter
 	{
 		#region Public Properties
@@ -38,30 +37,5 @@ namespace Oragon.Architecture.IO.Path
 		#endregion Public Methods
 	}
 
-	[ContractClassFor(typeof(IDriveLetter))]
-	internal abstract class IDriveLetterContract : IDriveLetter
-	{
-		#region Public Properties
-
-		public DriveInfo DriveInfo
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public char Letter
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		#endregion Public Properties
-
-		#region Public Methods
-
-		public bool NotEquals(object obj)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion Public Methods
-	}
+	
 }
