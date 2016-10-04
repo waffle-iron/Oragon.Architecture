@@ -4,8 +4,8 @@
     <id>Oragon.Architecture.Services</id>
     <version>$version$</version>
     <title>Oragon.Architecture.Services</title>
-    <authors>LuizCarlos</authors>
-    <owners>LuizCarlos</owners>
+    <authors>LuizCarlosFaria</authors>
+    <owners>LuizCarlosFaria</owners>
     <projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
     <iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -15,6 +15,7 @@
     <language>en-US</language>
     <tags>Oragon, Architecture, luiz, carlos, faria, luizcarlosfaria, oragonarchitect</tags>
     <dependencies>
+      <dependency id="FluentAssertions" version="4.14.0" />
       <dependency id="Oragon.Architecture" version="$version$" />
     </dependencies>
   </metadata>

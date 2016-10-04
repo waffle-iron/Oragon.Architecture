@@ -4,8 +4,8 @@
     <id>Oragon.Architecture.ApplicationHosting.SpringFramework</id>
     <version>$version$</version>
     <title>Oragon.Architecture.ApplicationHosting.SpringFramework</title>
-    <authors>LuizCarlos</authors>
-    <owners>LuizCarlos</owners>
+    <authors>LuizCarlosFaria</authors>
+    <owners>LuizCarlosFaria</owners>
     <projectUrl>https://github.com/luizcarlosfaria/Oragon.Architecture</projectUrl>
     <iconUrl>http://luizcarlosfaria.net/wp-content/uploads/2014/03/Oragon-Architecture-Penknife.export.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

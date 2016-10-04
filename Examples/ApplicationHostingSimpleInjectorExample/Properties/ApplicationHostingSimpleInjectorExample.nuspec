@@ -3,8 +3,8 @@
   <metadata>
     <id>ApplicationHostingSimpleInjectorExample</id>
     <version>$version$</version>
-    <authors>LuizCarlos</authors>
-    <owners>LuizCarlos</owners>
+    <authors>LuizCarlosFaria</authors>
+    <owners>LuizCarlosFaria</owners>
     <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
     <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
@@ -15,6 +15,7 @@
     <tags>Tag1 Tag2</tags>
     <dependencies>
       <dependency id="SimpleInjector" version="3.2.2" />
+      <dependency id="Oragon.Architecture.ApplicationHosting.HostProcess" version="$version$" />
       <dependency id="Oragon.Architecture.ApplicationHosting.SimpleInjector" version="$version$" />
       <dependency id="Oragon.Architecture.ApplicationHosting" version="$version$" />
     </dependencies>

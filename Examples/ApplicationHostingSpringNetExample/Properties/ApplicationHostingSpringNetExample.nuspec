@@ -3,8 +3,8 @@
   <metadata>
     <id>ApplicationHostingSpringNetExample</id>
     <version>$version$</version>
-    <authors>LuizCarlos</authors>
-    <owners>LuizCarlos</owners>
+    <authors>LuizCarlosFaria</authors>
+    <owners>LuizCarlosFaria</owners>
     <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
     <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
@@ -17,6 +17,7 @@
       <dependency id="Common.Logging" version="3.3.1" />
       <dependency id="Common.Logging.Core" version="3.3.1" />
       <dependency id="Spring.Core" version="2.0.1" />
+      <dependency id="Oragon.Architecture.ApplicationHosting.HostProcess" version="$version$" />
       <dependency id="Oragon.Architecture.ApplicationHosting.SpringFramework" version="$version$" />
       <dependency id="Oragon.Architecture.ApplicationHosting" version="$version$" />
     </dependencies>

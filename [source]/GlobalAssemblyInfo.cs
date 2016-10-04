@@ -13,6 +13,6 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("Release")]
 #endif
 
-[assembly: AssemblyVersion("7.2.0")]
-[assembly: AssemblyFileVersion("7.2.0")]
-[assembly: AssemblyInformationalVersion("7.2.0")]
+[assembly: AssemblyVersion("7.3.0")]
+[assembly: AssemblyFileVersion("7.3.0")]
+[assembly: AssemblyInformationalVersion("7.3.0")]
