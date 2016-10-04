@@ -1,4 +1,6 @@
-﻿$workingDirectory = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition;
+﻿param ($Version = $(throw "Version parameter is required."))
+
+$workingDirectory = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition;
 $sourceDirectory = [System.IO.Path]::Combine($workingDirectory, "[Source]")
 $buildDirectory = [System.IO.Path]::Combine($workingDirectory, "[Build]")
 $AssemblyInfoVersionManager = [System.IO.Path]::Combine($workingDirectory, "[Tools]", "BuildTools", "Oragon.BuildTools.AssemblyInfoVersionManager.exe")
@@ -7,6 +9,8 @@ $ResourcePack = [System.IO.Path]::Combine($workingDirectory, "[Tools]", "BuildTo
 $GlobalAssemblyInfo = [System.IO.Path]::Combine($sourceDirectory, "GlobalAssemblyInfo.cs")
 $NuGet = [System.IO.Path]::Combine($sourceDirectory, ".nuget", "NuGet.exe")
 $solutionFile = [System.IO.Path]::Combine($sourceDirectory, "Oragon.Architecture.7.sln")
+
+ 
 
 
 
@@ -41,13 +45,13 @@ function GetNuSpecFiles
 function FormatNuGetBuildCommand
 {
     param ([string]$nuSpecFile)
-    $command = """$NuGet"" pack ""$nuSpecFile"" -Build -Prop Configuration=Release -IncludeReferencedProjects -NoPackageAnalysis -Version 7.1.0 -OutputDirectory ""$buildDirectory"""
+    $command = """$NuGet"" pack ""$nuSpecFile"" -Build -Prop Configuration=Release -IncludeReferencedProjects -NoPackageAnalysis -Version $Version -OutputDirectory ""$buildDirectory"""
     return $command
 }
 
 myeval("""$ResourcePack"" --pack --ProjectGuid=30E4014D-8E36-4E02-AE1A-CD4EB1718683 --RootNamespace=Oragon.Resources.Bootstrap --AssemblyName=Oragon.Resources.Bootstrap --Path=$sourceDirectory\Oragon.Resources.Bootstrap --TargetFrameworkVersion=v4.5.1 --Version=$env:GlobalAssemblyVersion --VersionTag=GA")
 
-myeval("""$AssemblyInfoVersionManager"" --File=""$GlobalAssemblyInfo"" --Version=7.1.0")
+myeval("""$AssemblyInfoVersionManager"" --File=""$GlobalAssemblyInfo"" --Version=$Version")
 
 myeval("""$NugetTools"" --mergenuspec --solution=""$solutionFile"" --createNuspecIfNeed=""$NuGet"" --convertSolutionProjectsInNugetReferences  ")
 
