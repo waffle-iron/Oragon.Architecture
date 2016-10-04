@@ -26,6 +26,7 @@ function myeval($command)
 $packagesToPublish = [System.IO.Directory]::GetFiles($buildDirectory, "*.nupkg", [System.IO.SearchOption]::AllDirectories)
 foreach($packageToPublish in $packagesToPublish)
 {
-    $command = """$NuGet"" push $packageToPublish -source https://www.nuget.org/api/v2/package/" 
+    #$command = """$NuGet"" push $packageToPublish -source https://www.nuget.org/api/v2/package/"
+    $command = """$NuGet"" push $packageToPublish -Source https://www.myget.org/F/oragon-live/api/v2/package"
     myeval($command)
 }
